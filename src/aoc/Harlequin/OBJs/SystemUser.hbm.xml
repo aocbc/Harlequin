@@ -1,0 +1,35 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 06 Mar 2018 11:04:37 AM by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping>
+    <class name="aoc.Harlequin.OBJs.SystemUser" table="System_User" catalog="Harlequin">
+        <id name="idSystemUser" type="java.lang.Integer">
+            <column name="idSystem_User" />
+            <generator class="identity" />
+        </id>
+        <property name="userName" type="string">
+            <column name="User_Name" length="250" />
+        </property>
+        <property name="name" type="string">
+            <column name="Name" length="250" />
+        </property>
+        <property name="surname" type="string">
+            <column name="Surname" length="250" />
+        </property>
+        <property name="EMail" type="string">
+            <column name="E_Mail" length="13" />
+        </property>
+        <property name="cellNumber" type="string">
+            <column name="Cell_Number" length="13" />
+        </property>
+        <property name="tellNumber" type="string">
+            <column name="Tell_Number" length="13" />
+        </property>
+        <property name="userPassword" type="string">
+            <column name="User_Password" length="13" />
+        </property>
+    </class>
+</hibernate-mapping>
+
+
