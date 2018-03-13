@@ -1,16 +1,14 @@
 package aoc.Harlequin.Services;
+import java.util.List;
+
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
+import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 
-import org.hibernate.Session;
-import org.hibernate.SessionFactory;
-import org.hibernate.Transaction;
-import org.hibernate.cfg.Configuration;
 import org.json.JSONObject;
 
 import aoc.Harlequin.DAOs.SystemUserDAO;
-import aoc.Harlequin.OBJs.SystemClient;
 import aoc.Harlequin.OBJs.SystemUser;
 
 
@@ -40,10 +38,44 @@ public class SystemUserService {
 		jsonObject.put("User_Password", User.getUserPassword());
 		
 		
-		
+		System.out.println(jsonObject.toString());
 	    
 		return jsonObject.toString();
 	}
+	
+	
+	@Path("/GetUser/{Username}/{Password}")
+	@GET
+	@Produces("text/plain")
+	public String GET1(@PathParam("Username") String Username,@PathParam("Password") String Password ) throws Exception
+	{
+		
+		String Matched = "false";
+		String PasswordUser = "";
+		
+		SystemUserDAO Object  = new SystemUserDAO();
+		
+		List<SystemUser> User = Object.CheckUserPassword(Username, Password);
+		
+		if(User.size() != 0)
+		{
+			PasswordUser = User.get(0).getUserPassword().toString();
+			if(Password.equals(PasswordUser.trim()))
+			{
+				Matched = "true";
+			}
+		}
+		
+		System.out.println("Password:" + Password + ", UserPassword:" + PasswordUser) ;
+		
+		
+		
+		
+		
+		return Matched;
+	}
+	
+	
 	
 
 }
