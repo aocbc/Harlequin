@@ -97,6 +97,27 @@ public class SystemUserDAO extends HarlequinDAO
 		session.close();
 		
 	}
+	
+	
+	public List<SystemUser> ReadAllUsers()
+	{
+		Session session = this.getSession();
+		HibernateUtil.beginTransaction();
+		
+		
+		
+		Query query = session.createQuery("from SystemUser");
+		List<SystemUser> User = query.list();
+		
+		session.clear(); // ADDED 170302
+		session.flush();
+		session.close();
+		
+		return User;
+		
+		
+		
+	}
 
 
 	

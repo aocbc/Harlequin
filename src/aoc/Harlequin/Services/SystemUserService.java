@@ -48,6 +48,43 @@ public class SystemUserService {
 		return jsonObject.toString();
 	}
 	
+	@Path("/GetAllUsers")
+	@GET
+	@Produces("text/plain")
+	public String GETUSERS( ) throws Exception
+	{
+		
+		SystemUserDAO Object  = new SystemUserDAO();
+		
+		List<SystemUser> Users = Object.ReadAllUsers();
+		
+		JSONArray JsonArray = new JSONArray();
+		
+		for(int i = 0; i < Users.size();i++)
+		{
+			JSONObject jsonObject = new JSONObject();
+			jsonObject.put("idSystem_User", Users.get(i).getIdSystemUser());
+			jsonObject.put("User_Name", Users.get(i).getUserName());
+			jsonObject.put("Name", Users.get(i).getName());
+			jsonObject.put("Surname", Users.get(i).getSurname());
+			jsonObject.put("E_Mail", Users.get(i).getEMail());		
+			jsonObject.put("Cell_Number", Users.get(i).getCellNumber());
+			jsonObject.put("Tell_Number", Users.get(i).getTellNumber());
+			jsonObject.put("User_Password", Users.get(i).getUserPassword());
+			
+			JsonArray.put(jsonObject);
+		}
+		
+		
+		
+		
+		
+		
+		System.out.println(JsonArray.toString());
+	    
+		return JsonArray.toString();
+	}
+	
 	
 	@Path("/GetUser/{Username}/{Password}")
 	@GET
