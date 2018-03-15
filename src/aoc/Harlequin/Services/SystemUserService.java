@@ -1,11 +1,16 @@
 package aoc.Harlequin.Services;
 import java.util.List;
 
+import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
+import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
+import javax.ws.rs.core.MediaType;
 
+import org.json.JSONArray;
+import org.json.JSONException;
 import org.json.JSONObject;
 
 import aoc.Harlequin.DAOs.SystemUserDAO;
@@ -73,6 +78,28 @@ public class SystemUserService {
 		
 		
 		return Matched;
+	}
+	
+	
+	@Path("/SaveUserInfo")
+	@POST
+	@Consumes(MediaType.APPLICATION_JSON)
+	@Produces("text/plain")
+	public  String create(String jsonTextObject) throws JSONException
+	{
+		
+		System.out.println(jsonTextObject);
+		JSONObject r = new JSONObject(jsonTextObject);	
+	
+		
+		System.out.println("WRITING TO DATABASE:"+ r.getString("Name"));
+			
+		SystemUserDAO Object  = new SystemUserDAO();
+		Object.AddUserInformation(r.getString("Name"), r.getString("Surname"), r.getString("Email_address"), r.getString("Tell_Number"), r.getString("Cell_Number"), r.getString("Password"));
+		
+		return "Sucessful";	
+		
+			
 	}
 	
 	

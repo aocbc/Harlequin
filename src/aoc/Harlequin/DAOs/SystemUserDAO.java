@@ -8,8 +8,16 @@ import java.util.List;
 
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.Transaction;
 import org.hibernate.cfg.Configuration;
 import org.hibernate.query.Query;
+
+
+
+
+
+
+
 
 
 
@@ -61,6 +69,37 @@ public class SystemUserDAO extends HarlequinDAO
 		session.close();
 		return User;
 	}
+	
+	
+	public void AddUserInformation(String name, String surname, String EMail, String tellNumber, String cellNumber, String userPassword)
+	{
+		
+		Session session = HibernateUtil.getSessionFactory().openSession();
+		
+		session.beginTransaction();
+		
+		
+		
+		SystemUser user = new SystemUser();
+		
+		user.setUserName(name);
+		user.setName(name);
+		user.setSurname(surname);
+		user.setEMail(EMail);
+		user.setTellNumber(tellNumber);
+		user.setCellNumber(cellNumber);
+		user.setUserPassword(userPassword);
+		
+		session.save(user);
+				
+		session.getTransaction().commit();
+		
+		session.close();
+		
+	}
+
+
+	
 	
 	
 	

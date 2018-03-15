@@ -28,12 +28,16 @@ public class HibernateUtil
 		return hibernateSession;
 	}
 	
+	public static SessionFactory getSessionFactory() {
+        return sessionFactory;
+    }
+	
 	public static Session beginTransaction() 
 	{
 		Session hibernateSession = HibernateUtil.getSession();
 		hibernateSession.beginTransaction();
 		
-		//hibernateSession.setCacheMode(CacheMode.REFRESH);
+				//hibernateSession.setCacheMode(CacheMode.REFRESH);
 		//hibernateSession.setFlushMode(FlushMode.ALWAYS);
 		//System.out.println(hibernateSession.getCacheMode().toString());
 		//System.out.println(hibernateSession.getFlushMode().toString());
