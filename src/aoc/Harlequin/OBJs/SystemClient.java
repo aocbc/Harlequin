@@ -7,7 +7,11 @@ package aoc.Harlequin.OBJs;
  */
 public class SystemClient implements java.io.Serializable {
 
-	private Integer idClient;
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	private int idClient;
 	private String clientName;
 	private String clientEMail;
 	private String clientContactName;
@@ -19,22 +23,21 @@ public class SystemClient implements java.io.Serializable {
 	private String clientVatNumber;
 	private String clientComments;
 
-	public SystemClient() {
+	public SystemClient() 
+	{
+	
 	}
 
-	public SystemClient(String clientName, String clientEMail,
-			String clientContactName, String clientContactNumber) {
+	public SystemClient(String clientName, String clientEMail,String clientContactName, String clientContactNumber) 
+	{
 		this.clientName = clientName;
 		this.clientEMail = clientEMail;
 		this.clientContactName = clientContactName;
 		this.clientContactNumber = clientContactNumber;
 	}
 
-	public SystemClient(String clientName, String clientEMail,
-			String clientContactName, String clientContactNumber,
-			String clientAddress1, String clientAddress2,
-			String clientAddress3, String clientAddress4,
-			String clientVatNumber, String clientComments) {
+	public SystemClient(String clientName, String clientEMail,String clientContactName, String clientContactNumber,	String clientAddress1, String clientAddress2,String clientAddress3, String clientAddress4,String clientVatNumber, String clientComments) 
+	{
 		this.clientName = clientName;
 		this.clientEMail = clientEMail;
 		this.clientContactName = clientContactName;
@@ -47,43 +50,53 @@ public class SystemClient implements java.io.Serializable {
 		this.clientComments = clientComments;
 	}
 
-	public Integer getIdClient() {
+	public Integer getIdClient() 
+	{
 		return this.idClient;
 	}
 
-	public void setIdClient(Integer idClient) {
+	public void setIdClient(Integer idClient) 
+	{
 		this.idClient = idClient;
 	}
 
-	public String getClientName() {
+	public String getClientName() 
+	{
 		return this.clientName;
 	}
 
-	public void setClientName(String clientName) {
+	public void setClientName(String clientName) 
+	{
 		this.clientName = clientName;
 	}
 
-	public String getClientEMail() {
+	public String getClientEMail() 
+	{
 		return this.clientEMail;
 	}
 
-	public void setClientEMail(String clientEMail) {
+	public void setClientEMail(String clientEMail) 
+	{
 		this.clientEMail = clientEMail;
 	}
 
-	public String getClientContactName() {
+	public String getClientContactName() 
+	{
 		return this.clientContactName;
 	}
 
-	public void setClientContactName(String clientContactName) {
+	public void setClientContactName(String clientContactName) 
+	{
 		this.clientContactName = clientContactName;
 	}
 
-	public String getClientContactNumber() {
+	public String getClientContactNumber() 
+	{
 		return this.clientContactNumber;
 	}
 
-	public void setClientContactNumber(String clientContactNumber) {
+	public void setClientContactNumber(String clientContactNumber) 
+	{
 		this.clientContactNumber = clientContactNumber;
 	}
 

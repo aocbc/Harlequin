@@ -14,5 +14,7 @@
         <property name="hibernate.current_session_context_class">thread</property>
         
         <mapping resource="aoc/Harlequin/OBJs/SystemUser.hbm.xml" />
+        <mapping resource="aoc/Harlequin/OBJs/SystemClient.hbm.xml" />
+        <mapping resource="aoc/Harlequin/OBJs/MacApplicants.hbm.xml" />
     </session-factory>
 </hibernate-configuration>

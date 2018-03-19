@@ -3,7 +3,7 @@
 "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
 <!-- Generated 06 Mar 2018 11:04:37 AM by Hibernate Tools 3.4.0.CR1 -->
 <hibernate-mapping>
-    <class name="aoc.Harlequin.Services.SystemClient" table="System_Client" catalog="Harlequin">
+    <class name="aoc.Harlequin.OBJs.SystemClient" table="System_Client" catalog="Harlequin">
         <id name="idClient" type="java.lang.Integer">
             <column name="idClient" />
             <generator class="identity" />

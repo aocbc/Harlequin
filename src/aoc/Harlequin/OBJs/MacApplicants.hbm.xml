@@ -1,0 +1,84 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 19 Mar 2018 10:38:10 AM by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping>
+    <class name="aoc.Harlequin.OBJs.MacApplicants" table="Mac_Applicants" catalog="Harlequin">
+        <id name="idMacApplicants" type="java.lang.Integer">
+            <column name="idMac_Applicants" />
+            <generator class="identity" />
+        </id>
+        <property name="name" type="string">
+            <column name="Name" length="50" />
+        </property>
+        <property name="surname" type="string">
+            <column name="Surname" length="50" />
+        </property>
+        <property name="rsaCitizen" type="string">
+            <column name="RSA_Citizen" length="3" />
+        </property>
+        <property name="idPassportNo" type="string">
+            <column name="ID_Passport_No" length="13" />
+        </property>
+        <property name="workPermitValidity" type="string">
+            <column name="Work_Permit_Validity" length="45" />
+        </property>
+        <property name="cellNumber" type="string">
+            <column name="Cell_Number" length="10" />
+        </property>
+        <property name="telephoneNumber" type="string">
+            <column name="Telephone_Number" length="10" />
+        </property>
+        <property name="jobType" type="string">
+            <column name="Job_Type" length="45" />
+        </property>
+        <property name="dateFirstIssueLicense" type="string">
+            <column name="Date_First_issue_license" length="8" />
+        </property>
+        <property name="licenseCode" type="string">
+            <column name="License_Code" length="2" />
+        </property>
+        <property name="expiryDateOfLicense" type="string">
+            <column name="Expiry_Date_Of_License" length="8" />
+        </property>
+        <property name="pdpExpiryDate" type="string">
+            <column name="PDP_Expiry_Date" length="8" />
+        </property>
+        <property name="gender" type="string">
+            <column name="Gender" length="6" />
+        </property>
+        <property name="physicalAddress1" type="string">
+            <column name="Physical_Address_1" length="45" />
+        </property>
+        <property name="physicalAddress2" type="string">
+            <column name="Physical_Address_2" length="45" />
+        </property>
+        <property name="physicalAddress3" type="string">
+            <column name="Physical_Address_3" length="45" />
+        </property>
+        <property name="physicalAddress4" type="string">
+            <column name="Physical_Address_4" length="45" />
+        </property>
+        <property name="maritalStatus" type="string">
+            <column name="Marital_Status" length="45" />
+        </property>
+        <property name="dependants" type="string">
+            <column name="Dependants" length="45" />
+        </property>
+        <property name="homeLanguage" type="string">
+            <column name="Home_Language" length="45" />
+        </property>
+        <property name="workHistory1" type="string">
+            <column name="Work_History_1" length="45" />
+        </property>
+        <property name="workHistory2" type="string">
+            <column name="Work_History_2" length="45" />
+        </property>
+        <property name="workHistory3" type="string">
+            <column name="Work_History_3" length="45" />
+        </property>
+        <property name="workHistory4" type="string">
+            <column name="Work_History_4" length="45" />
+        </property>
+    </class>
+</hibernate-mapping>
