@@ -3,7 +3,7 @@
 "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
 <!-- Generated 19 Mar 2018 3:47:12 PM by Hibernate Tools 3.4.0.CR1 -->
 <hibernate-mapping>
-    <class name="aoc.Harlequin.Temp.SystemJob" table="System_Job" catalog="Harlequin">
+    <class name="aoc.Harlequin.OBJs.SystemJob" table="System_Job" catalog="Harlequin">
         <id name="jobId" type="java.lang.Integer">
             <column name="Job_Id" />
             <generator class="identity" />
