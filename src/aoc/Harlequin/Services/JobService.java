@@ -26,14 +26,14 @@ import aoc.Harlequin.OBJs.SystemUser;
 @Path("Job")
 public class JobService {
 	
-	@Path("/GetJobInfo")
+	@Path("/GetJobInfo/{Id}")
 	@GET
 	@Produces("text/plain")
-	public String GET( ) throws Exception
+	public String GET( @PathParam("Id") int Id) throws Exception
 	{
 		
 		JobDAO Object  = new JobDAO();
-		SystemJob Job  = Object.getJobInfoById(1);
+		SystemJob Job  = Object.getJobInfoById(Id);
 		
 		JSONObject jsonObject = new JSONObject();
 		
@@ -43,6 +43,7 @@ public class JobService {
 		jsonObject.put("Job_Client_Name", Job.getJobClientName());
 		jsonObject.put("Job_Details", Job.getJobDetails());		
 		jsonObject.put("Job_Comments", Job.getJobComments());
+		jsonObject.put("Job_Type", Job.getJobType());
 		
 		
 		
@@ -72,6 +73,7 @@ public class JobService {
 			jsonObject.put("Job_Client_Name", Jobs.get(i).getJobClientName());
 			jsonObject.put("Job_Details", Jobs.get(i).getJobDetails());		
 			jsonObject.put("Job_Comments", Jobs.get(i).getJobComments());
+			jsonObject.put("Job_Type", Jobs.get(i).getJobType());
 			
 			
 			JsonArray.put(jsonObject);
@@ -101,10 +103,10 @@ public class JobService {
 		JSONObject r = new JSONObject(jsonTextObject);	
 	
 		
-		System.out.println("WRITING TO DATABASE:"+ r.getString("Client_Name"));
+		//System.out.println("WRITING TO DATABASE:"+ r.getString("Client_Name"));
 			
 		JobDAO Object  = new JobDAO();
-		Object.AddJobInformation(r.getString("Job_Name"), r.getString("Job_Code"), r.getString("Job_Client_Name"), r.getString("Job_Details"), r.getString("Job_Comments"));
+		Object.AddJobInformation(r.getString("Job_Name"), r.getString("Job_Code"), r.getString("Job_Client_Name"), r.getString("Job_Details"), r.getString("Job_Comments"), r.getString("Job_Type"));
 		return "Sucessful";	
 		
 			

@@ -80,5 +80,8 @@
         <property name="workHistory4" type="string">
             <column name="Work_History_4" length="45" />
         </property>
+         <property name="email" type="string">
+            <column name="E_Mail" length="150" />
+        </property>
     </class>
 </hibernate-mapping>

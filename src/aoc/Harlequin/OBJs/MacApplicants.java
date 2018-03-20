@@ -32,6 +32,7 @@ public class MacApplicants implements java.io.Serializable {
 	private String workHistory2;
 	private String workHistory3;
 	private String workHistory4;
+	private String email;
 
 	public MacApplicants() {
 	}
@@ -45,7 +46,7 @@ public class MacApplicants implements java.io.Serializable {
 			String physicalAddress3, String physicalAddress4,
 			String maritalStatus, String dependants, String homeLanguage,
 			String workHistory1, String workHistory2, String workHistory3,
-			String workHistory4) {
+			String workHistory4, String email) {
 		this.name = name;
 		this.surname = surname;
 		this.rsaCitizen = rsaCitizen;
@@ -70,6 +71,7 @@ public class MacApplicants implements java.io.Serializable {
 		this.workHistory2 = workHistory2;
 		this.workHistory3 = workHistory3;
 		this.workHistory4 = workHistory4;
+		this.email = email;
 	}
 
 	public Integer getIdMacApplicants() {
@@ -162,6 +164,10 @@ public class MacApplicants implements java.io.Serializable {
 
 	public String getExpiryDateOfLicense() {
 		return this.expiryDateOfLicense;
+	}
+	
+	public String getEmail() {
+		return this.email;
 	}
 
 	public void setExpiryDateOfLicense(String expiryDateOfLicense) {
@@ -270,6 +276,12 @@ public class MacApplicants implements java.io.Serializable {
 
 	public void setWorkHistory4(String workHistory4) {
 		this.workHistory4 = workHistory4;
+	}
+
+	public void setEmail(String email) {
+		// TODO Auto-generated method stub
+		this.email = email;
+		
 	}
 
 }

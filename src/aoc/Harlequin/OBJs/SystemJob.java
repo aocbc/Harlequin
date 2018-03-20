@@ -7,12 +7,17 @@ package aoc.Harlequin.OBJs;
  */
 public class SystemJob implements java.io.Serializable {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -3424364809718215072L;
 	private Integer jobId;
 	private String jobName;
 	private String jobCode;
 	private String jobClientName;
 	private String jobDetails;
 	private String jobComments;
+	private String jobType;
 
 	public SystemJob() {
 	}
@@ -22,12 +27,13 @@ public class SystemJob implements java.io.Serializable {
 	}
 
 	public SystemJob(String jobName, String jobCode, String jobClientName,
-			String jobDetails, String jobComments) {
+			String jobDetails, String jobComments, String jobtype) {
 		this.jobName = jobName;
 		this.jobCode = jobCode;
 		this.jobClientName = jobClientName;
 		this.jobDetails = jobDetails;
 		this.jobComments = jobComments;
+		this.jobType = jobtype;
 	}
 
 	public Integer getJobId() {
@@ -57,6 +63,10 @@ public class SystemJob implements java.io.Serializable {
 	public String getJobClientName() {
 		return this.jobClientName;
 	}
+	
+	public String getJobType() {
+		return this.jobType;
+	}
 
 	public void setJobClientName(String jobClientName) {
 		this.jobClientName = jobClientName;
@@ -76,6 +86,12 @@ public class SystemJob implements java.io.Serializable {
 
 	public void setJobComments(String jobComments) {
 		this.jobComments = jobComments;
+	}
+
+	public void setJobType(String jobtype) {
+		// TODO Auto-generated method stub
+		this.jobType = jobtype;
+		
 	}
 
 }

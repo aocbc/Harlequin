@@ -32,7 +32,7 @@ public class MacApplicantDAO extends HarlequinDAO {
 		
 	}
 	
-	public void AddAppicantInformation(String name, String surname, String rsaCitizen,String idPassportNo, String workPermitValidity, String cellNumber,String telephoneNumber, String jobType,String dateFirstIssueLicense, String licenseCode,String expiryDateOfLicense, String pdpExpiryDate, String gender, String physicalAddress1, String physicalAddress2,String physicalAddress3, String physicalAddress4, String maritalStatus, String dependants, String homeLanguage, String workHistory1, String workHistory2, String workHistory3, String workHistory4)
+	public void AddAppicantInformation(String name, String surname, String rsaCitizen,String idPassportNo, String workPermitValidity, String cellNumber,String telephoneNumber, String jobType,String dateFirstIssueLicense, String licenseCode,String expiryDateOfLicense, String pdpExpiryDate, String gender, String physicalAddress1, String physicalAddress2,String physicalAddress3, String physicalAddress4, String maritalStatus, String dependants, String homeLanguage, String workHistory1, String workHistory2, String workHistory3, String workHistory4,String email)
 	{
 		
 		Session session = HibernateUtil.getSessionFactory().openSession();
@@ -67,6 +67,7 @@ public class MacApplicantDAO extends HarlequinDAO {
 		Applicant.setWorkHistory2(workHistory2);
 		Applicant.setWorkHistory3(workHistory3);
 		Applicant.setWorkHistory4(workHistory4);
+		Applicant.setEmail(email);
 		
 		session.save(Applicant);
 				

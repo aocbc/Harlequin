@@ -55,7 +55,7 @@ public class JobDAO extends HarlequinDAO {
 		
 	}
 	
-	public void AddJobInformation( String jobName, String jobCode, String jobClientName,String jobDetails, String jobComments)
+	public void AddJobInformation( String jobName, String jobCode, String jobClientName,String jobDetails, String jobComments, String jobtype)
 	{
 		
 		Session session = HibernateUtil.getSessionFactory().openSession();
@@ -66,10 +66,12 @@ public class JobDAO extends HarlequinDAO {
 		
 		SystemJob job = new SystemJob();
 		
+		job.setJobName(jobName);
 		job.setJobCode(jobCode);
 		job.setJobClientName(jobClientName);
 		job.setJobDetails(jobDetails);
 		job.setJobComments(jobComments);
+		job.setJobType(jobtype);
 		
 		session.save(job);
 				

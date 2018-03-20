@@ -94,6 +94,8 @@ public class ClientService {
 	}
 	
 	
+	
+	
 	@Path("/GetUser/{Username}/{Password}")
 	@GET
 	@Produces("text/plain")
