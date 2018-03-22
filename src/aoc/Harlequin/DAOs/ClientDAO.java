@@ -5,6 +5,7 @@ import java.util.List;
 import org.hibernate.Session;
 import org.hibernate.query.Query;
 
+import aoc.Harlequin.OBJs.MacApplicants;
 import aoc.Harlequin.OBJs.SystemClient;
 import aoc.Harlequin.OBJs.SystemUser;
 import aoc.Harlequin.util.HibernateUtil;
@@ -61,6 +62,22 @@ public class ClientDAO extends HarlequinDAO {
 		
 		session.close();
 		
+	}
+	
+	public List<SystemClient> GetClientInfoByName(String ClientName)
+	{
+		Session session = this.getSession();
+		HibernateUtil.beginTransaction();
+		
+		
+		
+		Query query = session.createQuery("from SystemClient Where Client_Name = '"+ClientName+"'");
+		List<SystemClient> Client = query.list();
+		
+		session.clear(); // ADDED 170302
+		session.flush();
+		session.close();
+		return Client;
 	}
 	
 	

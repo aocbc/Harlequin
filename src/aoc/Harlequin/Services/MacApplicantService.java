@@ -6,6 +6,7 @@ import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
+import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
@@ -65,6 +66,71 @@ public class MacApplicantService {
 		System.out.println(jsonObject.toString());
 	    
 		return jsonObject.toString();
+	}
+	
+	
+	@Path("/GetApplicant/{Jobtype}")
+	@GET
+	@Produces("text/plain")
+	public String GET1(@PathParam("Jobtype") String Jobtype) throws Exception
+	{
+		
+		String Matched = "false";
+		String PasswordUser = "";
+		
+		MacApplicantDAO Object  = new MacApplicantDAO();
+		
+		List<MacApplicants> Applicants = Object.GetApplicantsByJobType(Jobtype);
+		
+		JSONArray JsonArray = new JSONArray();
+		
+		for(int i = 0; i < Applicants.size();i++)
+		{
+			JSONObject jsonObject = new JSONObject();
+			
+			jsonObject.put("idMac_Applicants", Applicants.get(i).getIdMacApplicants());
+			jsonObject.put("Name", Applicants.get(i).getName());
+			jsonObject.put("Surname", Applicants.get(i).getSurname());
+			jsonObject.put("RSA_Citizen", Applicants.get(i).getRsaCitizen());
+			jsonObject.put("ID_Passport_No", Applicants.get(i).getIdPassportNo());		
+			jsonObject.put("Work_Permit_Validity", Applicants.get(i).getWorkPermitValidity());
+			jsonObject.put("Cell_Number", Applicants.get(i).getCellNumber());
+			jsonObject.put("Telephone_Number", Applicants.get(i).getTelephoneNumber());
+			jsonObject.put("Job_Type", Applicants.get(i).getJobType());
+			jsonObject.put("Date_First_issue_license", Applicants.get(i).getLicenseCode());
+			jsonObject.put("License_Code", Applicants.get(i).getLicenseCode());
+			
+			jsonObject.put("Expiry_Date_Of_License", Applicants.get(i).getExpiryDateOfLicense());
+			jsonObject.put("PDP_Expiry_Date", Applicants.get(i).getPdpExpiryDate());
+			jsonObject.put("Gender", Applicants.get(i).getGender());
+			jsonObject.put("Physical_Address_1", Applicants.get(i).getPhysicalAddress1());
+			jsonObject.put("Physical_Address_2", Applicants.get(i).getPhysicalAddress2());		
+			jsonObject.put("Physical_Address_3", Applicants.get(i).getPhysicalAddress3());
+			jsonObject.put("Physical_Address_4", Applicants.get(i).getPhysicalAddress4());
+			jsonObject.put("Marital_Status", Applicants.get(i).getMaritalStatus());
+			jsonObject.put("Dependants", Applicants.get(i).getDependants());
+			jsonObject.put("Home_Language", Applicants.get(i).getHomeLanguage());
+			jsonObject.put("Work_History_1", Applicants.get(i).getWorkHistory1());
+			jsonObject.put("Work_History_2", Applicants.get(i).getWorkHistory2());
+			jsonObject.put("Work_History_3", Applicants.get(i).getWorkHistory3());
+			jsonObject.put("Work_History_4", Applicants.get(i).getWorkHistory4());
+			jsonObject.put("E_Mail", Applicants.get(i).getWorkHistory4());
+			
+			JsonArray.put(jsonObject);
+		}
+		
+		
+		
+		
+		
+		
+		System.out.println(JsonArray.toString());
+		
+		
+		
+		
+		
+		return JsonArray.toString();
 	}
 	
 	@Path("/GetAllApplicants")

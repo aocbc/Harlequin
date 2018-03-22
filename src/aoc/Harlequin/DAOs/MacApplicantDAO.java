@@ -7,6 +7,7 @@ import org.hibernate.query.Query;
 
 import aoc.Harlequin.OBJs.MacApplicants;
 import aoc.Harlequin.OBJs.SystemClient;
+import aoc.Harlequin.OBJs.SystemUser;
 import aoc.Harlequin.util.HibernateUtil;
 
 public class MacApplicantDAO extends HarlequinDAO {
@@ -31,6 +32,23 @@ public class MacApplicantDAO extends HarlequinDAO {
 		
 		
 	}
+	
+	public List<MacApplicants> GetApplicantsByJobType(String JobType)
+	{
+		Session session = this.getSession();
+		HibernateUtil.beginTransaction();
+		
+		
+		
+		Query query = session.createQuery("from MacApplicants Where Job_Type = '"+JobType+"'");
+		List<MacApplicants> Applicant = query.list();
+		
+		session.clear(); // ADDED 170302
+		session.flush();
+		session.close();
+		return Applicant;
+	}
+	
 	
 	public void AddAppicantInformation(String name, String surname, String rsaCitizen,String idPassportNo, String workPermitValidity, String cellNumber,String telephoneNumber, String jobType,String dateFirstIssueLicense, String licenseCode,String expiryDateOfLicense, String pdpExpiryDate, String gender, String physicalAddress1, String physicalAddress2,String physicalAddress3, String physicalAddress4, String maritalStatus, String dependants, String homeLanguage, String workHistory1, String workHistory2, String workHistory3, String workHistory4,String email)
 	{

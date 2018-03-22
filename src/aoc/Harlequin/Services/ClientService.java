@@ -96,35 +96,42 @@ public class ClientService {
 	
 	
 	
-	@Path("/GetUser/{Username}/{Password}")
+	@Path("/GetClientInfo/{Client_Name}")
 	@GET
 	@Produces("text/plain")
-	public String GET1(@PathParam("Username") String Username,@PathParam("Password") String Password ) throws Exception
+	public String GET1(@PathParam("Client_Name") String Client_Name ) throws Exception
 	{
 		
-		String Matched = "false";
-		String PasswordUser = "";
 		
-		SystemUserDAO Object  = new SystemUserDAO();
 		
-		List<SystemUser> User = Object.CheckUserPassword(Username, Password);
+		ClientDAO Object  = new ClientDAO();
 		
-		if(User.size() != 0)
+		List<SystemClient> Client = Object.GetClientInfoByName(Client_Name);
+		
+		JSONArray JsonArray = new JSONArray();
+		
+		for(int i = 0; i < Client.size();i++)
 		{
-			PasswordUser = User.get(0).getUserPassword().toString();
-			if(Password.equals(PasswordUser.trim()))
-			{
-				Matched = "true";
-			}
+			JSONObject jsonObject = new JSONObject();
+			
+			jsonObject.put("Client_Name", Client.get(i).getClientName());
+			jsonObject.put("Client_Contact_Name", Client.get(i).getClientContactName());
+			jsonObject.put("Client_Contact_Number", Client.get(i).getClientContactNumber());
+			jsonObject.put("Client_Address_1", Client.get(i).getClientAddress1());
+			
+			JsonArray.put(jsonObject);
 		}
 		
-		System.out.println("Password:" + Password + ", UserPassword:" + PasswordUser) ;
 		
 		
 		
 		
 		
-		return Matched;
+		System.out.println(JsonArray.toString());
+		
+		
+		
+		return JsonArray.toString();
 	}
 	
 	
