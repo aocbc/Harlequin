@@ -118,6 +118,7 @@ public class ClientService {
 			jsonObject.put("Client_Contact_Name", Client.get(i).getClientContactName());
 			jsonObject.put("Client_Contact_Number", Client.get(i).getClientContactNumber());
 			jsonObject.put("Client_Address_1", Client.get(i).getClientAddress1());
+			jsonObject.put("Client_Address_3", Client.get(i).getClientAddress3());
 			
 			JsonArray.put(jsonObject);
 		}

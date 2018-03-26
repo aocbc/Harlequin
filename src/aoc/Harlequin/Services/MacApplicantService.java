@@ -61,7 +61,7 @@ public class MacApplicantService {
 		jsonObject.put("Work_History_2", Applicant.getWorkHistory2());
 		jsonObject.put("Work_History_3", Applicant.getWorkHistory3());
 		jsonObject.put("Work_History_4", Applicant.getWorkHistory4());
-		jsonObject.put("E_Mail", Applicant.getWorkHistory4());
+		jsonObject.put("E_Mail", Applicant.getEmail());
 		
 		System.out.println(jsonObject.toString());
 	    
@@ -114,7 +114,7 @@ public class MacApplicantService {
 			jsonObject.put("Work_History_2", Applicants.get(i).getWorkHistory2());
 			jsonObject.put("Work_History_3", Applicants.get(i).getWorkHistory3());
 			jsonObject.put("Work_History_4", Applicants.get(i).getWorkHistory4());
-			jsonObject.put("E_Mail", Applicants.get(i).getWorkHistory4());
+			jsonObject.put("E_Mail", Applicants.get(i).getEmail());
 			
 			JsonArray.put(jsonObject);
 		}
