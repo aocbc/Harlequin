@@ -1,5 +1,7 @@
 package aoc.Harlequin.OBJs;
 
+import java.util.Collection;
+
 // Generated 19 Mar 2018 10:38:10 AM by Hibernate Tools 3.4.0.CR1
 
 /**
@@ -11,7 +13,7 @@ public class MacApplicants implements java.io.Serializable {
 	private String name;
 	private String surname;
 	private String rsaCitizen;
-	private String idPassportNo;
+	private String Id_Number;
 	private String workPermitValidity;
 	private String cellNumber;
 	private String telephoneNumber;
@@ -33,12 +35,14 @@ public class MacApplicants implements java.io.Serializable {
 	private String workHistory3;
 	private String workHistory4;
 	private String email;
+	private String passportNumber;
+	private String expiryDateOfPassport;
 
 	public MacApplicants() {
 	}
 
 	public MacApplicants(String name, String surname, String rsaCitizen,
-			String idPassportNo, String workPermitValidity, String cellNumber,
+			String Id_Number, String workPermitValidity, String cellNumber,
 			String telephoneNumber, String jobType,
 			String dateFirstIssueLicense, String licenseCode,
 			String expiryDateOfLicense, String pdpExpiryDate, String gender,
@@ -46,11 +50,11 @@ public class MacApplicants implements java.io.Serializable {
 			String physicalAddress3, String physicalAddress4,
 			String maritalStatus, String dependants, String homeLanguage,
 			String workHistory1, String workHistory2, String workHistory3,
-			String workHistory4, String email) {
+			String workHistory4, String email, String passportNumber,String expiryDateOfPassport) {
 		this.name = name;
 		this.surname = surname;
 		this.rsaCitizen = rsaCitizen;
-		this.idPassportNo = idPassportNo;
+		this.Id_Number = Id_Number;
 		this.workPermitValidity = workPermitValidity;
 		this.cellNumber = cellNumber;
 		this.telephoneNumber = telephoneNumber;
@@ -72,6 +76,7 @@ public class MacApplicants implements java.io.Serializable {
 		this.workHistory3 = workHistory3;
 		this.workHistory4 = workHistory4;
 		this.email = email;
+		this.expiryDateOfPassport = expiryDateOfPassport;
 	}
 
 	public Integer getIdMacApplicants() {
@@ -106,12 +111,12 @@ public class MacApplicants implements java.io.Serializable {
 		this.rsaCitizen = rsaCitizen;
 	}
 
-	public String getIdPassportNo() {
-		return this.idPassportNo;
+	public String getIdNumber() {
+		return this.Id_Number;
 	}
 
-	public void setIdPassportNo(String idPassportNo) {
-		this.idPassportNo = idPassportNo;
+	public void setIdNumber(String Id_Number) {
+		this.Id_Number = Id_Number;
 	}
 
 	public String getWorkPermitValidity() {
@@ -169,7 +174,26 @@ public class MacApplicants implements java.io.Serializable {
 	public String getEmail() {
 		return this.email;
 	}
+	
+	public String getPassportNumber() {
+		return this.passportNumber;
+	}
+	
+	
 
+	
+	public String getExpiryDateOfPassport() {
+		return this.expiryDateOfPassport;
+	}
+	
+	public void setExpiryDateOfPassport(String expiryDateOfPassport) {
+		this.expiryDateOfPassport = expiryDateOfPassport;
+	}
+	
+	public void setPassportNumber(String passportNumber) {
+		this.passportNumber = passportNumber;
+	}
+	
 	public void setExpiryDateOfLicense(String expiryDateOfLicense) {
 		this.expiryDateOfLicense = expiryDateOfLicense;
 	}
@@ -283,5 +307,9 @@ public class MacApplicants implements java.io.Serializable {
 		this.email = email;
 		
 	}
+
+	
+
+	
 
 }

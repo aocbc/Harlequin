@@ -17,8 +17,8 @@
         <property name="rsaCitizen" type="string">
             <column name="RSA_Citizen" length="3" />
         </property>
-        <property name="idPassportNo" type="string">
-            <column name="ID_Passport_No" length="13" />
+        <property name="idNumber" type="string">
+            <column name="Id_Number" length="13" />
         </property>
         <property name="workPermitValidity" type="string">
             <column name="Work_Permit_Validity" length="45" />
@@ -82,6 +82,12 @@
         </property>
          <property name="email" type="string">
             <column name="E_Mail" length="150" />
+        </property>
+        <property name="passportNumber" type="string">
+            <column name="Passport_Number" length="10" />
+        </property>
+        <property name="expiryDateOfPassport" type="string">
+            <column name="Expiry_Date_Of_Passport" length="8" />
         </property>
     </class>
 </hibernate-mapping>

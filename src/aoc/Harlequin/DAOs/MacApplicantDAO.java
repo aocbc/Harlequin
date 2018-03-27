@@ -50,7 +50,7 @@ public class MacApplicantDAO extends HarlequinDAO {
 	}
 	
 	
-	public void AddAppicantInformation(String name, String surname, String rsaCitizen,String idPassportNo, String workPermitValidity, String cellNumber,String telephoneNumber, String jobType,String dateFirstIssueLicense, String licenseCode,String expiryDateOfLicense, String pdpExpiryDate, String gender, String physicalAddress1, String physicalAddress2,String physicalAddress3, String physicalAddress4, String maritalStatus, String dependants, String homeLanguage, String workHistory1, String workHistory2, String workHistory3, String workHistory4,String email)
+	public void AddAppicantInformation(String name, String surname, String rsaCitizen,String Id_Number,String Passport_Number,String expiryDateOfPassport, String workPermitValidity, String cellNumber,String telephoneNumber, String jobType,String dateFirstIssueLicense, String licenseCode,String expiryDateOfLicense, String pdpExpiryDate, String gender, String physicalAddress1, String physicalAddress2,String physicalAddress3, String physicalAddress4, String maritalStatus, String dependants, String homeLanguage, String workHistory1, String workHistory2, String workHistory3, String workHistory4,String email)
 	{
 		
 		Session session = HibernateUtil.getSessionFactory().openSession();
@@ -64,7 +64,9 @@ public class MacApplicantDAO extends HarlequinDAO {
 		Applicant.setName(name);
 		Applicant.setSurname(surname);
 		Applicant.setRsaCitizen(rsaCitizen);
-		Applicant.setIdPassportNo(idPassportNo);
+		Applicant.setIdNumber(Id_Number);
+		Applicant.setPassportNumber(Passport_Number);
+		Applicant.setExpiryDateOfPassport(expiryDateOfPassport);
 		Applicant.setWorkPermitValidity(workPermitValidity);
 		Applicant.setCellNumber(cellNumber);
 		Applicant.setTelephoneNumber(telephoneNumber);

@@ -39,12 +39,14 @@ public class MacApplicantService {
 		jsonObject.put("Name", Applicant.getName());
 		jsonObject.put("Surname", Applicant.getSurname());
 		jsonObject.put("RSA_Citizen", Applicant.getRsaCitizen());
-		jsonObject.put("ID_Passport_No", Applicant.getIdPassportNo());		
+		jsonObject.put("Id_Number", Applicant.getIdNumber());	
+		jsonObject.put("Passport_Number", Applicant.getPassportNumber());
+		jsonObject.put("Expiry_Date_Of_Passport", Applicant.getExpiryDateOfPassport());
 		jsonObject.put("Work_Permit_Validity", Applicant.getWorkPermitValidity());
 		jsonObject.put("Cell_Number", Applicant.getCellNumber());
 		jsonObject.put("Telephone_Number", Applicant.getTelephoneNumber());
 		jsonObject.put("Job_Type", Applicant.getJobType());
-		jsonObject.put("Date_First_issue_license", Applicant.getLicenseCode());
+		jsonObject.put("Date_First_issue_license", Applicant.getDateFirstIssueLicense());
 		jsonObject.put("License_Code", Applicant.getLicenseCode());
 		
 		jsonObject.put("Expiry_Date_Of_License", Applicant.getExpiryDateOfLicense());
@@ -92,12 +94,14 @@ public class MacApplicantService {
 			jsonObject.put("Name", Applicants.get(i).getName());
 			jsonObject.put("Surname", Applicants.get(i).getSurname());
 			jsonObject.put("RSA_Citizen", Applicants.get(i).getRsaCitizen());
-			jsonObject.put("ID_Passport_No", Applicants.get(i).getIdPassportNo());		
+			jsonObject.put("Id_Number", Applicants.get(i).getIdNumber());
+			jsonObject.put("Passport_Number", Applicants.get(i).getPassportNumber());
+			jsonObject.put("Expiry_Date_Of_Passport", Applicants.get(i).getExpiryDateOfPassport());
 			jsonObject.put("Work_Permit_Validity", Applicants.get(i).getWorkPermitValidity());
 			jsonObject.put("Cell_Number", Applicants.get(i).getCellNumber());
 			jsonObject.put("Telephone_Number", Applicants.get(i).getTelephoneNumber());
 			jsonObject.put("Job_Type", Applicants.get(i).getJobType());
-			jsonObject.put("Date_First_issue_license", Applicants.get(i).getLicenseCode());
+			jsonObject.put("Date_First_issue_license", Applicants.get(i).getDateFirstIssueLicense());
 			jsonObject.put("License_Code", Applicants.get(i).getLicenseCode());
 			
 			jsonObject.put("Expiry_Date_Of_License", Applicants.get(i).getExpiryDateOfLicense());
@@ -153,12 +157,14 @@ public class MacApplicantService {
 			jsonObject.put("Name", Applicants.get(i).getName());
 			jsonObject.put("Surname", Applicants.get(i).getSurname());
 			jsonObject.put("RSA_Citizen", Applicants.get(i).getRsaCitizen());
-			jsonObject.put("ID_Passport_No", Applicants.get(i).getIdPassportNo());		
+			jsonObject.put("Id_Number", Applicants.get(i).getIdNumber());
+			jsonObject.put("Passport_Number", Applicants.get(i).getPassportNumber());
+			jsonObject.put("Expiry_Date_Of_Passport", Applicants.get(i).getExpiryDateOfPassport());
 			jsonObject.put("Work_Permit_Validity", Applicants.get(i).getWorkPermitValidity());
 			jsonObject.put("Cell_Number", Applicants.get(i).getCellNumber());
 			jsonObject.put("Telephone_Number", Applicants.get(i).getTelephoneNumber());
 			jsonObject.put("Job_Type", Applicants.get(i).getJobType());
-			jsonObject.put("Date_First_issue_license", Applicants.get(i).getLicenseCode());
+			jsonObject.put("Date_First_issue_license", Applicants.get(i).getDateFirstIssueLicense());
 			jsonObject.put("License_Code", Applicants.get(i).getLicenseCode());
 			
 			jsonObject.put("Expiry_Date_Of_License", Applicants.get(i).getExpiryDateOfLicense());
@@ -175,7 +181,7 @@ public class MacApplicantService {
 			jsonObject.put("Work_History_2", Applicants.get(i).getWorkHistory2());
 			jsonObject.put("Work_History_3", Applicants.get(i).getWorkHistory3());
 			jsonObject.put("Work_History_4", Applicants.get(i).getWorkHistory4());
-			jsonObject.put("E_Mail", Applicants.get(i).getWorkHistory4());
+			jsonObject.put("E_Mail", Applicants.get(i).getEmail());
 			
 			JsonArray.put(jsonObject);
 		}
@@ -205,7 +211,7 @@ public class MacApplicantService {
 		System.out.println("WRITING TO DATABASE:"+ r.getString("Name"));
 			
 		MacApplicantDAO Object  = new MacApplicantDAO();
-		Object.AddAppicantInformation(r.getString("Name"), r.getString("Surname"), r.getString("RSA_Citizen"), r.getString("ID_Passport_No"), r.getString("Work_Permit_Validity"), r.getString("Cell_Number"), r.getString("Telephone_Number"), r.getString("Job_Type"), r.getString("Date_First_issue_license"), r.getString("License_Code"), r.getString("Expiry_Date_Of_License"), r.getString("PDP_Expiry_Date"), r.getString("Gender"), r.getString("Physical_Address_1"), r.getString("Physical_Address_2"), r.getString("Physical_Address_3"), r.getString("Physical_Address_4"), r.getString("Marital_Status"), r.getString("Dependants"), r.getString("Home_Language"), r.getString("Work_History_1"), r.getString("Work_History_2"), r.getString("Work_History_3"), r.getString("Work_History_1"), r.getString("E_Mail"));
+		Object.AddAppicantInformation(r.getString("Name"), r.getString("Surname"), r.getString("RSA_Citizen"), r.getString("Id_Number"),r.getString("Passport_Number"),r.getString("Expiry_Date_Of_Passport"), r.getString("Work_Permit_Validity"), r.getString("Cell_Number"), r.getString("Telephone_Number"), r.getString("Job_Type"), r.getString("Date_First_issue_license"), r.getString("License_Code"), r.getString("Expiry_Date_Of_License"), r.getString("PDP_Expiry_Date"), r.getString("Gender"), r.getString("Physical_Address_1"), r.getString("Physical_Address_2"), r.getString("Physical_Address_3"), r.getString("Physical_Address_4"), r.getString("Marital_Status"), r.getString("Dependants"), r.getString("Home_Language"), r.getString("Work_History_1"), r.getString("Work_History_2"), r.getString("Work_History_3"), r.getString("Work_History_1"), r.getString("E_Mail"));
 		
 		return "Sucessful";	
 		
