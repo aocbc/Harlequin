@@ -50,7 +50,7 @@ public class MacApplicantDAO extends HarlequinDAO {
 	}
 	
 	
-	public void AddAppicantInformation(String name, String surname, String rsaCitizen,String Id_Number,String Passport_Number,String expiryDateOfPassport, String workPermitValidity, String cellNumber,String telephoneNumber, String jobType,String dateFirstIssueLicense, String licenseCode,String expiryDateOfLicense, String pdpExpiryDate, String gender, String physicalAddress1, String physicalAddress2,String physicalAddress3, String physicalAddress4, String maritalStatus, String dependants, String homeLanguage, String workHistory1, String workHistory2, String workHistory3, String workHistory4,String email)
+	public void AddAppicantInformation(String name, String surname, String rsaCitizen,String Id_Number,String Passport_Number,String expiryDateOfPassport, String workPermitValidity, String cellNumber,String telephoneNumber, String jobType,String dateFirstIssueLicense, String licenseCode,String expiryDateOfLicense, String pdpExpiryDate, String gender, String physicalAddress1, String physicalAddress2,String physicalAddress3, String physicalAddress4, String City,String Country, String Tax_No, String maritalStatus, String dependants, String homeLanguage, String workHistory1, String workHistory2, String workHistory3, String workHistory4,String email)
 	{
 		
 		Session session = HibernateUtil.getSessionFactory().openSession();
@@ -80,6 +80,9 @@ public class MacApplicantDAO extends HarlequinDAO {
 		Applicant.setPhysicalAddress2(physicalAddress2);
 		Applicant.setPhysicalAddress3(physicalAddress3);
 		Applicant.setPhysicalAddress4(physicalAddress4);
+		Applicant.setCity(City);
+		Applicant.setCountry(Country);
+		Applicant.setTaxNo(Tax_No);
 		Applicant.setMaritalStatus(maritalStatus);
 		Applicant.setDependants(dependants);
 		Applicant.setHomeLanguage(homeLanguage);

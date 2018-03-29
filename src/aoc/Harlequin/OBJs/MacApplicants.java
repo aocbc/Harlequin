@@ -37,6 +37,9 @@ public class MacApplicants implements java.io.Serializable {
 	private String email;
 	private String passportNumber;
 	private String expiryDateOfPassport;
+	private String city;
+	private String tax_No;
+	private String country;
 
 	public MacApplicants() {
 	}
@@ -50,7 +53,7 @@ public class MacApplicants implements java.io.Serializable {
 			String physicalAddress3, String physicalAddress4,
 			String maritalStatus, String dependants, String homeLanguage,
 			String workHistory1, String workHistory2, String workHistory3,
-			String workHistory4, String email, String passportNumber,String expiryDateOfPassport) {
+			String workHistory4, String email, String passportNumber,String expiryDateOfPassport, String city, String tax_No,String country) {
 		this.name = name;
 		this.surname = surname;
 		this.rsaCitizen = rsaCitizen;
@@ -77,6 +80,9 @@ public class MacApplicants implements java.io.Serializable {
 		this.workHistory4 = workHistory4;
 		this.email = email;
 		this.expiryDateOfPassport = expiryDateOfPassport;
+		this.city = city;
+		this.tax_No = tax_No;
+		this.country = country;
 	}
 
 	public Integer getIdMacApplicants() {
@@ -308,7 +314,37 @@ public class MacApplicants implements java.io.Serializable {
 		
 	}
 
+	public void setCity(String city) 
+	{
+		// TODO Auto-generated method stub
+		this.city = city;
+	}
 	
+	
+	public String getCity() {
+		return this.city;
+	}
+
+	public void setTaxNo(String tax_No) 
+	{
+		// TODO Auto-generated method stub
+		this.tax_No = tax_No;
+	}
+	
+	
+	public String getTaxNo() {
+		return this.tax_No;
+	}
+
+	public void setCountry(String country) 
+	{
+		// TODO Auto-generated method stub
+		this.country = country;
+	}
+
+	public String getCountry() {
+		return this.country;
+	}
 
 	
 

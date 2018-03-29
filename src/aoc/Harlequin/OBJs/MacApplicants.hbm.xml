@@ -89,5 +89,15 @@
         <property name="expiryDateOfPassport" type="string">
             <column name="Expiry_Date_Of_Passport" length="8" />
         </property>
+        
+        <property name="city" type="string">
+            <column name="City" length="45" />
+        </property>
+        <property name="country" type="string">
+            <column name="Country" length="45" />
+        </property>
+        <property name="taxNo" type="string">
+            <column name="Tax_No" length="45" />
+        </property>
     </class>
 </hibernate-mapping>
