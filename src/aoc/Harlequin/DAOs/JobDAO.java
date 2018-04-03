@@ -55,6 +55,28 @@ public class JobDAO extends HarlequinDAO {
 		
 	}
 	
+	
+	public List<SystemJob> ReadLastJob()
+	{
+		Session session = this.getSession();
+		HibernateUtil.beginTransaction();
+		
+		
+		
+		Query query = session.createQuery("from SystemJob order by Job_Id DESC");
+		query.setMaxResults(1);
+		List<SystemJob> Job = query.list();
+		
+		session.clear(); 
+		session.flush();
+		session.close();
+		
+		return Job;
+		
+		
+		
+	}
+	
 	public void AddJobInformation( String jobName, String jobCode, String jobClientName,String jobDetails, String jobComments, String jobtype)
 	{
 		

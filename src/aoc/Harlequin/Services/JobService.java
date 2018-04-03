@@ -89,7 +89,42 @@ public class JobService {
 		return JsonArray.toString();
 	}
 	
-	
+	@Path("/GetLastJob")
+	@GET
+	@Produces("text/plain")
+	public String GETJob( ) throws Exception
+	{
+		
+		JobDAO Object  = new JobDAO();
+		
+		List<SystemJob> Jobs = Object.ReadLastJob();
+		
+		JSONArray JsonArray = new JSONArray();
+		
+		for(int i = 0; i < Jobs.size();i++)
+		{
+			JSONObject jsonObject = new JSONObject();
+			jsonObject.put("Job_Id", Jobs.get(i).getJobId());
+			jsonObject.put("Job_Name", Jobs.get(i).getJobName());
+			jsonObject.put("Job_Code", Jobs.get(i).getJobCode());
+			jsonObject.put("Job_Client_Name", Jobs.get(i).getJobClientName());
+			jsonObject.put("Job_Details", Jobs.get(i).getJobDetails());		
+			jsonObject.put("Job_Comments", Jobs.get(i).getJobComments());
+			jsonObject.put("Job_Type", Jobs.get(i).getJobType());
+			
+			
+			JsonArray.put(jsonObject);
+		}
+		
+		
+		
+		
+		
+		
+		System.out.println(JsonArray.toString());
+	    
+		return JsonArray.toString();
+	}
 	
 	
 	@Path("/SaveJobInfo")

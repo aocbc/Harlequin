@@ -33,16 +33,16 @@
             <column name="Job_Type" length="45" />
         </property>
         <property name="dateFirstIssueLicense" type="string">
-            <column name="Date_First_issue_license" length="8" />
+            <column name="Date_First_issue_license" length="10" />
         </property>
         <property name="licenseCode" type="string">
             <column name="License_Code" length="2" />
         </property>
         <property name="expiryDateOfLicense" type="string">
-            <column name="Expiry_Date_Of_License" length="8" />
+            <column name="Expiry_Date_Of_License" length="10" />
         </property>
         <property name="pdpExpiryDate" type="string">
-            <column name="PDP_Expiry_Date" length="8" />
+            <column name="PDP_Expiry_Date" length="10" />
         </property>
         <property name="gender" type="string">
             <column name="Gender" length="6" />
@@ -87,7 +87,7 @@
             <column name="Passport_Number" length="10" />
         </property>
         <property name="expiryDateOfPassport" type="string">
-            <column name="Expiry_Date_Of_Passport" length="8" />
+            <column name="Expiry_Date_Of_Passport" length="10" />
         </property>
         
         <property name="city" type="string">
@@ -99,5 +99,13 @@
         <property name="taxNo" type="string">
             <column name="Tax_No" length="45" />
         </property>
+        
+        <property name="dateOfBirth" type="string">
+            <column name="Date_Of_Birth" length="10" />
+        </property>
+        <property name="age" type="java.lang.Integer">
+            <column name="Age"  />
+        </property>
+        
     </class>
 </hibernate-mapping>

@@ -70,6 +70,9 @@ public class MacApplicantService {
 		jsonObject.put("Work_History_4", Applicant.getWorkHistory4());
 		jsonObject.put("E_Mail", Applicant.getEmail());
 		
+		jsonObject.put("Age", Applicant.getAge());
+		jsonObject.put("Date_Of_Birth", Applicant.getDateOfBirth());
+		
 		System.out.println(jsonObject.toString());
 	    
 		return jsonObject.toString();
@@ -129,6 +132,8 @@ public class MacApplicantService {
 			jsonObject.put("Work_History_3", Applicants.get(i).getWorkHistory3());
 			jsonObject.put("Work_History_4", Applicants.get(i).getWorkHistory4());
 			jsonObject.put("E_Mail", Applicants.get(i).getEmail());
+			jsonObject.put("Age", Applicants.get(i).getAge());
+			jsonObject.put("Date_Of_Birth", Applicants.get(i).getDateOfBirth());
 			
 			JsonArray.put(jsonObject);
 		}
@@ -200,6 +205,8 @@ public class MacApplicantService {
 			jsonObject.put("Work_History_3", Applicants.get(i).getWorkHistory3());
 			jsonObject.put("Work_History_4", Applicants.get(i).getWorkHistory4());
 			jsonObject.put("E_Mail", Applicants.get(i).getEmail());
+			jsonObject.put("Age", Applicants.get(i).getAge());
+			jsonObject.put("Date_Of_Birth", Applicants.get(i).getDateOfBirth());
 			
 			JsonArray.put(jsonObject);
 		}
@@ -229,7 +236,7 @@ public class MacApplicantService {
 		System.out.println("WRITING TO DATABASE:"+ r.getString("Name"));
 			
 		MacApplicantDAO Object  = new MacApplicantDAO();
-		Object.AddAppicantInformation(r.getString("Name"), r.getString("Surname"), r.getString("RSA_Citizen"), r.getString("Id_Number"),r.getString("Passport_Number"),r.getString("Expiry_Date_Of_Passport"), r.getString("Work_Permit_Validity"), r.getString("Cell_Number"), r.getString("Telephone_Number"), r.getString("Job_Type"), r.getString("Date_First_issue_license"), r.getString("License_Code"), r.getString("Expiry_Date_Of_License"), r.getString("PDP_Expiry_Date"), r.getString("Gender"), r.getString("Physical_Address_1"), r.getString("Physical_Address_2"), r.getString("Physical_Address_3"), r.getString("Physical_Address_4"),r.getString("City"),r.getString("Country"),r.getString("Tax_No"), r.getString("Marital_Status"), r.getString("Dependants"), r.getString("Home_Language"), r.getString("Work_History_1"), r.getString("Work_History_2"), r.getString("Work_History_3"), r.getString("Work_History_1"), r.getString("E_Mail"));
+		Object.AddAppicantInformation(r.getString("Name"), r.getString("Surname"), r.getString("RSA_Citizen"), r.getString("Id_Number"),r.getString("Passport_Number"),r.getString("Expiry_Date_Of_Passport"), r.getString("Work_Permit_Validity"), r.getString("Cell_Number"), r.getString("Telephone_Number"), r.getString("Job_Type"), r.getString("Date_First_issue_license"), r.getString("License_Code"), r.getString("Expiry_Date_Of_License"), r.getString("PDP_Expiry_Date"), r.getString("Gender"), r.getString("Physical_Address_1"), r.getString("Physical_Address_2"), r.getString("Physical_Address_3"), r.getString("Physical_Address_4"),r.getString("City"),r.getString("Country"),r.getString("Tax_No"), r.getString("Marital_Status"), r.getString("Dependants"), r.getString("Home_Language"), r.getString("Work_History_1"), r.getString("Work_History_2"), r.getString("Work_History_3"), r.getString("Work_History_1"), r.getString("E_Mail"), r.getInt("Age"), r.getString("Date_Of_Birth"));
 		
 		return "Sucessful";	
 		
