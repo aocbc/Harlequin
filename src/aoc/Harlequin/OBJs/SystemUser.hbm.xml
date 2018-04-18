@@ -29,6 +29,9 @@
         <property name="userPassword" type="string">
             <column name="User_Password" length="13" />
         </property>
+         <property name="authorizationLevel" type="string">
+            <column name="Authorization_Level" length="20" />
+        </property>
     </class>
 </hibernate-mapping>
 

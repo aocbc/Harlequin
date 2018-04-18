@@ -25,26 +25,29 @@ public class SMSService
 	public  String create(String jsonTextObject) throws JSONException
 	{
 		
+		System.out.println(jsonTextObject);
 		
 		
 		JSONObject json = new JSONObject(jsonTextObject);
-		JSONArray Applicants = new JSONArray(json.getJSONArray("Applicants").toString());
-		JSONArray Message = new JSONArray(json.getJSONArray("SmsMessage").toString());
 		
 		
-		//System.out.println(Applicants.toString());
+		JSONArray TotalApplicants = json.getJSONArray("Applicants");
+		JSONArray Message = json.getJSONArray("SmsMessage");
+		
+		JSONObject SMSMessage = new JSONObject( Message.get(0).toString());
 		
 		
-		
-		for (int i = 0; i < Applicants.length(); i++) {
-		    JSONObject jsonobject1 = Applicants.getJSONObject(i);
-		    JSONObject jsonobject2 = Message.getJSONObject(0);
-		    String sMessage = jsonobject2.getString("Message");
-		    sMessage = sMessage.substring(0, 156);
-		    System.out.println("Applicant: "+jsonobject1.getString("Name")+ ", Number:"+jsonobject1.getString("Cell_Number")+", Message:" + sMessage);
-		    SMSSender sms = new SMSSender(jsonobject1.getString("Cell_Number"),sMessage);
+		for (int i = 0; i < TotalApplicants.length(); i++) 
+		{
+			
+			JSONObject Applicants = new JSONObject( TotalApplicants.get(i).toString());
+			System.out.println("Cell Number:"+Applicants.getString("Cell_Number").toString()+ "Message:"+ SMSMessage.getString("Message").toString());
+			
+			SMSSender sms = new SMSSender(Applicants.getString("Cell_Number").toString(),SMSMessage.getString("Message").toString());
 		    sms.send();
-		}
+			
+			
+		 }
 		
 		
 		

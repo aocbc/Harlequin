@@ -57,7 +57,7 @@ public class SystemUserDAO extends HarlequinDAO
 	}
 	
 	
-	public void AddUserInformation(String name, String surname, String EMail, String tellNumber, String cellNumber, String userPassword)
+	public void AddUserInformation(String name, String surname, String EMail, String tellNumber, String cellNumber, String userPassword, String authorizationLevel)
 	{
 		
 		Session session = HibernateUtil.getSessionFactory().openSession();
@@ -75,7 +75,7 @@ public class SystemUserDAO extends HarlequinDAO
 		user.setTellNumber(tellNumber);
 		user.setCellNumber(cellNumber);
 		user.setUserPassword(userPassword);
-		
+		user.setAuthorizationLevel(authorizationLevel);
 		session.save(user);
 				
 		session.getTransaction().commit();

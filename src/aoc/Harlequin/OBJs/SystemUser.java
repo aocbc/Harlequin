@@ -16,6 +16,7 @@ public class SystemUser implements java.io.Serializable {
 	private String cellNumber;
 	private String tellNumber;
 	private String userPassword;
+	private String authorizationLevel;
 
 	public SystemUser() 
 	{
@@ -23,7 +24,7 @@ public class SystemUser implements java.io.Serializable {
 	
 	}
 
-	public SystemUser(int idSystemUser, String userName, String name,String surname, String EMail, String cellNumber, String userPassword) 
+	public SystemUser(int idSystemUser, String userName, String name,String surname, String EMail, String cellNumber, String userPassword,String authorizationLevel) 
 	{
 		this.idSystemUser = idSystemUser;
 		this.userName = userName;
@@ -32,19 +33,10 @@ public class SystemUser implements java.io.Serializable {
 		this.EMail = EMail;
 		this.cellNumber = cellNumber;
 		this.userPassword = userPassword;
+		this.authorizationLevel = authorizationLevel;
 	}
 
-	public SystemUser(int idSystemUser, String userName, String name,	String surname, String EMail, String cellNumber, String tellNumber, String userPassword) 
-	{
-		this.idSystemUser = idSystemUser;
-		this.userName = userName;
-		this.name = name;
-		this.surname = surname;
-		this.EMail = EMail;
-		this.cellNumber = cellNumber;
-		this.tellNumber = tellNumber;
-		this.userPassword = userPassword;
-	}
+	
 
 	public int getIdSystemUser() 
 	{
@@ -69,6 +61,11 @@ public class SystemUser implements java.io.Serializable {
 	public String getName() 
 	{
 		return this.name;
+	}
+	
+	public String getAuthorizationLevel() 
+	{
+		return this.authorizationLevel;
 	}
 
 	public void setName(String name) {
@@ -113,6 +110,12 @@ public class SystemUser implements java.io.Serializable {
 
 	public void setUserPassword(String userPassword) {
 		this.userPassword = userPassword;
+	}
+
+	public void setAuthorizationLevel(String authorizationLevel) 
+	{
+		// TODO Auto-generated method stub
+		this.authorizationLevel = authorizationLevel;
 	}
 
 	

@@ -41,7 +41,7 @@ public class SystemUserService {
 		jsonObject.put("Cell_Number", User.getCellNumber());
 		jsonObject.put("Tell_Number", User.getTellNumber());
 		jsonObject.put("User_Password", User.getUserPassword());
-		
+		jsonObject.put("Authorization_Level", User.getAuthorizationLevel());
 		
 		System.out.println(jsonObject.toString());
 	    
@@ -70,7 +70,7 @@ public class SystemUserService {
 			jsonObject.put("E_Mail", Users.get(i).getEMail());		
 			jsonObject.put("Cell_Number", Users.get(i).getCellNumber());
 			jsonObject.put("Tell_Number", Users.get(i).getTellNumber());
-			jsonObject.put("User_Password", Users.get(i).getUserPassword());
+			jsonObject.put("Authorization_Level", Users.get(i).getAuthorizationLevel());
 			
 			JsonArray.put(jsonObject);
 		}
@@ -132,7 +132,7 @@ public class SystemUserService {
 		System.out.println("WRITING TO DATABASE:"+ r.getString("Name"));
 			
 		SystemUserDAO Object  = new SystemUserDAO();
-		Object.AddUserInformation(r.getString("Name"), r.getString("Surname"), r.getString("Email_address"), r.getString("Tell_Number"), r.getString("Cell_Number"), r.getString("Password"));
+		Object.AddUserInformation(r.getString("Name"), r.getString("Surname"), r.getString("Email_address"), r.getString("Tell_Number"), r.getString("Cell_Number"), r.getString("Password"), r.getString("Authorization_Level"));
 		
 		return "Sucessful";	
 		

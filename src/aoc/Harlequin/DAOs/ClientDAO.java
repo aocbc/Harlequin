@@ -33,6 +33,12 @@ public class ClientDAO extends HarlequinDAO {
 		
 	}
 	
+	
+	
+	
+  
+	
+	
 	public void AddClientInformation( String clientName, String clientEMail,String clientContactName, String clientContactNumber,	String clientAddress1, String clientAddress2,String clientAddress3, String clientAddress4,String clientVatNumber, String clientComments)
 	{
 		
@@ -54,6 +60,8 @@ public class ClientDAO extends HarlequinDAO {
 		client.setClientAddress4(clientAddress4);
 		client.setClientVatNumber(clientVatNumber);
 		client.setClientComments(clientComments);
+		
+		
 		
 		
 		session.save(client);

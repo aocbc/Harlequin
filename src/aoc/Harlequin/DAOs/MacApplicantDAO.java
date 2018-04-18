@@ -33,6 +33,16 @@ public class MacApplicantDAO extends HarlequinDAO {
 		
 	}
 	
+	public void update(Object entity) {  
+		  Session hibernateSession = this.getSession();
+		  HibernateUtil.beginTransaction();
+		        //hibernateSession.save(entity);        
+		        //hibernateSession.saveOrUpdate(entity);
+		        hibernateSession.update(entity);
+		        
+		        HibernateUtil.commitTransaction();
+		 }
+	
 	public List<MacApplicants> GetApplicantsByJobType(String JobType)
 	{
 		Session session = this.getSession();
@@ -41,6 +51,24 @@ public class MacApplicantDAO extends HarlequinDAO {
 		
 		
 		Query query = session.createQuery("from MacApplicants Where Job_Type = '"+JobType+"'");
+		List<MacApplicants> Applicant = query.list();
+		
+		session.clear(); // ADDED 170302
+		session.flush();
+		session.close();
+		return Applicant;
+	}
+	
+	
+	
+	public List<MacApplicants> GetApplicantsByApplicantId(String IdNumber)
+	{
+		Session session = this.getSession();
+		HibernateUtil.beginTransaction();
+		
+		
+		
+		Query query = session.createQuery("from MacApplicants Where Id_Number = '"+IdNumber+"'");
 		List<MacApplicants> Applicant = query.list();
 		
 		session.clear(); // ADDED 170302
@@ -93,6 +121,34 @@ public class MacApplicantDAO extends HarlequinDAO {
 		Applicant.setEmail(email);
 		Applicant.setAge(Age);
 		Applicant.setDateOfBirth(DateOfBirth);
+		
+		session.save(Applicant);
+				
+		session.getTransaction().commit();
+		
+		session.close();
+		
+	}
+	
+	
+	public void AddAppicantInformation(String name, String surname,String Id_Number,String cellNumber, String jobType,String email,int age)
+	{
+		
+		Session session = HibernateUtil.getSessionFactory().openSession();
+		
+		session.beginTransaction();
+		
+		cellNumber= cellNumber.replaceAll("0", "+27");
+		
+		MacApplicants Applicant = new MacApplicants();
+		
+		Applicant.setName(name);
+		Applicant.setSurname(surname);
+		Applicant.setIdNumber(Id_Number);
+		Applicant.setCellNumber(cellNumber);
+		Applicant.setJobType(jobType);
+		Applicant.setEmail(email);
+		Applicant.setAge(age);
 		
 		session.save(Applicant);
 				
