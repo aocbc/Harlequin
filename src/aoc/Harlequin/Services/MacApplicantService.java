@@ -226,7 +226,72 @@ public class MacApplicantService {
 		return JsonArray.toString();
 	}
 	
-	
+	@Path("/GetApplicantByTableId/{idMac_Applicants}")
+	@GET
+	@Produces("text/plain")
+	public String GETid(@PathParam("idMac_Applicants") String idMac_Applicants) throws Exception
+	{
+		
+		
+		
+		MacApplicantDAO Object  = new MacApplicantDAO();
+		
+		List<MacApplicants> Applicants = Object.GetApplicantsByApplicantId(idMac_Applicants);
+		
+		
+			JSONObject jsonObject = new JSONObject();
+			
+			jsonObject.put("idMac_Applicants", Applicants.get(0).getIdMacApplicants());
+			jsonObject.put("Name", Applicants.get(0).getName());
+			jsonObject.put("Surname", Applicants.get(0).getSurname());
+			jsonObject.put("RSA_Citizen", Applicants.get(0).getRsaCitizen());
+			jsonObject.put("Id_Number", Applicants.get(0).getIdNumber());
+			jsonObject.put("Passport_Number", Applicants.get(0).getPassportNumber());
+			jsonObject.put("Expiry_Date_Of_Passport", Applicants.get(0).getExpiryDateOfPassport());
+			jsonObject.put("Work_Permit_Validity", Applicants.get(0).getWorkPermitValidity());
+			jsonObject.put("Cell_Number", Applicants.get(0).getCellNumber());
+			jsonObject.put("Telephone_Number", Applicants.get(0).getTelephoneNumber());
+			jsonObject.put("Job_Type", Applicants.get(0).getJobType());
+			jsonObject.put("Date_First_issue_license", Applicants.get(0).getDateFirstIssueLicense());
+			jsonObject.put("License_Code", Applicants.get(0).getLicenseCode());
+			
+			jsonObject.put("Expiry_Date_Of_License", Applicants.get(0).getExpiryDateOfLicense());
+			jsonObject.put("PDP_Expiry_Date", Applicants.get(0).getPdpExpiryDate());
+			jsonObject.put("Gender", Applicants.get(0).getGender());
+			jsonObject.put("Physical_Address_1", Applicants.get(0).getPhysicalAddress1());
+			jsonObject.put("Physical_Address_2", Applicants.get(0).getPhysicalAddress2());		
+			jsonObject.put("Physical_Address_3", Applicants.get(0).getPhysicalAddress3());
+			jsonObject.put("Physical_Address_4", Applicants.get(0).getPhysicalAddress4());
+			
+			jsonObject.put("City", Applicants.get(0).getCity());		
+			jsonObject.put("Country", Applicants.get(0).getCountry());
+			jsonObject.put("Tax_No", Applicants.get(0).getTaxNo());
+			
+			jsonObject.put("Marital_Status", Applicants.get(0).getMaritalStatus());
+			jsonObject.put("Dependants", Applicants.get(0).getDependants());
+			jsonObject.put("Home_Language", Applicants.get(0).getHomeLanguage());
+			jsonObject.put("Work_History_1", Applicants.get(0).getWorkHistory1());
+			jsonObject.put("Work_History_2", Applicants.get(0).getWorkHistory2());
+			jsonObject.put("Work_History_3", Applicants.get(0).getWorkHistory3());
+			jsonObject.put("Work_History_4", Applicants.get(0).getWorkHistory4());
+			jsonObject.put("E_Mail", Applicants.get(0).getEmail());
+			jsonObject.put("Age", Applicants.get(0).getAge());
+			jsonObject.put("Date_Of_Birth", Applicants.get(0).getDateOfBirth());
+			
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		return jsonObject.toString();
+	}
 	
 	
 	

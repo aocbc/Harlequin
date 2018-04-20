@@ -118,6 +118,39 @@ public class SystemUserService {
 	}
 	
 	
+	@Path("/GetUserByID/{Id}")
+	@GET
+	@Produces("text/plain")
+	public String GETUser(@PathParam("Id") String Id ) throws Exception
+	{
+		
+		
+		
+		SystemUserDAO Object  = new SystemUserDAO();
+		
+		List<SystemUser> User = Object.GetUserById(Id);
+		
+		
+		System.out.println("IdNumber:" + User.get(0).getName().toString() ) ;
+		
+        JSONObject jsonObject = new JSONObject();
+		
+		jsonObject.put("idSystem_User", User.get(0).getIdSystemUser());
+		jsonObject.put("User_Name", User.get(0).getUserName().toString());
+		jsonObject.put("Name", User.get(0).getUserName().toString());
+		jsonObject.put("Surname", User.get(0).getSurname().toString());
+		jsonObject.put("E_Mail", User.get(0).getEMail().toString());		
+		jsonObject.put("Cell_Number", User.get(0).getCellNumber().toString());
+		jsonObject.put("Tell_Number", User.get(0).getTellNumber().toString());
+		jsonObject.put("Password", User.get(0).getUserPassword().toString());
+		jsonObject.put("Authorization_Level", User.get(0).getAuthorizationLevel().toString());
+		
+		System.out.println(jsonObject.toString());
+		return jsonObject.toString();
+	}
+	
+	
+	
 	@Path("/SaveUserInfo")
 	@POST
 	@Consumes(MediaType.APPLICATION_JSON)

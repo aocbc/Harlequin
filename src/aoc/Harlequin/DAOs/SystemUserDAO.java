@@ -57,6 +57,24 @@ public class SystemUserDAO extends HarlequinDAO
 	}
 	
 	
+	public List<SystemUser> GetUserById(String IdNumber)
+	{
+		Session session = this.getSession();
+		HibernateUtil.beginTransaction();
+		
+		
+		
+		Query query = session.createQuery("from SystemUser Where idSystem_User = '"+IdNumber+"'");
+		List<SystemUser> User = query.list();
+		
+		session.clear(); // ADDED 170302
+		session.flush();
+		session.close();
+		return User;
+	}
+	
+	
+	
 	public void AddUserInformation(String name, String surname, String EMail, String tellNumber, String cellNumber, String userPassword, String authorizationLevel)
 	{
 		
