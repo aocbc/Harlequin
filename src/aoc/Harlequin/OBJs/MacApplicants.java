@@ -42,6 +42,7 @@ public class MacApplicants implements java.io.Serializable {
 	private String country;
 	private Integer age;
 	private String dateOfBirth;
+	private String lastSmsDate;
 
 	public MacApplicants() {
 	}
@@ -55,7 +56,7 @@ public class MacApplicants implements java.io.Serializable {
 			String physicalAddress3, String physicalAddress4,
 			String maritalStatus, String dependants, String homeLanguage,
 			String workHistory1, String workHistory2, String workHistory3,
-			String workHistory4, String email, String passportNumber,String expiryDateOfPassport, String city, String tax_No,String country,int age,String dateOfBirth) {
+			String workHistory4, String email, String passportNumber,String expiryDateOfPassport, String city, String tax_No,String country,int age,String dateOfBirth,String lastSmsDate) {
 		this.name = name;
 		this.surname = surname;
 		this.rsaCitizen = rsaCitizen;
@@ -87,6 +88,7 @@ public class MacApplicants implements java.io.Serializable {
 		this.country = country;
 		this.age = age;
 		this.dateOfBirth = dateOfBirth;
+		this.lastSmsDate = lastSmsDate;
 	}
 
 	public Integer getIdMacApplicants() {
@@ -369,6 +371,16 @@ public class MacApplicants implements java.io.Serializable {
 		// TODO Auto-generated method stub
 		this.dateOfBirth = dateOfBirth;
 		
+	}
+
+	public void setLastSmsDate(String lastSmsDate) {
+		// TODO Auto-generated method stub
+		this.lastSmsDate = lastSmsDate;
+	}
+
+	public String getLastSmsDate() {
+		// TODO Auto-generated method stub
+		return this.lastSmsDate;
 	}
 
 	

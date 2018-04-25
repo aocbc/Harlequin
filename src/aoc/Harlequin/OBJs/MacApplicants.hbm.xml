@@ -106,6 +106,8 @@
         <property name="age" type="java.lang.Integer">
             <column name="Age"  />
         </property>
-        
+         <property name="lastSmsDate" type="string">
+            <column name="Last_Sms_Date" length="10" />
+        </property>
     </class>
 </hibernate-mapping>

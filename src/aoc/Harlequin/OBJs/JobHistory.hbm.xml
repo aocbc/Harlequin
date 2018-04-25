@@ -1,0 +1,42 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 24 Apr 2018 3:28:58 PM by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping>
+    <class name="aoc.Harlequin.OBJs.JobHistory" table="Job_History" catalog="Harlequin">
+        <id name="idJobHistory" type="int">
+            <column name="idJob_History" />
+            <generator class="assigned" />
+        </id>
+        <property name="jobRole" type="string">
+            <column name="Job_Role" length="45" />
+        </property>
+        <property name="jobDescription" type="string">
+            <column name="Job_Description" length="250" />
+        </property>
+        <property name="employerContactPerson" type="string">
+            <column name="Employer_Contact_Person" length="45" />
+        </property>
+        <property name="employerContactNumber" type="string">
+            <column name="Employer_Contact_Number" length="45" />
+        </property>
+        <property name="employerIndustry" type="string">
+            <column name="Employer_Industry" length="45" />
+        </property>
+        <property name="periodFrom" type="string">
+            <column name="Period_From" length="10" />
+        </property>
+        <property name="periodTo" type="string">
+            <column name="Period_To" length="10" />
+        </property>
+        <property name="idMacApplicants" type="int">
+            <column name="idMac_Applicants" not-null="true" />
+        </property>
+        <property name="name" type="string">
+            <column name="Name" length="50" />
+        </property>
+        <property name="surname" type="string">
+            <column name="Surname" length="50" />
+        </property>
+    </class>
+</hibernate-mapping>
