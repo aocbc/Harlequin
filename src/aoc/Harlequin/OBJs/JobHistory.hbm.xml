@@ -29,14 +29,17 @@
         <property name="periodTo" type="string">
             <column name="Period_To" length="10" />
         </property>
-        <property name="idMacApplicants" type="int">
-            <column name="idMac_Applicants" not-null="true" />
+        <property name="idMacApplicants" type="string">
+            <column name="idMac_Applicants" length="13" />
         </property>
         <property name="name" type="string">
             <column name="Name" length="50" />
         </property>
         <property name="surname" type="string">
             <column name="Surname" length="50" />
+        </property>
+         <property name="employerName" type="string">
+            <column name="Employer_Name" length="45" />
         </property>
     </class>
 </hibernate-mapping>

@@ -1,5 +1,7 @@
 package aoc.Harlequin.OBJs;
 
+import java.util.Collection;
+
 // Generated 24 Apr 2018 3:28:58 PM by Hibernate Tools 3.4.0.CR1
 
 /**
@@ -19,14 +21,15 @@ public class JobHistory implements java.io.Serializable {
 	private String employerIndustry;
 	private String periodFrom;
 	private String periodTo;
-	private int idMacApplicants;
+	private String idMacApplicants;
 	private String name;
 	private String surname;
+	private String employerName;
 
 	public JobHistory() {
 	}
 
-	public JobHistory(int idJobHistory, int idMacApplicants) {
+	public JobHistory(int idJobHistory, String idMacApplicants) {
 		this.idJobHistory = idJobHistory;
 		this.idMacApplicants = idMacApplicants;
 	}
@@ -34,7 +37,7 @@ public class JobHistory implements java.io.Serializable {
 	public JobHistory(int idJobHistory, String jobRole, String jobDescription,
 			String employerContactPerson, String employerContactNumber,
 			String employerIndustry, String periodFrom, String periodTo,
-			int idMacApplicants, String name, String surname) {
+			String idMacApplicants, String name, String surname,String employerName) {
 		this.idJobHistory = idJobHistory;
 		this.jobRole = jobRole;
 		this.jobDescription = jobDescription;
@@ -46,6 +49,7 @@ public class JobHistory implements java.io.Serializable {
 		this.idMacApplicants = idMacApplicants;
 		this.name = name;
 		this.surname = surname;
+		this.employerName = employerName;
 	}
 
 	public int getIdJobHistory() {
@@ -112,11 +116,11 @@ public class JobHistory implements java.io.Serializable {
 		this.periodTo = periodTo;
 	}
 
-	public int getIdMacApplicants() {
+	public String getIdMacApplicants() {
 		return this.idMacApplicants;
 	}
 
-	public void setIdMacApplicants(int idMacApplicants) {
+	public void setIdMacApplicants(String idMacApplicants) {
 		this.idMacApplicants = idMacApplicants;
 	}
 
@@ -134,6 +138,15 @@ public class JobHistory implements java.io.Serializable {
 
 	public void setSurname(String surname) {
 		this.surname = surname;
+	}
+	
+	public void setEmployerName(String employerName) {
+		this.employerName = employerName;
+	}
+
+	public String getEmployerName() {
+		// TODO Auto-generated method stub
+		return this.employerName;
 	}
 
 }

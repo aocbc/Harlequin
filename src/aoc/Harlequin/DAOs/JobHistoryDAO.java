@@ -54,7 +54,7 @@ public class JobHistoryDAO extends HarlequinDAO {
 	}
 
 	
-	public void AddJobHistroy( String Job_Role, String Job_Description, String Employer_Contact_Person,String Employer_Contact_Number, String Employer_Industry, String Period_From,String Period_To, String idMac_Applicants, String Name, String Surname)
+	public void AddJobHistroy( String Job_Role, String Job_Description, String Employer_Contact_Person,String Employer_Contact_Number, String Employer_Industry, String Period_From,String Period_To, String idMac_Applicants, String Name, String Surname,String Employer_Name)
 	{
 		
 		Session session = HibernateUtil.getSessionFactory().openSession();
@@ -74,6 +74,8 @@ public class JobHistoryDAO extends HarlequinDAO {
 		history.setPeriodFrom(Period_From);
 		history.setName(Name);
 		history.setSurname(Surname);
+		history.setEmployerName(Employer_Name);
+		history.setIdMacApplicants(idMac_Applicants);
 		
 		session.save(history);
 				

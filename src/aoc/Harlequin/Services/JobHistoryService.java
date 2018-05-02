@@ -46,6 +46,7 @@ public class JobHistoryService {
 		jsonObject.put("idMac_Applicants", JobHistory.getIdJobHistory());		
 		jsonObject.put("Name", JobHistory.getName());
 		jsonObject.put("Surname", JobHistory.getSurname());
+		jsonObject.put("Employer_Name", JobHistory.getEmployerName());
 		
 		
 		
@@ -69,7 +70,7 @@ public class JobHistoryService {
 		//System.out.println("WRITING TO DATABASE:"+ r.getString("Client_Name"));
 			
 		JobHistoryDAO Object  = new JobHistoryDAO();
-		Object.AddJobHistroy(r.getString("Job_Role"), r.getString("Job_Description"), r.getString("Employer_Contact_Person"), r.getString("Employer_Contact_Number"), r.getString("Employer_Industry"), r.getString("Period_From"), r.getString("Period_To"), r.getString("idMac_Applicants"), r.getString("Name"), r.getString("Surname"));
+		Object.AddJobHistroy(r.getString("Job_Role"), r.getString("Job_Description"), r.getString("Employer_Contact_Person"), r.getString("Employer_Contact_Number"), r.getString("Employer_Industry"), r.getString("Period_From"), r.getString("Period_To"), r.getString("idMac_Applicants"), r.getString("Name"), r.getString("Surname"),r.getString("Employer_Name"));
 		return "Sucessful";	
 		
 			
@@ -103,6 +104,7 @@ public class JobHistoryService {
 			jsonObject.put("idMac_Applicants", History.get(i).getIdMacApplicants());
 			jsonObject.put("Name", History.get(i).getName());
 			jsonObject.put("Surname", History.get(i).getSurname());
+			jsonObject.put("Employer_Name", History.get(i).getEmployerName());
 			
 			
 			JsonArray.put(jsonObject);

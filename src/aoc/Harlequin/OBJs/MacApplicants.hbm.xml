@@ -109,5 +109,9 @@
          <property name="lastSmsDate" type="string">
             <column name="Last_Sms_Date" length="10" />
         </property>
+        
+        <property name="jobName" type="string">
+            <column name="Job_Name" length="100" />
+        </property>
     </class>
 </hibernate-mapping>
