@@ -1,0 +1,99 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 07 May 2018 11:58:05 AM by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping>
+    <class name="aoc.Harlequin.Temp.PracticalDriversAssessment" table="Practical_Drivers_Assessment" catalog="Harlequin">
+        <id name="idPracticalDriversAssessment" type="int">
+            <column name="idPractical_Drivers_Assessment" />
+            <generator class="assigned" />
+        </id>
+        <property name="idMacApplicants" type="java.lang.Integer">
+            <column name="idMac_Applicants" />
+        </property>
+        <property name="name" type="string">
+            <column name="Name" length="50" />
+        </property>
+        <property name="surname" type="string">
+            <column name="Surname" length="50" />
+        </property>
+        <property name="idNumber" type="string">
+            <column name="Id_Number" length="13" />
+        </property>
+        <property name="clientName" type="string">
+            <column name="Client_Name" length="100" />
+        </property>
+        <property name="pdpExpiryDate" type="string">
+            <column name="PDP_Expiry_Date" length="10" />
+        </property>
+        <property name="vehicleUsed" type="string">
+            <column name="Vehicle_Used" length="55" />
+        </property>
+        <property name="assessorName" type="string">
+            <column name="Assessor_Name" length="50" />
+        </property>
+        <property name="assessorSurname" type="string">
+            <column name="Assessor_Surname" length="50" />
+        </property>
+        <property name="assessorUserId" type="java.lang.Integer">
+            <column name="Assessor_User_Id" />
+        </property>
+        <property name="date" type="string">
+            <column name="Date" length="10" />
+        </property>
+        <property name="kmEnd" type="string">
+            <column name="KM_End" length="5" />
+        </property>
+        <property name="kmStart" type="string">
+            <column name="KM_Start" length="5" />
+        </property>
+        <property name="timeEnd" type="string">
+            <column name="Time_End" length="5" />
+        </property>
+        <property name="timeStart" type="string">
+            <column name="Time_Start" length="5" />
+        </property>
+        <property name="weather" type="string">
+            <column name="Weather" length="45" />
+        </property>
+        <property name="route" type="string">
+            <column name="Route" length="45" />
+        </property>
+        <property name="totalScore" type="big_decimal">
+            <column name="Total_score" precision="18" scale="3" />
+        </property>
+        <property name="startingAndStopping" type="big_decimal">
+            <column name="Starting_And_Stopping" precision="18" scale="3" />
+        </property>
+        <property name="generalDriving" type="big_decimal">
+            <column name="General_Driving" precision="18" scale="3" />
+        </property>
+        <property name="passingOrOvertaking" type="big_decimal">
+            <column name="Passing_Or_Overtaking" precision="18" scale="3" />
+        </property>
+        <property name="generalRoadBehavior" type="big_decimal">
+            <column name="General_Road_Behavior" precision="18" scale="3" />
+        </property>
+        <property name="observationAndAnticipation" type="big_decimal">
+            <column name="Observation_And_Anticipation" precision="18" scale="3" />
+        </property>
+        <property name="approachingJunctionsTurningExiting" type="big_decimal">
+            <column name="Approaching_Junctions_Turning_Exiting" precision="18" scale="3" />
+        </property>
+        <property name="reversing" type="big_decimal">
+            <column name="Reversing" precision="18" scale="3" />
+        </property>
+        <property name="clutch" type="big_decimal">
+            <column name="Clutch" precision="18" scale="3" />
+        </property>
+        <property name="retarderDscHillMode" type="big_decimal">
+            <column name="Retarder_DSC_HillMode" precision="18" scale="3" />
+        </property>
+        <property name="comments" type="string">
+            <column name="Comments" length="250" />
+        </property>
+        <property name="pdaNo" type="java.lang.Integer">
+            <column name="PDA_No" />
+        </property>
+    </class>
+</hibernate-mapping>

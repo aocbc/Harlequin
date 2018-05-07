@@ -18,5 +18,6 @@
         <mapping resource="aoc/Harlequin/OBJs/MacApplicants.hbm.xml" />
         <mapping resource="aoc/Harlequin/OBJs/SystemJob.hbm.xml" />
         <mapping resource="aoc/Harlequin/OBJs/JobHistory.hbm.xml" />
+        <mapping resource="aoc/Harlequin/OBJs/PracticalDriversAssessment.hbm.xml" />
     </session-factory>
 </hibernate-configuration>
