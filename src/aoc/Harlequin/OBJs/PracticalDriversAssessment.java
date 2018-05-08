@@ -27,16 +27,16 @@ public class PracticalDriversAssessment implements java.io.Serializable {
 	private String timeStart;
 	private String weather;
 	private String route;
-	private double totalScore;
-	private double startingAndStopping;
-	private double generalDriving;
-	private double passingOrOvertaking;
-	private double generalRoadBehavior;
-	private double observationAndAnticipation;
-	private double approachingJunctionsTurningExiting;
-	private double reversing;
-	private double clutch;
-	private double retarderDscHillMode;
+	private BigDecimal totalScore;
+	private BigDecimal startingAndStopping;
+	private BigDecimal generalDriving;
+	private BigDecimal passingOrOvertaking;
+	private BigDecimal generalRoadBehavior;
+	private BigDecimal observationAndAnticipation;
+	private BigDecimal approachingJunctionsTurningExiting;
+	private BigDecimal reversing;
+	private BigDecimal clutch;
+	private BigDecimal retarderDscHillMode;
 	private String comments;
 	private Integer pdaNo;
 
@@ -53,13 +53,13 @@ public class PracticalDriversAssessment implements java.io.Serializable {
 			String vehicleUsed, String assessorName, String assessorSurname,
 			Integer assessorUserId, String date, String kmEnd, String kmStart,
 			String timeEnd, String timeStart, String weather, String route,
-			double totalScore, double startingAndStopping,
-			double generalDriving, double passingOrOvertaking,
-			double generalRoadBehavior,
-			double observationAndAnticipation,
-			double approachingJunctionsTurningExiting,
-			double reversing, double clutch,
-			double retarderDscHillMode, String comments, Integer pdaNo) {
+			BigDecimal totalScore, BigDecimal startingAndStopping,
+			BigDecimal generalDriving, BigDecimal passingOrOvertaking,
+			BigDecimal generalRoadBehavior,
+			BigDecimal observationAndAnticipation,
+			BigDecimal approachingJunctionsTurningExiting,
+			BigDecimal reversing, BigDecimal clutch,
+			BigDecimal retarderDscHillMode, String comments, Integer pdaNo) {
 		this.idPracticalDriversAssessment = idPracticalDriversAssessment;
 		this.idMacApplicants = idMacApplicants;
 		this.name = name;
@@ -236,85 +236,85 @@ public class PracticalDriversAssessment implements java.io.Serializable {
 		this.route = route;
 	}
 
-	public double getTotalScore() {
+	public BigDecimal getTotalScore() {
 		return this.totalScore;
 	}
 
-	public void setTotalScore(double totalScore) {
+	public void setTotalScore(BigDecimal totalScore) {
 		this.totalScore = totalScore;
 	}
 
-	public double getStartingAndStopping() {
+	public BigDecimal getStartingAndStopping() {
 		return this.startingAndStopping;
 	}
 
-	public void setStartingAndStopping(double startingAndStopping) {
+	public void setStartingAndStopping(BigDecimal startingAndStopping) {
 		this.startingAndStopping = startingAndStopping;
 	}
 
-	public double getGeneralDriving() {
+	public BigDecimal getGeneralDriving() {
 		return this.generalDriving;
 	}
 
-	public void setGeneralDriving(double generalDriving) {
+	public void setGeneralDriving(BigDecimal generalDriving) {
 		this.generalDriving = generalDriving;
 	}
 
-	public double getPassingOrOvertaking() {
+	public BigDecimal getPassingOrOvertaking() {
 		return this.passingOrOvertaking;
 	}
 
-	public void setPassingOrOvertaking(double passingOrOvertaking) {
+	public void setPassingOrOvertaking(BigDecimal passingOrOvertaking) {
 		this.passingOrOvertaking = passingOrOvertaking;
 	}
 
-	public double getGeneralRoadBehavior() {
+	public BigDecimal getGeneralRoadBehavior() {
 		return this.generalRoadBehavior;
 	}
 
-	public void setGeneralRoadBehavior(double generalRoadBehavior) {
+	public void setGeneralRoadBehavior(BigDecimal generalRoadBehavior) {
 		this.generalRoadBehavior = generalRoadBehavior;
 	}
 
-	public double getObservationAndAnticipation() {
+	public BigDecimal getObservationAndAnticipation() {
 		return this.observationAndAnticipation;
 	}
 
 	public void setObservationAndAnticipation(
-			double observationAndAnticipation) {
+			BigDecimal observationAndAnticipation) {
 		this.observationAndAnticipation = observationAndAnticipation;
 	}
 
-	public double getApproachingJunctionsTurningExiting() {
+	public BigDecimal getApproachingJunctionsTurningExiting() {
 		return this.approachingJunctionsTurningExiting;
 	}
 
 	public void setApproachingJunctionsTurningExiting(
-			double approachingJunctionsTurningExiting) {
+			BigDecimal approachingJunctionsTurningExiting) {
 		this.approachingJunctionsTurningExiting = approachingJunctionsTurningExiting;
 	}
 
-	public double getReversing() {
+	public BigDecimal getReversing() {
 		return this.reversing;
 	}
 
-	public void setReversing(double reversing) {
+	public void setReversing(BigDecimal reversing) {
 		this.reversing = reversing;
 	}
 
-	public double getClutch() {
+	public BigDecimal getClutch() {
 		return this.clutch;
 	}
 
-	public void setClutch(double clutch) {
+	public void setClutch(BigDecimal clutch) {
 		this.clutch = clutch;
 	}
 
-	public double getRetarderDscHillMode() {
+	public BigDecimal getRetarderDscHillMode() {
 		return this.retarderDscHillMode;
 	}
 
-	public void setRetarderDscHillMode(double retarderDscHillMode) {
+	public void setRetarderDscHillMode(BigDecimal retarderDscHillMode) {
 		this.retarderDscHillMode = retarderDscHillMode;
 	}
 

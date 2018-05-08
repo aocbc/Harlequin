@@ -3,10 +3,10 @@
 "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
 <!-- Generated 07 May 2018 11:58:05 AM by Hibernate Tools 3.4.0.CR1 -->
 <hibernate-mapping>
-    <class name="aoc.Harlequin.Temp.PracticalDriversAssessment" table="Practical_Drivers_Assessment" catalog="Harlequin">
-        <id name="idPracticalDriversAssessment" type="int">
+    <class name="aoc.Harlequin.OBJs.PracticalDriversAssessment" table="Practical_Drivers_Assessment" catalog="Harlequin">
+        <id name="idPracticalDriversAssessment" type="java.lang.Integer">
             <column name="idPractical_Drivers_Assessment" />
-            <generator class="assigned" />
+            <generator class="identity" />
         </id>
         <property name="idMacApplicants" type="java.lang.Integer">
             <column name="idMac_Applicants" />
