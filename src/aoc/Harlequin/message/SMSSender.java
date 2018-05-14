@@ -43,6 +43,8 @@ public class SMSSender
 			data += "username=" + URLEncoder.encode("aocbc", "ISO-8859-1");
 			data += "&password=" + URLEncoder.encode("xxxxx1000", "ISO-8859-1");
 			data += "&message=" + URLEncoder.encode(message, "ISO-8859-1");
+			data += "&allow_concat_text_sms=1";
+			data += "&concat_text_sms_max_parts=20";
 			data += "&want_report=1";
 			data += "&msisdn=" + number;
 

@@ -28,8 +28,11 @@ public class SMSService
 		System.out.println(jsonTextObject);
 		
 		
+				
+
 		JSONObject json = new JSONObject(jsonTextObject);
 		
+		System.out.println(json);
 		
 		JSONArray TotalApplicants = json.getJSONArray("Applicants");
 		JSONArray Message = json.getJSONArray("SmsMessage");
