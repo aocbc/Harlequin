@@ -38,7 +38,7 @@ public class PracticalDrivingAssessmentDAO extends HarlequinDAO {
 	
 	
 	
-	public void AddAppicantInformation(String idMac_Applicants,String name, String surname, String Id_Number,String Client_Name,String PDP_Expiry_Date, String Vehicle_Used, String Assessor_Name,String Assessor_Surname, String Assessor_User_Id,String Date, String KM_End,String KM_Start, String Time_End, String Time_Start, String Weather, String Route,String Total_Score, String Starting_And_Stopping, String General_Driving,String Passing_Or_Overtaking, String General_Road_Behavior, String Observation_And_Anticipation, String Approaching_Junctions_Turning_Exiting, String Reversing, String Clutch, String Retarder_DSC_HillMode, String Comments, String PDA_No)
+	public void AddAppicantInformation(String idMac_Applicants,String name, String surname, String Id_Number,String Client_Name,String PDP_Expiry_Date, String Vehicle_Used, String Assessor_Name,String Assessor_Surname, String Assessor_User_Id,String Date, String KM_End,String KM_Start, String Time_End, String Time_Start, String Weather, String Route,String Total_Score, String Starting_And_Stopping, String General_Driving,String Passing_Or_Overtaking, String General_Road_Behavior, String Observation_And_Anticipation, String Approaching_Junctions_Turning_Exiting, String Reversing, String Clutch, String Retarder_DSC_HillMode, String Comments, String PDA_No,String License_Code)
 	{
 		
 		Session session = HibernateUtil.getSessionFactory().openSession();
@@ -71,6 +71,11 @@ public class PracticalDrivingAssessmentDAO extends HarlequinDAO {
 		Assessment.setGeneralDriving(new BigDecimal(General_Driving));
 		Assessment.setObservationAndAnticipation(new BigDecimal(Observation_And_Anticipation));
 		Assessment.setApproachingJunctionsTurningExiting(new BigDecimal(Approaching_Junctions_Turning_Exiting));
+		Assessment.setPassingOrOvertaking(new BigDecimal(Passing_Or_Overtaking));
+		Assessment.setGeneralRoadBehavior(new BigDecimal(General_Road_Behavior));
+		Assessment.setObservationAndAnticipation(new BigDecimal(Observation_And_Anticipation));
+		Assessment.setLicenseCode(License_Code);
+		
 		Assessment.setReversing(new BigDecimal(Reversing));
 		Assessment.setReversing(new BigDecimal(Reversing));
 		Assessment.setClutch(new BigDecimal(Clutch));

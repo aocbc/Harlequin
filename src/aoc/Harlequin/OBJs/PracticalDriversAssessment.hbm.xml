@@ -95,5 +95,8 @@
         <property name="pdaNo" type="java.lang.Integer">
             <column name="PDA_No" />
         </property>
+         <property name="licenseCode" type="string">
+            <column name="License_Code" />
+        </property>
     </class>
 </hibernate-mapping>

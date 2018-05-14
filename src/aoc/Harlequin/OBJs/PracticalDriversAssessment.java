@@ -39,6 +39,7 @@ public class PracticalDriversAssessment implements java.io.Serializable {
 	private BigDecimal retarderDscHillMode;
 	private String comments;
 	private Integer pdaNo;
+	private String licenseCode;
 
 	public PracticalDriversAssessment() {
 	}
@@ -59,7 +60,7 @@ public class PracticalDriversAssessment implements java.io.Serializable {
 			BigDecimal observationAndAnticipation,
 			BigDecimal approachingJunctionsTurningExiting,
 			BigDecimal reversing, BigDecimal clutch,
-			BigDecimal retarderDscHillMode, String comments, Integer pdaNo) {
+			BigDecimal retarderDscHillMode, String comments, Integer pdaNo,String licenseCode) {
 		this.idPracticalDriversAssessment = idPracticalDriversAssessment;
 		this.idMacApplicants = idMacApplicants;
 		this.name = name;
@@ -90,6 +91,7 @@ public class PracticalDriversAssessment implements java.io.Serializable {
 		this.retarderDscHillMode = retarderDscHillMode;
 		this.comments = comments;
 		this.pdaNo = pdaNo;
+		this.licenseCode = licenseCode;
 	}
 
 	public int getIdPracticalDriversAssessment() {
@@ -330,8 +332,18 @@ public class PracticalDriversAssessment implements java.io.Serializable {
 		return this.pdaNo;
 	}
 
+	public String getLicenseCode() {
+		return this.licenseCode;
+	}
+	
 	public void setPdaNo(Integer pdaNo) {
 		this.pdaNo = pdaNo;
+	}
+
+	public void setLicenseCode(String license_Code) 
+	{
+		// TODO Auto-generated method stub
+		this.licenseCode = license_Code;
 	}
 
 }
