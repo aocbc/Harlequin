@@ -1,0 +1,39 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 21 May 2018 5:16:47 PM by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping>
+    <class name="aoc.Harlequin.Temp.ClientInterviews" table="Client_Interviews" catalog="Harlequin">
+        <id name="idClientInterviews" type="int">
+            <column name="idClient_Interviews" />
+            <generator class="assigned" />
+        </id>
+        <property name="idMacApplicants" type="java.lang.Integer">
+            <column name="idMac_Applicants" />
+        </property>
+        <property name="clientName" type="string">
+            <column name="Client_Name" length="45" />
+        </property>
+        <property name="applicantName" type="string">
+            <column name="Applicant_Name" length="45" />
+        </property>
+        <property name="applicantSurname" type="string">
+            <column name="Applicant_Surname" length="45" />
+        </property>
+        <property name="interviewQuestionsPassed" type="string">
+            <column name="Interview_questions_Passed" length="3" />
+        </property>
+        <property name="applicantPresentable" type="string">
+            <column name="Applicant_Presentable" length="3" />
+        </property>
+        <property name="applicantAttitude" type="string">
+            <column name="Applicant_Attitude" length="4" />
+        </property>
+        <property name="interviewComments" type="string">
+            <column name="Interview_Comments" length="250" />
+        </property>
+        <property name="clientInterviewComplete" type="string">
+            <column name="Client_Interview_Complete" length="3" />
+        </property>
+    </class>
+</hibernate-mapping>

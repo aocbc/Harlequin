@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 21 May 2018 10:48:32 AM by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping>
+    <class name="aoc.Harlequin.Temp.ApplicantSmsHistory" table="Applicant_Sms_History" catalog="Harlequin">
+        <id name="idApplicantSmsHistory" type="java.lang.Integer">
+            <column name="idApplicant_Sms_History" />
+            <generator class="identity" />
+        </id>
+        <property name="idMacApplicants" type="java.lang.Integer">
+            <column name="idMac_Applicants" />
+        </property>
+        <property name="cellNumber" type="string">
+            <column name="Cell_Number" length="12" />
+        </property>
+        <property name="message" type="string">
+            <column name="Message" length="1000" />
+        </property>
+        <property name="jobName" type="string">
+            <column name="Job_Name" length="100" />
+        </property>
+        <property name="clientName" type="string">
+            <column name="Client_Name" length="100" />
+        </property>
+    </class>
+</hibernate-mapping>

@@ -1,5 +1,7 @@
 package aoc.Harlequin.DAOs;
 
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 import org.hibernate.Session;
@@ -23,6 +25,9 @@ public class MacApplicantDAO extends HarlequinDAO {
 		
 		MacApplicants applicants = session.get(MacApplicants.class, id);
 		
+		
+		
+		
 		session.clear(); // ADDED 170302
 		session.flush();
 		session.close();
@@ -33,7 +38,93 @@ public class MacApplicantDAO extends HarlequinDAO {
 		
 	}
 	
-	public void update(Object entity) {  
+	
+	public MacApplicants UpdateAppplicantLastSmsDateById(int id)
+	{
+		
+		
+		
+		
+		
+		Session session = this.getSession();
+
+		HibernateUtil.beginTransaction();
+	   
+		
+		MacApplicants applicants = session.get(MacApplicants.class, id);
+		
+		DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+		LocalDate localDate = LocalDate.now();
+		
+		
+		String lastSmsDate = localDate.toString();
+		
+		applicants.setLastSmsDate(lastSmsDate);
+		
+		
+		
+		
+		
+		session.clear(); // ADDED 170302
+		session.flush();
+		session.close();
+		update(applicants);
+		
+		
+		
+		return applicants;
+		
+		
+	}
+	
+	
+	
+	
+	public MacApplicants UpdateAppplicantStatusById(int id, String Applicant_Status)
+	{
+		Session session = this.getSession();
+
+		HibernateUtil.beginTransaction();
+	   
+		MacApplicants applicants = session.get(MacApplicants.class, id);
+		
+		applicants.setStageInTheProcess(Applicant_Status);
+		
+		session.clear(); 
+		session.flush();
+		session.close();
+		
+		update(applicants);
+		
+		return applicants;
+	
+	}
+	
+	
+	public MacApplicants UpdateAppplicantStageInProcessById(int id, String Stage_In_Process)
+	{
+		Session session = this.getSession();
+
+		HibernateUtil.beginTransaction();
+	   
+		MacApplicants applicants = session.get(MacApplicants.class, id);
+		
+		applicants.setStageInTheProcess(Stage_In_Process);
+		
+		session.clear(); 
+		session.flush();
+		session.close();
+		
+		update(applicants);
+		
+		return applicants;
+	
+	}
+	
+	
+	
+	public void update(Object entity) 
+	{  
 		  Session hibernateSession = this.getSession();
 		  HibernateUtil.beginTransaction();
 		        //hibernateSession.save(entity);        
@@ -41,7 +132,9 @@ public class MacApplicantDAO extends HarlequinDAO {
 		        hibernateSession.update(entity);
 		        
 		        HibernateUtil.commitTransaction();
-		 }
+		 
+	}
+	
 	
 	public List<MacApplicants> GetApplicantsByJobType(String JobType)
 	{
@@ -65,8 +158,6 @@ public class MacApplicantDAO extends HarlequinDAO {
 	{
 		Session session = this.getSession();
 		HibernateUtil.beginTransaction();
-		
-		
 		
 		Query query = session.createQuery("from MacApplicants Where Id_Number = '"+IdNumber+"'");
 		List<MacApplicants> Applicant = query.list();
@@ -96,7 +187,7 @@ public class MacApplicantDAO extends HarlequinDAO {
 	
 	
 	
-	public void AddAppicantInformation(String name, String surname, String rsaCitizen,String Id_Number,String Passport_Number,String expiryDateOfPassport, String workPermitValidity, String cellNumber,String telephoneNumber, String jobType,String dateFirstIssueLicense, String licenseCode,String expiryDateOfLicense, String pdpExpiryDate, String gender, String physicalAddress1, String physicalAddress2,String physicalAddress3, String physicalAddress4, String City,String Country, String Tax_No, String maritalStatus, String dependants, String homeLanguage, String workHistory1, String workHistory2, String workHistory3, String workHistory4,String email,int Age,String DateOfBirth,String lastSmsDate, String Job_Name)
+	public void AddAppicantInformation(String name, String surname, String rsaCitizen,String Id_Number,String Passport_Number,String expiryDateOfPassport, String workPermitValidity, String cellNumber,String telephoneNumber, String jobType,String dateFirstIssueLicense, String licenseCode,String expiryDateOfLicense, String pdpExpiryDate, String gender, String physicalAddress1, String physicalAddress2,String physicalAddress3, String physicalAddress4, String City,String Country, String Tax_No, String maritalStatus, String dependants, String homeLanguage, String workHistory1, String workHistory2, String workHistory3, String workHistory4,String email,int Age,String DateOfBirth,String lastSmsDate, String Job_Name,String Stage_In_Process, String Applicant_Status)
 	{
 		
 		Session session = HibernateUtil.getSessionFactory().openSession();
@@ -141,6 +232,9 @@ public class MacApplicantDAO extends HarlequinDAO {
 		Applicant.setDateOfBirth(DateOfBirth);
 		Applicant.setLastSmsDate(lastSmsDate);
 		Applicant.setJobName(Job_Name);
+		Applicant.setStageInTheProcess(Stage_In_Process);
+		Applicant.setApplicantStatus(Applicant_Status);
+		
 		
 		session.save(Applicant);
 				

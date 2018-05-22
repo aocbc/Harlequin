@@ -11,6 +11,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import aoc.Harlequin.DAOs.ClientDAO;
+import aoc.Harlequin.DAOs.MacApplicantDAO;
 import aoc.Harlequin.message.SMSSender;
 
 
@@ -48,8 +49,13 @@ public class SMSService
 			
 			SMSSender sms = new SMSSender(Applicants.getString("Cell_Number").toString(),SMSMessage.getString("Message").toString());
 		    sms.send();
+						
+			MacApplicantDAO Object  = new MacApplicantDAO();
 			
-			
+			Object.UpdateAppplicantLastSmsDateById(Applicants.getInt("idMac_Applicants"));
+		    
+		    
+		    
 		 }
 		
 		

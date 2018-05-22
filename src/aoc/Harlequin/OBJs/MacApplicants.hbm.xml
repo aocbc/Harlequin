@@ -113,5 +113,13 @@
         <property name="jobName" type="string">
             <column name="Job_Name" length="100" />
         </property>
+        
+        <property name="stageInTheProcess" type="string">
+            <column name="Stage_In_Process" length="45" />
+        </property>
+        
+        <property name="applicantStatus" type="string">
+            <column name="Applicant_Status" length="3" />
+        </property>
     </class>
 </hibernate-mapping>

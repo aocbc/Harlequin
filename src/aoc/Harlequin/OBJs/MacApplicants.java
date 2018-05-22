@@ -44,6 +44,8 @@ public class MacApplicants implements java.io.Serializable {
 	private String dateOfBirth;
 	private String lastSmsDate;
 	private String jobName;
+	private String stageInTheProcess;
+	private String applicantStatus;
 
 	public MacApplicants() {
 	}
@@ -57,7 +59,7 @@ public class MacApplicants implements java.io.Serializable {
 			String physicalAddress3, String physicalAddress4,
 			String maritalStatus, String dependants, String homeLanguage,
 			String workHistory1, String workHistory2, String workHistory3,String jobName,
-			String workHistory4, String email, String passportNumber,String expiryDateOfPassport, String city, String tax_No,String country,int age,String dateOfBirth,String lastSmsDate) {
+			String workHistory4, String email, String passportNumber,String expiryDateOfPassport, String city, String tax_No,String country,int age,String dateOfBirth,String lastSmsDate, String stageInTheProcess, String applicantStatus) {
 		this.name = name;
 		this.surname = surname;
 		this.rsaCitizen = rsaCitizen;
@@ -91,6 +93,8 @@ public class MacApplicants implements java.io.Serializable {
 		this.dateOfBirth = dateOfBirth;
 		this.lastSmsDate = lastSmsDate;
 		this.jobName = jobName;
+		this.stageInTheProcess = stageInTheProcess;
+		this.applicantStatus = applicantStatus;
 	}
 
 	public Integer getIdMacApplicants() {
@@ -373,28 +377,56 @@ public class MacApplicants implements java.io.Serializable {
 		this.age = age;
 	}
 
-	public void setDateOfBirth(String dateOfBirth) {
+	public void setDateOfBirth(String dateOfBirth) 
+	{
 		// TODO Auto-generated method stub
 		this.dateOfBirth = dateOfBirth;
 		
 	}
 
-	public void setLastSmsDate(String lastSmsDate) {
+	public void setLastSmsDate(String lastSmsDate) 
+	{
 		// TODO Auto-generated method stub
 		this.lastSmsDate = lastSmsDate;
 	}
 
-	public String getLastSmsDate() {
+	public String getLastSmsDate() 
+	{
 		// TODO Auto-generated method stub
 		return this.lastSmsDate;
 	}
 
-	public void setJobName(String job_Name) {
+	public void setJobName(String job_Name) 
+	{
 		// TODO Auto-generated method stub
 		this.jobName = job_Name;
 
 		
 	}
+	
+	public void setStageInTheProcess(String stageInTheProcess)
+	{
+		// TODO Auto-generated method stub
+		this.stageInTheProcess = stageInTheProcess;
+		
+	}
+	
+	public String getStageInTheProcess() {
+		return this.stageInTheProcess;
+	}
+	
+	
+	public void setApplicantStatus(String applicantStatus)
+	{
+		// TODO Auto-generated method stub
+		this.applicantStatus = applicantStatus;
+		
+	}
+	
+	public String getApplicantStatus() {
+		return this.applicantStatus;
+	}
+
 
 	
 

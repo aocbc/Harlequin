@@ -77,7 +77,7 @@ public class PracticalDrivingAssessmentDAO extends HarlequinDAO {
 		Assessment.setLicenseCode(License_Code);
 		
 		Assessment.setReversing(new BigDecimal(Reversing));
-		Assessment.setReversing(new BigDecimal(Reversing));
+	
 		Assessment.setClutch(new BigDecimal(Clutch));
 		Assessment.setRetarderDscHillMode(new BigDecimal(Retarder_DSC_HillMode));
 		Assessment.setComments(Comments);

@@ -78,6 +78,34 @@ public class JobHistoryService {
 	
 	
 	
+	@Path("/SaveJobHistoryUser")
+	@POST
+	@Consumes(MediaType.APPLICATION_JSON)
+	@Produces("text/plain")
+	public  String create2(String jsonTextObject) throws JSONException
+	{
+		JSONObject json = new JSONObject(jsonTextObject);
+		
+		System.out.println(json);
+		
+		JSONArray TotalApplicants = json.getJSONArray("Applicants");
+		
+		
+		
+		System.out.println(jsonTextObject);
+		JSONObject r = new JSONObject(jsonTextObject);	
+	
+		
+		//System.out.println("WRITING TO DATABASE:"+ r.getString("Client_Name"));
+			
+		JobHistoryDAO Object  = new JobHistoryDAO();
+		Object.AddJobHistroy(r.getString("Job_Role"), r.getString("Job_Description"), r.getString("Employer_Contact_Person"), r.getString("Employer_Contact_Number"), r.getString("Employer_Industry"), r.getString("Period_From"), r.getString("Period_To"), r.getString("idMac_Applicants"), r.getString("Name"), r.getString("Surname"),r.getString("Employer_Name"));
+		return "Sucessful";	
+		
+			
+	}
+	
+	
 	
 	@Path("/GetAllJobHistory")
 	@GET

@@ -8,6 +8,8 @@ import org.hibernate.query.Query;
 
 
 
+
+import aoc.Harlequin.OBJs.MacApplicants;
 import aoc.Harlequin.OBJs.SystemClient;
 import aoc.Harlequin.OBJs.SystemJob;
 import aoc.Harlequin.util.HibernateUtil;
@@ -76,6 +78,24 @@ public class JobDAO extends HarlequinDAO {
 		
 		
 	}
+	
+	
+	public List<SystemJob> GetClientNameByJobName(String Job_Name)
+	{
+		Session session = this.getSession();
+		HibernateUtil.beginTransaction();
+		
+		
+		
+		Query query = session.createQuery("from SystemJob Where Job_Name = '"+Job_Name+"'");
+		List<SystemJob> Job = query.list();
+		
+		session.clear(); // ADDED 170302
+		session.flush();
+		session.close();
+		return Job;
+	}
+	
 	
 	public void AddJobInformation( String jobName, String jobCode, String jobClientName,String jobDetails, String jobComments, String jobtype)
 	{
