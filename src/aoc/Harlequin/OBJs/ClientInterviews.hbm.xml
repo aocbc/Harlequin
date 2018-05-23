@@ -3,7 +3,7 @@
 "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
 <!-- Generated 21 May 2018 5:16:47 PM by Hibernate Tools 3.4.0.CR1 -->
 <hibernate-mapping>
-    <class name="aoc.Harlequin.Temp.ClientInterviews" table="Client_Interviews" catalog="Harlequin">
+    <class name="aoc.Harlequin.OBJs.ClientInterviews" table="Client_Interviews" catalog="Harlequin">
         <id name="idClientInterviews" type="int">
             <column name="idClient_Interviews" />
             <generator class="assigned" />

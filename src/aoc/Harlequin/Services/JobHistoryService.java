@@ -84,23 +84,23 @@ public class JobHistoryService {
 	@Produces("text/plain")
 	public  String create2(String jsonTextObject) throws JSONException
 	{
+		/*JSONArray json = new JSONArray(jsonTextObject);*/
 		JSONObject json = new JSONObject(jsonTextObject);
+		System.out.println("Test"+json);
+		JSONArray Jobs = json.getJSONArray("Job");
 		
-		System.out.println(json);
+		for (int i = 0; i < Jobs.length(); i++) 
+		{
+			JSONObject r = new JSONObject( Jobs.get(i).toString());
+			JobHistoryDAO Object  = new JobHistoryDAO();
+			Object.AddJobHistroy(r.getString("Job_Role"), r.getString("Job_Description"), r.getString("Employer_Contact_Person"), r.getString("Employer_Contact_Number"), r.getString("Employer_Industry"), r.getString("Period_From"), r.getString("Period_To"), r.getString("idMac_Applicants"), r.getString("Name"), r.getString("Surname"),r.getString("Employer_Name"));
 		
-		JSONArray TotalApplicants = json.getJSONArray("Applicants");
-		
-		
-		
-		System.out.println(jsonTextObject);
-		JSONObject r = new JSONObject(jsonTextObject);	
-	
-		
-		//System.out.println("WRITING TO DATABASE:"+ r.getString("Client_Name"));
 			
-		JobHistoryDAO Object  = new JobHistoryDAO();
-		Object.AddJobHistroy(r.getString("Job_Role"), r.getString("Job_Description"), r.getString("Employer_Contact_Person"), r.getString("Employer_Contact_Number"), r.getString("Employer_Industry"), r.getString("Period_From"), r.getString("Period_To"), r.getString("idMac_Applicants"), r.getString("Name"), r.getString("Surname"),r.getString("Employer_Name"));
-		return "Sucessful";	
+			
+		}
+		
+		
+				return "Sucessful";	
 		
 			
 	}

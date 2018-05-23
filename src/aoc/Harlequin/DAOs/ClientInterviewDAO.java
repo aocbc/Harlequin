@@ -38,6 +38,19 @@ public class ClientInterviewDAO extends HarlequinDAO {
 	
 	
 	
+	
+	public void update(Object entity) 
+	{  
+		  Session hibernateSession = this.getSession();
+		  HibernateUtil.beginTransaction();
+		        //hibernateSession.save(entity);        
+		        //hibernateSession.saveOrUpdate(entity);
+		        hibernateSession.update(entity);
+		        
+		        HibernateUtil.commitTransaction();
+		 
+	}
+	
   
 	
 	

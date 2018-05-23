@@ -162,19 +162,9 @@ public class ClientInterviewService {
 	public  String create(String jsonTextObject) throws JSONException
 	{
 		
-		
-		JobDAO Job = new JobDAO();
-		
-		
 		System.out.println(jsonTextObject);
 		JSONObject r = new JSONObject(jsonTextObject);	
 	
-		List<SystemJob> Job_For_Interview = Job.GetClientNameByJobName(r.getString("Job_Name"));
-		String Client_Name =  Job_For_Interview.get(0).getJobClientName();
-		
-		
-		
-			
 		ClientInterviewDAO Object  = new ClientInterviewDAO();
 		
 		
