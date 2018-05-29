@@ -171,6 +171,62 @@ public class MacLabourInterviewService {
 		return JsonArray.toString();
 	}
 	
+	@Path("/GetInterviewInfo/{Id_Number}/{idMac_Applicants}/{Job_Name}")
+	@GET
+	@Produces("text/plain")
+	public String GET3(String Surname,@PathParam("Id_Number") String Id_Number, @PathParam("idMac_Applicants") String idMac_Applicants , @PathParam("Job_Name") String Job_Name  ) throws Exception
+	{
+		
+		System.out.println("Hello world"+Id_Number+","+idMac_Applicants+","+Job_Name);
+		
+		MacInterviewDAO Object  = new MacInterviewDAO();
+		
+		List<MacLabourInterView> Interview = Object.GetInterviewByInfo(Id_Number, idMac_Applicants,Job_Name);
+		
+		
+			JSONObject jsonObject = new JSONObject();
+			
+			if(Interview.size()>0)
+			{
+				System.out.println("Hellowaorld");
+				jsonObject.put("idMacLabour_InterView", Interview.get(0).getIdMacLabourInterView());
+				jsonObject.put("idMac_Applicants", Interview.get(0).getIdMacApplicants());
+				jsonObject.put("Name", Interview.get(0).getName());
+				jsonObject.put("Surname", Interview.get(0).getSurname());
+				jsonObject.put("Id_Number", Interview.get(0).getIdNumber());		
+				jsonObject.put("Client_Name", Interview.get(0).getClientName());
+				jsonObject.put("Id_Verified", Interview.get(0).getIdVerified());
+				jsonObject.put("Work_History_Verified", Interview.get(0).getWorkHistoryVerified());
+				jsonObject.put("Job_Name", Interview.get(0).getJobName());
+				jsonObject.put("Drivers_License_Verified", Interview.get(0).getDriversLicenseVerified());
+				jsonObject.put("SAP_Check", Interview.get(0).getSapCheck());
+				jsonObject.put("Criminal_Record", Interview.get(0).getCriminalRecord());
+				jsonObject.put("Criminal_Record_Comments", Interview.get(0).getCriminalRecordComments());
+				jsonObject.put("Union_Member", Interview.get(0).getUnionMember());		
+				jsonObject.put("Union_Name", Interview.get(0).getUnionName());
+				jsonObject.put("Applicant_Passed_Interview", Interview.get(0).getApplicantPassedInterview());
+				jsonObject.put("Applicant_Presentable", Interview.get(0).getApplicantPresentable());
+				jsonObject.put("Applicant_Atttitude", Interview.get(0).getApplicantAtttitude());
+				jsonObject.put("Interview_comments", Interview.get(0).getInterviewComments());
+				jsonObject.put("Formal_Interview_Complete", Interview.get(0).getFormalInterviewComplete());
+			}
+			
+			
+		
+		
+		
+		
+		
+		
+		System.out.println(jsonObject.toString());
+		
+		
+		
+		return jsonObject.toString();
+	}
+	
+	
+	
 	
 	@Path("/SaveInterviewInfo")
 	@POST

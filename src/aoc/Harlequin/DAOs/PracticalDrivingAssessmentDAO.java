@@ -112,5 +112,26 @@ public class PracticalDrivingAssessmentDAO extends HarlequinDAO {
 		
 		
 	}
+	
+	
+	public List<PracticalDriversAssessment> ReadAssessmentsByInfo(String idMac_Applicants, String Client_Name)
+	{
+		Session session = this.getSession();
+		HibernateUtil.beginTransaction();
+		
+		
+		
+		Query query = session.createQuery("from PracticalDriversAssessment Where idMac_Applicants='"+idMac_Applicants+"' And Client_Name='"+Client_Name+"'");
+		List<PracticalDriversAssessment> Assesment = query.list();
+		
+		session.clear(); // ADDED 170302
+		session.flush();
+		session.close();
+		
+		return Assesment;
+		
+		
+		
+	}
 
 }

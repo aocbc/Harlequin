@@ -54,7 +54,7 @@ public class ClientInterviewDAO extends HarlequinDAO {
   
 	
 	
-	public void AddInterviewInformation( String idMac_Applicants, String Client_Name, String Applicant_Name,  String Applicant_Surname, String Interview_questions_Passed, String Applicant_Presentable,  String Applicant_Attitude, String Interview_Comments,String Client_Interview_Complete )
+	public void AddInterviewInformation( String Id_number,String Job_Name,String idMac_Applicants, String Client_Name, String Applicant_Name,  String Applicant_Surname, String Interview_questions_Passed, String Applicant_Presentable,  String Applicant_Attitude, String Interview_Comments,String Client_Interview_Complete )
 	{
 		
 		Session session = HibernateUtil.getSessionFactory().openSession();
@@ -75,7 +75,8 @@ public class ClientInterviewDAO extends HarlequinDAO {
 		Interview.setApplicantAttitude(Applicant_Attitude);
 		Interview.setInterviewComments(Interview_Comments);
 		Interview.setClientInterviewComplete(Client_Interview_Complete);
-		
+		Interview.setIdNumber(Id_number);
+		Interview.setJobName(Job_Name);
 		
 		
 		
@@ -104,6 +105,23 @@ public class ClientInterviewDAO extends HarlequinDAO {
 		return Client;
 	}
 	
+	public List<ClientInterviews> GetInterviewByInfo(String Id_Number, String idMac_Applicants,String Job_Name)
+	{
+		Session session = this.getSession();
+		HibernateUtil.beginTransaction();
+		
+		
+		
+		Query query = session.createQuery("from ClientInterviews Where idMac_Applicants = '"+idMac_Applicants.trim()+"' AND Id_Number = '"+Id_Number.trim()+"' AND Job_Name ='"+Job_Name.trim()+"'");
+		List<ClientInterviews> Interview = query.list();
+		
+		session.clear(); // ADDED 170302
+		session.flush();
+		session.close();
+		
+		
+		return Interview;
+	}
 	
 	public List<ClientInterviews> ReadAllInterviews()
 	{

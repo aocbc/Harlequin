@@ -46,6 +46,8 @@ public class MacApplicants implements java.io.Serializable {
 	private String jobName;
 	private String stageInTheProcess;
 	private String applicantStatus;
+	private String smsGroup;
+	private int smsGroupCount;
 
 	public MacApplicants() {
 	}
@@ -59,7 +61,7 @@ public class MacApplicants implements java.io.Serializable {
 			String physicalAddress3, String physicalAddress4,
 			String maritalStatus, String dependants, String homeLanguage,
 			String workHistory1, String workHistory2, String workHistory3,String jobName,
-			String workHistory4, String email, String passportNumber,String expiryDateOfPassport, String city, String tax_No,String country,int age,String dateOfBirth,String lastSmsDate, String stageInTheProcess, String applicantStatus) {
+			String workHistory4, String email, String passportNumber,String expiryDateOfPassport, String city, String tax_No,String country,int age,String dateOfBirth,String lastSmsDate, String stageInTheProcess, String applicantStatus,String smsGroup,int smsGroupCount) {
 		this.name = name;
 		this.surname = surname;
 		this.rsaCitizen = rsaCitizen;
@@ -95,6 +97,8 @@ public class MacApplicants implements java.io.Serializable {
 		this.jobName = jobName;
 		this.stageInTheProcess = stageInTheProcess;
 		this.applicantStatus = applicantStatus;
+		this.smsGroup = smsGroup;
+		this.smsGroupCount = smsGroupCount;
 	}
 
 	public Integer getIdMacApplicants() {
@@ -426,7 +430,30 @@ public class MacApplicants implements java.io.Serializable {
 	public String getApplicantStatus() {
 		return this.applicantStatus;
 	}
+	
+	public void setSmsGroup(String smsGroup)
+	{
+		// TODO Auto-generated method stub
+		this.smsGroup = smsGroup;
+		
+	}
+	
+	public String getSmsGroup() 
+	{
+		return this.smsGroup;
+	}
 
+	public void setSmsGroupCount(int smsGroupCount)
+	{
+		// TODO Auto-generated method stub
+		this.smsGroupCount = smsGroupCount;
+		
+	}
+	
+	public int getSmsGroupCount() 
+	{
+		return this.smsGroupCount;
+	}
 
 	
 

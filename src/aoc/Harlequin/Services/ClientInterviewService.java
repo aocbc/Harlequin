@@ -155,6 +155,49 @@ public class ClientInterviewService {
 	}
 	
 	
+	
+	@Path("/GetInterview/{Id_Number}/{idMac_Applicants}/{Job_Name}")
+	@GET
+	@Produces("text/plain")
+	public String GET1(@PathParam("Id_Number") String Id_Number,@PathParam("idMac_Applicants") String idMac_Applicants, @PathParam("Job_Name") String Job_Name ) throws Exception
+	{
+		
+		
+		
+		System.out.println("Hello world"+Id_Number+","+idMac_Applicants+","+Job_Name);
+		
+		ClientInterviewDAO Object  = new ClientInterviewDAO();
+		
+		List<ClientInterviews> Interview = Object.GetInterviewByInfo(Id_Number, idMac_Applicants,Job_Name);
+		
+		
+			JSONObject jsonObject = new JSONObject();
+			
+			if(Interview.size()>0)
+			{
+				System.out.println("Hellowaorld");
+				jsonObject.put("Interview_questions_Passed", Interview.get(0).getInterviewQuestionsPassed());
+				jsonObject.put("Applicant_Presentable", Interview.get(0).getApplicantPresentable());
+				jsonObject.put("Applicant_Attitude", Interview.get(0).getApplicantAttitude());
+				jsonObject.put("Interview_Comments", Interview.get(0).getInterviewComments());
+				jsonObject.put("Client_Interview_Complete", Interview.get(0).getClientInterviewComplete());		
+			}
+			
+			
+		
+		
+		
+		
+		
+		
+		System.out.println(jsonObject.toString());
+		
+		
+		
+		return jsonObject.toString();
+	}
+	
+	
 	@Path("/SaveInterviewInfo")
 	@POST
 	@Consumes(MediaType.APPLICATION_JSON)
@@ -169,7 +212,7 @@ public class ClientInterviewService {
 		
 		
 		
-		Object.AddInterviewInformation(r.getString("idMac_Applicants"), r.getString("Client_Name"), r.getString("Applicant_Name"), r.getString("Applicant_Surname"), r.getString("Interview_questions_Passed"), r.getString("Applicant_Presentable"), r.getString("Applicant_Attitude"), r.getString("Interview_Comments"), r.getString("Client_Interview_Complete"));
+		Object.AddInterviewInformation(r.getString("Id_Number"),r.getString("Job_Name"),r.getString("idMac_Applicants"), r.getString("Client_Name"), r.getString("Applicant_Name"), r.getString("Applicant_Surname"), r.getString("Interview_questions_Passed"), r.getString("Applicant_Presentable"), r.getString("Applicant_Attitude"), r.getString("Interview_Comments"), r.getString("Client_Interview_Complete"));
 		
 		
 		

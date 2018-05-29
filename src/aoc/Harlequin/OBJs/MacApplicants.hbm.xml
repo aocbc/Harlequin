@@ -121,5 +121,13 @@
         <property name="applicantStatus" type="string">
             <column name="Applicant_Status" length="3" />
         </property>
+        
+        <property name="smsGroup" type="string">
+            <column name="Sms_Group" length="45" />
+        </property>
+        
+        <property name="smsGroupCount" type="java.lang.Integer">
+            <column name="Sms_Group_Count"  />
+        </property>
     </class>
 </hibernate-mapping>

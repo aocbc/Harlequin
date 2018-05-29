@@ -3,7 +3,7 @@
 "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
 <!-- Generated 21 May 2018 10:48:32 AM by Hibernate Tools 3.4.0.CR1 -->
 <hibernate-mapping>
-    <class name="aoc.Harlequin.Temp.ApplicantSmsHistory" table="Applicant_Sms_History" catalog="Harlequin">
+    <class name="aoc.Harlequin.OBJs.ApplicantSmsHistory" table="Applicant_Sms_History" catalog="Harlequin">
         <id name="idApplicantSmsHistory" type="java.lang.Integer">
             <column name="idApplicant_Sms_History" />
             <generator class="identity" />
@@ -22,6 +22,9 @@
         </property>
         <property name="clientName" type="string">
             <column name="Client_Name" length="100" />
+        </property>
+        <property name="smsGroup" type="string">
+            <column name="Sms_Group" length="45" />
         </property>
     </class>
 </hibernate-mapping>

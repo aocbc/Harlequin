@@ -37,4 +37,31 @@ public class SmsHistoryDAO extends HarlequinDAO
 		
 	}
 	
+	
+	public void AddSmsHistory(int idMac_Applicants, String Cell_Number, String Message, String Job_Name, String Client_Name, String Sms_Group)
+	{
+		
+		Session session = HibernateUtil.getSessionFactory().openSession();
+		
+		session.beginTransaction();
+		
+		
+		
+		ApplicantSmsHistory smsHistory = new ApplicantSmsHistory();
+		
+		smsHistory.setIdMacApplicants(idMac_Applicants);
+		smsHistory.setCellNumber(Cell_Number);
+		smsHistory.setMessage(Message);
+		smsHistory.setJobName(Job_Name);
+		smsHistory.setClientName(Client_Name);
+		smsHistory.setSmsGroup(Sms_Group);
+		
+		session.save(smsHistory);
+				
+		session.getTransaction().commit();
+		
+		session.close();
+		
+	}
+	
 }

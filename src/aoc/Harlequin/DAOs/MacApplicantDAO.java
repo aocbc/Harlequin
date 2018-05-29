@@ -39,7 +39,7 @@ public class MacApplicantDAO extends HarlequinDAO {
 	}
 	
 	
-	public MacApplicants UpdateAppplicantLastSmsDateById(int id)
+	public MacApplicants UpdateAppplicantLastSmsDateById(int id, String Sms_Group,int SmsGroupCount)
 	{
 		
 		
@@ -60,7 +60,8 @@ public class MacApplicantDAO extends HarlequinDAO {
 		String lastSmsDate = localDate.toString();
 		
 		applicants.setLastSmsDate(lastSmsDate);
-		
+		applicants.setSmsGroup(Sms_Group);
+		applicants.setSmsGroupCount(SmsGroupCount);
 		
 		
 		

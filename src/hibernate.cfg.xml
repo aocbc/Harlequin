@@ -21,5 +21,7 @@
         <mapping resource="aoc/Harlequin/OBJs/PracticalDriversAssessment.hbm.xml" />
         <mapping resource="aoc/Harlequin/OBJs/MacLabourInterView.hbm.xml" />
          <mapping resource="aoc/Harlequin/OBJs/ClientInterviews.hbm.xml" />
+         <mapping resource="aoc/Harlequin/OBJs/ApplicantMacInterview.hbm.xml" />
+         <mapping resource="aoc/Harlequin/OBJs/ApplicantSmsHistory.hbm.xml" />
     </session-factory>
 </hibernate-configuration>

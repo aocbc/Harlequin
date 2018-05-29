@@ -17,7 +17,8 @@ public class ClientInterviews implements java.io.Serializable {
 	private String applicantAttitude;
 	private String interviewComments;
 	private String clientInterviewComplete;
-
+	private String jobName;
+	private String idNumber;
 	public ClientInterviews() {
 	}
 
@@ -29,7 +30,7 @@ public class ClientInterviews implements java.io.Serializable {
 			String clientName, String applicantName, String applicantSurname,
 			String interviewQuestionsPassed, String applicantPresentable,
 			String applicantAttitude, String interviewComments,
-			String clientInterviewComplete) {
+			String clientInterviewComplete,String jobName, String idNumber) {
 		this.idClientInterviews = idClientInterviews;
 		this.idMacApplicants = idMacApplicants;
 		this.clientName = clientName;
@@ -40,6 +41,9 @@ public class ClientInterviews implements java.io.Serializable {
 		this.applicantAttitude = applicantAttitude;
 		this.interviewComments = interviewComments;
 		this.clientInterviewComplete = clientInterviewComplete;
+		this.jobName = jobName;
+		this.idNumber = idNumber;
+		
 	}
 
 	public int getIdClientInterviews() {
@@ -120,6 +124,26 @@ public class ClientInterviews implements java.io.Serializable {
 
 	public void setClientInterviewComplete(String clientInterviewComplete) {
 		this.clientInterviewComplete = clientInterviewComplete;
+	}
+	
+	public String getJobName() 
+	{
+		return this.jobName;
+	}
+
+	public void setJobName(String jobName) 
+	{
+		this.jobName = jobName;
+	}
+	
+	public String getIdNumber() 
+	{
+		return this.idNumber;
+	}
+
+	public void setIdNumber(String idNumber) 
+	{
+		this.idNumber = idNumber;
 	}
 
 }

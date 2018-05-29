@@ -99,6 +99,25 @@ public class MacInterviewDAO extends HarlequinDAO {
 	}
 	
 	
+	public List<MacLabourInterView> GetInterviewByInfo(String Id_Number, String idMac_Applicants,String Job_Name)
+	{
+		Session session = this.getSession();
+		HibernateUtil.beginTransaction();
+		
+		
+		
+		Query query = session.createQuery("from MacLabourInterView Where idMac_Applicants = '"+idMac_Applicants.trim()+"' AND Id_Number = '"+Id_Number.trim()+"' AND Job_Name ='"+Job_Name.trim()+"'");
+		List<MacLabourInterView> Interview = query.list();
+		
+		session.clear(); // ADDED 170302
+		session.flush();
+		session.close();
+		
+		
+		return Interview;
+	}
+	
+	
 	public List<MacLabourInterView> ReadAllInterviews()
 	{
 		Session session = this.getSession();

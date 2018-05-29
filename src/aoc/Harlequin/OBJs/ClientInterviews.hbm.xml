@@ -14,26 +14,40 @@
         <property name="clientName" type="string">
             <column name="Client_Name" length="45" />
         </property>
+        
         <property name="applicantName" type="string">
             <column name="Applicant_Name" length="45" />
         </property>
+        
         <property name="applicantSurname" type="string">
             <column name="Applicant_Surname" length="45" />
         </property>
+        
         <property name="interviewQuestionsPassed" type="string">
             <column name="Interview_questions_Passed" length="3" />
         </property>
+        
         <property name="applicantPresentable" type="string">
             <column name="Applicant_Presentable" length="3" />
         </property>
+        
         <property name="applicantAttitude" type="string">
             <column name="Applicant_Attitude" length="4" />
         </property>
+        
         <property name="interviewComments" type="string">
             <column name="Interview_Comments" length="250" />
         </property>
+        
         <property name="clientInterviewComplete" type="string">
             <column name="Client_Interview_Complete" length="3" />
+        </property>
+        
+        <property name="jobName" type="string">
+            <column name="Job_Name" length="45" />
+        </property>
+         <property name="idNumber" type="string">
+            <column name="Id_Number" length="13" />
         </property>
     </class>
 </hibernate-mapping>
