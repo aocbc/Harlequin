@@ -14,18 +14,23 @@ public class ApplicantSmsHistory implements java.io.Serializable {
 	private String jobName;
 	private String clientName;
 	private String smsGroup;
+	private String smsDate;
 	
-	public ApplicantSmsHistory() {
+	public ApplicantSmsHistory() 
+	{
+		
 	}
 
-	public ApplicantSmsHistory(Integer idMacApplicants, String cellNumber,
-			String message, String jobName, String clientName, String smsGroup) {
+	public ApplicantSmsHistory(Integer idMacApplicants, String cellNumber,String message, String jobName, String clientName, String smsGroup,String smsDate) 
+	{
 		this.idMacApplicants = idMacApplicants;
 		this.cellNumber = cellNumber;
 		this.message = message;
 		this.jobName = jobName;
 		this.clientName = clientName;
 		this.smsGroup = smsGroup;
+		this.smsDate = smsDate; 
+		
 	}
 
 	public Integer getIdApplicantSmsHistory() {
@@ -82,6 +87,16 @@ public class ApplicantSmsHistory implements java.io.Serializable {
 
 	public void setSmsGroup(String smsGroup) {
 		this.smsGroup = smsGroup;
+	}
+	
+	public String getSmsDate() 
+	{
+		return this.smsDate;
+	}
+
+	public void setSmsDate(String smsDate) 
+	{
+		this.smsDate = smsDate;
 	}
 
 

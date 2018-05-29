@@ -1,5 +1,8 @@
 package aoc.Harlequin.Services;
 
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+
 import javax.ws.rs.Consumes;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
@@ -26,12 +29,10 @@ public class SMSService
 	@Produces("text/plain")
 	public  String create(String jsonTextObject) throws JSONException
 	{
-		
-		System.out.println(jsonTextObject);
-		
-		
-				
-
+		DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+		LocalDate localDate = LocalDate.now();
+		String CurrentDate = localDate.toString();
+	
 		JSONObject json = new JSONObject(jsonTextObject);
 		
 		System.out.println(json);
@@ -88,7 +89,7 @@ public class SMSService
 			
 		    //Storing the info of the sms Sent
 			SmsHistoryDAO smsHistory = new SmsHistoryDAO();
-			smsHistory.AddSmsHistory(Applicants.getInt("idMac_Applicants"), Applicants.getString("Cell_Number"), SMSMessage.getString("Message").toString(), "N/A", "N/A", Applicants.getString("Sms_Group").toString());
+			smsHistory.AddSmsHistory(Applicants.getInt("idMac_Applicants"), Applicants.getString("Cell_Number"), SMSMessage.getString("Message").toString(), "N/A", "N/A", SmsGroup,CurrentDate);
 		    
 		    
 		 }

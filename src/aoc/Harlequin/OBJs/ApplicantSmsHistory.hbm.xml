@@ -26,5 +26,8 @@
         <property name="smsGroup" type="string">
             <column name="Sms_Group" length="45" />
         </property>
+         <property name="smsDate" type="string">
+            <column name="Sms_Date" length="10" />
+        </property>
     </class>
 </hibernate-mapping>

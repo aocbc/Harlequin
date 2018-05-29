@@ -3,9 +3,13 @@
  */
 package aoc.Harlequin.DAOs;
 
+import java.util.List;
+
 import org.hibernate.Session;
+import org.hibernate.query.Query;
 
 import aoc.Harlequin.OBJs.ApplicantSmsHistory;
+import aoc.Harlequin.OBJs.PracticalDriversAssessment;
 import aoc.Harlequin.OBJs.SystemUser;
 import aoc.Harlequin.util.HibernateUtil;
 
@@ -16,6 +20,8 @@ import aoc.Harlequin.util.HibernateUtil;
 public class SmsHistoryDAO extends HarlequinDAO 
 {
 
+	
+	
 	public ApplicantSmsHistory getUserInfoById(int id)
 	{
 		
@@ -38,7 +44,7 @@ public class SmsHistoryDAO extends HarlequinDAO
 	}
 	
 	
-	public void AddSmsHistory(int idMac_Applicants, String Cell_Number, String Message, String Job_Name, String Client_Name, String Sms_Group)
+	public void AddSmsHistory(int idMac_Applicants, String Cell_Number, String Message, String Job_Name, String Client_Name, String Sms_Group,String Sms_Date)
 	{
 		
 		Session session = HibernateUtil.getSessionFactory().openSession();
@@ -55,12 +61,33 @@ public class SmsHistoryDAO extends HarlequinDAO
 		smsHistory.setJobName(Job_Name);
 		smsHistory.setClientName(Client_Name);
 		smsHistory.setSmsGroup(Sms_Group);
-		
+		smsHistory.setSmsDate(Sms_Date);
 		session.save(smsHistory);
 				
 		session.getTransaction().commit();
 		
 		session.close();
+		
+	}
+	
+	
+	public List<ApplicantSmsHistory> ReadGroupHistory(String Group_Code)
+	{
+		Session session = this.getSession();
+		HibernateUtil.beginTransaction();
+		
+		
+		
+		Query query = session.createQuery("from ApplicantSmsHistory WHERE Sms_Group='"+Group_Code+"'");
+		List<ApplicantSmsHistory> History = query.list();
+		
+		session.clear(); // ADDED 170302
+		session.flush();
+		session.close();
+		
+		return History;
+		
+		
 		
 	}
 	
