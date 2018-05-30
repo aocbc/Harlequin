@@ -413,22 +413,16 @@ public class MacApplicantService {
 			jsonObject.put("Job_Type", Applicants.get(i).getJobType());
 			jsonObject.put("Date_First_issue_license", Applicants.get(i).getDateFirstIssueLicense());
 			jsonObject.put("License_Code", Applicants.get(i).getLicenseCode());
-			
 			jsonObject.put("Expiry_Date_Of_License", Applicants.get(i).getExpiryDateOfLicense());
 			jsonObject.put("PDP_Expiry_Date", Applicants.get(i).getPdpExpiryDate());
 			jsonObject.put("Gender", Applicants.get(i).getGender());
 			jsonObject.put("Physical_Address_1", Applicants.get(i).getPhysicalAddress1());
-			
 			jsonObject.put("Physical_Address_2", Applicants.get(i).getPhysicalAddress2());		
 			jsonObject.put("Physical_Address_3", Applicants.get(i).getPhysicalAddress3());
 			jsonObject.put("Physical_Address_4", Applicants.get(i).getPhysicalAddress4());
-			
-			
 			jsonObject.put("City", Applicants.get(i).getCity());		
 			jsonObject.put("Country", Applicants.get(i).getCountry());
 			jsonObject.put("Tax_No", Applicants.get(i).getTaxNo());
-			
-			
 			jsonObject.put("Marital_Status", Applicants.get(i).getMaritalStatus());
 			jsonObject.put("Dependants", Applicants.get(i).getDependants());
 			jsonObject.put("Home_Language", Applicants.get(i).getHomeLanguage());
@@ -443,6 +437,8 @@ public class MacApplicantService {
 			jsonObject.put("Job_Name", Applicants.get(i).getJobName());
 			jsonObject.put("Sms_Group", Applicants.get(i).getSmsGroup());
 			jsonObject.put("Sms_Group_Count", Applicants.get(i).getSmsGroupCount());
+			jsonObject.put("Applicant_Type", Applicants.get(i).getApplicantType());
+			
 			JsonArray.put(jsonObject);
 		}
 		

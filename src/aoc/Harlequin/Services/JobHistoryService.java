@@ -55,6 +55,41 @@ public class JobHistoryService {
 		return jsonObject.toString();
 	}
 	
+	@Path("/GetJobHistory/{IdNumber}")
+	@GET
+	@Produces("text/plain")
+	public String GET3( @PathParam("IdNumber") String IdNumber) throws Exception
+	{
+		
+		JobHistoryDAO Object  = new JobHistoryDAO();
+		List<JobHistory> History  = Object.ReadAllJobHistoryByIdNumber(IdNumber);
+		
+		
+		JSONArray JsonArray = new JSONArray();
+		
+		for(int i = 0; i < History.size();i++)
+		{
+			
+			JSONObject jsonObject = new JSONObject();
+			jsonObject.put("Job_Role", History.get(i).getJobRole());
+			jsonObject.put("Job_Description", History.get(i).getJobDescription());
+			jsonObject.put("Employer_Contact_Person", History.get(i).getEmployerContactPerson());
+			jsonObject.put("Employer_Contact_Number", History.get(i).getEmployerContactNumber());
+			jsonObject.put("Employer_Industry", History.get(i).getEmployerIndustry());		
+			jsonObject.put("Period_From", History.get(i).getPeriodFrom());
+			jsonObject.put("Period_To", History.get(i).getPeriodTo());
+			jsonObject.put("idMac_Applicants", History.get(i).getIdMacApplicants());
+			jsonObject.put("Name", History.get(i).getName());
+			jsonObject.put("Surname", History.get(i).getSurname());
+			jsonObject.put("Employer_Name", History.get(i).getEmployerName());
+			JsonArray.put(jsonObject);
+		}
+		
+		
+	    
+		return JsonArray.toString();
+	}
+	
 	
 	@Path("/SaveJobHistory")
 	@POST

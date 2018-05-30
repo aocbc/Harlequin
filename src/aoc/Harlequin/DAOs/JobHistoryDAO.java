@@ -33,6 +33,26 @@ public class JobHistoryDAO extends HarlequinDAO {
 		
 	}
 	
+	public List<JobHistory> ReadAllJobHistoryByIdNumber(String IdNumber)
+	{
+		Session session = this.getSession();
+		HibernateUtil.beginTransaction();
+		
+		
+		
+		Query query = session.createQuery("from JobHistory WHERE idMac_Applicants = '"+ IdNumber+"'");
+		List<JobHistory> JobHistory = query.list();
+		
+		session.clear(); // ADDED 170302
+		session.flush();
+		session.close();
+		
+		return JobHistory;
+		
+		
+		
+	}
+	
 	public List<JobHistory> ReadAllJobHistory()
 	{
 		Session session = this.getSession();
