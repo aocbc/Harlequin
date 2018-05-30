@@ -29,15 +29,14 @@ public class JobHistory implements java.io.Serializable {
 	public JobHistory() {
 	}
 
-	public JobHistory(int idJobHistory, String idMacApplicants) {
+	public JobHistory(int idJobHistory, String idMacApplicants) 
+	{
 		this.idJobHistory = idJobHistory;
 		this.idMacApplicants = idMacApplicants;
 	}
 
-	public JobHistory(int idJobHistory, String jobRole, String jobDescription,
-			String employerContactPerson, String employerContactNumber,
-			String employerIndustry, String periodFrom, String periodTo,
-			String idMacApplicants, String name, String surname,String employerName) {
+	public JobHistory(int idJobHistory, String jobRole, String jobDescription,String employerContactPerson, String employerContactNumber, String employerIndustry, String periodFrom, String periodTo,String idMacApplicants, String name, String surname,String employerName) 
+	{
 		this.idJobHistory = idJobHistory;
 		this.jobRole = jobRole;
 		this.jobDescription = jobDescription;
@@ -52,51 +51,63 @@ public class JobHistory implements java.io.Serializable {
 		this.employerName = employerName;
 	}
 
-	public int getIdJobHistory() {
+	public int getIdJobHistory() 
+	{
 		return this.idJobHistory;
 	}
 
-	public void setIdJobHistory(int idJobHistory) {
+	public void setIdJobHistory(int idJobHistory) 
+	{
 		this.idJobHistory = idJobHistory;
 	}
 
-	public String getJobRole() {
+	public String getJobRole() 
+	{
 		return this.jobRole;
 	}
 
-	public void setJobRole(String jobRole) {
+	public void setJobRole(String jobRole) 
+	{
 		this.jobRole = jobRole;
 	}
 
-	public String getJobDescription() {
+	public String getJobDescription() 
+	{
 		return this.jobDescription;
 	}
 
-	public void setJobDescription(String jobDescription) {
+	public void setJobDescription(String jobDescription) 
+	{
 		this.jobDescription = jobDescription;
 	}
 
-	public String getEmployerContactPerson() {
+	public String getEmployerContactPerson() 
+	{
 		return this.employerContactPerson;
 	}
 
-	public void setEmployerContactPerson(String employerContactPerson) {
+	public void setEmployerContactPerson(String employerContactPerson) 
+	{
 		this.employerContactPerson = employerContactPerson;
 	}
 
-	public String getEmployerContactNumber() {
+	public String getEmployerContactNumber() 
+	{
 		return this.employerContactNumber;
 	}
 
-	public void setEmployerContactNumber(String employerContactNumber) {
+	public void setEmployerContactNumber(String employerContactNumber) 
+	{
 		this.employerContactNumber = employerContactNumber;
 	}
 
-	public String getEmployerIndustry() {
+	public String getEmployerIndustry() 
+	{
 		return this.employerIndustry;
 	}
 
-	public void setEmployerIndustry(String employerIndustry) {
+	public void setEmployerIndustry(String employerIndustry) 
+	{
 		this.employerIndustry = employerIndustry;
 	}
 
