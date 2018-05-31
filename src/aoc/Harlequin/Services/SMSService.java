@@ -2,8 +2,10 @@ package aoc.Harlequin.Services;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.util.List;
 
 import javax.ws.rs.Consumes;
+import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
@@ -15,13 +17,108 @@ import org.json.JSONObject;
 
 import aoc.Harlequin.DAOs.ClientDAO;
 import aoc.Harlequin.DAOs.MacApplicantDAO;
+import aoc.Harlequin.DAOs.PracticalDrivingAssessmentDAO;
 import aoc.Harlequin.DAOs.SmsHistoryDAO;
+import aoc.Harlequin.OBJs.ApplicantSmsHistory;
+import aoc.Harlequin.OBJs.PracticalDriversAssessment;
 import aoc.Harlequin.message.SMSSender;
 
 
 @Path("SMS")
 public class SMSService 
 {
+	
+	
+	
+	
+	@Path("/GetAllHistory")
+	@GET
+	@Produces("text/plain")
+	public String GETAllHistory( ) throws Exception
+	{
+		
+		
+		
+		
+		SmsHistoryDAO Object  = new SmsHistoryDAO();
+		
+		
+		List<ApplicantSmsHistory> SmsHistory = Object.ReadAllSmsHistory();
+		
+		JSONArray JsonArray = new JSONArray();
+		
+		for(int i = 0; i < SmsHistory.size();i++)
+		{
+			JSONObject jsonObject = new JSONObject();
+			
+			
+			
+			
+			jsonObject.put("idApplicant_Sms_History", SmsHistory.get(i).getIdApplicantSmsHistory());
+			jsonObject.put("idMac_Applicants", SmsHistory.get(i).getIdMacApplicants());
+			jsonObject.put("Cell_Number", SmsHistory.get(i).getCellNumber());
+			jsonObject.put("Message", SmsHistory.get(i).getMessage());
+			jsonObject.put("Job_Name",SmsHistory.get(i).getJobName());		
+			jsonObject.put("Client_Name", SmsHistory.get(i).getClientName());
+			jsonObject.put("Sms_Group", SmsHistory.get(i).getSmsGroup());
+			jsonObject.put("Sms_Date", SmsHistory.get(i).getSmsDate());
+			
+			
+			
+			
+			JsonArray.put(jsonObject);
+		}
+		
+		
+		
+		
+		
+		
+		System.out.println(JsonArray.toString());
+	    
+		return JsonArray.toString();
+	}
+	
+	
+	
+	@Path("/GetAllGroups")
+	@GET
+	@Produces("text/plain")
+	public String GETAllAssessments( ) throws Exception
+	{
+		
+		SmsHistoryDAO Object  = new SmsHistoryDAO();
+		
+		
+		System.out.println("GROUP::"+ Object.ReadSMSGroups());
+		
+		
+		List SmsGroups = Object.ReadSMSGroups();
+		
+		JSONArray JsonArray = new JSONArray();
+		
+		for(int i = 0; i < SmsGroups.size();i++)
+		{
+			JSONObject jsonObject = new JSONObject();
+			
+			
+			
+			
+			jsonObject.put("Sms_Group", SmsGroups.get(i));
+				
+			JsonArray.put(jsonObject);
+		}
+		
+		
+		
+		
+		
+		
+		//System.out.println(JsonArray.toString());
+	    
+		return JsonArray.toString();
+	}
+	
 	
 	@Path("/SendSms")
 	@POST
@@ -35,8 +132,7 @@ public class SMSService
 	
 		JSONObject json = new JSONObject(jsonTextObject);
 		
-		System.out.println(json);
-		
+	
 		JSONArray TotalApplicants = json.getJSONArray("Applicants");
 		JSONArray Message = json.getJSONArray("SmsMessage");
 		
@@ -47,28 +143,26 @@ public class SMSService
 		{
 			
 			JSONObject Applicants = new JSONObject( TotalApplicants.get(i).toString());
-			System.out.println("Cell Number:"+Applicants.getString("Cell_Number").toString()+ "Message:"+ SMSMessage.getString("Message").toString());
-			
+		
 			/////Sending the sms using bulk sms
-			SMSSender sms = new SMSSender(Applicants.getString("Cell_Number").toString(),SMSMessage.getString("Message").toString());
-		    sms.send();
+    		SMSSender sms = new SMSSender(Applicants.getString("Cell_Number").toString(),SMSMessage.getString("Message").toString());
+     	    sms.send();
 		    
 		    MacApplicantDAO Object  = new MacApplicantDAO();
 		    
 		    
 		    //Checking the Sms Group Count
 		    int SmsGroupCount = Applicants.getInt("Sms_Group_Count");
-		    String SmsGroup = Applicants.getString("User_Sms_Group").toString();;
+		    String SmsGroup = Applicants.getString("User_Sms_Group").toString();
+		    String HistorySmsGroup = Applicants.getString("User_Sms_Group").toString();
 		    
-		    System.out.println("SMSGROUPCOUNT:" + SmsGroupCount );
+		    
 		    if(SmsGroupCount < 3)
 		    {
 		    	SmsGroupCount = SmsGroupCount + 1;
 		    	
 		    	SmsGroup = Applicants.getString("Sms_Group").toString() + "," + SmsGroup ;
 		    	
-		    	
-		    	System.out.println("SMSGROUPCOUNT2:" + SmsGroupCount );
 		    	//Updating the Applicants Last Sms Date and Sms Group Code			
 				Object.UpdateAppplicantLastSmsDateById(Applicants.getInt("idMac_Applicants"),SmsGroup,SmsGroupCount);
 				
@@ -80,7 +174,6 @@ public class SMSService
 		    	SmsGroupCount = 1;
 		    	
 		    	
-		    	System.out.println("SMSGROUPCOUNT3:" + SmsGroupCount );
 		    	//Updating the Applicants Last Sms Date and Sms Group Code			
 				Object.UpdateAppplicantLastSmsDateById(Applicants.getInt("idMac_Applicants"),SmsGroup,SmsGroupCount);
 				
@@ -89,7 +182,7 @@ public class SMSService
 			
 		    //Storing the info of the sms Sent
 			SmsHistoryDAO smsHistory = new SmsHistoryDAO();
-			smsHistory.AddSmsHistory(Applicants.getInt("idMac_Applicants"), Applicants.getString("Cell_Number"), SMSMessage.getString("Message").toString(), "N/A", "N/A", SmsGroup,CurrentDate);
+			smsHistory.AddSmsHistory(Applicants.getInt("idMac_Applicants"), Applicants.getString("Cell_Number"), SMSMessage.getString("Message").toString(), "N/A", "N/A", HistorySmsGroup,CurrentDate);
 		    
 		    
 		 }

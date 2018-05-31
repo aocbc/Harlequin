@@ -9,6 +9,7 @@ import org.hibernate.Session;
 import org.hibernate.query.Query;
 
 import aoc.Harlequin.OBJs.ApplicantSmsHistory;
+import aoc.Harlequin.OBJs.ClientInterviews;
 import aoc.Harlequin.OBJs.PracticalDriversAssessment;
 import aoc.Harlequin.OBJs.SystemUser;
 import aoc.Harlequin.util.HibernateUtil;
@@ -86,6 +87,69 @@ public class SmsHistoryDAO extends HarlequinDAO
 		session.close();
 		
 		return History;
+		
+		
+		
+	}
+	
+	
+	
+	public List<ApplicantSmsHistory> ReadSMSGroups()
+	{
+		Session session = this.getSession();
+		HibernateUtil.beginTransaction();
+		
+		
+		
+		Query query = session.createQuery("Select smsGroup from ApplicantSmsHistory Group by smsGroup");
+		List<ApplicantSmsHistory> History = query.list();
+		
+		session.clear(); // ADDED 170302
+		session.flush();
+		session.close();
+		
+		return History;
+		
+		
+		
+	}
+	
+	public List<ApplicantSmsHistory> ReadAllSmsHistory()
+	{
+		Session session = this.getSession();
+		HibernateUtil.beginTransaction();
+		
+		
+		
+		Query query = session.createQuery("from ApplicantSmsHistory");
+		List<ApplicantSmsHistory> History = query.list();
+		
+		session.clear(); // ADDED 170302
+		session.flush();
+		session.close();
+		
+		return History;
+		
+		
+		
+	}
+	
+	
+	public List<ClientInterviews> ReadAllHistory()
+	{
+		Session session = this.getSession();
+		HibernateUtil.beginTransaction();
+		
+		
+		
+		Query query = session.createQuery("from MacLabourInterView");
+		List<ClientInterviews> Interview = query.list();
+		
+		session.clear(); // ADDED 170302
+		session.flush();
+		session.close();
+		
+		return Interview;
 		
 		
 		
