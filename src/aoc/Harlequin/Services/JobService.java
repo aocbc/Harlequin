@@ -15,7 +15,9 @@ import org.json.JSONObject;
 
 import aoc.Harlequin.DAOs.ClientDAO;
 import aoc.Harlequin.DAOs.JobDAO;
+import aoc.Harlequin.DAOs.MacApplicantDAO;
 import aoc.Harlequin.DAOs.SystemUserDAO;
+import aoc.Harlequin.OBJs.MacApplicants;
 import aoc.Harlequin.OBJs.SystemClient;
 import aoc.Harlequin.OBJs.SystemJob;
 import aoc.Harlequin.OBJs.SystemUser;
@@ -147,7 +149,38 @@ public class JobService {
 			
 	}
 	
+	@Path("/UpdateJobInfo")
+	@POST
+	@Consumes(MediaType.APPLICATION_JSON)
+	@Produces("text/plain")
+	public  String update(String jsonTextObject) throws JSONException
+	{
+		JobDAO t = new JobDAO();
+		JSONObject test = new JSONObject(jsonTextObject);
+		System.out.println("Applicant Update"+test.toString());
+		
+		SystemJob Job  = t.getJobInfoById(Integer.parseInt(test.getString("idMac_Applicants")));
+		
+		
+		
+		Job.setJobName(test.getString("Job_Name"));
+		
+		Job.setJobClientName(test.getString("Job_Client_Name"));
+		Job.setJobDetails(test.getString("Job_Details"));
+		Job.setJobComments(test.getString("Job_Comments"));
+		Job.setJobType(test.getString("Job_Type"));
 	
+		
+		
+		
+		
+		t.update(Job);
+		
+		
+		
+		
+		return "";
+	}
 	
 
 }

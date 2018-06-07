@@ -49,6 +49,7 @@ public class MacApplicants implements java.io.Serializable {
 	private String smsGroup;
 	private int smsGroupCount;
 	private String applicantType;
+	private String nationality;
 	
 
 	public MacApplicants() {
@@ -63,7 +64,7 @@ public class MacApplicants implements java.io.Serializable {
 			String physicalAddress3, String physicalAddress4,
 			String maritalStatus, String dependants, String homeLanguage,
 			String workHistory1, String workHistory2, String workHistory3,String jobName,
-			String workHistory4, String email, String passportNumber,String expiryDateOfPassport, String city, String tax_No,String country,int age,String dateOfBirth,String lastSmsDate, String stageInTheProcess, String applicantStatus,String smsGroup,int smsGroupCount,String applicantType) {
+			String workHistory4, String email, String passportNumber,String expiryDateOfPassport, String city, String tax_No,String country,int age,String dateOfBirth,String lastSmsDate, String stageInTheProcess, String applicantStatus,String smsGroup,int smsGroupCount,String applicantType,String nationality) {
 		this.name = name;
 		this.surname = surname;
 		this.rsaCitizen = rsaCitizen;
@@ -102,6 +103,7 @@ public class MacApplicants implements java.io.Serializable {
 		this.smsGroup = smsGroup;
 		this.smsGroupCount = smsGroupCount;
 		this.applicantType = applicantType;
+		this.nationality = nationality;
 	}
 
 	public Integer getIdMacApplicants() {
@@ -469,6 +471,19 @@ public class MacApplicants implements java.io.Serializable {
 	{
 		return this.applicantType;
 	}
+	
+	public void setNationality(String nationality)
+	{
+		// TODO Auto-generated method stub
+		this.nationality = nationality;
+		
+	}
+	
+	public String getNationality() 
+	{
+		return this.nationality;
+	}
+
 
 
 	

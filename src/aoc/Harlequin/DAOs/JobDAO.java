@@ -9,6 +9,7 @@ import org.hibernate.query.Query;
 
 
 
+
 import aoc.Harlequin.OBJs.MacApplicants;
 import aoc.Harlequin.OBJs.SystemClient;
 import aoc.Harlequin.OBJs.SystemJob;
@@ -57,6 +58,17 @@ public class JobDAO extends HarlequinDAO {
 		
 	}
 	
+	public void update(Object entity) 
+	{  
+		  Session hibernateSession = this.getSession();
+		  HibernateUtil.beginTransaction();
+		        //hibernateSession.save(entity);        
+		        //hibernateSession.saveOrUpdate(entity);
+		        hibernateSession.update(entity);
+		        
+		        HibernateUtil.commitTransaction();
+		 
+	}
 	
 	public List<SystemJob> ReadLastJob()
 	{

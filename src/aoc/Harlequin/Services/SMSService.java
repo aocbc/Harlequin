@@ -142,10 +142,19 @@ public class SMSService
 		for (int i = 0; i < TotalApplicants.length(); i++) 
 		{
 			
+			
+			
+			
 			JSONObject Applicants = new JSONObject( TotalApplicants.get(i).toString());
 		
+			//Adding country code +27 to beginning of every cell number and removing first 0
+			String cell_Number = Applicants.getString("Cell_Number").toString();
+			cell_Number = cell_Number.replaceFirst("0", "+27");
+			
+			
+			
 			/////Sending the sms using bulk sms
-    		SMSSender sms = new SMSSender(Applicants.getString("Cell_Number").toString(),SMSMessage.getString("Message").toString());
+    		SMSSender sms = new SMSSender(cell_Number,SMSMessage.getString("Message").toString());
      	    sms.send();
 		    
 		    MacApplicantDAO Object  = new MacApplicantDAO();

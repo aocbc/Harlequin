@@ -132,6 +132,18 @@
        
 		<property name="applicantType" type="string">
             <column name="Applicant_Type" length="45" />
-        </property>       
+        </property>  
+        
+        
+        <property name="nationality" type="string">
+            <column name="Nationality" length="45" />
+        </property>  
+        
+        
+        
+        
+        
+        
+             
     </class>
 </hibernate-mapping>

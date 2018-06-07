@@ -384,6 +384,8 @@ public class MacApplicantService {
 	
 	
 	
+	
+	
 	@Path("/GetAllApplicants")
 	@GET
 	@Produces("text/plain")
@@ -438,7 +440,9 @@ public class MacApplicantService {
 			jsonObject.put("Sms_Group", Applicants.get(i).getSmsGroup());
 			jsonObject.put("Sms_Group_Count", Applicants.get(i).getSmsGroupCount());
 			jsonObject.put("Applicant_Type", Applicants.get(i).getApplicantType());
+			jsonObject.put("Applicant_Status", Applicants.get(i).getApplicantStatus());
 			
+			jsonObject.put("Nationality", Applicants.get(i).getNationality());
 			JsonArray.put(jsonObject);
 		}
 		
@@ -450,6 +454,66 @@ public class MacApplicantService {
 		System.out.println(JsonArray.toString());
 	    
 		return JsonArray.toString();
+	}
+	
+	
+	
+	@Path("/UpdateApplicantInfo")
+	@POST
+	@Consumes(MediaType.APPLICATION_JSON)
+	@Produces("text/plain")
+	public  String update(String jsonTextObject) throws JSONException
+	{
+		MacApplicantDAO t = new MacApplicantDAO();
+		JSONObject test = new JSONObject(jsonTextObject);
+		System.out.println("Applicant Update"+test.toString());
+		
+		MacApplicants Applicant  = t.getClientApplicantoById(Integer.parseInt(test.getString("idMac_Applicants")));
+		
+		
+		
+		Applicant.setName(test.getString("Name"));
+		Applicant.setSurname(test.getString("Surname"));
+		Applicant.setRsaCitizen(test.getString("RSA_Citizen"));
+		Applicant.setIdNumber(test.getString("Id_Number"));
+		Applicant.setPassportNumber(test.getString("Passport_Number"));
+		Applicant.setExpiryDateOfPassport(test.getString("Expiry_Date_Of_Passport"));
+		Applicant.setWorkPermitValidity(test.getString("Work_Permit_Validity"));
+		Applicant.setCellNumber(test.getString("Cell_Number"));
+		Applicant.setTelephoneNumber(test.getString("Telephone_Number"));
+		Applicant.setJobType(test.getString("Job_Type"));
+		Applicant.setDateFirstIssueLicense(test.getString("Date_First_issue_license"));
+		Applicant.setLicenseCode(test.getString("License_Code"));
+		Applicant.setExpiryDateOfLicense(test.getString("Expiry_Date_Of_License"));
+		Applicant.setPdpExpiryDate(test.getString("PDP_Expiry_Date"));
+		Applicant.setGender(test.getString("Gender"));
+		Applicant.setPhysicalAddress1(test.getString("Physical_Address_1"));
+		Applicant.setPhysicalAddress2(test.getString("Physical_Address_2"));
+		Applicant.setPhysicalAddress3(test.getString("Physical_Address_3"));
+		Applicant.setPhysicalAddress4(test.getString("Physical_Address_4"));
+		Applicant.setCity(test.getString("City"));
+		Applicant.setCountry(test.getString("Country"));
+		Applicant.setTaxNo(test.getString("Tax_No"));
+		Applicant.setMaritalStatus(test.getString("Marital_Status"));
+		Applicant.setDependants(test.getString("Dependants"));
+		Applicant.setHomeLanguage(test.getString("Home_Language"));
+		
+		Applicant.setEmail(test.getString("E_Mail"));
+		Applicant.setAge(Integer.parseInt(test.getString("Age")));
+		Applicant.setDateOfBirth(test.getString("Date_Of_Birth"));
+	
+		
+		Applicant.setStageInTheProcess("Recntly Updated Details on System");
+		
+		
+		
+		
+		t.update(Applicant);
+		
+		
+		
+		
+		return "";
 	}
 	
 	
