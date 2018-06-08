@@ -13,7 +13,9 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import aoc.Harlequin.DAOs.MacApplicantDAO;
 import aoc.Harlequin.DAOs.SystemUserDAO;
+import aoc.Harlequin.OBJs.MacApplicants;
 import aoc.Harlequin.OBJs.SystemUser;
 
 
@@ -172,7 +174,40 @@ public class SystemUserService {
 			
 	}
 	
-	
+	@Path("/UpdateUserInfo")
+	@POST
+	@Consumes(MediaType.APPLICATION_JSON)
+	@Produces("text/plain")
+	public  String update(String jsonTextObject) throws JSONException
+	{
+		
+		SystemUserDAO t = new SystemUserDAO();
+		
+		
+		JSONObject test = new JSONObject(jsonTextObject);
+		
+		
+		SystemUser User  = t.getUserInfoById(Integer.parseInt(test.getString("idSystem_User")));
+		
+		
+		User.setName(test.getString("Name"));
+		User.setSurname(test.getString("Surname"));
+		User.setEMail(test.getString("E_Mail"));
+		User.setCellNumber(test.getString("Cell_Number"));
+		User.setTellNumber(test.getString("Tell_Number"));
+		User.setAuthorizationLevel(test.getString("Authorization_Level"));
+		User.setUserPassword(test.getString("Password"));
+		
+		
+		
+		
+		t.update(User);
+		
+		
+		
+		
+		return "Updated";
+	}
 	
 
 }

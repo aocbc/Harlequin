@@ -13,14 +13,10 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import aoc.Harlequin.DAOs.ClientDAO;
+
 import aoc.Harlequin.DAOs.JobDAO;
-import aoc.Harlequin.DAOs.MacApplicantDAO;
-import aoc.Harlequin.DAOs.SystemUserDAO;
-import aoc.Harlequin.OBJs.MacApplicants;
-import aoc.Harlequin.OBJs.SystemClient;
+
 import aoc.Harlequin.OBJs.SystemJob;
-import aoc.Harlequin.OBJs.SystemUser;
 
 
 
@@ -52,6 +48,19 @@ public class JobService {
 		System.out.println(jsonObject.toString());
 	    
 		return jsonObject.toString();
+	}
+	
+	@Path("/DeleteJob/{Id}")
+	@GET
+	@Produces("text/plain")
+	public String Delete( @PathParam("Id") int Id) throws Exception
+	{
+		
+		JobDAO Object  = new JobDAO();
+		
+		Object.delete(Object.getJobInfoById(Id));
+	    
+		return "Successful";
 	}
 	
 	@Path("/GetAllJobs")

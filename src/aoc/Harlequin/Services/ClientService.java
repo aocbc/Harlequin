@@ -14,6 +14,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import aoc.Harlequin.DAOs.ClientDAO;
+import aoc.Harlequin.DAOs.JobDAO;
 import aoc.Harlequin.DAOs.SystemUserDAO;
 import aoc.Harlequin.OBJs.SystemClient;
 import aoc.Harlequin.OBJs.SystemUser;
@@ -52,6 +53,20 @@ public class ClientService {
 	    
 		return jsonObject.toString();
 	}
+	
+	@Path("/DeleteClient/{Id}")
+	@GET
+	@Produces("text/plain")
+	public String Delete( @PathParam("Id") int Id) throws Exception
+	{
+		
+		ClientDAO Object  = new ClientDAO();
+		
+		Object.delete(Object.getClientInfoById(Id));
+	    
+		return "Successful";
+	}
+	
 	
 	@Path("/GetAllClients")
 	@GET

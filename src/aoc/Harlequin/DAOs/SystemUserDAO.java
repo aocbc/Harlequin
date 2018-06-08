@@ -5,8 +5,10 @@ package aoc.Harlequin.DAOs;
 
 
 import java.util.List;
+
 import org.hibernate.Session;
 import org.hibernate.query.Query;
+
 import aoc.Harlequin.OBJs.SystemUser;
 import aoc.Harlequin.util.HibernateUtil;
 
@@ -98,10 +100,28 @@ public class SystemUserDAO extends HarlequinDAO
 				
 		session.getTransaction().commit();
 		
+		session.clear();
+		session.flush();
+		
 		session.close();
+
 		
 	}
 	
+	public void update(Object entity) 
+	{  
+		  Session hibernateSession = this.getSession();
+		  HibernateUtil.beginTransaction();
+		        //hibernateSession.save(entity);        
+		        //hibernateSession.saveOrUpdate(entity);
+		        hibernateSession.update(entity);
+		     
+		        HibernateUtil.commitTransaction();
+		      
+		        
+		        
+		 
+	}
 	
 	public List<SystemUser> ReadAllUsers()
 	{

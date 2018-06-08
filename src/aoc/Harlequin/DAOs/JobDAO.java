@@ -58,6 +58,19 @@ public class JobDAO extends HarlequinDAO {
 		
 	}
 	
+	public void delete(Object entity) {
+		  Session hibernateSession = this.getSession(); 
+		  
+		  HibernateUtil.beginTransaction();
+		        hibernateSession.delete(entity);
+		        hibernateSession.flush();
+		  HibernateUtil.commitTransaction();
+		  
+		    hibernateSession.clear(); // ADDED 170302
+	        hibernateSession.flush();
+	        hibernateSession.close();
+		 }
+	
 	public void update(Object entity) 
 	{  
 		  Session hibernateSession = this.getSession();
@@ -67,7 +80,9 @@ public class JobDAO extends HarlequinDAO {
 		        hibernateSession.update(entity);
 		        
 		        HibernateUtil.commitTransaction();
-		 
+		        hibernateSession.clear(); // ADDED 170302
+		        hibernateSession.flush();
+		        hibernateSession.close();
 	}
 	
 	public List<SystemJob> ReadLastJob()
