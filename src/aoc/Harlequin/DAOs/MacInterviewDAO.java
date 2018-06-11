@@ -36,19 +36,36 @@ public class MacInterviewDAO extends HarlequinDAO {
 	
 	
 	
-	
+	public void delete(Object entity) 
+	{
+		  Session hibernateSession = this.getSession(); 
+		  
+		  HibernateUtil.beginTransaction();
+		  hibernateSession.delete(entity);
+		  hibernateSession.flush();
+		  HibernateUtil.commitTransaction();
+		  
+	}
   
 	
 	
 	public void AddInterviewInformation( String idMac_Applicants, String Name,String Surname, String Id_Number,	String Client_Name, String Id_Verified,String Work_History_Verified,String Job_Name, String Drivers_License_Verified,String SAP_Check, String Criminal_Record, String Criminal_Record_comments, String Union_Member,String Union_Name, String Applicant_Passed_Interview, String Applicant_Presentable,String Applicant_Attitude, String Interview_Comments, String Formal_Interview_Complete)
 	{
 		
+		///////////////////////////////////////////////////////////////////////////////////////////////////
+		List<MacLabourInterView> OldInterview = GetInterviewByInfo(Id_Number,idMac_Applicants,Job_Name);
+		if(OldInterview.size() > 0)
+		{
+			delete(OldInterview.get(0));
+		}
+		///////////////////////////////////////////////////////////////////////////////////////////////////
+		///////////////////////////////////////////////////////////////////////////////////////////////////
+		
 		Session session = HibernateUtil.getSessionFactory().openSession();
 		
 		session.beginTransaction();
 		
-		
-		
+
 		MacLabourInterView Interview = new MacLabourInterView();
 		
 		

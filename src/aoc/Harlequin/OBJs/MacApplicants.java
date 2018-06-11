@@ -50,14 +50,15 @@ public class MacApplicants implements java.io.Serializable {
 	private int smsGroupCount;
 	private String applicantType;
 	private String nationality;
-	
+	private String macLabourInterviewComments;
+	private String macLabInterviewComplete;
 
 	public MacApplicants() {
 	}
 
 	public MacApplicants(String name, String surname, String rsaCitizen,
 			String Id_Number, String workPermitValidity, String cellNumber,
-			String telephoneNumber, String jobType,
+			String telephoneNumber, String jobType,String macLabourInterviewComments,String macLabInterviewComplete,
 			String dateFirstIssueLicense, String licenseCode,
 			String expiryDateOfLicense, String pdpExpiryDate, String gender,
 			String physicalAddress1, String physicalAddress2,
@@ -104,6 +105,8 @@ public class MacApplicants implements java.io.Serializable {
 		this.smsGroupCount = smsGroupCount;
 		this.applicantType = applicantType;
 		this.nationality = nationality;
+		this.macLabourInterviewComments = macLabourInterviewComments;
+		this.macLabInterviewComplete = macLabInterviewComplete;
 	}
 
 	public Integer getIdMacApplicants() {
@@ -483,8 +486,31 @@ public class MacApplicants implements java.io.Serializable {
 	{
 		return this.nationality;
 	}
+	
+	
+	public void setmacLabourInterviewComments(String macLabourInterviewComments)
+	{
+		// TODO Auto-generated method stub
+		this.macLabourInterviewComments = macLabourInterviewComments;
+		
+	}
+	
+	public String getmacLabourInterviewComments() 
+	{
+		return this.macLabourInterviewComments;
+	}
 
-
+	public void setmacLabInterviewComplete(String macLabInterviewComplete)
+	{
+		// TODO Auto-generated method stub
+		this.macLabInterviewComplete = macLabInterviewComplete;
+		
+	}
+	
+	public String getmacLabInterviewComplete() 
+	{
+		return this.macLabInterviewComplete;
+	}
 
 	
 

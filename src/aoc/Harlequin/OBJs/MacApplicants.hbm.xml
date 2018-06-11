@@ -140,6 +140,16 @@
         </property>  
         
         
+        <property name="macLabourInterviewComments" type="string">
+            <column name="Mac_Labour_Interview_Comments" length="500" />
+        </property>  
+        
+        
+        <property name="macLabInterviewComplete" type="string">
+            <column name="Mac_Lab_Interview_Complete" length="5" />
+        </property>  
+        
+        
         
         
         

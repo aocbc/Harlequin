@@ -122,7 +122,27 @@ public class MacApplicantDAO extends HarlequinDAO {
 	
 	}
 	
+	public MacApplicants UpdateAppplicantMacLabourById(int id, String InterviewComplete, String InterviewComments)
+	{
+		Session session = this.getSession();
+
+		HibernateUtil.beginTransaction();
+	   
+		MacApplicants applicants = session.get(MacApplicants.class, id);
+		
+		applicants.setmacLabInterviewComplete(InterviewComplete);
+		applicants.setmacLabourInterviewComments(InterviewComments);
+		
+		
+		session.clear(); 
+		session.flush();
+		session.close();
+		
+		update(applicants);
+		
+		return applicants;
 	
+	}
 	
 	public void update(Object entity) 
 	{  
@@ -130,7 +150,7 @@ public class MacApplicantDAO extends HarlequinDAO {
 		  HibernateUtil.beginTransaction();
 		        //hibernateSession.save(entity);        
 		        //hibernateSession.saveOrUpdate(entity);
-		        hibernateSession.update(entity);
+		  hibernateSession.update(entity);
 		        
 		        HibernateUtil.commitTransaction();
 		 
@@ -153,6 +173,22 @@ public class MacApplicantDAO extends HarlequinDAO {
 		return Applicant;
 	}
 	
+	
+	public List<MacApplicants> GetApplicantsMacInterviewComplete()
+	{
+		Session session = this.getSession();
+		HibernateUtil.beginTransaction();
+		
+		
+		
+		Query query = session.createQuery("from MacApplicants Where Mac_Lab_Interview_Complete = 'Yes'");
+		List<MacApplicants> Applicant = query.list();
+		
+		session.clear(); // ADDED 170302
+		session.flush();
+		session.close();
+		return Applicant;
+	}
 	
 	
 	public List<MacApplicants> GetApplicantsByApplicantId(String IdNumber)
