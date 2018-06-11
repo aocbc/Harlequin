@@ -120,6 +120,41 @@ public class SystemUserService {
 	}
 	
 	
+	
+	@Path("/GetUserInfoby/{Username}/{Password}")
+	@GET
+	@Produces("text/plain")
+	public String GET4(@PathParam("Username") String Username,@PathParam("Password") String Password ) throws Exception
+	{
+		String UsersName ="";
+		String UsersSurname = "";
+		
+		SystemUserDAO Object  = new SystemUserDAO();
+		
+		List<SystemUser> User = Object.CheckUserPassword(Username, Password);
+		
+		
+		if(User.size() != 0)
+		{
+			UsersName = User.get(0).getName().toString();
+			UsersSurname = User.get(0).getSurname().toString();
+		}
+		
+		
+		JSONObject j = new JSONObject();
+		
+		j.put("UsersName", UsersName);
+		j.put("UsersSurname", UsersSurname);
+		
+		
+		
+		
+		
+		return j.toString();
+	}
+	
+	
+	
 	@Path("/GetUserByID/{Id}")
 	@GET
 	@Produces("text/plain")
