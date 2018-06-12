@@ -15,7 +15,9 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import aoc.Harlequin.DAOs.ClientDAO;
+import aoc.Harlequin.DAOs.MacApplicantDAO;
 import aoc.Harlequin.DAOs.PracticalDrivingAssessmentDAO;
+import aoc.Harlequin.OBJs.MacApplicants;
 import aoc.Harlequin.OBJs.PracticalDriversAssessment;
 import aoc.Harlequin.OBJs.SystemClient;
 
@@ -217,6 +219,23 @@ public class PracticalDrivingAssessmentService {
 			
 		PracticalDrivingAssessmentDAO Object  = new PracticalDrivingAssessmentDAO();
 		Object.AddAppicantInformation(r.getString("idMac_Applicants"), r.getString("Name"), r.getString("Surname"), r.getString("Id_Number"), r.getString("Client_Name"), r.getString("PDP_Expiry_Date"), r.getString("Vehicle_Used"), r.getString("Assessor_Name"), r.getString("Assessor_Surname"), "01", r.getString("Date"), r.getString("KM_End"), r.getString("KM_Start"), r.getString("Time_End"), r.getString("Time_Start"), r.getString("Weather"), r.getString("Route"), r.getString ("Total_Score"), r.getString("Starting_And_Stopping"), r.getString("General_Driving"), r.getString("Passing_Or_Overtaking"), r.getString("General_Road_Behavior"), r.getString("Observation_And_Anticipation"), r.getString("Approaching_Junctions_Turning_Exiting"), r.getString("Reversing"), r.getString("Clutch"), r.getString("Retarder_DSC_HillMode"), r.getString("Comments"), r.getString("PDA_No"), r.getString("License_Code"));
+		
+		
+		
+		
+		
+		MacApplicantDAO Object1  = new MacApplicantDAO();
+		
+		List<MacApplicants> Applicants = Object1.GetApplicantsByApplicantId(r.getString("Id_Number"));
+		if(Applicants.size()>0)
+		{
+			
+			Applicants.get(0).setPracticalDriversTestComplete(r.getString("PracticalDriversTestComplete"));
+			Object1.update(Applicants.get(0));
+			
+			
+		}
+		
 		
 		return "Sucessful";	
 		

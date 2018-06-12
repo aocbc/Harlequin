@@ -40,6 +40,8 @@ public class PracticalDriversAssessment implements java.io.Serializable {
 	private String comments;
 	private Integer pdaNo;
 	private String licenseCode;
+	private String practicalDriversTestComplete;
+	private String practicalDriversTestComments;
 
 	public PracticalDriversAssessment() {
 	}
@@ -60,7 +62,7 @@ public class PracticalDriversAssessment implements java.io.Serializable {
 			BigDecimal observationAndAnticipation,
 			BigDecimal approachingJunctionsTurningExiting,
 			BigDecimal reversing, BigDecimal clutch,
-			BigDecimal retarderDscHillMode, String comments, Integer pdaNo,String licenseCode) {
+			BigDecimal retarderDscHillMode, String comments, Integer pdaNo,String licenseCode,String practicalDriversTestComplete,String practicalDriversTestComments) {
 		this.idPracticalDriversAssessment = idPracticalDriversAssessment;
 		this.idMacApplicants = idMacApplicants;
 		this.name = name;
@@ -92,29 +94,37 @@ public class PracticalDriversAssessment implements java.io.Serializable {
 		this.comments = comments;
 		this.pdaNo = pdaNo;
 		this.licenseCode = licenseCode;
+		this.practicalDriversTestComplete = practicalDriversTestComplete;
+		this.practicalDriversTestComments = practicalDriversTestComments;
 	}
 
-	public int getIdPracticalDriversAssessment() {
+	public int getIdPracticalDriversAssessment()
+	{
 		return this.idPracticalDriversAssessment;
 	}
 
-	public void setIdPracticalDriversAssessment(int idPracticalDriversAssessment) {
+	public void setIdPracticalDriversAssessment(int idPracticalDriversAssessment) 
+	{
 		this.idPracticalDriversAssessment = idPracticalDriversAssessment;
 	}
 
-	public Integer getIdMacApplicants() {
+	public Integer getIdMacApplicants() 
+	{
 		return this.idMacApplicants;
 	}
 
-	public void setIdMacApplicants(Integer idMacApplicants) {
+	public void setIdMacApplicants(Integer idMacApplicants) 
+	{
 		this.idMacApplicants = idMacApplicants;
 	}
 
-	public String getName() {
+	public String getName() 
+	{
 		return this.name;
 	}
 
-	public void setName(String name) {
+	public void setName(String name) 
+	{
 		this.name = name;
 	}
 
@@ -344,6 +354,29 @@ public class PracticalDriversAssessment implements java.io.Serializable {
 	{
 		// TODO Auto-generated method stub
 		this.licenseCode = license_Code;
+	}
+	
+	
+
+	public String getPracticalDriversTestComplete() 
+	{
+		return this.practicalDriversTestComplete;
+	}
+
+	public void setPracticalDriversTestComplete(String practicalDriversTestComplete) 
+	{
+		this.practicalDriversTestComplete = practicalDriversTestComplete;
+	}
+
+	
+	public String getPracticalDriversTestComments() 
+	{
+		return this.practicalDriversTestComments;
+	}
+
+	public void setPracticalDriversTestComments(String practicalDriversTestComments) 
+	{
+		this.practicalDriversTestComments = practicalDriversTestComments;
 	}
 
 }

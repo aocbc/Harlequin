@@ -149,7 +149,12 @@
             <column name="Mac_Lab_Interview_Complete" length="5" />
         </property>  
         
-        
+        <property name="practicalDriversTestComplete" type="string">
+            <column name="Practical_Drivers_Test_Complete" length="5" />
+        </property>
+         <property name="practicalDriversTestComments" type="string">
+            <column name="Practical_Drivers_Test_Comments" length="250" />
+        </property>
         
         
         

@@ -52,7 +52,10 @@ public class MacApplicants implements java.io.Serializable {
 	private String nationality;
 	private String macLabourInterviewComments;
 	private String macLabInterviewComplete;
-
+	private String practicalDriversTestComplete;
+	private String practicalDriversTestComments;
+	
+	
 	public MacApplicants() {
 	}
 
@@ -62,7 +65,8 @@ public class MacApplicants implements java.io.Serializable {
 			String dateFirstIssueLicense, String licenseCode,
 			String expiryDateOfLicense, String pdpExpiryDate, String gender,
 			String physicalAddress1, String physicalAddress2,
-			String physicalAddress3, String physicalAddress4,
+			String physicalAddress3, String physicalAddress4, String practicalDriversTestComplete,
+			String practicalDriversTestComments,
 			String maritalStatus, String dependants, String homeLanguage,
 			String workHistory1, String workHistory2, String workHistory3,String jobName,
 			String workHistory4, String email, String passportNumber,String expiryDateOfPassport, String city, String tax_No,String country,int age,String dateOfBirth,String lastSmsDate, String stageInTheProcess, String applicantStatus,String smsGroup,int smsGroupCount,String applicantType,String nationality) {
@@ -107,6 +111,8 @@ public class MacApplicants implements java.io.Serializable {
 		this.nationality = nationality;
 		this.macLabourInterviewComments = macLabourInterviewComments;
 		this.macLabInterviewComplete = macLabInterviewComplete;
+		this.practicalDriversTestComplete = practicalDriversTestComplete;
+		this.practicalDriversTestComments = practicalDriversTestComments; 
 	}
 
 	public Integer getIdMacApplicants() {
@@ -512,6 +518,26 @@ public class MacApplicants implements java.io.Serializable {
 		return this.macLabInterviewComplete;
 	}
 
+	public String getPracticalDriversTestComments() 
+	{
+		return this.practicalDriversTestComments;
+	}
+
+	public void setPracticalDriversTestComments(String practicalDriversTestComments) 
+	{
+		this.practicalDriversTestComments = practicalDriversTestComments;
+	}
 	
+	
+	public String getPracticalDriversTestComplete() 
+	{
+		return this.practicalDriversTestComplete;
+	}
+
+	public void setPracticalDriversTestComplete(String practicalDriversTestComplete) 
+	{
+		this.practicalDriversTestComplete = practicalDriversTestComplete;
+	}
+
 
 }

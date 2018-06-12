@@ -144,6 +144,30 @@ public class MacApplicantDAO extends HarlequinDAO {
 	
 	}
 	
+	
+	public MacApplicants UpdateAppplicantDriversById(int id, String TestComplete, String TestComments)
+	{
+		Session session = this.getSession();
+
+		HibernateUtil.beginTransaction();
+	   
+		MacApplicants applicants = session.get(MacApplicants.class, id);
+		
+		applicants.setPracticalDriversTestComments(TestComments);
+		applicants.setPracticalDriversTestComplete(TestComplete);
+		
+		
+		session.clear(); 
+		session.flush();
+		session.close();
+		
+		update(applicants);
+		
+		return applicants;
+	
+	}
+	
+	
 	public void update(Object entity) 
 	{  
 		  Session hibernateSession = this.getSession();
@@ -182,6 +206,39 @@ public class MacApplicantDAO extends HarlequinDAO {
 		
 		
 		Query query = session.createQuery("from MacApplicants Where Mac_Lab_Interview_Complete = 'Yes'");
+		List<MacApplicants> Applicant = query.list();
+		
+		session.clear(); // ADDED 170302
+		session.flush();
+		session.close();
+		return Applicant;
+	}
+	
+	
+	public List<MacApplicants> GetApplicantsSiteComplete()
+	{
+		Session session = this.getSession();
+		HibernateUtil.beginTransaction();
+		
+		
+		
+		Query query = session.createQuery("from MacApplicants Where Job_Name <> 'NA'");
+		List<MacApplicants> Applicant = query.list();
+		
+		session.clear(); // ADDED 170302
+		session.flush();
+		session.close();
+		return Applicant;
+	}
+	
+	public List<MacApplicants> GetApplicantsDriversComplete()
+	{
+		Session session = this.getSession();
+		HibernateUtil.beginTransaction();
+		
+		
+		
+		Query query = session.createQuery("from MacApplicants Where Practical_Drivers_Test_Complete = 'Yes'");
 		List<MacApplicants> Applicant = query.list();
 		
 		session.clear(); // ADDED 170302

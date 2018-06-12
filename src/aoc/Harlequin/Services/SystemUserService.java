@@ -202,7 +202,7 @@ public class SystemUserService {
 		System.out.println("WRITING TO DATABASE:"+ r.getString("Name"));
 			
 		SystemUserDAO Object  = new SystemUserDAO();
-		Object.AddUserInformation(r.getString("Name"), r.getString("Surname"), r.getString("Email_address"), r.getString("Tell_Number"), r.getString("Cell_Number"), r.getString("Password"), r.getString("Authorization_Level"));
+		Object.AddUserInformation(r.getString("User_Name"),r.getString("Name"), r.getString("Surname"), r.getString("Email_address"), r.getString("Tell_Number"), r.getString("Cell_Number"), r.getString("Password"), r.getString("Authorization_Level"));
 		
 		return "Sucessful";	
 		

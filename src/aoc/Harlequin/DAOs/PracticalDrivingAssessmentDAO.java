@@ -10,6 +10,9 @@ import org.hibernate.query.Query;
 
 
 
+
+
+import aoc.Harlequin.OBJs.MacLabourInterView;
 import aoc.Harlequin.OBJs.PracticalDriversAssessment;
 import aoc.Harlequin.util.HibernateUtil;
 
@@ -36,10 +39,30 @@ public class PracticalDrivingAssessmentDAO extends HarlequinDAO {
 		
 	}
 	
-	
+	public void delete(Object entity) 
+	{
+		  Session hibernateSession = this.getSession(); 
+		  
+		  HibernateUtil.beginTransaction();
+		  hibernateSession.delete(entity);
+		  hibernateSession.flush();
+		  HibernateUtil.commitTransaction();
+		  
+	}
 	
 	public void AddAppicantInformation(String idMac_Applicants,String name, String surname, String Id_Number,String Client_Name,String PDP_Expiry_Date, String Vehicle_Used, String Assessor_Name,String Assessor_Surname, String Assessor_User_Id,String Date, String KM_End,String KM_Start, String Time_End, String Time_Start, String Weather, String Route,String Total_Score, String Starting_And_Stopping, String General_Driving,String Passing_Or_Overtaking, String General_Road_Behavior, String Observation_And_Anticipation, String Approaching_Junctions_Turning_Exiting, String Reversing, String Clutch, String Retarder_DSC_HillMode, String Comments, String PDA_No,String License_Code)
 	{
+		
+		///////////////////////////////////////////////////////////////////////////////////////////////////
+		List<PracticalDriversAssessment> OldAssesment = ReadAssessmentsByInfo(idMac_Applicants,Client_Name);
+		if(OldAssesment.size() > 0)
+		{
+			delete(OldAssesment.get(0));
+		}
+		///////////////////////////////////////////////////////////////////////////////////////////////////
+		///////////////////////////////////////////////////////////////////////////////////////////////////
+		
+		
 		
 		Session session = HibernateUtil.getSessionFactory().openSession();
 		
@@ -133,5 +156,7 @@ public class PracticalDrivingAssessmentDAO extends HarlequinDAO {
 		
 		
 	}
+	
+	
 
 }
