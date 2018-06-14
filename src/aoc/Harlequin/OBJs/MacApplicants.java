@@ -54,7 +54,11 @@ public class MacApplicants implements java.io.Serializable {
 	private String macLabInterviewComplete;
 	private String practicalDriversTestComplete;
 	private String practicalDriversTestComments;
+	private String clientInterviewComplete;
+	private String clientInterviewComments;
 	
+	private String referenceChecksComplete;
+	private String referenceChecksComments;
 	
 	public MacApplicants() {
 	}
@@ -66,8 +70,8 @@ public class MacApplicants implements java.io.Serializable {
 			String expiryDateOfLicense, String pdpExpiryDate, String gender,
 			String physicalAddress1, String physicalAddress2,
 			String physicalAddress3, String physicalAddress4, String practicalDriversTestComplete,
-			String practicalDriversTestComments,
-			String maritalStatus, String dependants, String homeLanguage,
+			String practicalDriversTestComments,String clientInterviewComplete, String clientInterviewComments,
+			String maritalStatus, String dependants, String homeLanguage,String referenceChecksComments,String referenceChecksComplete,
 			String workHistory1, String workHistory2, String workHistory3,String jobName,
 			String workHistory4, String email, String passportNumber,String expiryDateOfPassport, String city, String tax_No,String country,int age,String dateOfBirth,String lastSmsDate, String stageInTheProcess, String applicantStatus,String smsGroup,int smsGroupCount,String applicantType,String nationality) {
 		this.name = name;
@@ -113,6 +117,10 @@ public class MacApplicants implements java.io.Serializable {
 		this.macLabInterviewComplete = macLabInterviewComplete;
 		this.practicalDriversTestComplete = practicalDriversTestComplete;
 		this.practicalDriversTestComments = practicalDriversTestComments; 
+		this.clientInterviewComments = clientInterviewComments ;
+		this.clientInterviewComplete = clientInterviewComplete; 
+		this.referenceChecksComments = referenceChecksComments;
+		this.referenceChecksComplete = referenceChecksComplete;
 	}
 
 	public Integer getIdMacApplicants() {
@@ -538,6 +546,46 @@ public class MacApplicants implements java.io.Serializable {
 	{
 		this.practicalDriversTestComplete = practicalDriversTestComplete;
 	}
+	
+	
+	public String getClientInterviewComplete() 
+	{
+		return this.clientInterviewComplete;
+	}
 
+	public void setClientInterviewComplete(String clientInterviewComplete) 
+	{
+		this.clientInterviewComplete = clientInterviewComplete;
+	}
+	
+	public String getClientInterviewComments() 
+	{
+		return this.clientInterviewComments;
+	}
+
+	public void setClientInterviewComments(String clientInterviewComments) 
+	{
+		this.clientInterviewComments = clientInterviewComments;
+	}
+	
+	public String getReferenceChecksComplete() 
+	{
+		return this.referenceChecksComplete;
+	}
+	
+	public String getReferenceChecksComments() 
+	{
+		return this.referenceChecksComments;
+	}
+
+	public void setReferenceChecksComments(String referenceChecksComments) 
+	{
+		this.referenceChecksComments = referenceChecksComments;
+	}
+	
+	public void setReferenceChecksComplete(String referenceChecksComplete) 
+	{
+		this.referenceChecksComplete = referenceChecksComplete;
+	}
 
 }

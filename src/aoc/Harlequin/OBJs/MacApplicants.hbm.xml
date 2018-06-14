@@ -157,6 +157,22 @@
         </property>
         
         
+        <property name="clientInterviewComplete" type="string">
+            <column name="Client_Interview_Complete" length="5" />
+        </property>
+         <property name="clientInterviewComments" type="string">
+            <column name="Client_Interview_Comments" length="250" />
+        </property>
+        
+        
+        <property name="referenceChecksComplete" type="string">
+            <column name="Reference_Checks_Complete" length="5" />
+        </property>
+         <property name="referenceChecksComments" type="string">
+            <column name="Reference_Checks_Comments" length="250" />
+        </property>
+        
+        
         
         
              

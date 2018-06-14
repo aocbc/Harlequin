@@ -247,6 +247,22 @@ public class MacApplicantDAO extends HarlequinDAO {
 		return Applicant;
 	}
 	
+	public List<MacApplicants> GetApplicantsReferenceComplete()
+	{
+		Session session = this.getSession();
+		HibernateUtil.beginTransaction();
+		
+		
+		
+		Query query = session.createQuery("from MacApplicants Where Client_Interview_Complete = 'Yes'");
+		List<MacApplicants> Applicant = query.list();
+		
+		session.clear(); // ADDED 170302
+		session.flush();
+		session.close();
+		return Applicant;
+	}
+	
 	
 	public List<MacApplicants> GetApplicantsByApplicantId(String IdNumber)
 	{
