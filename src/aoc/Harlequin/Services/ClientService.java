@@ -25,14 +25,14 @@ import aoc.Harlequin.OBJs.SystemUser;
 @Path("Client")
 public class ClientService {
 	
-	@Path("/GetClientInfo")
+	@Path("/GetClientbyid/{idClient}")
 	@GET
 	@Produces("text/plain")
-	public String GET( ) throws Exception
+	public String GET(@PathParam("idClient") int idClient ) throws Exception
 	{
 		
 		ClientDAO Object  = new ClientDAO();
-		SystemClient Client  = Object.getClientInfoById(1);
+		SystemClient Client  = Object.getClientInfoById(idClient);
 		
 		JSONObject jsonObject = new JSONObject();
 		
@@ -53,6 +53,41 @@ public class ClientService {
 	    
 		return jsonObject.toString();
 	}
+	
+	@Path("/UpdateClientInfo")
+	@POST
+	@Consumes(MediaType.APPLICATION_JSON)
+	@Produces("text/plain")
+	public  String update(String jsonTextObject) throws JSONException
+	{
+		
+		ClientDAO t = new ClientDAO();
+		
+		
+		JSONObject test = new JSONObject(jsonTextObject);
+		
+		
+		SystemClient Client  = t.getClientInfoById(Integer.parseInt(test.getString("idSystem_User")));
+				
+		
+		Client.setClientName(test.getString("Client_Name"));
+		Client.setClientEMail(test.getString("Client_E_Mail"));
+		Client.setClientContactNumber(test.getString("Client_Contact_Number"));
+		Client.setClientAddress1(test.getString("Client_Address_1"));
+		Client.setClientAddress1(test.getString("Client_Address_2"));
+		Client.setClientAddress1(test.getString("Client_Address_3"));
+		Client.setClientAddress1(test.getString("Client_Address_4"));
+		Client.setClientAddress1(test.getString("Client_Vat_Number"));
+		Client.setClientAddress1(test.getString("Client_Comments"));
+		
+		t.update(Client);
+		
+		
+		
+		
+		return "Updated";
+	}
+	
 	
 	@Path("/DeleteClient/{Id}")
 	@GET

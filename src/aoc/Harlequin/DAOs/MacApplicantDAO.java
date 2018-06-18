@@ -131,7 +131,26 @@ public class MacApplicantDAO extends HarlequinDAO {
 		MacApplicants applicants = session.get(MacApplicants.class, id);
 		
 		applicants.setmacLabInterviewComplete(InterviewComplete);
+		
+		if(InterviewComplete.equals("Yes"))
+		{
+			applicants.setStageInTheProcess("Practical Drivers Test");
+		}
+		else if(InterviewComplete.equals("No"))
+		{
+			applicants.setStageInTheProcess("MacLabour Interview");
+		}
+		
+		
 		applicants.setmacLabourInterviewComments(InterviewComments);
+		
+		
+		if(InterviewComments.equals(""))
+		{
+			applicants.setmacLabourInterviewComments("N/A");
+			
+		}
+		
 		
 		
 		session.clear(); 
@@ -155,6 +174,16 @@ public class MacApplicantDAO extends HarlequinDAO {
 		
 		applicants.setPracticalDriversTestComments(TestComments);
 		applicants.setPracticalDriversTestComplete(TestComplete);
+		
+		if(TestComplete.equals("Yes"))
+		{
+			applicants.setStageInTheProcess("Client Interview");
+		}
+		else if(TestComplete.equals("No"))
+		{
+			applicants.setStageInTheProcess("Practical Drivers Test");
+		}
+		
 		
 		
 		session.clear(); 
@@ -297,7 +326,7 @@ public class MacApplicantDAO extends HarlequinDAO {
 	
 	
 	
-	public void AddAppicantInformation(String name, String surname, String rsaCitizen,String Id_Number,String Passport_Number,String expiryDateOfPassport, String workPermitValidity, String cellNumber,String telephoneNumber, String jobType,String dateFirstIssueLicense, String licenseCode,String expiryDateOfLicense, String pdpExpiryDate, String gender, String physicalAddress1, String physicalAddress2,String physicalAddress3, String physicalAddress4, String City,String Country, String Tax_No, String maritalStatus, String dependants, String homeLanguage, String workHistory1, String workHistory2, String workHistory3, String workHistory4,String email,int Age,String DateOfBirth,String lastSmsDate, String Job_Name,String Stage_In_Process, String Applicant_Status)
+	public void AddAppicantInformation(String name, String surname, String rsaCitizen,String Id_Number,String Passport_Number,String expiryDateOfPassport, String workPermitValidity, String cellNumber,String telephoneNumber, String jobType,String dateFirstIssueLicense, String licenseCode,String expiryDateOfLicense, String pdpExpiryDate, String gender, String physicalAddress1, String physicalAddress2,String physicalAddress3, String physicalAddress4, String City,String Country, String Tax_No, String maritalStatus, String dependants, String homeLanguage, String workHistory1, String workHistory2, String workHistory3, String workHistory4,String email,int Age,String DateOfBirth,String lastSmsDate, String Job_Name,String Stage_In_Process, String Applicant_Status, String Applicant_Type,String Sms_Group,String Nationality)
 	{
 		
 		Session session = HibernateUtil.getSessionFactory().openSession();
@@ -344,7 +373,19 @@ public class MacApplicantDAO extends HarlequinDAO {
 		Applicant.setJobName(Job_Name);
 		Applicant.setStageInTheProcess(Stage_In_Process);
 		Applicant.setApplicantStatus(Applicant_Status);
+		Applicant.setApplicantType(Applicant_Type);
+		Applicant.setSmsGroup(Sms_Group);
+		Applicant.setNationality(Nationality);
 		
+		Applicant.setmacLabInterviewComplete("No");
+		Applicant.setmacLabourInterviewComments("N/A");
+		Applicant.setSmsGroupCount(0);
+		Applicant.setPracticalDriversTestComments("N/A");
+		Applicant.setPracticalDriversTestComplete("No");
+		Applicant.setClientInterviewComments("N/A");
+		Applicant.setClientInterviewComplete("No");
+		Applicant.setReferenceChecksComments("N/A");
+		Applicant.setReferenceChecksComplete("Yes");
 		
 		session.save(Applicant);
 				
@@ -403,6 +444,19 @@ public class MacApplicantDAO extends HarlequinDAO {
 		Applicant.setStageInTheProcess(Stage_In_Process);
 		Applicant.setApplicantStatus(Applicant_Status);
 		Applicant.setApplicantType(Applicant_Type);
+		
+		Applicant.setmacLabInterviewComplete("No");
+		Applicant.setmacLabourInterviewComments("N/A");
+		Applicant.setSmsGroupCount(0);
+		Applicant.setPracticalDriversTestComments("N/A");
+		Applicant.setPracticalDriversTestComplete("No");
+		Applicant.setClientInterviewComments("N/A");
+		Applicant.setClientInterviewComplete("No");
+		Applicant.setReferenceChecksComments("N/A");
+		Applicant.setReferenceChecksComplete("Yes");
+		
+		
+		
 		
 		session.save(Applicant);
 				

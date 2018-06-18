@@ -372,14 +372,32 @@ public class MacApplicantService {
 			jsonObject.put("Date_Of_Birth", Applicants.get(0).getDateOfBirth());
 			jsonObject.put("Last_Sms_Date", Applicants.get(0).getLastSmsDate());
 			jsonObject.put("Sms_Group", Applicants.get(0).getSmsGroup());
+			jsonObject.put("Applicant_Status", Applicants.get(0).getApplicantStatus());
+			jsonObject.put("Sms_Group", Applicants.get(0).getSmsGroup());
+			jsonObject.put("Applicant_Type", Applicants.get(0).getApplicantType());
 		
+			jsonObject.put("Last_Sms_Date", Applicants.get(0).getLastSmsDate());
 		
+			jsonObject.put("Nationality", Applicants.get(0).getNationality());
 		
-		
-		
-		
-		
-		
+			jsonObject.put("Mac_Labour_Interview_Complete", Applicants.get(0).getmacLabInterviewComplete());
+			jsonObject.put("Mac_Labour_Interview_Comments", Applicants.get(0).getmacLabourInterviewComments());
+			
+			jsonObject.put("Sms_Group_Count", Applicants.get(0).getSmsGroupCount());
+			
+			jsonObject.put("Practical_Drivers_Test_Complete", Applicants.get(0).getPracticalDriversTestComplete());
+			jsonObject.put("Practical_Drivers_Test_Comments", Applicants.get(0).getPracticalDriversTestComments());
+			
+			jsonObject.put("Client_Interview_Complete", Applicants.get(0).getClientInterviewComplete());
+			jsonObject.put("Client_Interview_Comments", Applicants.get(0).getClientInterviewComments());
+			
+			jsonObject.put("Reference_Checks_Complete", Applicants.get(0).getReferenceChecksComplete());
+			jsonObject.put("Reference_Checks_Comments", Applicants.get(0).getReferenceChecksComments());
+			
+			
+			
+			
+			
 		
 		
 		
@@ -445,7 +463,7 @@ public class MacApplicantService {
 			jsonObject.put("Sms_Group_Count", Applicants.get(i).getSmsGroupCount());
 			jsonObject.put("Applicant_Type", Applicants.get(i).getApplicantType());
 			jsonObject.put("Applicant_Status", Applicants.get(i).getApplicantStatus());
-			
+			jsonObject.put("Stage_In_Process", Applicants.get(i).getStageInTheProcess());
 			jsonObject.put("Nationality", Applicants.get(i).getNationality());
 			JsonArray.put(jsonObject);
 		}
@@ -800,15 +818,34 @@ public class MacApplicantService {
 		Applicant.setMaritalStatus(test.getString("Marital_Status"));
 		Applicant.setDependants(test.getString("Dependants"));
 		Applicant.setHomeLanguage(test.getString("Home_Language"));
-		
+		Applicant.setApplicantType("Normal");
+		Applicant.setApplicantStatus("Recently Updated Details on System");
 		Applicant.setEmail(test.getString("E_Mail"));
 		Applicant.setAge(Integer.parseInt(test.getString("Age")));
 		Applicant.setDateOfBirth(test.getString("Date_Of_Birth"));
-	
+		Applicant.setApplicantStatus(test.getString("Applicant_Status"));
+		Applicant.setSmsGroup(test.getString("Sms_Group"));
+		Applicant.setStageInTheProcess("Recently Updated Details on System");
 		
-		Applicant.setStageInTheProcess("Recntly Updated Details on System");
+		Applicant.setApplicantType(test.getString("Applicant_Type"));
+		
+		Applicant.setLastSmsDate(test.getString("Last_Sms_Date"));
+		Applicant.setNationality(test.getString("Nationality"));
 		
 		
+		Applicant.setmacLabInterviewComplete(test.getString("Mac_Labour_Interview_Complete"));
+		Applicant.setmacLabourInterviewComments(test.getString("Mac_Labour_Interview_Comments"));
+		
+		Applicant.setSmsGroupCount(Integer.parseInt(test.getString("Sms_Group_Count")));
+		
+		Applicant.setPracticalDriversTestComplete(test.getString("Practical_Drivers_Test_Complete"));
+		Applicant.setPracticalDriversTestComments(test.getString("Practical_Drivers_Test_Comments"));
+		
+		Applicant.setClientInterviewComments(test.getString("Client_Interview_Comments"));
+		Applicant.setClientInterviewComplete(test.getString("Client_Interview_Complete"));
+		
+		Applicant.setReferenceChecksComments(test.getString("Reference_Checks_Comments"));
+		Applicant.setReferenceChecksComplete(test.getString("Reference_Checks_Complete"));
 		
 		
 		t.update(Applicant);
@@ -834,22 +871,21 @@ public class MacApplicantService {
 		
 		String Flag = r.getString("Flag");
 	
-		
+		MacApplicantDAO Object  = new MacApplicantDAO();
 		
 		if(Flag.equals("0"))
 		{
 			System.out.println("WRITING TO DATABASE:"+ r.getString("Name"));
 			
-			MacApplicantDAO Object  = new MacApplicantDAO();
-			Object.AddAppicantInformation(r.getString("Name"), r.getString("Surname"), r.getString("RSA_Citizen"), r.getString("Id_Number"),r.getString("Passport_Number"),r.getString("Expiry_Date_Of_Passport"), r.getString("Work_Permit_Validity"), r.getString("Cell_Number"), r.getString("Telephone_Number"), r.getString("Job_Type"), r.getString("Date_First_issue_license"), r.getString("License_Code"), r.getString("Expiry_Date_Of_License"), r.getString("PDP_Expiry_Date"), r.getString("Gender"), r.getString("Physical_Address_1"), r.getString("Physical_Address_2"), r.getString("Physical_Address_3"), r.getString("Physical_Address_4"),r.getString("City"),r.getString("Country"),r.getString("Tax_No"), r.getString("Marital_Status"), r.getString("Dependants"), r.getString("Home_Language"), r.getString("Work_History_1"), r.getString("Work_History_2"), r.getString("Work_History_3"), r.getString("Work_History_1"), r.getString("E_Mail"), r.getInt("Age"), r.getString("Date_Of_Birth"), r.getString("Last_Sms_Date"), r.getString("Job_Name"), "Applicant recently added.","New");
+			
+			Object.AddAppicantInformation(r.getString("Name"), r.getString("Surname"), r.getString("RSA_Citizen"), r.getString("Id_Number"),r.getString("Passport_Number"),r.getString("Expiry_Date_Of_Passport"), r.getString("Work_Permit_Validity"), r.getString("Cell_Number"), r.getString("Telephone_Number"), r.getString("Job_Type"), r.getString("Date_First_issue_license"), r.getString("License_Code"), r.getString("Expiry_Date_Of_License"), r.getString("PDP_Expiry_Date"), r.getString("Gender"), r.getString("Physical_Address_1"), r.getString("Physical_Address_2"), r.getString("Physical_Address_3"), r.getString("Physical_Address_4"),r.getString("City"),r.getString("Country"),r.getString("Tax_No"), r.getString("Marital_Status"), r.getString("Dependants"), r.getString("Home_Language"), r.getString("Work_History_1"), r.getString("Work_History_2"), r.getString("Work_History_3"), r.getString("Work_History_1"), r.getString("E_Mail"), r.getInt("Age"), r.getString("Date_Of_Birth"), r.getString("Last_Sms_Date"), r.getString("Job_Name"), r.getString("Stage_In_Process"),"New",r.getString("Applicant_Type"),r.getString("Sms_Group"),r.getString("Nationality"));
 			
 			
 		}
 		else if(Flag.equals("1"))
 		{
 			
-			MacApplicants Applicant = new MacApplicants();
-			Applicant.setIdMacApplicants(r.getInt("idMac_Applicants"));
+			MacApplicants Applicant = Object.getClientApplicantoById(r.getInt("idMac_Applicants"));
 			Applicant.setName(r.getString("Name"));
 			Applicant.setSurname(r.getString("Surname"));
 			Applicant.setRsaCitizen(r.getString("RSA_Citizen"));
@@ -875,17 +911,17 @@ public class MacApplicantService {
 			Applicant.setMaritalStatus(r.getString("Marital_Status"));
 			Applicant.setDependants(r.getString("Dependants"));
 			Applicant.setHomeLanguage(r.getString("Home_Language"));
-			Applicant.setWorkHistory1(r.getString("Work_History_1"));
-			Applicant.setWorkHistory2(r.getString("Work_History_2"));
-			Applicant.setWorkHistory3(r.getString("Work_History_3"));
-			Applicant.setWorkHistory4(r.getString("Work_History_4"));
 			Applicant.setEmail(r.getString("E_Mail"));
 			Applicant.setAge(r.getInt("Age"));
 			Applicant.setDateOfBirth(r.getString("Date_Of_Birth"));
 			Applicant.setJobName(r.getString("Job_Name"));
 			
+			Applicant.setStageInTheProcess(r.getString("Stage_In_Process"));
+			Applicant.setApplicantType(r.getString("Applicant_Type"));
 			
-			MacApplicantDAO Object  = new MacApplicantDAO();
+			Applicant.setApplicantStatus("New");
+			
+			
 						
 			Object.update(Applicant);
 			

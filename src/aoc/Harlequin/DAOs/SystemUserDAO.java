@@ -42,6 +42,17 @@ public class SystemUserDAO extends HarlequinDAO
 	}
 	
 	
+	public void delete(Object entity) 
+	{
+		  Session hibernateSession = this.getSession(); 
+		  
+		  HibernateUtil.beginTransaction();
+		        hibernateSession.delete(entity);
+		        hibernateSession.flush();
+		  HibernateUtil.commitTransaction();
+	}
+  
+	
 	public List<SystemUser> CheckUserPassword(String Username, String Password)
 	{
 		Session session = this.getSession();

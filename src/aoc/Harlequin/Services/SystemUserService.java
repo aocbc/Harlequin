@@ -13,6 +13,7 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import aoc.Harlequin.DAOs.ClientDAO;
 import aoc.Harlequin.DAOs.MacApplicantDAO;
 import aoc.Harlequin.DAOs.SystemUserDAO;
 import aoc.Harlequin.OBJs.MacApplicants;
@@ -22,7 +23,25 @@ import aoc.Harlequin.OBJs.SystemUser;
 
 
 @Path("User")
-public class SystemUserService {
+public class SystemUserService 
+{
+
+	@Path("/DeleteUser/{Id}")
+	@GET
+	@Produces("text/plain")
+	public String Delete( @PathParam("Id") int Id) throws Exception
+	{
+		
+		
+		SystemUserDAO Object  = new SystemUserDAO();
+		
+		Object.delete(Object.getUserInfoById(Id));
+	    
+		return "Successful";
+	}
+	
+	
+	
 	
 	@Path("/GetUserInfo")
 	@GET
@@ -209,6 +228,8 @@ public class SystemUserService {
 			
 	}
 	
+	
+	 
 	@Path("/UpdateUserInfo")
 	@POST
 	@Consumes(MediaType.APPLICATION_JSON)
