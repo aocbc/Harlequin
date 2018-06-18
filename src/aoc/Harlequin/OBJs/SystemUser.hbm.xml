@@ -18,16 +18,16 @@
             <column name="Surname" length="250" />
         </property>
         <property name="EMail" type="string">
-            <column name="E_Mail" length="13" />
+            <column name="E_Mail" length="250" />
         </property>
         <property name="cellNumber" type="string">
-            <column name="Cell_Number" length="13" />
+            <column name="Cell_Number" length="10" />
         </property>
         <property name="tellNumber" type="string">
             <column name="Tell_Number" length="13" />
         </property>
         <property name="userPassword" type="string">
-            <column name="User_Password" length="13" />
+            <column name="User_Password" length="50" />
         </property>
          <property name="authorizationLevel" type="string">
             <column name="Authorization_Level" length="20" />
