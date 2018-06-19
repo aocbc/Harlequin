@@ -66,13 +66,16 @@ public class ClientService {
 		
 		JSONObject test = new JSONObject(jsonTextObject);
 		
+		System.out.println("CLIENT ID:"+jsonTextObject);
 		
-		SystemClient Client  = t.getClientInfoById(Integer.parseInt(test.getString("idSystem_User")));
+		
+		SystemClient Client  = t.getClientInfoById(test.getInt("idClient"));
 				
 		
 		Client.setClientName(test.getString("Client_Name"));
 		Client.setClientEMail(test.getString("Client_E_Mail"));
 		Client.setClientContactNumber(test.getString("Client_Contact_Number"));
+		Client.setClientContactName(test.getString("Client_Contact_Name"));
 		Client.setClientAddress1(test.getString("Client_Address_1"));
 		Client.setClientAddress1(test.getString("Client_Address_2"));
 		Client.setClientAddress1(test.getString("Client_Address_3"));
@@ -81,7 +84,6 @@ public class ClientService {
 		Client.setClientAddress1(test.getString("Client_Comments"));
 		
 		t.update(Client);
-		
 		
 		
 		

@@ -229,8 +229,17 @@ public class PracticalDrivingAssessmentService {
 		List<MacApplicants> Applicants = Object1.GetApplicantsByApplicantId(r.getString("Id_Number"));
 		if(Applicants.size()>0)
 		{
-			
-			Applicants.get(0).setPracticalDriversTestComplete(r.getString("PracticalDriversTestComplete"));
+			if(r.getString("PracticalDriversTestComplete").equals("Yes") )
+			{
+				Applicants.get(0).setPracticalDriversTestComplete(r.getString("PracticalDriversTestComplete"));
+				Applicants.get(0).setStageInTheProcess("Client Interview");
+			}
+			else if(r.getString("PracticalDriversTestComplete").equals("No"))
+			{
+
+				Applicants.get(0).setPracticalDriversTestComplete(r.getString("PracticalDriversTestComplete"));
+				Applicants.get(0).setStageInTheProcess("Practical Drivers Test");
+			}
 			Object1.update(Applicants.get(0));
 			
 			

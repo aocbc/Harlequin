@@ -168,7 +168,7 @@ public class JobService {
 		JSONObject test = new JSONObject(jsonTextObject);
 		System.out.println("Applicant Update"+test.toString());
 		
-		SystemJob Job  = t.getJobInfoById(Integer.parseInt(test.getString("idMac_Applicants")));
+		SystemJob Job  = t.getJobInfoById(test.getInt("Job_Id"));
 		
 		
 		
@@ -188,7 +188,7 @@ public class JobService {
 		
 		
 		
-		return "";
+		return "Successful";
 	}
 	
 

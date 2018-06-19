@@ -23,8 +23,7 @@ public class ClientDAO extends HarlequinDAO {
 		
 		SystemClient clients = session.get(SystemClient.class, id);
 		
-		session.clear(); // ADDED 170302
-		session.flush();
+		
 		session.close();
 	   
 		

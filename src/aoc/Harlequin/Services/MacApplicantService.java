@@ -465,6 +465,7 @@ public class MacApplicantService {
 			jsonObject.put("Applicant_Status", Applicants.get(i).getApplicantStatus());
 			jsonObject.put("Stage_In_Process", Applicants.get(i).getStageInTheProcess());
 			jsonObject.put("Nationality", Applicants.get(i).getNationality());
+			jsonObject.put("Job_Name", Applicants.get(i).getJobName());
 			JsonArray.put(jsonObject);
 		}
 		
@@ -497,6 +498,7 @@ public class MacApplicantService {
 			
 			jsonObject.put("idMac_Applicants", Applicants.get(i).getIdMacApplicants());
 			jsonObject.put("Name", Applicants.get(i).getName());
+			jsonObject.put("Job_Name", Applicants.get(i).getJobName());
 			jsonObject.put("Surname", Applicants.get(i).getSurname());
 			jsonObject.put("RSA_Citizen", Applicants.get(i).getRsaCitizen());
 			jsonObject.put("Id_Number", Applicants.get(i).getIdNumber());
@@ -571,6 +573,7 @@ public class MacApplicantService {
 			
 			jsonObject.put("idMac_Applicants", Applicants.get(i).getIdMacApplicants());
 			jsonObject.put("Name", Applicants.get(i).getName());
+			jsonObject.put("Job_Name", Applicants.get(i).getJobName());
 			jsonObject.put("Surname", Applicants.get(i).getSurname());
 			jsonObject.put("RSA_Citizen", Applicants.get(i).getRsaCitizen());
 			jsonObject.put("Id_Number", Applicants.get(i).getIdNumber());
@@ -645,6 +648,7 @@ public class MacApplicantService {
 			
 			jsonObject.put("idMac_Applicants", Applicants.get(i).getIdMacApplicants());
 			jsonObject.put("Name", Applicants.get(i).getName());
+			jsonObject.put("Job_Name", Applicants.get(i).getJobName());
 			jsonObject.put("Surname", Applicants.get(i).getSurname());
 			jsonObject.put("RSA_Citizen", Applicants.get(i).getRsaCitizen());
 			jsonObject.put("Id_Number", Applicants.get(i).getIdNumber());
@@ -711,7 +715,7 @@ public class MacApplicantService {
 		
 		MacApplicantDAO Object  = new MacApplicantDAO();
 		
-		List<MacApplicants> Applicants = Object.GetApplicantsReferenceComplete();
+		List<MacApplicants> Applicants = Object.GetApplicantsDriversComplete();
 		
 		JSONArray JsonArray = new JSONArray();
 		
@@ -722,6 +726,7 @@ public class MacApplicantService {
 			jsonObject.put("idMac_Applicants", Applicants.get(i).getIdMacApplicants());
 			jsonObject.put("Name", Applicants.get(i).getName());
 			jsonObject.put("Surname", Applicants.get(i).getSurname());
+			jsonObject.put("Job_Name", Applicants.get(i).getJobName());
 			jsonObject.put("RSA_Citizen", Applicants.get(i).getRsaCitizen());
 			jsonObject.put("Id_Number", Applicants.get(i).getIdNumber());
 			jsonObject.put("Passport_Number", Applicants.get(i).getPassportNumber());
