@@ -16,6 +16,7 @@ import org.json.JSONObject;
 import aoc.Harlequin.DAOs.ClientDAO;
 import aoc.Harlequin.DAOs.ClientInterviewDAO;
 import aoc.Harlequin.DAOs.JobDAO;
+import aoc.Harlequin.DAOs.MacApplicantDAO;
 import aoc.Harlequin.DAOs.MacInterviewDAO;
 import aoc.Harlequin.DAOs.SystemUserDAO;
 import aoc.Harlequin.OBJs.ClientInterviews;
@@ -215,6 +216,25 @@ public class ClientInterviewService {
 		Object.AddInterviewInformation(r.getString("Id_Number"),r.getString("Job_Name"),r.getString("idMac_Applicants"), r.getString("Client_Name"), r.getString("Applicant_Name"), r.getString("Applicant_Surname"), r.getString("Interview_questions_Passed"), r.getString("Applicant_Presentable"), r.getString("Applicant_Attitude"), r.getString("Interview_Comments"), r.getString("Client_Interview_Complete"));
 		
 		
+		MacApplicantDAO Applicant = new MacApplicantDAO();
+		
+		List<MacApplicants> x = Applicant.GetApplicantsByApplicantId(r.getString("Id_Number"));
+		if(x.size()>0)
+		{
+			
+			if(r.getString("Client_Interview_Complete").equals("Yes"))
+			{
+				x.get(0).setClientInterviewComplete(r.getString("Client_Interview_Complete"));
+				x.get(0).setStageInTheProcess("Reference Checks");
+			}
+			else if(r.getString("Client_Interview_Complete").equals("No"))
+			{
+				x.get(0).setClientInterviewComplete(r.getString("Client_Interview_Complete"));
+				x.get(0).setStageInTheProcess("Client Interview");
+			}
+			
+			Applicant.update(x.get(0));
+		}
 		
 		
 		return "Sucessful";	

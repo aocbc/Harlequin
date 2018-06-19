@@ -307,6 +307,21 @@ public class MacApplicantDAO extends HarlequinDAO {
 		return Applicant;
 	}
 	
+
+	public List<MacApplicants> GetApplicantsByApplicantIdCell(String IdNumber,String Cell_Number)
+	{
+		Session session = this.getSession();
+		HibernateUtil.beginTransaction();
+		
+		Query query = session.createQuery("from MacApplicants Where Id_Number = '"+IdNumber+"' OR Cell_Number = '"+Cell_Number.trim()+"'");
+		List<MacApplicants> Applicant = query.list();
+		
+		session.clear(); // ADDED 170302
+		session.flush();
+		session.close();
+		return Applicant;
+	}
+	
 	
 	public List<MacApplicants> GetApplicantByidMac_Applicants(String idMac_Applicants)
 	{
