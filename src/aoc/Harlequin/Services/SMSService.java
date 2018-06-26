@@ -1,5 +1,6 @@
 package aoc.Harlequin.Services;
 
+import java.net.URLEncoder;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
@@ -22,6 +23,7 @@ import aoc.Harlequin.DAOs.SmsHistoryDAO;
 import aoc.Harlequin.OBJs.ApplicantSmsHistory;
 import aoc.Harlequin.OBJs.PracticalDriversAssessment;
 import aoc.Harlequin.message.SMSSender;
+import aoc.Harlequin.message.VodaSms;
 
 
 @Path("SMS")
@@ -138,7 +140,7 @@ public class SMSService
 		
 		JSONObject SMSMessage = new JSONObject( Message.get(0).toString());
 		
-		
+		VodaSms x = new VodaSms();
 		for (int i = 0; i < TotalApplicants.length(); i++) 
 		{
 			
@@ -154,9 +156,21 @@ public class SMSService
 			
 			
 			/////Sending the sms using bulk sms
-    		SMSSender sms = new SMSSender(cell_Number,SMSMessage.getString("Message").toString());
-     	    sms.send();
+    		//SMSSender sms = new SMSSender(cell_Number,SMSMessage.getString("Message").toString());
+     	    //sms.send();
 		    
+			
+			try 
+		    {
+				System.out.println(x.SendHttpRequest("https://xml2sms.gsm.co.za/send/?username=maclabour&password=th3unis1&number="+cell_Number+"&message="+ URLEncoder.encode(SMSMessage.getString("Message").toString(), "UTF-8") +"&ems=1"));
+			} catch (Exception e) 
+		    {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			
+			
+			
 		    MacApplicantDAO Object  = new MacApplicantDAO();
 		    
 		    
