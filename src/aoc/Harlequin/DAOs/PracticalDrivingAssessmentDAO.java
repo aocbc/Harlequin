@@ -144,7 +144,7 @@ public class PracticalDrivingAssessmentDAO extends HarlequinDAO {
 		
 		
 		
-		Query query = session.createQuery("from PracticalDriversAssessment Where idMac_Applicants='"+idMac_Applicants+"' And Client_Name='"+Client_Name+"'");
+		Query query = session.createQuery("from PracticalDriversAssessment Where idMac_Applicants='"+idMac_Applicants.trim()+"' And Client_Name='"+Client_Name.trim()+"'");
 		List<PracticalDriversAssessment> Assesment = query.list();
 		
 		session.clear(); // ADDED 170302

@@ -157,7 +157,7 @@ public class PracticalDrivingAssessmentService {
 			JSONObject jsonObject = new JSONObject();
 			
 			
-			if(jsonObject.length()>0)
+			if(Assessments.size()>0)
 			{
 				int i = 0;
 				
