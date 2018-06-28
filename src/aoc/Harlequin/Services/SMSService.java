@@ -9,6 +9,7 @@ import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
+import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
@@ -81,7 +82,34 @@ public class SMSService
 		return JsonArray.toString();
 	}
 	
-	
+	@Path("/DeleteGroup/{GroupCode}")
+	@GET
+	@Produces("text/plain")
+	public String GETdelete( @PathParam("GroupCode") String GroupCode) throws Exception
+	{
+		
+		SmsHistoryDAO Object  = new SmsHistoryDAO();
+		
+		
+		
+		
+		List SmsGroups = Object.ReadGroupHistory(GroupCode);
+		
+		
+		for(int i = 0; i < SmsGroups.size();i++)
+		{
+			Object.delete(SmsGroups.get(i));
+		}
+		
+		
+		
+		
+		
+		
+		//System.out.println(JsonArray.toString());
+	    
+		return "Deleted";
+	}
 	
 	@Path("/GetAllGroups")
 	@GET

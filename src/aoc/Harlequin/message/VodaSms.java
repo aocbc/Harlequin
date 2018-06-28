@@ -36,7 +36,7 @@ public class VodaSms {
 		}
 	*/
 	
-	public static String SendHttpRequest(String urlToRead) throws Exception 
+	public String SendHttpRequest(String urlToRead) throws Exception 
 	{
 	      StringBuilder result = new StringBuilder();
 	      URL url = new URL(urlToRead);

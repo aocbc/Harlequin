@@ -92,7 +92,15 @@ public class SmsHistoryDAO extends HarlequinDAO
 		
 	}
 	
-	
+	public void delete(Object entity) 
+	{
+		  Session hibernateSession = this.getSession(); 
+		  
+		  HibernateUtil.beginTransaction();
+		        hibernateSession.delete(entity);
+		        hibernateSession.flush();
+		  HibernateUtil.commitTransaction();
+	}
 	
 	public List<ApplicantSmsHistory> ReadSMSGroups()
 	{
