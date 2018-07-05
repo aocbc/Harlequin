@@ -9,13 +9,17 @@ import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
+import org.apache.commons.lang3.StringEscapeUtils;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
 
-import aoc.Harlequin.DAOs.JobDAO;
 
+
+
+
+import aoc.Harlequin.DAOs.JobDAO;
 import aoc.Harlequin.OBJs.SystemJob;
 
 
@@ -24,6 +28,7 @@ import aoc.Harlequin.OBJs.SystemJob;
 @Path("Job")
 public class JobService {
 	
+	@SuppressWarnings("deprecation")
 	@Path("/GetJobInfo/{Id}")
 	@GET
 	@Produces("text/plain")
@@ -40,7 +45,7 @@ public class JobService {
 		jsonObject.put("Job_Code", Job.getJobCode());
 		jsonObject.put("Job_Client_Name", Job.getJobClientName());
 		jsonObject.put("Job_Details", Job.getJobDetails());		
-		jsonObject.put("Job_Comments", Job.getJobComments());
+		jsonObject.put("Job_Comments", StringEscapeUtils.escapeJava(Job.getJobComments().toString()));
 		jsonObject.put("Job_Type", Job.getJobType());
 		
 		
@@ -63,6 +68,7 @@ public class JobService {
 		return "Successful";
 	}
 	
+	@SuppressWarnings("deprecation")
 	@Path("/GetAllJobs")
 	@GET
 	@Produces("text/plain")
@@ -83,7 +89,7 @@ public class JobService {
 			jsonObject.put("Job_Code", Jobs.get(i).getJobCode());
 			jsonObject.put("Job_Client_Name", Jobs.get(i).getJobClientName());
 			jsonObject.put("Job_Details", Jobs.get(i).getJobDetails());		
-			jsonObject.put("Job_Comments", Jobs.get(i).getJobComments());
+			jsonObject.put("Job_Comments", StringEscapeUtils.escapeJava(Jobs.get(i).getJobComments().toString()));
 			jsonObject.put("Job_Type", Jobs.get(i).getJobType());
 			
 			
@@ -100,6 +106,7 @@ public class JobService {
 		return JsonArray.toString();
 	}
 	
+	@SuppressWarnings("deprecation")
 	@Path("/GetLastJob")
 	@GET
 	@Produces("text/plain")
@@ -120,7 +127,7 @@ public class JobService {
 			jsonObject.put("Job_Code", Jobs.get(i).getJobCode());
 			jsonObject.put("Job_Client_Name", Jobs.get(i).getJobClientName());
 			jsonObject.put("Job_Details", Jobs.get(i).getJobDetails());		
-			jsonObject.put("Job_Comments", Jobs.get(i).getJobComments());
+			jsonObject.put("Job_Comments", StringEscapeUtils.escapeJava(Jobs.get(i).getJobComments().toString()));
 			jsonObject.put("Job_Type", Jobs.get(i).getJobType());
 			
 			
