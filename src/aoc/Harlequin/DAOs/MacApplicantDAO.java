@@ -528,5 +528,26 @@ public class MacApplicantDAO extends HarlequinDAO {
 		
 		
 	}
+	
+	
+	public List<MacApplicants> ReadAllApplicantsSmsConsole()
+	{
+		Session session = this.getSession();
+		HibernateUtil.beginTransaction();
+		
+		
+		
+		Query query = session.createQuery("from MacApplicants WHERE Sms_Account_Active = 'Yes' ");
+		List<MacApplicants> Applicant = query.list();
+		
+		session.clear(); // ADDED 170302
+		session.flush();
+		session.close();
+		
+		return Applicant;
+		
+		
+		
+	}
 
 }

@@ -173,7 +173,9 @@
         </property>
         
         
-        
+        <property name="smsAccountActive" type="string">
+            <column name="Sms_Account_Active" length="3" />
+        </property>
         
              
     </class>

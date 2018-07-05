@@ -52,10 +52,27 @@ public class ClientInterviewDAO extends HarlequinDAO {
 	}
 	
   
-	
+	public void delete(Object entity) 
+	{
+		  Session hibernateSession = this.getSession(); 
+		  
+		  HibernateUtil.beginTransaction();
+		  hibernateSession.delete(entity);
+		  hibernateSession.flush();
+		  HibernateUtil.commitTransaction();
+		  
+	}
 	
 	public void AddInterviewInformation( String Id_number,String Job_Name,String idMac_Applicants, String Client_Name, String Applicant_Name,  String Applicant_Surname, String Interview_questions_Passed, String Applicant_Presentable,  String Applicant_Attitude, String Interview_Comments,String Client_Interview_Complete )
 	{
+		////////////////////////////////////////////////////////////////////////////////////////
+		List<ClientInterviews> OldInterview = GetInterviewByInfo(Id_number, idMac_Applicants, Job_Name);
+		if(OldInterview.size() > 0)
+		{
+			delete(OldInterview.get(0));
+		}
+		
+		//////////////////////////////////////////////////////////////////////////////////////
 		
 		Session session = HibernateUtil.getSessionFactory().openSession();
 		

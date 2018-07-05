@@ -60,6 +60,9 @@ public class MacApplicants implements java.io.Serializable {
 	private String referenceChecksComplete;
 	private String referenceChecksComments;
 	
+	
+	private String smsAccountActive;
+	
 	public MacApplicants() {
 	}
 
@@ -73,7 +76,8 @@ public class MacApplicants implements java.io.Serializable {
 			String practicalDriversTestComments,String clientInterviewComplete, String clientInterviewComments,
 			String maritalStatus, String dependants, String homeLanguage,String referenceChecksComments,String referenceChecksComplete,
 			String workHistory1, String workHistory2, String workHistory3,String jobName,
-			String workHistory4, String email, String passportNumber,String expiryDateOfPassport, String city, String tax_No,String country,int age,String dateOfBirth,String lastSmsDate, String stageInTheProcess, String applicantStatus,String smsGroup,int smsGroupCount,String applicantType,String nationality) {
+			String workHistory4, String email, String passportNumber,String expiryDateOfPassport, String city, String tax_No,String country,int age,String dateOfBirth,String lastSmsDate, String stageInTheProcess, String applicantStatus,String smsGroup,int smsGroupCount,String applicantType,String nationality, String smsAccountActive) 
+	{
 		this.name = name;
 		this.surname = surname;
 		this.rsaCitizen = rsaCitizen;
@@ -121,6 +125,7 @@ public class MacApplicants implements java.io.Serializable {
 		this.clientInterviewComplete = clientInterviewComplete; 
 		this.referenceChecksComments = referenceChecksComments;
 		this.referenceChecksComplete = referenceChecksComplete;
+		this.smsAccountActive = smsAccountActive;
 	}
 
 	public Integer getIdMacApplicants() {
@@ -587,5 +592,17 @@ public class MacApplicants implements java.io.Serializable {
 	{
 		this.referenceChecksComplete = referenceChecksComplete;
 	}
+	
+	
+	public void setSmsAccountActive(String smsAccountActive) 
+	{
+		this.smsAccountActive = smsAccountActive;
+	}
+	
+	public String getSmsAccountActive() 
+	{
+		return this.smsAccountActive;
+	}
+	
 
 }
