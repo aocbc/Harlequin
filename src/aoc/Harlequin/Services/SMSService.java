@@ -212,7 +212,7 @@ public class SMSService
 		    {
 		    	SmsGroupCount = SmsGroupCount + 1;
 		    	
-		    	SmsGroup = Applicants.getString("Sms_Group").toString() + "," + SmsGroup ;
+		    	SmsGroup = Applicants.getString("Sms_Group").toString() + " ," + SmsGroup ;
 		    	
 		    	//Updating the Applicants Last Sms Date and Sms Group Code			
 				Object.UpdateAppplicantLastSmsDateById(Applicants.getInt("idMac_Applicants"),SmsGroup,SmsGroupCount);
