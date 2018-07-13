@@ -251,7 +251,7 @@ public class MacApplicantDAO extends HarlequinDAO {
 		
 		
 		
-		Query query = session.createQuery("from MacApplicants Where Job_Name <> 'NA'");
+		Query query = session.createQuery("from MacApplicants Where Job_Name <> 'NA' AND Job_Name <> 'None'");
 		List<MacApplicants> Applicant = query.list();
 		
 		session.clear(); // ADDED 170302
@@ -402,6 +402,8 @@ public class MacApplicantDAO extends HarlequinDAO {
 		Applicant.setReferenceChecksComments("N/A");
 		Applicant.setReferenceChecksComplete("Yes");
 		
+		Applicant.setSmsAccountActive("Yes");
+		
 		session.save(Applicant);
 				
 		session.getTransaction().commit();
@@ -469,8 +471,24 @@ public class MacApplicantDAO extends HarlequinDAO {
 		Applicant.setClientInterviewComplete("No");
 		Applicant.setReferenceChecksComments("N/A");
 		Applicant.setReferenceChecksComplete("Yes");
+		Applicant.setSmsGroup("None");
+		Applicant.setSmsGroupCount(3);
 		
 		
+		if(rsaCitizen == "Yes")
+		{
+			Applicant.setNationality("SA");
+			
+		}
+		else
+		{
+			Applicant.setNationality("N/A");
+		}
+		
+		
+		
+		
+		Applicant.setSmsAccountActive("Yes");
 		
 		
 		session.save(Applicant);
