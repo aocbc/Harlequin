@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 13 Jul 2018 2:39:07 PM by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping>
+    <class name="aoc.Harlequin.OBJs.BlockedNumberList" table="BlockedNumberList" catalog="Harlequin">
+        <id name="idBlockedNumberList" type="java.lang.Integer">
+            <column name="idBlockedNumberList" />
+            <generator class="identity" />
+        </id>
+        <property name="cellNumber" type="string">
+            <column name="CellNumber" length="10" not-null="true" />
+        </property>
+        <property name="dateBlocked" type="string" >
+            <column name="Date_Blocked" length="10"  />
+        </property>
+    </class>
+</hibernate-mapping>

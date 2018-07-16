@@ -23,5 +23,6 @@
          <mapping resource="aoc/Harlequin/OBJs/ClientInterviews.hbm.xml" />
          <mapping resource="aoc/Harlequin/OBJs/ApplicantMacInterview.hbm.xml" />
          <mapping resource="aoc/Harlequin/OBJs/ApplicantSmsHistory.hbm.xml" />
+         <mapping resource="aoc/Harlequin/OBJs/BlockedNumberList.hbm.xml" />
     </session-factory>
 </hibernate-configuration>
