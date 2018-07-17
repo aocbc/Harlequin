@@ -28,6 +28,47 @@ import aoc.Harlequin.OBJs.SystemJob;
 @Path("Job")
 public class JobService {
 	
+	
+	
+	@SuppressWarnings("deprecation")
+	@Path("/GetJobInfoByName/{Job_Name}")
+	@GET
+	@Produces("text/plain")
+	public String GETJobByName( @PathParam("Job_Name") String Job_Name) throws Exception
+	{
+		
+		JobDAO Object  = new JobDAO();
+		List<SystemJob> Jobs  = Object.GetJobInfoByJobName(Job_Name);
+		
+        JSONArray JsonArray = new JSONArray();
+		
+		for(int i = 0; i < Jobs.size();i++)
+		{
+			JSONObject jsonObject = new JSONObject();
+			jsonObject.put("Job_Id", Jobs.get(i).getJobId());
+			jsonObject.put("Job_Name", Jobs.get(i).getJobName());
+			jsonObject.put("Job_Code", Jobs.get(i).getJobCode());
+			jsonObject.put("Job_Client_Name", Jobs.get(i).getJobClientName());
+			jsonObject.put("Job_Details", Jobs.get(i).getJobDetails());		
+			jsonObject.put("Job_Comments", StringEscapeUtils.escapeJava(Jobs.get(i).getJobComments().toString()));
+			jsonObject.put("Job_Type", Jobs.get(i).getJobType());
+			
+			
+			JsonArray.put(jsonObject);
+		
+		}
+		
+		
+		
+		
+	    
+		return JsonArray.toString();
+	}
+	
+	
+	
+	
+	
 	@SuppressWarnings("deprecation")
 	@Path("/GetJobInfo/{Id}")
 	@GET
@@ -54,6 +95,8 @@ public class JobService {
 	    
 		return jsonObject.toString();
 	}
+	
+	
 	
 	@Path("/DeleteJob/{Id}")
 	@GET
@@ -106,6 +149,32 @@ public class JobService {
 		return JsonArray.toString();
 	}
 	
+	
+	
+	@Path("/SaveAssignedJobInfo")
+	@POST
+	@Consumes(MediaType.APPLICATION_JSON)
+	@Produces("text/plain")
+	public  String createAssignedJobInfo(String jsonTextObject) throws JSONException
+	{
+
+		System.out.println(jsonTextObject);
+		JSONObject r = new JSONObject(jsonTextObject);	
+		
+		//System.out.println("WRITING TO DATABASE:"+ r.getString("Client_Name"));			
+		JobDAO Object  = new JobDAO();
+		
+		
+		
+		
+		
+		Object.AddJobInformation(r.getString("Job_Name"), r.getString("Job_Code"), r.getString("Job_Client_Name"), r.getString("Job_Details"), r.getString("Job_Comments"), r.getString("Job_Type"));
+		
+		return "Sucessful";	
+	}
+	
+	
+	
 	@SuppressWarnings("deprecation")
 	@Path("/GetLastJob")
 	@GET
@@ -151,19 +220,16 @@ public class JobService {
 	@Produces("text/plain")
 	public  String create(String jsonTextObject) throws JSONException
 	{
-		
 		System.out.println(jsonTextObject);
 		JSONObject r = new JSONObject(jsonTextObject);	
-	
 		
-		//System.out.println("WRITING TO DATABASE:"+ r.getString("Client_Name"));
-			
+		//System.out.println("WRITING TO DATABASE:"+ r.getString("Client_Name"));			
 		JobDAO Object  = new JobDAO();
 		Object.AddJobInformation(r.getString("Job_Name"), r.getString("Job_Code"), r.getString("Job_Client_Name"), r.getString("Job_Details"), r.getString("Job_Comments"), r.getString("Job_Type"));
-		return "Sucessful";	
 		
-			
+		return "Sucessful";	
 	}
+	
 	
 	@Path("/UpdateJobInfo")
 	@POST

@@ -14,6 +14,7 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import aoc.Harlequin.DAOs.AssignedJobApplicantDAO;
 import aoc.Harlequin.DAOs.ClientDAO;
 import aoc.Harlequin.DAOs.MacApplicantDAO;
 import aoc.Harlequin.DAOs.SystemUserDAO;
@@ -1132,6 +1133,93 @@ public class MacApplicantService {
 	}
 	
 	
+	@Path("/SaveApplicantInfoApplicantSite")
+	@POST
+	@Consumes(MediaType.APPLICATION_JSON)
+	@Produces("text/plain")
+	public  String assignApplicant(String jsonTextObject) throws JSONException
+	{
+		
+	
+		JSONObject r = new JSONObject(jsonTextObject);	
+	
+		
+		
+		String Flag = r.getString("Flag");
+	
+		MacApplicantDAO Object  = new MacApplicantDAO();
+		
+		AssignedJobApplicantDAO AssignJob = new AssignedJobApplicantDAO();
+		
+		
+		
+		
+		if(Flag.equals("0")|| Flag.equals("2"))
+		{
+			System.out.println("WRITING TO DATABASE:"+ r.getString("Name"));
+			
+			
+			Object.AddAppicantInformation(r.getString("Name"), r.getString("Surname"), r.getString("RSA_Citizen"), r.getString("Id_Number"),r.getString("Passport_Number"),r.getString("Expiry_Date_Of_Passport"), r.getString("Work_Permit_Validity"), r.getString("Cell_Number"), r.getString("Telephone_Number"), r.getString("Job_Type"), r.getString("Date_First_issue_license"), r.getString("License_Code"), r.getString("Expiry_Date_Of_License"), r.getString("PDP_Expiry_Date"), r.getString("Gender"), r.getString("Physical_Address_1"), r.getString("Physical_Address_2"), r.getString("Physical_Address_3"), r.getString("Physical_Address_4"),r.getString("City"),r.getString("Country"),r.getString("Tax_No"), r.getString("Marital_Status"), r.getString("Dependants"), r.getString("Home_Language"), r.getString("Work_History_1"), r.getString("Work_History_2"), r.getString("Work_History_3"), r.getString("Work_History_1"), r.getString("E_Mail"), r.getInt("Age"), r.getString("Date_Of_Birth"), r.getString("Last_Sms_Date"), r.getString("Job_Name"), r.getString("Stage_In_Process"),"New",r.getString("Applicant_Type"),r.getString("Sms_Group"),r.getString("Nationality"));
+			AssignJob.AddAssignedJob(r.getString("Job_Name"), r.getString("Id_Number"));
+			
+		}
+		else if(Flag.equals("1"))
+		{
+			
+			MacApplicants Applicant = Object.getClientApplicantoById(r.getInt("idMac_Applicants"));
+			Applicant.setName(r.getString("Name"));
+			Applicant.setSurname(r.getString("Surname"));
+			Applicant.setRsaCitizen(r.getString("RSA_Citizen"));
+			Applicant.setIdNumber(r.getString("Id_Number"));
+			Applicant.setPassportNumber(r.getString("Passport_Number"));
+			Applicant.setExpiryDateOfPassport(r.getString("Expiry_Date_Of_Passport"));
+			Applicant.setWorkPermitValidity(r.getString("Work_Permit_Validity"));
+			Applicant.setCellNumber(r.getString("Cell_Number"));
+			Applicant.setTelephoneNumber(r.getString("Telephone_Number"));
+			Applicant.setJobType(r.getString("Job_Type"));
+			Applicant.setDateFirstIssueLicense(r.getString("Date_First_issue_license"));
+			Applicant.setLicenseCode(r.getString("License_Code"));
+			Applicant.setExpiryDateOfLicense(r.getString("Expiry_Date_Of_License"));
+			Applicant.setPdpExpiryDate(r.getString("PDP_Expiry_Date"));
+			Applicant.setGender(r.getString("Gender"));
+			Applicant.setPhysicalAddress1(r.getString("Physical_Address_1"));
+			Applicant.setPhysicalAddress2(r.getString("Physical_Address_2"));
+			Applicant.setPhysicalAddress3(r.getString("Physical_Address_3"));
+			Applicant.setPhysicalAddress4(r.getString("Physical_Address_4"));
+			Applicant.setCity(r.getString("City"));
+			Applicant.setCountry(r.getString("Country"));
+			Applicant.setTaxNo(r.getString("Tax_No"));
+			Applicant.setMaritalStatus(r.getString("Marital_Status"));
+			Applicant.setDependants(r.getString("Dependants"));
+			Applicant.setHomeLanguage(r.getString("Home_Language"));
+			Applicant.setEmail(r.getString("E_Mail"));
+			Applicant.setAge(r.getInt("Age"));
+			Applicant.setDateOfBirth(r.getString("Date_Of_Birth"));
+			Applicant.setJobName(r.getString("Job_Name"));
+			
+			Applicant.setStageInTheProcess(r.getString("Stage_In_Process"));
+			Applicant.setApplicantType(r.getString("Applicant_Type"));
+			
+			Applicant.setApplicantStatus("New");
+			Applicant.setSmsAccountActive("Yes");
+			
+			
+						
+			Object.update(Applicant);
+			
+			
+			AssignJob.AddAssignedJob(r.getString("Job_Name"), r.getString("Id_Number"));
+			
+			
+		}
+		
+		
+		return "Sucessful";	
+		
+			
+	}
+	
+	
 	
 	@Path("/SavePermanentInfo")
 	@POST
@@ -1139,8 +1227,6 @@ public class MacApplicantService {
 	@Produces("text/plain")
 	public  String createPermanent(String jsonTextObject) throws JSONException
 	{
-		
-	
 		JSONObject r = new JSONObject(jsonTextObject);	
 
 		System.out.println("WRITING TO DATABASE:"+ r.getString("Name"));
@@ -1148,14 +1234,7 @@ public class MacApplicantService {
 		MacApplicantDAO Object  = new MacApplicantDAO();
 		Object.AddPermanentInformation(r.getString("Name"), r.getString("Surname"), r.getString("RSA_Citizen"), r.getString("Id_Number"),r.getString("Passport_Number"),r.getString("Expiry_Date_Of_Passport"), r.getString("Work_Permit_Validity"), r.getString("Cell_Number"), r.getString("Telephone_Number"), r.getString("Job_Type"), r.getString("Date_First_issue_license"), r.getString("License_Code"), r.getString("Expiry_Date_Of_License"), r.getString("PDP_Expiry_Date"), r.getString("Gender"), r.getString("Physical_Address_1"), r.getString("Physical_Address_2"), r.getString("Physical_Address_3"), r.getString("Physical_Address_4"),r.getString("City"),r.getString("Country"),r.getString("Tax_No"), r.getString("Marital_Status"), r.getString("Dependants"), r.getString("Home_Language"), r.getString("Work_History_1"), r.getString("Work_History_2"), r.getString("Work_History_3"), r.getString("Work_History_1"), r.getString("E_Mail"), r.getInt("Age"), r.getString("Date_Of_Birth"), r.getString("Last_Sms_Date"), r.getString("Job_Name"), "Applicant recently added On Harlequin.","New", r.getString("Applicant_Type"));
 			
-			
-		
-		
-		
-		
-		return "Sucessful";	
-		
-			
+		return "Sucessful";		
 	}
 	
 	

@@ -7,7 +7,7 @@ package aoc.Harlequin.OBJs;
  */
 public class AssignedJobApplicantList implements java.io.Serializable {
 
-	private int idnewTable;
+	private int idAssignedJobApplicantList;
 	private int jobId;
 	private String jobName;
 	private String jobCode;
@@ -15,24 +15,29 @@ public class AssignedJobApplicantList implements java.io.Serializable {
 	private String jobDetails;
 	private String jobComments;
 	private String jobType;
-	private Integer idMacApplicants;
+	private String idMacApplicants;
 	private String name;
 	private String surname;
 
+	private String stageInProcess;
+	private String stageStatus;
+
+	
+	
 	public AssignedJobApplicantList() {
 	}
 
-	public AssignedJobApplicantList(int idnewTable, int jobId, String jobName) {
-		this.idnewTable = idnewTable;
+	public AssignedJobApplicantList(int idAssignedJobApplicantList, int jobId, String jobName) {
+		this.idAssignedJobApplicantList = idAssignedJobApplicantList;
 		this.jobId = jobId;
 		this.jobName = jobName;
 	}
 
-	public AssignedJobApplicantList(int idnewTable, int jobId, String jobName,
+	public AssignedJobApplicantList(int idAssignedJobApplicantList, int jobId, String jobName,
 			String jobCode, String jobClientName, String jobDetails,
-			String jobComments, String jobType, Integer idMacApplicants,
-			String name, String surname) {
-		this.idnewTable = idnewTable;
+			String jobComments, String jobType, String idMacApplicants,
+			String name, String surname, String stageInProcess, String stageStatus ) {
+		this.idAssignedJobApplicantList = idAssignedJobApplicantList;
 		this.jobId = jobId;
 		this.jobName = jobName;
 		this.jobCode = jobCode;
@@ -43,14 +48,16 @@ public class AssignedJobApplicantList implements java.io.Serializable {
 		this.idMacApplicants = idMacApplicants;
 		this.name = name;
 		this.surname = surname;
+		this.stageInProcess = stageInProcess;
+		this.stageStatus = stageStatus;
 	}
 
-	public int getIdnewTable() {
-		return this.idnewTable;
+	public int getIdAssignedJobApplicantList() {
+		return this.idAssignedJobApplicantList;
 	}
 
-	public void setIdnewTable(int idnewTable) {
-		this.idnewTable = idnewTable;
+	public void setIdAssignedJobApplicantList(int idAssignedJobApplicantList) {
+		this.idAssignedJobApplicantList = idAssignedJobApplicantList;
 	}
 
 	public int getJobId() {
@@ -109,11 +116,11 @@ public class AssignedJobApplicantList implements java.io.Serializable {
 		this.jobType = jobType;
 	}
 
-	public Integer getIdMacApplicants() {
+	public String getIdMacApplicants() {
 		return this.idMacApplicants;
 	}
 
-	public void setIdMacApplicants(Integer idMacApplicants) {
+	public void setIdMacApplicants(String idMacApplicants) {
 		this.idMacApplicants = idMacApplicants;
 	}
 
@@ -133,4 +140,22 @@ public class AssignedJobApplicantList implements java.io.Serializable {
 		this.surname = surname;
 	}
 
+	
+	public String getStageInProcess() {
+		return this.stageInProcess;
+	}
+
+	public void setStageInProcess(String stageInProcess) {
+		this.stageInProcess = stageInProcess;
+	}
+	
+	
+	public String getStageStatus() {
+		return this.stageStatus;
+	}
+
+	public void setStageStatus(String stageStatus) {
+		this.stageStatus = stageStatus;
+	}
+	
 }

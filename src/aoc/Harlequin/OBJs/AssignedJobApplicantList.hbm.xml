@@ -4,8 +4,8 @@
 <!-- Generated 13 Jul 2018 2:39:07 PM by Hibernate Tools 3.4.0.CR1 -->
 <hibernate-mapping>
     <class name="aoc.Harlequin.OBJs.AssignedJobApplicantList" table="AssignedJobApplicantList" catalog="Harlequin">
-        <id name="idnewTable" type="int">
-            <column name="idnew_table" />
+        <id name="idAssignedJobApplicantList" type="int">
+            <column name="idAssignedJobApplicantList" />
             <generator class="assigned" />
         </id>
         <property name="jobId" type="int">
@@ -29,7 +29,7 @@
         <property name="jobType" type="string">
             <column name="Job_Type" length="45" />
         </property>
-        <property name="idMacApplicants" type="java.lang.Integer">
+        <property name="idMacApplicants" type="string">
             <column name="idMac_Applicants" />
         </property>
         <property name="name" type="string">
@@ -37,6 +37,13 @@
         </property>
         <property name="surname" type="string">
             <column name="Surname" length="50" />
+        </property>
+        
+        <property name="stageInProcess" type="string">
+            <column name="Stage_In_Process" length="45" />
+        </property>
+        <property name="stageStatus" type="string">
+            <column name="Stage_Status" length="45" />
         </property>
     </class>
 </hibernate-mapping>

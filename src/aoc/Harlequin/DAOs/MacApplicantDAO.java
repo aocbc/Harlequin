@@ -254,6 +254,7 @@ public class MacApplicantDAO extends HarlequinDAO {
 		Query query = session.createQuery("from MacApplicants Where Job_Name <> 'NA' AND Job_Name <> 'None'");
 		List<MacApplicants> Applicant = query.list();
 		
+		
 		session.clear(); // ADDED 170302
 		session.flush();
 		session.close();
@@ -338,7 +339,6 @@ public class MacApplicantDAO extends HarlequinDAO {
 		session.close();
 		return Applicant;
 	}
-	
 	
 	
 	public void AddAppicantInformation(String name, String surname, String rsaCitizen,String Id_Number,String Passport_Number,String expiryDateOfPassport, String workPermitValidity, String cellNumber,String telephoneNumber, String jobType,String dateFirstIssueLicense, String licenseCode,String expiryDateOfLicense, String pdpExpiryDate, String gender, String physicalAddress1, String physicalAddress2,String physicalAddress3, String physicalAddress4, String City,String Country, String Tax_No, String maritalStatus, String dependants, String homeLanguage, String workHistory1, String workHistory2, String workHistory3, String workHistory4,String email,int Age,String DateOfBirth,String lastSmsDate, String Job_Name,String Stage_In_Process, String Applicant_Status, String Applicant_Type,String Sms_Group,String Nationality)
