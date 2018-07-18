@@ -251,7 +251,8 @@ public class MacApplicantDAO extends HarlequinDAO {
 		
 		
 		
-		Query query = session.createQuery("from MacApplicants Where Job_Name <> 'NA' AND Job_Name <> 'None'");
+		//Query query = session.createQuery("from MacApplicants Where Job_Name <> 'NA' AND Job_Name <> 'None'");
+		Query query = session.createQuery("from MacApplicants as x where exists(from AssignedJobApplicantList as y WHERE x.idNumber = y.idMacApplicants )");
 		List<MacApplicants> Applicant = query.list();
 		
 		
@@ -260,6 +261,9 @@ public class MacApplicantDAO extends HarlequinDAO {
 		session.close();
 		return Applicant;
 	}
+	
+	
+	
 	
 	public List<MacApplicants> GetApplicantsDriversComplete()
 	{
