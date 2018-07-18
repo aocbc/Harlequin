@@ -54,6 +54,23 @@ public class AssignedJobListService
 
 			jsonObject.put("Stage_Status", AssignedJobs.get(i).getStageStatus());
 			
+			jsonObject.put("Mac_Labour_Interview_Comments", AssignedJobs.get(i).getMacLabourInterviewComments());
+			jsonObject.put("Mac_Lab_Interview_Complete", AssignedJobs.get(i).getMacLabInterviewComplete());
+			
+			jsonObject.put("Practical_Drivers_Test_Complete", AssignedJobs.get(i).getPracticalDriversTestComplete());
+			jsonObject.put("Practical_Drivers_Test_Comments", AssignedJobs.get(i).getPracticalDriversTestComments());
+			
+			jsonObject.put("Client_Interview_Complete", AssignedJobs.get(i).getClientInterviewComplete());
+			jsonObject.put("Client_Interview_Comments", AssignedJobs.get(i).getClientInterviewComments());
+			
+			jsonObject.put("Reference_Checks_Complete", AssignedJobs.get(i).getReferenceChecksComplete());
+			jsonObject.put("Reference_Checks_Comments", AssignedJobs.get(i).getReferenceChecksComments());
+			
+			
+			
+			
+			
+			
 			JsonArray.put(jsonObject);
 		}
 

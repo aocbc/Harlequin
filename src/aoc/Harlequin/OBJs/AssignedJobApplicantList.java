@@ -21,6 +21,22 @@ public class AssignedJobApplicantList implements java.io.Serializable {
 
 	private String stageInProcess;
 	private String stageStatus;
+	
+	private String macLabourInterviewComments;
+	private String macLabInterviewComplete;
+	
+	private String practicalDriversTestComplete;
+	private String practicalDriversTestComments;
+	
+	private String clientInterviewComplete;
+	private String clientInterviewComments;
+	
+	private String referenceChecksComplete;
+	private String referenceChecksComments;
+	
+	
+	
+	
 
 	
 	
@@ -33,10 +49,10 @@ public class AssignedJobApplicantList implements java.io.Serializable {
 		this.jobName = jobName;
 	}
 
-	public AssignedJobApplicantList(int idAssignedJobApplicantList, int jobId, String jobName,
-			String jobCode, String jobClientName, String jobDetails,
+	public AssignedJobApplicantList(int idAssignedJobApplicantList, int jobId, String jobName, String jobCode, String jobClientName, String jobDetails,
 			String jobComments, String jobType, String idMacApplicants,
-			String name, String surname, String stageInProcess, String stageStatus ) {
+			String name, String surname, String stageInProcess, String stageStatus,String macLabourInterviewComments, String macLabInterviewComplete, String practicalDriversTestComplete, String practicalDriversTestComments,String clientInterviewComplete, String clientInterviewComments, String referenceChecksComplete, String referenceChecksComments  ) 
+	{
 		this.idAssignedJobApplicantList = idAssignedJobApplicantList;
 		this.jobId = jobId;
 		this.jobName = jobName;
@@ -50,15 +66,128 @@ public class AssignedJobApplicantList implements java.io.Serializable {
 		this.surname = surname;
 		this.stageInProcess = stageInProcess;
 		this.stageStatus = stageStatus;
+		
+		this.macLabourInterviewComments = macLabourInterviewComments;
+		this.macLabInterviewComplete = macLabInterviewComplete;
+		
+		this.clientInterviewComplete = clientInterviewComplete;
+		this.clientInterviewComments = clientInterviewComplete;
+		
+		this.referenceChecksComplete = referenceChecksComplete;
+		this.referenceChecksComments = referenceChecksComments;
+		
+		this.practicalDriversTestComments = practicalDriversTestComments;
+		this.practicalDriversTestComplete = practicalDriversTestComplete;
+		
+		
 	}
 
-	public int getIdAssignedJobApplicantList() {
+
+	
+	
+	////////////////////////////////////////////////////////////////////////////
+		
+	public String getClientInterviewComments() 
+	{
+		return this.clientInterviewComments;
+	}
+	
+	public void setClientInterviewComments(String clientInterviewComments) 
+	{
+		this.clientInterviewComments = clientInterviewComments;
+	}
+
+	////////////////////////////////////////////////////////////////////////////
+		
+	public String getPracticalDriversTestComplete() 
+	{
+		return this.practicalDriversTestComplete;
+	}
+	
+	public void setPracticalDriversTestComplete(String practicalDriversTestComplete) 
+	{
+		this.practicalDriversTestComplete = practicalDriversTestComplete;
+	}
+	
+	/////////////////////////////////////////////////////////////////////////////
+	public String getPracticalDriversTestComments() 
+	{
+		return this.practicalDriversTestComments;
+	}
+	
+	public void setPracticalDriversTestComments(String practicalDriversTestComments) 
+	{
+		this.practicalDriversTestComments = practicalDriversTestComments;
+	}
+	
+	
+	////////////////////////////////////////////////////////////////////////////
+	
+	public String getReferenceChecksComplete() 
+	{
+		return this.referenceChecksComplete;
+	}
+
+	public void setReferenceChecksComplete(String referenceChecksComplete) 
+	{
+		this.referenceChecksComplete = referenceChecksComplete;
+	}
+	////////////////////////////////////////////////////////////////////////////
+		
+	public String getReferenceChecksComments() 
+	{
+		return this.referenceChecksComments;
+	}
+	
+	public void setReferenceChecksComments(String referenceChecksComments) 
+	{
+		this.referenceChecksComments = referenceChecksComments;
+	}
+	//////////////////////////////////////////////////////////////////////////
+	public String getClientInterviewComplete() 
+	{
+		return this.clientInterviewComplete;
+	}
+
+	public void setClientInterviewComplete(String clientInterviewComplete) 
+	{
+		this.clientInterviewComplete = clientInterviewComplete;
+	}
+	
+	////////////////////////////////////////////////////////////////////////////
+	public String getMacLabInterviewComplete() 
+	{
+		return this.macLabInterviewComplete;
+	}
+
+	public void setMacLabInterviewComplete(String macLabInterviewComplete) 
+	{
+		this.macLabInterviewComplete = macLabInterviewComplete;
+	}
+	/////////////////////////////////////////////////////////////////////////////
+	public String getMacLabourInterviewComments() 
+	{
+		return this.macLabourInterviewComments;
+	}
+
+	public void setMacLabourInterviewComments(String macLabourInterviewComments) 
+	{
+		this.macLabourInterviewComments = macLabourInterviewComments;
+	}
+	///////////////////////////////////////////////////////////////////////////
+	
+	
+	public int getIdAssignedJobApplicantList() 
+	{
 		return this.idAssignedJobApplicantList;
 	}
 
-	public void setIdAssignedJobApplicantList(int idAssignedJobApplicantList) {
+	public void setIdAssignedJobApplicantList(int idAssignedJobApplicantList) 
+	{
 		this.idAssignedJobApplicantList = idAssignedJobApplicantList;
 	}
+	
+	
 
 	public int getJobId() {
 		return this.jobId;
