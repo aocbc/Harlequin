@@ -669,7 +669,9 @@ public class MacApplicantService {
 		return JsonArray.toString();
 	}
 	
-	
+	//////////////////////////////////////////////////////////////////////////////
+	///////////OLD
+	//////////////////////////////////////////////////////////////////////////////
 	@Path("/GetAllApplicantsPracticalDrivers")
 	@GET
 	@Produces("text/plain")
@@ -744,6 +746,8 @@ public class MacApplicantService {
 	    
 		return JsonArray.toString();
 	}
+	////////////////////////////////////////////////////
+	////////////////////////////////////////////////////
 	
 	
 	@Path("/GetAllApplicantsSiteComplete")
@@ -1290,10 +1294,12 @@ public class MacApplicantService {
 		JSONObject r = new JSONObject(jsonTextObject);	
 	
 		
-		System.out.println("WRITING TO DATABASE:"+ r.getString("Name"));
+	
 			
 		MacApplicantDAO Object  = new MacApplicantDAO();
-		Object.UpdateAppplicantMacLabourById(Integer.parseInt(r.getString("idMac_Applicants")), r.getString("Formal_Interview_Complete"), r.getString("Interview_Comments"));
+		//Object.UpdateAppplicantMacLabourById(Integer.parseInt(r.getString("idMac_Applicants")), r.getString("Formal_Interview_Complete"), r.getString("Interview_Comments"));
+		Object.UpdateAppplicantMacLabourByIdJobName(Integer.parseInt(r.getString("idMac_Applicants")), r.getString("Formal_Interview_Complete"), r.getString("Interview_Comments"), r.getString("Job_Name"),r.getString("Id_Number"));
+		
 		return "Sucessful";	
 		
 			

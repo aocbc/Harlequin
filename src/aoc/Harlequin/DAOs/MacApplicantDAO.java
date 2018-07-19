@@ -164,6 +164,58 @@ public class MacApplicantDAO extends HarlequinDAO {
 	}
 	
 	
+	public MacApplicants UpdateAppplicantMacLabourByIdJobName(int id, String InterviewComplete, String InterviewComments,String JobName, String Id_Number)
+	{
+		
+		
+		
+		Session session = this.getSession();
+
+		HibernateUtil.beginTransaction();
+	   
+		MacApplicants applicants = session.get(MacApplicants.class, id);
+		
+		applicants.setmacLabInterviewComplete(InterviewComplete);
+		
+		
+		AssignedJobApplicantDAO assigned_job = new AssignedJobApplicantDAO();
+		
+		if(InterviewComplete.equals("Yes"))
+		{
+			applicants.setStageInTheProcess("Practical Drivers Test");
+			assigned_job.UpdateAssignedJobStatusMacLabourInterview(Id_Number, JobName, "Practical Drivers Test", "beginning",InterviewComplete,InterviewComments);
+		}
+		else if(InterviewComplete.equals("No"))
+		{
+			applicants.setStageInTheProcess("MacLabour Interview");
+			assigned_job.UpdateAssignedJobStatusMacLabourInterview(Id_Number, JobName, "MacLabour Interview", "pending",InterviewComplete,InterviewComments);
+		}
+		
+		
+		applicants.setmacLabourInterviewComments(InterviewComments);
+		
+		
+		if(InterviewComments.equals(""))
+		{
+			applicants.setmacLabourInterviewComments("N/A");
+			
+		}
+		
+		
+		
+		/*session.clear(); 
+		session.flush();
+		session.close();*/
+		
+		update(applicants);
+		
+		return applicants;
+	
+	}
+	
+	
+	
+	
 	public MacApplicants UpdateAppplicantDriversById(int id, String TestComplete, String TestComments)
 	{
 		Session session = this.getSession();
@@ -174,6 +226,9 @@ public class MacApplicantDAO extends HarlequinDAO {
 		
 		applicants.setPracticalDriversTestComments(TestComments);
 		applicants.setPracticalDriversTestComplete(TestComplete);
+		
+		
+
 		
 		if(TestComplete.equals("Yes"))
 		{
@@ -195,6 +250,63 @@ public class MacApplicantDAO extends HarlequinDAO {
 		return applicants;
 	
 	}
+	
+	
+	/////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+	///NEw Function
+	///////////////////////////////////////////////////////////////////////////////////////////////////////////
+	/////
+	
+	
+	
+	public MacApplicants UpdateAppplicantDriversByIdJobNAme(int id, String TestComplete, String TestComments, String Id_Number, String JobName)
+	{
+		
+		
+		
+		Session session = this.getSession();
+
+		HibernateUtil.beginTransaction();
+	   
+		MacApplicants applicants = session.get(MacApplicants.class, id);
+		
+		applicants.setPracticalDriversTestComments(TestComments);
+		applicants.setPracticalDriversTestComplete(TestComplete);
+		
+		AssignedJobApplicantDAO assigned_job = new AssignedJobApplicantDAO();
+		
+		
+		if(TestComplete.equals("Yes"))
+		{
+			applicants.setStageInTheProcess("Client Interview");
+			assigned_job.UpdateAssignedJobStatusPracticalDrivers(Id_Number, JobName, "Client Interview", "beginning", TestComplete, TestComments);
+		}
+		else if(TestComplete.equals("No"))
+		{
+			applicants.setStageInTheProcess("Practical Drivers Test");
+			assigned_job.UpdateAssignedJobStatusPracticalDrivers(Id_Number, JobName, "Practical Drivers Test", "pending", TestComplete, TestComments);
+		}
+		
+		
+		
+		/*session.clear(); 
+		session.flush();
+		session.close();*/
+		
+		update(applicants);
+		
+		return applicants;
+	
+	}
+	
+	
+	
+	
+	////////////////////////////////////////////////////////////////////////////////////////////////////////////
+	///////////////////////////////////////////////////////////////////////////////////////////////////////////
+	
+	
+	
 	
 	
 	public void update(Object entity) 

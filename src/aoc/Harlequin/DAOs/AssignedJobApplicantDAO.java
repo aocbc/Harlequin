@@ -37,6 +37,85 @@ public class AssignedJobApplicantDAO extends HarlequinDAO
 		
 	}
 	
+	
+	public void UpdateAssignedJobStatusMacLabourInterview(String Id_Number, String JobName,String StageInProcess, String StageStatus, String Complete, String Comments)
+	{
+		List<AssignedJobApplicantList> AssignedJobs = ReadAllAssignedJobsInfoByIDAndJobName(Id_Number,  JobName);
+		
+		System.out.println("Size Assigned Jobs:"+ AssignedJobs.size() );
+		
+		if(AssignedJobs.size()> 0)
+		{
+			AssignedJobApplicantList Assigned_Job = AssignedJobs.get(0);
+			
+			Assigned_Job.setStageInProcess(StageInProcess);
+			Assigned_Job.setStageStatus(StageStatus);
+			Assigned_Job.setMacLabInterviewComplete(Complete);
+			Assigned_Job.setMacLabourInterviewComments(Comments);
+			
+			Session hibernateSession = this.getSession();
+			hibernateSession.update(Assigned_Job);
+		     
+	        HibernateUtil.commitTransaction();
+		
+					
+		}
+		
+	}
+	////////////////////////////////////
+	///NEW Function 19-07-2018
+	//////////////////////////////////
+	public void UpdateAssignedJobStatusPracticalDrivers(String Id_Number, String JobName,String StageInProcess, String StageStatus, String Complete, String Comments)
+	{
+		List<AssignedJobApplicantList> AssignedJobs = ReadAllAssignedJobsInfoByIDAndJobName(Id_Number,  JobName);
+		
+		System.out.println("Size Assigned Jobs:"+ AssignedJobs.size() );
+		
+		if(AssignedJobs.size()> 0)
+		{
+			AssignedJobApplicantList Assigned_Job = AssignedJobs.get(0);
+			
+			Assigned_Job.setStageInProcess(StageInProcess);
+			Assigned_Job.setStageStatus(StageStatus);
+			Assigned_Job.setPracticalDriversTestComments(Comments);
+			Assigned_Job.setPracticalDriversTestComplete(Complete);
+			
+			Session hibernateSession = this.getSession();
+			hibernateSession.update(Assigned_Job);
+		     
+	        HibernateUtil.commitTransaction();
+		
+					
+		}
+		
+	}
+	////////////////////////////////////////////////////////////////////////////////
+	///////////////////////////////////////////////////////////////////////////////
+	
+	public List<AssignedJobApplicantList> ReadAllAssignedJobsInfoByIDAndJobName(String Id_Number, String JobName)
+	{
+		Session session = this.getSession();
+		//HibernateUtil.beginTransaction();
+		
+		Query query = session.createQuery("from AssignedJobApplicantList WHERE idMac_Applicants = '"+Id_Number+"' AND Job_Name = '"+JobName+"'");
+		List<AssignedJobApplicantList> AssignedJobs = query.list();
+		
+		//AssignedJobApplicantList x = AssignedJobs.get(0);
+		
+		
+		/*session.clear(); // ADDED 170302
+		session.flush();
+		session.close();*/
+		
+		
+		
+		return AssignedJobs;
+		
+		
+		
+	}
+	
+	
 	public List<AssignedJobApplicantList> ReadAllAssignedJobsInfoByID(String Id_Number)
 	{
 		Session session = this.getSession();
@@ -57,6 +136,45 @@ public class AssignedJobApplicantDAO extends HarlequinDAO
 		
 		
 	}
+	
+	
+	///////////////////////////////////////////////////////////////////////////////
+	//Function to delete an object from the database
+	//////////////////////////////////////////////////////////////////////////////
+	public void delete(Object entity) 
+	{
+		  Session hibernateSession = this.getSession(); 
+		  
+		  HibernateUtil.beginTransaction();
+		        hibernateSession.delete(entity);
+		        hibernateSession.flush();
+		  HibernateUtil.commitTransaction();
+		  
+		    hibernateSession.clear(); // ADDED 170302
+	        hibernateSession.flush();
+	        hibernateSession.close();
+    }
+	
+	///////////////////////////////////////////////////////////////////////////////
+	//Function to Update a database object from the database
+	//////////////////////////////////////////////////////////////////////////////
+
+	public void update(Object entity) 
+	{  
+		  Session hibernateSession = this.getSession();
+		  HibernateUtil.beginTransaction();
+		        //hibernateSession.save(entity);        
+		        //hibernateSession.saveOrUpdate(entity);
+		        hibernateSession.update(entity);
+		     
+		        HibernateUtil.commitTransaction();
+		      
+		        
+		        
+		 
+	}
+	
+	
 	
 	
 	@SuppressWarnings("deprecation")

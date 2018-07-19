@@ -58,7 +58,9 @@ public class JobDAO extends HarlequinDAO {
 		
 		
 	}
-	
+	///////////////////////////////////////////////////////////////////////////////
+	//Function to delete an object from the database
+	//////////////////////////////////////////////////////////////////////////////
 	public void delete(Object entity) {
 		  Session hibernateSession = this.getSession(); 
 		  
@@ -72,7 +74,9 @@ public class JobDAO extends HarlequinDAO {
 	        hibernateSession.close();
 		 }
 	
-
+	///////////////////////////////////////////////////////////////////////////////
+	//Function to Update a database object from the database
+	//////////////////////////////////////////////////////////////////////////////
 	public void update(Object entity) 
 	{  
 		  Session hibernateSession = this.getSession();
