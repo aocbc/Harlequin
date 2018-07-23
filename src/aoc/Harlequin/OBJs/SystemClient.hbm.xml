@@ -38,5 +38,9 @@
         <property name="clientComments" type="string">
             <column name="Client_Comments" length="500" />
         </property>
+        
+        <property name="lastUsedDate" type="string">
+            <column name="Last_Used_Date" length="19" />
+        </property>
     </class>
 </hibernate-mapping>

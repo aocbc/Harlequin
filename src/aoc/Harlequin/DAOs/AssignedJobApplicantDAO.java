@@ -67,7 +67,7 @@ public class AssignedJobApplicantDAO extends HarlequinDAO
 	//////////////////////////////////
 	public void UpdateAssignedJobStatusPracticalDrivers(String Id_Number, String JobName,String StageInProcess, String StageStatus, String Complete, String Comments)
 	{
-		List<AssignedJobApplicantList> AssignedJobs = ReadAllAssignedJobsInfoByIDAndJobName(Id_Number,  JobName);
+		List<AssignedJobApplicantList> AssignedJobs = ReadAllAssignedJobsInfoByIDAndJobNamePracticalDrivers(Id_Number,  JobName);
 		
 		System.out.println("Size Assigned Jobs:"+ AssignedJobs.size() );
 		
@@ -103,10 +103,34 @@ public class AssignedJobApplicantDAO extends HarlequinDAO
 		//AssignedJobApplicantList x = AssignedJobs.get(0);
 		
 		
-		/*session.clear(); // ADDED 170302
+		/*session.clear(); 
 		session.flush();
 		session.close();*/
 		
+		
+		
+		return AssignedJobs;
+		
+		
+		
+	}
+	
+	
+	public List<AssignedJobApplicantList> ReadAllAssignedJobsInfoByIDAndJobNamePracticalDrivers(String Id_Number, String JobName)
+	{
+		Session session = this.getSession();
+		HibernateUtil.beginTransaction();
+		
+		Query query = session.createQuery("from AssignedJobApplicantList WHERE idMac_Applicants = '"+Id_Number+"' AND Job_Name = '"+JobName+"'");
+		List<AssignedJobApplicantList> AssignedJobs = query.list();
+		
+		//AssignedJobApplicantList x = AssignedJobs.get(0);
+		
+		
+		/*session.clear(); 
+		session.flush();
+		session.close();
+		*/
 		
 		
 		return AssignedJobs;
@@ -124,10 +148,10 @@ public class AssignedJobApplicantDAO extends HarlequinDAO
 		Query query = session.createQuery("from AssignedJobApplicantList WHERE idMac_Applicants = '"+Id_Number+"'");
 		List<AssignedJobApplicantList> AssignedJobs = query.list();
 		
-		//AssignedJobApplicantList x = AssignedJobs.get(0);
 		
 		
-		session.clear(); // ADDED 170302
+		
+		session.clear(); 
 		session.flush();
 		session.close();
 		
@@ -150,7 +174,7 @@ public class AssignedJobApplicantDAO extends HarlequinDAO
 		        hibernateSession.flush();
 		  HibernateUtil.commitTransaction();
 		  
-		    hibernateSession.clear(); // ADDED 170302
+		    hibernateSession.clear(); 
 	        hibernateSession.flush();
 	        hibernateSession.close();
     }

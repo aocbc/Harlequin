@@ -4,6 +4,9 @@
 package aoc.Harlequin.DAOs;
 
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 import org.hibernate.Session;
@@ -90,6 +93,8 @@ public class SystemUserDAO extends HarlequinDAO
 	
 	public void AddUserInformation(String User_Name,String name, String surname, String EMail, String tellNumber, String cellNumber, String userPassword, String authorizationLevel)
 	{
+		DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+		Date date = new Date();
 		
 		Session session = HibernateUtil.getSessionFactory().openSession();
 		
@@ -107,6 +112,9 @@ public class SystemUserDAO extends HarlequinDAO
 		user.setCellNumber(cellNumber);
 		user.setUserPassword(userPassword);
 		user.setAuthorizationLevel(authorizationLevel);
+		user.setLastUsedDate(dateFormat.format(date));
+		
+		
 		session.save(user);
 				
 		session.getTransaction().commit();

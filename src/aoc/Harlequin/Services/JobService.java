@@ -1,4 +1,7 @@
 package aoc.Harlequin.Services;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 import javax.ws.rs.Consumes;
@@ -13,6 +16,7 @@ import org.apache.commons.lang3.StringEscapeUtils;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+
 
 
 
@@ -52,6 +56,7 @@ public class JobService {
 			jsonObject.put("Job_Details", Jobs.get(i).getJobDetails());		
 			jsonObject.put("Job_Comments", StringEscapeUtils.escapeJava(Jobs.get(i).getJobComments().toString()));
 			jsonObject.put("Job_Type", Jobs.get(i).getJobType());
+			jsonObject.put("Last_Used_Date", Jobs.get(i).getLastUsedDate());
 			
 			
 			JsonArray.put(jsonObject);
@@ -88,6 +93,7 @@ public class JobService {
 		jsonObject.put("Job_Details", Job.getJobDetails());		
 		jsonObject.put("Job_Comments", StringEscapeUtils.escapeJava(Job.getJobComments().toString()));
 		jsonObject.put("Job_Type", Job.getJobType());
+		jsonObject.put("Last_Used_Date", Job.getLastUsedDate());
 		
 		
 		
@@ -134,6 +140,7 @@ public class JobService {
 			jsonObject.put("Job_Details", Jobs.get(i).getJobDetails());		
 			jsonObject.put("Job_Comments", StringEscapeUtils.escapeJava(Jobs.get(i).getJobComments().toString()));
 			jsonObject.put("Job_Type", Jobs.get(i).getJobType());
+			jsonObject.put("Last_Used_Date", Jobs.get(i).getLastUsedDate());
 			
 			
 			JsonArray.put(jsonObject);
@@ -198,6 +205,7 @@ public class JobService {
 			jsonObject.put("Job_Details", Jobs.get(i).getJobDetails());		
 			jsonObject.put("Job_Comments", StringEscapeUtils.escapeJava(Jobs.get(i).getJobComments().toString()));
 			jsonObject.put("Job_Type", Jobs.get(i).getJobType());
+			jsonObject.put("Last_Used_Date", Jobs.get(i).getJobType());
 			
 			
 			JsonArray.put(jsonObject);
@@ -237,6 +245,11 @@ public class JobService {
 	@Produces("text/plain")
 	public  String update(String jsonTextObject) throws JSONException
 	{
+		
+		
+		DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+		Date date = new Date();
+		
 		JobDAO t = new JobDAO();
 		JSONObject test = new JSONObject(jsonTextObject);
 		System.out.println("Applicant Update"+test.toString());
@@ -251,7 +264,7 @@ public class JobService {
 		Job.setJobDetails(test.getString("Job_Details"));
 		Job.setJobComments(test.getString("Job_Comments"));
 		Job.setJobType(test.getString("Job_Type"));
-	
+		Job.setLastUsedDate(dateFormat.format(date));
 		
 		
 		

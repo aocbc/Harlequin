@@ -1,6 +1,9 @@
 package aoc.Harlequin.Services;
 
 import java.math.BigDecimal;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 import javax.ws.rs.Consumes;
@@ -15,9 +18,11 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import aoc.Harlequin.DAOs.AssignedJobApplicantDAO;
 import aoc.Harlequin.DAOs.ClientDAO;
 import aoc.Harlequin.DAOs.MacApplicantDAO;
 import aoc.Harlequin.DAOs.PracticalDrivingAssessmentDAO;
+import aoc.Harlequin.OBJs.AssignedJobApplicantList;
 import aoc.Harlequin.OBJs.MacApplicants;
 import aoc.Harlequin.OBJs.PracticalDriversAssessment;
 import aoc.Harlequin.OBJs.SystemClient;
@@ -68,7 +73,7 @@ public class PracticalDrivingAssessmentService {
 		jsonObject.put("Comments", Assessment.getComments());
 		jsonObject.put("PDA_No", Assessment.getPdaNo());
 		
-		
+		jsonObject.put("Last_Used_Date", Assessment.getLastUsedDate());
 		
 		System.out.println(jsonObject.toString());
 	    
@@ -126,6 +131,8 @@ public class PracticalDrivingAssessmentService {
 			jsonObject.put("Retarder_DSC_HillMode", Assessments.get(i).getRetarderDscHillMode());
 			jsonObject.put("Comments", Assessments.get(i).getComments());
 			jsonObject.put("PDA_No",Assessments.get(i).getPdaNo());
+			jsonObject.put("Last_Used_Date",Assessments.get(i).getLastUsedDate());
+			
 			
 			JsonArray.put(jsonObject);
 		}
@@ -193,6 +200,11 @@ public class PracticalDrivingAssessmentService {
 				jsonObject.put("Retarder_DSC_HillMode", Assessments.get(i).getRetarderDscHillMode());
 				jsonObject.put("Comments", Assessments.get(i).getComments());
 				jsonObject.put("PDA_No",Assessments.get(i).getPdaNo());
+				jsonObject.put("PDA_No",Assessments.get(i).getLastUsedDate());
+				
+				jsonObject.put("Last_Used_Date",Assessments.get(i).getLastUsedDate());
+				
+				
 			}
 			
 			
@@ -214,6 +226,8 @@ public class PracticalDrivingAssessmentService {
 	@Produces("text/plain")
 	public  String create(String jsonTextObject) throws JSONException
 	{
+		DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+		Date date = new Date();
 		
 		System.out.println(jsonTextObject);
 		JSONObject r = new JSONObject(jsonTextObject);	
@@ -222,27 +236,41 @@ public class PracticalDrivingAssessmentService {
 		System.out.println("WRITING TO DATABASE:"+ r.getString("Client_Name"));
 			
 		PracticalDrivingAssessmentDAO Object  = new PracticalDrivingAssessmentDAO();
-		Object.AddAppicantInformation(r.getString("idMac_Applicants"), r.getString("Name"), r.getString("Surname"), r.getString("Id_Number"), r.getString("Client_Name"), r.getString("PDP_Expiry_Date"), r.getString("Vehicle_Used"), r.getString("Assessor_Name"), r.getString("Assessor_Surname"), "01", r.getString("Date"), r.getString("KM_End"), r.getString("KM_Start"), r.getString("Time_End"), r.getString("Time_Start"), r.getString("Weather"), r.getString("Route"), r.getString ("Total_Score"), r.getString("Starting_And_Stopping"), r.getString("General_Driving"), r.getString("Passing_Or_Overtaking"), r.getString("General_Road_Behavior"), r.getString("Observation_And_Anticipation"), r.getString("Approaching_Junctions_Turning_Exiting"), r.getString("Reversing"), r.getString("Clutch"), r.getString("Retarder_DSC_HillMode"), r.getString("Comments"), r.getString("PDA_No"), r.getString("License_Code"));
+		Object.AddAppicantInformation(r.getString("idMac_Applicants"), r.getString("Name"), r.getString("Surname"), r.getString("Id_Number"), r.getString("Client_Name"), r.getString("PDP_Expiry_Date"), r.getString("Vehicle_Used"), r.getString("Assessor_Name"), r.getString("Assessor_Surname"), "01", r.getString("Date"), r.getString("KM_End"), r.getString("KM_Start"), r.getString("Time_End"), r.getString("Time_Start"), r.getString("Weather"), r.getString("Route"), r.getString ("Total_Score"), r.getString("Starting_And_Stopping"), r.getString("General_Driving"), r.getString("Passing_Or_Overtaking"), r.getString("General_Road_Behavior"), r.getString("Observation_And_Anticipation"), r.getString("Approaching_Junctions_Turning_Exiting"), r.getString("Reversing"), r.getString("Clutch"), r.getString("Retarder_DSC_HillMode"), r.getString("Comments"), r.getString("PDA_No"), r.getString("License_Code"), r.getString("Job_Name"),r.getString("PracticalDriversTestComplete"));
 		
 		
-		
-		
+		/////////////////////////////////////////////////////////
+		AssignedJobApplicantDAO assignedjobdao = new AssignedJobApplicantDAO(); 
+		//AssignedJobApplicantList assignedjob = new AssignedJobApplicantList();
+		////////////////////////////////////////////////////////
 		
 		MacApplicantDAO Object1  = new MacApplicantDAO();
 		
+		
 		List<MacApplicants> Applicants = Object1.GetApplicantsByApplicantId(r.getString("Id_Number"));
+		System.out.println("HELLOWORLD:"+ Applicants.size()+", ID:"+r.getString("Id_Number")+", PC:"+r.getString("PracticalDriversTestComplete"));
+		
 		if(Applicants.size()>0)
 		{
+			
 			if(r.getString("PracticalDriversTestComplete").equals("Yes") )
 			{
 				Applicants.get(0).setPracticalDriversTestComplete(r.getString("PracticalDriversTestComplete"));
 				Applicants.get(0).setStageInTheProcess("Client Interview");
+				Applicants.get(0).setJobName(r.getString("Job_Name"));
+				Applicants.get(0).setLastUsedDate(dateFormat.format(date));
+				assignedjobdao.UpdateAssignedJobStatusPracticalDrivers(r.getString("Id_Number"), r.getString("Job_Name"), "Client Interview", "beginning", r.getString("PracticalDriversTestComplete"), ((r.getString("Comments").equals("")) ? "N/A" : r.getString("Comments"))); 
+				
 			}
 			else if(r.getString("PracticalDriversTestComplete").equals("No"))
 			{
 
 				Applicants.get(0).setPracticalDriversTestComplete(r.getString("PracticalDriversTestComplete"));
 				Applicants.get(0).setStageInTheProcess("Practical Drivers Test");
+				Applicants.get(0).setJobName(r.getString("Job_Name"));
+				Applicants.get(0).setLastUsedDate(dateFormat.format(date));
+				assignedjobdao.UpdateAssignedJobStatusPracticalDrivers(r.getString("Id_Number"), r.getString("Job_Name"), "Client Interview", "beginning", r.getString("PracticalDriversTestComplete"), ((r.getString("Comments").equals("")) ? "N/A" : r.getString("Comments"))); 
+				
 			}
 			Object1.update(Applicants.get(0));
 			

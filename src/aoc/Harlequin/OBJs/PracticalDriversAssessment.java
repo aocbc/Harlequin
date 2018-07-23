@@ -42,6 +42,10 @@ public class PracticalDriversAssessment implements java.io.Serializable {
 	private String licenseCode;
 	private String practicalDriversTestComplete;
 	private String practicalDriversTestComments;
+	
+	private String jobName;
+	
+	private String lastUsedDate;
 
 	public PracticalDriversAssessment() {
 	}
@@ -62,7 +66,7 @@ public class PracticalDriversAssessment implements java.io.Serializable {
 			BigDecimal observationAndAnticipation,
 			BigDecimal approachingJunctionsTurningExiting,
 			BigDecimal reversing, BigDecimal clutch,
-			BigDecimal retarderDscHillMode, String comments, Integer pdaNo,String licenseCode,String practicalDriversTestComplete,String practicalDriversTestComments) {
+			BigDecimal retarderDscHillMode, String comments, Integer pdaNo,String licenseCode,String practicalDriversTestComplete,String practicalDriversTestComments, String jobName, String lastUsedDate) {
 		this.idPracticalDriversAssessment = idPracticalDriversAssessment;
 		this.idMacApplicants = idMacApplicants;
 		this.name = name;
@@ -96,8 +100,34 @@ public class PracticalDriversAssessment implements java.io.Serializable {
 		this.licenseCode = licenseCode;
 		this.practicalDriversTestComplete = practicalDriversTestComplete;
 		this.practicalDriversTestComments = practicalDriversTestComments;
+		this.jobName = jobName;
+		this.lastUsedDate = lastUsedDate;
 	}
 
+	
+	
+	public String getLastUsedDate()
+	{
+		return this.lastUsedDate;
+	}
+
+	public void setLastUsedDate(String lastUsedDate) 
+	{
+		this.lastUsedDate = lastUsedDate;
+	}
+	
+	public String getjobName()
+	{
+		return this.jobName;
+	}
+
+	public void setjobName(String jobName) 
+	{
+		this.jobName = jobName;
+	}
+	
+	
+	
 	public int getIdPracticalDriversAssessment()
 	{
 		return this.idPracticalDriversAssessment;

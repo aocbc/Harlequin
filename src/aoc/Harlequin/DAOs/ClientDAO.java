@@ -1,5 +1,8 @@
 package aoc.Harlequin.DAOs;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 import org.hibernate.Session;
@@ -61,13 +64,11 @@ public class ClientDAO extends HarlequinDAO {
 	
 	public void AddClientInformation( String clientName, String clientEMail,String clientContactName, String clientContactNumber,	String clientAddress1, String clientAddress2,String clientAddress3, String clientAddress4,String clientVatNumber, String clientComments)
 	{
+		DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+		Date date = new Date();
 		
 		Session session = HibernateUtil.getSessionFactory().openSession();
-		
 		session.beginTransaction();
-		
-		
-		
 		SystemClient client = new SystemClient();
 		
 		client.setClientName(clientName);
@@ -80,6 +81,7 @@ public class ClientDAO extends HarlequinDAO {
 		client.setClientAddress4(clientAddress4);
 		client.setClientVatNumber(clientVatNumber);
 		client.setClientComments(clientComments);
+		client.setLastUsedDate(dateFormat.format(date));
 		
 		
 		

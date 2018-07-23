@@ -18,7 +18,8 @@ public class SystemJob implements java.io.Serializable {
 	private String jobDetails;
 	private String jobComments;
 	private String jobType;
-
+	private String lastUsedDate;
+	
 	public SystemJob() {
 	}
 
@@ -27,15 +28,24 @@ public class SystemJob implements java.io.Serializable {
 	}
 
 	public SystemJob(String jobName, String jobCode, String jobClientName,
-			String jobDetails, String jobComments, String jobtype) {
+			String jobDetails, String jobComments, String jobtype, String lastUsedDate) {
 		this.jobName = jobName;
 		this.jobCode = jobCode;
 		this.jobClientName = jobClientName;
 		this.jobDetails = jobDetails;
 		this.jobComments = jobComments;
 		this.jobType = jobtype;
+		this.lastUsedDate = lastUsedDate;
 	}
 
+	public String getLastUsedDate() {
+		return this.lastUsedDate;
+	}
+
+	public void setLastUsedDate(String lastUsedDate) {
+		this.lastUsedDate = lastUsedDate;
+	}
+	
 	public Integer getJobId() {
 		return this.jobId;
 	}

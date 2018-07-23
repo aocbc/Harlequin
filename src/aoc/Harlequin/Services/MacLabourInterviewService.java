@@ -61,6 +61,7 @@ public class MacLabourInterviewService {
 		jsonObject.put("Interview_comments", Interview.getInterviewComments());
 		jsonObject.put("Formal_Interview_Complete", Interview.getFormalInterviewComplete());
 		
+		jsonObject.put("Last_Used_Date", Interview.getLastUsedDate());
 		
 		System.out.println(jsonObject.toString());
 	    
@@ -104,6 +105,9 @@ public class MacLabourInterviewService {
 			jsonObject.put("Applicant_Atttitude", Interviews.get(i).getApplicantAtttitude());
 			jsonObject.put("Interview_comments", Interviews.get(i).getInterviewComments());
 			jsonObject.put("Formal_Interview_Complete", Interviews.get(i).getFormalInterviewComplete());
+			jsonObject.put("Last_Used_Date", Interviews.get(i).getLastUsedDate());
+			
+			
 			
 			JsonArray.put(jsonObject);
 		}
@@ -155,6 +159,7 @@ public class MacLabourInterviewService {
 			jsonObject.put("Applicant_Atttitude", Interview.get(i).getApplicantAtttitude());
 			jsonObject.put("Interview_comments", Interview.get(i).getInterviewComments());
 			jsonObject.put("Formal_Interview_Complete", Interview.get(i).getFormalInterviewComplete());
+			jsonObject.put("Last_Used_Date", Interview.get(i).getLastUsedDate());
 			
 			JsonArray.put(jsonObject);
 		}
@@ -209,6 +214,7 @@ public class MacLabourInterviewService {
 				jsonObject.put("Applicant_Atttitude", Interview.get(0).getApplicantAtttitude());
 				jsonObject.put("Interview_comments", Interview.get(0).getInterviewComments());
 				jsonObject.put("Formal_Interview_Complete", Interview.get(0).getFormalInterviewComplete());
+				jsonObject.put("Last_Used_Date", Interview.get(0).getLastUsedDate());
 			}
 			
 			

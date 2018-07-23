@@ -22,6 +22,8 @@ public class SystemClient implements java.io.Serializable {
 	private String clientAddress4;
 	private String clientVatNumber;
 	private String clientComments;
+	
+	private String lastUsedDate;
 
 	public SystemClient() 
 	{
@@ -36,7 +38,7 @@ public class SystemClient implements java.io.Serializable {
 		this.clientContactNumber = clientContactNumber;
 	}
 
-	public SystemClient(String clientName, String clientEMail,String clientContactName, String clientContactNumber,	String clientAddress1, String clientAddress2,String clientAddress3, String clientAddress4,String clientVatNumber, String clientComments) 
+	public SystemClient(String clientName, String clientEMail,String clientContactName, String clientContactNumber,	String clientAddress1, String clientAddress2,String clientAddress3, String clientAddress4,String clientVatNumber, String clientComments, String lastUsedDate) 
 	{
 		this.clientName = clientName;
 		this.clientEMail = clientEMail;
@@ -48,8 +50,21 @@ public class SystemClient implements java.io.Serializable {
 		this.clientAddress4 = clientAddress4;
 		this.clientVatNumber = clientVatNumber;
 		this.clientComments = clientComments;
+		this.lastUsedDate = lastUsedDate;
 	}
 
+
+	public String getLastUsedDate() 
+	{
+		return this.lastUsedDate;
+	}
+
+	public void setLastUsedDate(String lastUsedDate) 
+	{
+		this.lastUsedDate = lastUsedDate;
+	}
+	
+	
 	public Integer getIdClient() 
 	{
 		return this.idClient;

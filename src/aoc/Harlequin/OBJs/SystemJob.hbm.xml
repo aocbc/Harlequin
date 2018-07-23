@@ -26,5 +26,10 @@
         <property name="jobType" type="string">
             <column name="Job_Type" />
         </property>
+        
+        
+        <property name="lastUsedDate" type="string">
+            <column name="Last_Used_Date" />
+        </property>
     </class>
 </hibernate-mapping>

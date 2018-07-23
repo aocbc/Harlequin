@@ -1,5 +1,8 @@
 package aoc.Harlequin.DAOs;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 import org.hibernate.Session;
@@ -51,7 +54,8 @@ public class MacInterviewDAO extends HarlequinDAO {
 	
 	public void AddInterviewInformation( String idMac_Applicants, String Name,String Surname, String Id_Number,	String Client_Name, String Id_Verified,String Work_History_Verified,String Job_Name, String Drivers_License_Verified,String SAP_Check, String Criminal_Record, String Criminal_Record_comments, String Union_Member,String Union_Name, String Applicant_Passed_Interview, String Applicant_Presentable,String Applicant_Attitude, String Interview_Comments, String Formal_Interview_Complete)
 	{
-		
+		DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+		Date date = new Date();
 		///////////////////////////////////////////////////////////////////////////////////////////////////
 		List<MacLabourInterView> OldInterview = GetInterviewByInfo(Id_Number,idMac_Applicants,Job_Name);
 		if(OldInterview.size() > 0)
@@ -88,6 +92,8 @@ public class MacInterviewDAO extends HarlequinDAO {
 		Interview.setApplicantAtttitude(Applicant_Attitude);
 		Interview.setInterviewComments(Interview_Comments);
 		Interview.setFormalInterviewComplete(Formal_Interview_Complete);
+		
+		Interview.setLastUsedDate(dateFormat.format(date));
 		
 		
 		

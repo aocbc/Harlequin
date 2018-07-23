@@ -1,9 +1,13 @@
 package aoc.Harlequin.DAOs;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 import org.hibernate.Session;
 import org.hibernate.query.Query;
+
 
 
 
@@ -153,13 +157,11 @@ public class JobDAO extends HarlequinDAO {
 	
 	public void AddJobInformation( String jobName, String jobCode, String jobClientName,String jobDetails, String jobComments, String jobtype)
 	{
+		DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+		Date date = new Date();
 		
 		Session session = HibernateUtil.getSessionFactory().openSession();
-		
 		session.beginTransaction();
-		
-		
-		
 		SystemJob job = new SystemJob();
 		
 		job.setJobName(jobName);
@@ -168,6 +170,9 @@ public class JobDAO extends HarlequinDAO {
 		job.setJobDetails(jobDetails);
 		job.setJobComments(jobComments);
 		job.setJobType(jobtype);
+		job.setLastUsedDate(dateFormat.format(date));
+		
+		
 		
 		session.save(job);
 				

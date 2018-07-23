@@ -1,7 +1,10 @@
 package aoc.Harlequin.DAOs;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.util.Date;
 import java.util.List;
 
 import org.hibernate.Session;
@@ -124,6 +127,9 @@ public class MacApplicantDAO extends HarlequinDAO {
 	
 	public MacApplicants UpdateAppplicantMacLabourById(int id, String InterviewComplete, String InterviewComments)
 	{
+		
+		DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+		Date date = new Date();
 		Session session = this.getSession();
 
 		HibernateUtil.beginTransaction();
@@ -151,6 +157,7 @@ public class MacApplicantDAO extends HarlequinDAO {
 			
 		}
 		
+		applicants.setLastUsedDate(dateFormat.format(date));
 		
 		
 		session.clear(); 
@@ -167,14 +174,12 @@ public class MacApplicantDAO extends HarlequinDAO {
 	public MacApplicants UpdateAppplicantMacLabourByIdJobName(int id, String InterviewComplete, String InterviewComments,String JobName, String Id_Number)
 	{
 		
-		
+		DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+		Date date = new Date();
 		
 		Session session = this.getSession();
-
 		HibernateUtil.beginTransaction();
-	   
 		MacApplicants applicants = session.get(MacApplicants.class, id);
-		
 		applicants.setmacLabInterviewComplete(InterviewComplete);
 		
 		
@@ -183,12 +188,34 @@ public class MacApplicantDAO extends HarlequinDAO {
 		if(InterviewComplete.equals("Yes"))
 		{
 			applicants.setStageInTheProcess("Practical Drivers Test");
-			assigned_job.UpdateAssignedJobStatusMacLabourInterview(Id_Number, JobName, "Practical Drivers Test", "beginning",InterviewComplete,InterviewComments);
+			
+			if(InterviewComments.equals(""))
+			{
+				assigned_job.UpdateAssignedJobStatusMacLabourInterview(Id_Number, JobName, "Practical Drivers Test", "beginning",InterviewComplete,"N/A");
+				
+			}
+			else
+			{
+				assigned_job.UpdateAssignedJobStatusMacLabourInterview(Id_Number, JobName, "Practical Drivers Test", "beginning",InterviewComplete,InterviewComments);
+				
+			}
+			
+			
 		}
 		else if(InterviewComplete.equals("No"))
 		{
 			applicants.setStageInTheProcess("MacLabour Interview");
-			assigned_job.UpdateAssignedJobStatusMacLabourInterview(Id_Number, JobName, "MacLabour Interview", "pending",InterviewComplete,InterviewComments);
+			
+			if(InterviewComments.equals(""))
+			{
+				assigned_job.UpdateAssignedJobStatusMacLabourInterview(Id_Number, JobName, "MacLabour Interview", "pending",InterviewComplete,"N/A");
+			}
+			else
+			{
+				assigned_job.UpdateAssignedJobStatusMacLabourInterview(Id_Number, JobName, "MacLabour Interview", "pending",InterviewComplete,InterviewComments);
+				
+			}
+			
 		}
 		
 		
@@ -201,6 +228,7 @@ public class MacApplicantDAO extends HarlequinDAO {
 			
 		}
 		
+		applicants.setLastUsedDate(dateFormat.format(date));
 		
 		
 		/*session.clear(); 
@@ -218,10 +246,11 @@ public class MacApplicantDAO extends HarlequinDAO {
 	
 	public MacApplicants UpdateAppplicantDriversById(int id, String TestComplete, String TestComments)
 	{
+		DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+		Date date = new Date();
+		
 		Session session = this.getSession();
-
 		HibernateUtil.beginTransaction();
-	   
 		MacApplicants applicants = session.get(MacApplicants.class, id);
 		
 		applicants.setPracticalDriversTestComments(TestComments);
@@ -239,7 +268,7 @@ public class MacApplicantDAO extends HarlequinDAO {
 			applicants.setStageInTheProcess("Practical Drivers Test");
 		}
 		
-		
+		applicants.setLastUsedDate(dateFormat.format(date));
 		
 		session.clear(); 
 		session.flush();
@@ -253,7 +282,7 @@ public class MacApplicantDAO extends HarlequinDAO {
 	
 	
 	/////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-	///NEw Function
+	///New Function
 	///////////////////////////////////////////////////////////////////////////////////////////////////////////
 	/////
 	
@@ -262,12 +291,11 @@ public class MacApplicantDAO extends HarlequinDAO {
 	public MacApplicants UpdateAppplicantDriversByIdJobNAme(int id, String TestComplete, String TestComments, String Id_Number, String JobName)
 	{
 		
-		
+		DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+		Date date = new Date();
 		
 		Session session = this.getSession();
-
 		HibernateUtil.beginTransaction();
-	   
 		MacApplicants applicants = session.get(MacApplicants.class, id);
 		
 		applicants.setPracticalDriversTestComments(TestComments);
@@ -288,7 +316,7 @@ public class MacApplicantDAO extends HarlequinDAO {
 		}
 		
 		
-		
+		applicants.setLastUsedDate(dateFormat.format(date));
 		/*session.clear(); 
 		session.flush();
 		session.close();*/
@@ -355,7 +383,27 @@ public class MacApplicantDAO extends HarlequinDAO {
 		return Applicant;
 	}
 	
-	
+	//////////////////////////////////////////////////////////////////////////////
+	//////////////////////////NEW///////////////////////////////////////////////////
+	/////////////////////////////////////////////////////////////////////////////
+	public List<MacApplicants> GetApplicantsMacInterviewCompleteNew()
+	{
+		Session session = this.getSession();
+		HibernateUtil.beginTransaction();
+		
+		
+		
+		Query query = session.createQuery("from MacApplicants as x where exists(from AssignedJobApplicantList as y WHERE ((x.idNumber = y.idMacApplicants) AND (y.macLabInterviewComplete = 'Yes')))");
+		List<MacApplicants> Applicant = query.list();
+		
+		session.clear(); 
+		session.flush();
+		session.close();
+		return Applicant;
+	}
+	//////////////////////////////////////////////////////////////////////////////
+	/////////////////////////////////////////////////////////////////////////////
+	/////////////////////////////////////////////////////////////////////////////
 	public List<MacApplicants> GetApplicantsSiteComplete()
 	{
 		Session session = this.getSession();
@@ -460,6 +508,12 @@ public class MacApplicantDAO extends HarlequinDAO {
 	public void AddAppicantInformation(String name, String surname, String rsaCitizen,String Id_Number,String Passport_Number,String expiryDateOfPassport, String workPermitValidity, String cellNumber,String telephoneNumber, String jobType,String dateFirstIssueLicense, String licenseCode,String expiryDateOfLicense, String pdpExpiryDate, String gender, String physicalAddress1, String physicalAddress2,String physicalAddress3, String physicalAddress4, String City,String Country, String Tax_No, String maritalStatus, String dependants, String homeLanguage, String workHistory1, String workHistory2, String workHistory3, String workHistory4,String email,int Age,String DateOfBirth,String lastSmsDate, String Job_Name,String Stage_In_Process, String Applicant_Status, String Applicant_Type,String Sms_Group,String Nationality)
 	{
 		
+		DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+		Date date = new Date();
+		
+		
+		
+		
 		Session session = HibernateUtil.getSessionFactory().openSession();
 		
 		session.beginTransaction();
@@ -520,6 +574,8 @@ public class MacApplicantDAO extends HarlequinDAO {
 		
 		Applicant.setSmsAccountActive("Yes");
 		
+		Applicant.setLastUsedDate(dateFormat.format(date));
+		
 		session.save(Applicant);
 				
 		session.getTransaction().commit();
@@ -531,6 +587,10 @@ public class MacApplicantDAO extends HarlequinDAO {
 	
 	public void AddPermanentInformation(String name, String surname, String rsaCitizen,String Id_Number,String Passport_Number,String expiryDateOfPassport, String workPermitValidity, String cellNumber,String telephoneNumber, String jobType,String dateFirstIssueLicense, String licenseCode,String expiryDateOfLicense, String pdpExpiryDate, String gender, String physicalAddress1, String physicalAddress2,String physicalAddress3, String physicalAddress4, String City,String Country, String Tax_No, String maritalStatus, String dependants, String homeLanguage, String workHistory1, String workHistory2, String workHistory3, String workHistory4,String email,int Age,String DateOfBirth,String lastSmsDate, String Job_Name,String Stage_In_Process, String Applicant_Status,String Applicant_Type)
 	{
+		
+		DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+		Date date = new Date();
+		
 		
 		Session session = HibernateUtil.getSessionFactory().openSession();
 		
@@ -605,7 +665,7 @@ public class MacApplicantDAO extends HarlequinDAO {
 		
 		
 		Applicant.setSmsAccountActive("Yes");
-		
+		Applicant.setLastUsedDate(dateFormat.format(date));
 		
 		session.save(Applicant);
 				
@@ -618,6 +678,12 @@ public class MacApplicantDAO extends HarlequinDAO {
 	
 	public void AddAppicantInformation(String name, String surname,String Id_Number,String cellNumber, String jobType,String email,int age)
 	{
+		
+		
+		DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+		Date date = new Date();
+		
+		
 		
 		Session session = HibernateUtil.getSessionFactory().openSession();
 		
@@ -634,6 +700,8 @@ public class MacApplicantDAO extends HarlequinDAO {
 		Applicant.setJobType(jobType);
 		Applicant.setEmail(email);
 		Applicant.setAge(age);
+		
+		Applicant.setLastUsedDate(dateFormat.format(date));
 		
 		session.save(Applicant);
 				

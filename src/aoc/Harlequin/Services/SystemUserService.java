@@ -1,4 +1,7 @@
 package aoc.Harlequin.Services;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 import javax.ws.rs.Consumes;
@@ -63,6 +66,8 @@ public class SystemUserService
 		jsonObject.put("Tell_Number", User.getTellNumber());
 		jsonObject.put("User_Password", User.getUserPassword());
 		jsonObject.put("Authorization_Level", User.getAuthorizationLevel());
+		jsonObject.put("Last_Used_Date", User.getLastUsedDate());
+		
 		
 		System.out.println(jsonObject.toString());
 	    
@@ -92,6 +97,8 @@ public class SystemUserService
 			jsonObject.put("Cell_Number", Users.get(i).getCellNumber());
 			jsonObject.put("Tell_Number", Users.get(i).getTellNumber());
 			jsonObject.put("Authorization_Level", Users.get(i).getAuthorizationLevel());
+			jsonObject.put("Last_Used_Date", Users.get(i).getLastUsedDate());
+			
 			
 			JsonArray.put(jsonObject);
 		}
@@ -200,6 +207,8 @@ public class SystemUserService
 		jsonObject.put("Tell_Number", User.get(0).getTellNumber().toString());
 		jsonObject.put("Password", User.get(0).getUserPassword().toString());
 		jsonObject.put("Authorization_Level", User.get(0).getAuthorizationLevel().toString());
+		jsonObject.put("Last_Used_Date", User.get(0).getLastUsedDate().toString());
+		
 		
 		System.out.println(jsonObject.toString());
 		return jsonObject.toString();
@@ -213,6 +222,8 @@ public class SystemUserService
 	@Produces("text/plain")
 	public  String create(String jsonTextObject) throws JSONException
 	{
+		
+		
 		
 		System.out.println(jsonTextObject);
 		JSONObject r = new JSONObject(jsonTextObject);	
@@ -236,15 +247,13 @@ public class SystemUserService
 	@Produces("text/plain")
 	public  String update(String jsonTextObject) throws JSONException
 	{
+		DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+		Date date = new Date();
+		
 		
 		SystemUserDAO t = new SystemUserDAO();
-		
-		
 		JSONObject test = new JSONObject(jsonTextObject);
-		
-		
 		SystemUser User  = t.getUserInfoById(Integer.parseInt(test.getString("idSystem_User")));
-		
 		
 		User.setName(test.getString("Name"));
 		User.setSurname(test.getString("Surname"));
@@ -253,7 +262,7 @@ public class SystemUserService
 		User.setTellNumber(test.getString("Tell_Number"));
 		User.setAuthorizationLevel(test.getString("Authorization_Level"));
 		User.setUserPassword(test.getString("Password"));
-		
+		User.setLastUsedDate(dateFormat.format(date));
 		
 		
 		

@@ -1,12 +1,16 @@
 package aoc.Harlequin.DAOs;
 
 import java.math.BigDecimal;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 import org.hibernate.Session;
 
 
 import org.hibernate.query.Query;
+
 
 
 
@@ -29,7 +33,7 @@ public class PracticalDrivingAssessmentDAO extends HarlequinDAO {
 		
 		PracticalDriversAssessment Assessments = session.get(PracticalDriversAssessment.class, id);
 		
-		session.clear(); // ADDED 170302
+		session.clear(); 
 		session.flush();
 		session.close();
 	   
@@ -50,9 +54,10 @@ public class PracticalDrivingAssessmentDAO extends HarlequinDAO {
 		  
 	}
 	
-	public void AddAppicantInformation(String idMac_Applicants,String name, String surname, String Id_Number,String Client_Name,String PDP_Expiry_Date, String Vehicle_Used, String Assessor_Name,String Assessor_Surname, String Assessor_User_Id,String Date, String KM_End,String KM_Start, String Time_End, String Time_Start, String Weather, String Route,String Total_Score, String Starting_And_Stopping, String General_Driving,String Passing_Or_Overtaking, String General_Road_Behavior, String Observation_And_Anticipation, String Approaching_Junctions_Turning_Exiting, String Reversing, String Clutch, String Retarder_DSC_HillMode, String Comments, String PDA_No,String License_Code)
+	public void AddAppicantInformation(String idMac_Applicants,String name, String surname, String Id_Number,String Client_Name,String PDP_Expiry_Date, String Vehicle_Used, String Assessor_Name,String Assessor_Surname, String Assessor_User_Id,String Date, String KM_End,String KM_Start, String Time_End, String Time_Start, String Weather, String Route,String Total_Score, String Starting_And_Stopping, String General_Driving,String Passing_Or_Overtaking, String General_Road_Behavior, String Observation_And_Anticipation, String Approaching_Junctions_Turning_Exiting, String Reversing, String Clutch, String Retarder_DSC_HillMode, String Comments, String PDA_No,String License_Code,String Job_Name,String PracticalDriversComplete)
 	{
-		
+		DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+		Date date = new Date();
 		///////////////////////////////////////////////////////////////////////////////////////////////////
 		List<PracticalDriversAssessment> OldAssesment = ReadAssessmentsByInfo(idMac_Applicants,Client_Name);
 		if(OldAssesment.size() > 0)
@@ -98,20 +103,17 @@ public class PracticalDrivingAssessmentDAO extends HarlequinDAO {
 		Assessment.setGeneralRoadBehavior(new BigDecimal(General_Road_Behavior));
 		Assessment.setObservationAndAnticipation(new BigDecimal(Observation_And_Anticipation));
 		Assessment.setLicenseCode(License_Code);
-		
 		Assessment.setReversing(new BigDecimal(Reversing));
-	
 		Assessment.setClutch(new BigDecimal(Clutch));
 		Assessment.setRetarderDscHillMode(new BigDecimal(Retarder_DSC_HillMode));
 		Assessment.setComments(Comments);
-		Assessment.setPdaNo(Integer.parseInt(PDA_No));
-		
-		
+		Assessment.setjobName(Job_Name);
+		Assessment.setPracticalDriversTestComplete(PracticalDriversComplete);
+		Assessment.setPracticalDriversTestComments(Comments);
+		Assessment.setLastUsedDate(dateFormat.format(date));		
 		
 		session.save(Assessment);
-				
 		session.getTransaction().commit();
-		
 		session.close();
 		
 	}

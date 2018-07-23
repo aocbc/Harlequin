@@ -65,5 +65,9 @@
         <property name="formalInterviewComplete" type="string">
             <column name="Formal_Interview_Complete" length="3" />
         </property>
+        
+         <property name="lastUsedDate" type="string">
+            <column name="Last_Used_Date" length="19" />
+        </property>
     </class>
 </hibernate-mapping>

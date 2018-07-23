@@ -105,5 +105,13 @@
          <property name="practicalDriversTestComments" type="string">
             <column name="Practical_Drivers_Test_Comments" length="250" />
         </property>
+        
+        <property name="jobName" type="string">
+            <column name="Job_Name" length="100" />
+        </property>
+        
+         <property name="lastUsedDate" type="string">
+            <column name="Last_Used_Date" length="19" />
+        </property>
     </class>
 </hibernate-mapping>

@@ -32,6 +32,11 @@
          <property name="authorizationLevel" type="string">
             <column name="Authorization_Level" length="20" />
         </property>
+        
+        <property name="lastUsedDate" type="string">
+            <column name="Last_Used_Date" length="20" />
+        </property>
+        
     </class>
 </hibernate-mapping>
 

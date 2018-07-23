@@ -1,5 +1,8 @@
 package aoc.Harlequin.Services;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 import javax.ws.rs.Consumes;
@@ -108,6 +111,8 @@ public class MacApplicantService {
 		jsonObject.put("Last_Sms_Date", Applicant.getLastSmsDate());
 		jsonObject.put("Sms_Group", Applicant.getSmsGroup());
 		jsonObject.put("Sms_Account_Active", Applicant.getSmsAccountActive());
+		jsonObject.put("Last_Used_Date", Applicant.getLastUsedDate());
+		
 		
 		System.out.println(jsonObject.toString());
 	    
@@ -174,6 +179,9 @@ public class MacApplicantService {
 			jsonObject.put("Last_Sms_Date", Applicants.get(i).getLastSmsDate());
 			jsonObject.put("Sms_Group", Applicants.get(i).getSmsGroup());
 			jsonObject.put("Sms_Account_Active", Applicants.get(i).getSmsAccountActive());
+			jsonObject.put("Last_Used_Date", Applicants.get(i).getLastUsedDate());
+			
+			
 			
 			JsonArray.put(jsonObject);
 		}
@@ -249,6 +257,8 @@ public class MacApplicantService {
 			jsonObject.put("Last_Sms_Date", Applicants.get(i).getLastSmsDate());
 			jsonObject.put("Sms_Group", Applicants.get(i).getSmsGroup());
 			jsonObject.put("Sms_Account_Active", Applicants.get(i).getSmsAccountActive());
+			jsonObject.put("Last_Used_Date", Applicants.get(i).getLastUsedDate());
+			
 			
 			
 			
@@ -326,6 +336,9 @@ public class MacApplicantService {
 			jsonObject.put("Last_Sms_Date", Applicants.get(i).getLastSmsDate());
 			jsonObject.put("Sms_Group", Applicants.get(i).getSmsGroup());
 			jsonObject.put("Sms_Account_Active", Applicants.get(i).getSmsAccountActive());
+			
+			jsonObject.put("Last_Used_Date", Applicants.get(i).getLastUsedDate());
+			
 			
 			
 			
@@ -411,7 +424,7 @@ public class MacApplicantService {
 			jsonObject.put("Sms_Group", Applicants.get(i).getSmsGroup());
 			jsonObject.put("Sms_Account_Active", Applicants.get(i).getSmsAccountActive());
 			
-			
+			jsonObject.put("Last_Used_Date", Applicants.get(i).getLastUsedDate());
 			
 			
 			JsonArray.put(jsonObject);
@@ -508,7 +521,7 @@ public class MacApplicantService {
 			
 			jsonObject.put("Sms_Account_Active", Applicants.get(0).getSmsAccountActive());
 			
-			
+			jsonObject.put("Last_Used_Date", Applicants.get(0).getLastUsedDate());
 			
 			
 		
@@ -580,6 +593,8 @@ public class MacApplicantService {
 			jsonObject.put("Nationality", Applicants.get(i).getNationality());
 			jsonObject.put("Job_Name", Applicants.get(i).getJobName());
 			jsonObject.put("Sms_Account_Active", Applicants.get(i).getSmsAccountActive());
+			
+			jsonObject.put("Last_Used_Date", Applicants.get(i).getLastUsedDate());
 			
 			JsonArray.put(jsonObject);
 		}
@@ -656,6 +671,8 @@ public class MacApplicantService {
 			jsonObject.put("Job_Name", Applicants.get(i).getJobName());
 			jsonObject.put("Sms_Account_Active", Applicants.get(i).getSmsAccountActive());
 			
+			jsonObject.put("Last_Used_Date", Applicants.get(i).getLastUsedDate());
+			
 			JsonArray.put(jsonObject);
 		}
 		
@@ -672,7 +689,7 @@ public class MacApplicantService {
 	//////////////////////////////////////////////////////////////////////////////
 	///////////OLD
 	//////////////////////////////////////////////////////////////////////////////
-	@Path("/GetAllApplicantsPracticalDrivers")
+	@Path("/GetAllApplicantsPracticalDrivers3")
 	@GET
 	@Produces("text/plain")
 	public String GETAPPLICANTSDrivers( ) throws Exception
@@ -734,6 +751,8 @@ public class MacApplicantService {
 			jsonObject.put("Sms_Account_Active", Applicants.get(i).getSmsAccountActive());
 			
 			jsonObject.put("Nationality", Applicants.get(i).getNationality());
+			jsonObject.put("Last_Used_Date", Applicants.get(i).getLastUsedDate());
+			
 			JsonArray.put(jsonObject);
 		}
 		
@@ -746,9 +765,111 @@ public class MacApplicantService {
 	    
 		return JsonArray.toString();
 	}
-	////////////////////////////////////////////////////
-	////////////////////////////////////////////////////
 	
+	////////////////////////////////////////////////////
+	////////////////////////////////////////////////////
+	//////////////////////////////////////////////////////////////////////////////
+	///////////New
+	//////////////////////////////////////////////////////////////////////////////
+	@Path("/GetAllApplicantsPracticalDrivers")
+	@GET
+	@Produces("text/plain")
+	public String GETAPPLICANTSDriversNew( ) throws Exception
+	{
+	
+		
+						AssignedJobApplicantDAO Object1 = new AssignedJobApplicantDAO();
+			
+						MacApplicantDAO Object  = new MacApplicantDAO();
+						
+						List<MacApplicants> Applicants = Object.GetApplicantsMacInterviewCompleteNew();
+						
+						JSONArray JsonArray = new JSONArray();
+						
+						for(int i = 0; i < Applicants.size();i++)
+						{
+									
+									List<AssignedJobApplicantList> x = Object1.ReadAllAssignedJobsInfoByID(Applicants.get(i).getIdNumber());
+									
+									for(int j=0; j < x.size(); j++)
+									{
+										
+										JSONObject jsonObject = new JSONObject();
+										
+										jsonObject.put("idMac_Applicants", Applicants.get(i).getIdMacApplicants());
+										jsonObject.put("Name", Applicants.get(i).getName());
+										
+										jsonObject.put("Surname", Applicants.get(i).getSurname());
+										jsonObject.put("RSA_Citizen", Applicants.get(i).getRsaCitizen());
+										jsonObject.put("Id_Number", Applicants.get(i).getIdNumber());
+										jsonObject.put("Passport_Number", Applicants.get(i).getPassportNumber());
+										jsonObject.put("Expiry_Date_Of_Passport", Applicants.get(i).getExpiryDateOfPassport());
+										jsonObject.put("Work_Permit_Validity", Applicants.get(i).getWorkPermitValidity());
+										jsonObject.put("Cell_Number", Applicants.get(i).getCellNumber());
+										jsonObject.put("Telephone_Number", Applicants.get(i).getTelephoneNumber());
+										jsonObject.put("Job_Type", Applicants.get(i).getJobType());
+										jsonObject.put("Date_First_issue_license", Applicants.get(i).getDateFirstIssueLicense());
+										jsonObject.put("License_Code", Applicants.get(i).getLicenseCode());
+										jsonObject.put("Expiry_Date_Of_License", Applicants.get(i).getExpiryDateOfLicense());
+										jsonObject.put("PDP_Expiry_Date", Applicants.get(i).getPdpExpiryDate());
+										jsonObject.put("Gender", Applicants.get(i).getGender());
+										jsonObject.put("Physical_Address_1", Applicants.get(i).getPhysicalAddress1());
+										jsonObject.put("Physical_Address_2", Applicants.get(i).getPhysicalAddress2());		
+										jsonObject.put("Physical_Address_3", Applicants.get(i).getPhysicalAddress3());
+										jsonObject.put("Physical_Address_4", Applicants.get(i).getPhysicalAddress4());
+										jsonObject.put("City", Applicants.get(i).getCity());		
+										jsonObject.put("Country", Applicants.get(i).getCountry());
+										jsonObject.put("Tax_No", Applicants.get(i).getTaxNo());
+										jsonObject.put("Marital_Status", Applicants.get(i).getMaritalStatus());
+										jsonObject.put("Dependants", Applicants.get(i).getDependants());
+										jsonObject.put("Home_Language", Applicants.get(i).getHomeLanguage());
+										jsonObject.put("Work_History_1", Applicants.get(i).getWorkHistory1());
+										jsonObject.put("Work_History_2", Applicants.get(i).getWorkHistory2());
+										jsonObject.put("Work_History_3", Applicants.get(i).getWorkHistory3());
+										jsonObject.put("Work_History_4", Applicants.get(i).getWorkHistory4());
+										jsonObject.put("E_Mail", Applicants.get(i).getEmail());
+										jsonObject.put("Age", Applicants.get(i).getAge());
+										jsonObject.put("Date_Of_Birth", Applicants.get(i).getDateOfBirth());
+										jsonObject.put("Last_Sms_Date", Applicants.get(i).getLastSmsDate());
+										////////////////////////////////////////////////////////////////////////////
+										jsonObject.put("Job_Name", x.get(j).getJobName());
+										//////////////////////////////////////////////////////////////
+										jsonObject.put("Sms_Group", Applicants.get(i).getSmsGroup());
+										jsonObject.put("Sms_Group_Count", Applicants.get(i).getSmsGroupCount());
+										jsonObject.put("Applicant_Type", Applicants.get(i).getApplicantType());
+										jsonObject.put("Applicant_Status", Applicants.get(i).getApplicantStatus());
+										jsonObject.put("Stage_In_Process", Applicants.get(i).getStageInTheProcess());
+										jsonObject.put("Sms_Account_Active", Applicants.get(i).getSmsAccountActive());
+										
+										
+										
+										jsonObject.put("Practical_Drivers_Test_Comments", x.get(j).getPracticalDriversTestComments());
+										jsonObject.put("Practical_Drivers_Test_Complete", x.get(j).getPracticalDriversTestComplete());
+										jsonObject.put("Mac_Labour_Interview_Comments", x.get(j).getMacLabourInterviewComments());
+										jsonObject.put("Mac_Lab_Interview_Complete", x.get(j).getMacLabInterviewComplete());
+										jsonObject.put("Last_Used_Date", Applicants.get(i).getLastUsedDate());
+										
+										
+										
+										jsonObject.put("Nationality", Applicants.get(i).getNationality());
+										JsonArray.put(jsonObject);
+										
+									}
+									
+						}
+	
+	
+	
+	
+	
+	
+	System.out.println(JsonArray.toString());
+	
+	return JsonArray.toString();
+	}
+////////////////////////////////////////////////////
+////////////////////////////////////////////////////
+
 	
 	@Path("/GetAllApplicantsSiteComplete")
 	@GET
@@ -827,7 +948,7 @@ public class MacApplicantService {
 				
 				
 				jsonObject.put("Nationality", Applicants.get(i).getNationality());
-				
+				jsonObject.put("Last_Used_Date", Applicants.get(i).getLastUsedDate());
 
 				
 				
@@ -910,6 +1031,9 @@ public class MacApplicantService {
 			
 			
 			jsonObject.put("Nationality", Applicants.get(i).getNationality());
+			jsonObject.put("Last_Used_Date", Applicants.get(i).getLastUsedDate());
+			
+			
 			JsonArray.put(jsonObject);
 		}
 		
@@ -988,6 +1112,9 @@ public class MacApplicantService {
 			
 			
 			jsonObject.put("Nationality", Applicants.get(i).getNationality());
+			
+			jsonObject.put("Last_Used_Date", Applicants.get(i).getLastUsedDate());
+			
 			JsonArray.put(jsonObject);
 		}
 		
@@ -1007,6 +1134,11 @@ public class MacApplicantService {
 	@Produces("text/plain")
 	public  String update(String jsonTextObject) throws JSONException
 	{
+		
+		DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+		Date date = new Date();
+		
+		
 		MacApplicantDAO t = new MacApplicantDAO();
 		JSONObject test = new JSONObject(jsonTextObject);
 		System.out.println("Applicant Update"+test.toString());
@@ -1069,13 +1201,15 @@ public class MacApplicantService {
 		Applicant.setReferenceChecksComments(test.getString("Reference_Checks_Comments"));
 		Applicant.setReferenceChecksComplete(test.getString("Reference_Checks_Complete"));
 		
+		Applicant.setLastUsedDate(dateFormat.format(date));
+		
 		
 		t.update(Applicant);
 		
 		
 		
 		
-		return "";
+		return "Successful";
 	}
 	
 	
@@ -1086,13 +1220,11 @@ public class MacApplicantService {
 	public  String create(String jsonTextObject) throws JSONException
 	{
 		
-	
+		DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+		Date date = new Date();
+		
 		JSONObject r = new JSONObject(jsonTextObject);	
-	
-		
-		
 		String Flag = r.getString("Flag");
-	
 		MacApplicantDAO Object  = new MacApplicantDAO();
 		
 		if(Flag.equals("0")|| Flag.equals("2"))
@@ -1143,7 +1275,7 @@ public class MacApplicantService {
 			
 			Applicant.setApplicantStatus("New");
 			Applicant.setSmsAccountActive("Yes");
-			
+			Applicant.setLastUsedDate(dateFormat.format(date));
 			
 						
 			Object.update(Applicant);
@@ -1163,20 +1295,13 @@ public class MacApplicantService {
 	@Produces("text/plain")
 	public  String assignApplicant(String jsonTextObject) throws JSONException
 	{
+		DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+		Date date = new Date();
 		
-	
 		JSONObject r = new JSONObject(jsonTextObject);	
-	
-		
-		
-		String Flag = r.getString("Flag");
-	
+	    String Flag = r.getString("Flag");
 		MacApplicantDAO Object  = new MacApplicantDAO();
-		
 		AssignedJobApplicantDAO AssignJob = new AssignedJobApplicantDAO();
-		
-		
-		
 		
 		if(Flag.equals("0")|| Flag.equals("2"))
 		{
@@ -1227,7 +1352,7 @@ public class MacApplicantService {
 			Applicant.setApplicantStatus("New");
 			Applicant.setSmsAccountActive("Yes");
 			
-			
+			Applicant.setLastUsedDate(dateFormat.format(date));
 						
 			Object.update(Applicant);
 			

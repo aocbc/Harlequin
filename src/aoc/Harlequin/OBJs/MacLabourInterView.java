@@ -27,6 +27,8 @@ public class MacLabourInterView implements java.io.Serializable {
 	private String applicantAtttitude;
 	private String interviewComments;
 	private String formalInterviewComplete;
+	
+	private String lastUsedDate;
 
 	public MacLabourInterView() {
 	}
@@ -44,7 +46,7 @@ public class MacLabourInterView implements java.io.Serializable {
 			String unionMember, String unionName,
 			String applicantPassedInterview, String applicantPresentable,
 			String applicantAtttitude, String interviewComments,
-			String formalInterviewComplete) {
+			String formalInterviewComplete, String lastUsedDate) {
 		this.idMacLabourInterView = idMacLabourInterView;
 		this.idMacApplicants = idMacApplicants;
 		this.name = name;
@@ -65,9 +67,21 @@ public class MacLabourInterView implements java.io.Serializable {
 		this.applicantAtttitude = applicantAtttitude;
 		this.interviewComments = interviewComments;
 		this.formalInterviewComplete = formalInterviewComplete;
+		this.lastUsedDate = lastUsedDate;
 	}
 
-	public int getIdMacLabourInterView() {
+	public String getLastUsedDate() 
+	{
+		return this.lastUsedDate;
+	}
+
+	public void setLastUsedDate(String lastUsedDate) 
+	{
+		this.lastUsedDate = lastUsedDate;
+	}
+	
+	public int getIdMacLabourInterView() 
+	{
 		return this.idMacLabourInterView;
 	}
 

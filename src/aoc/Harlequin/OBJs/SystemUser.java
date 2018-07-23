@@ -17,6 +17,7 @@ public class SystemUser implements java.io.Serializable {
 	private String tellNumber;
 	private String userPassword;
 	private String authorizationLevel;
+	private String lastUsedDate;
 
 	public SystemUser() 
 	{
@@ -24,7 +25,7 @@ public class SystemUser implements java.io.Serializable {
 	
 	}
 
-	public SystemUser(int idSystemUser, String userName, String name,String surname, String EMail, String cellNumber, String userPassword,String authorizationLevel) 
+	public SystemUser(int idSystemUser, String userName, String name,String surname, String EMail, String cellNumber, String userPassword,String authorizationLevel,String lastUsedDate) 
 	{
 		this.idSystemUser = idSystemUser;
 		this.userName = userName;
@@ -34,9 +35,18 @@ public class SystemUser implements java.io.Serializable {
 		this.cellNumber = cellNumber;
 		this.userPassword = userPassword;
 		this.authorizationLevel = authorizationLevel;
+		this.lastUsedDate = lastUsedDate;
 	}
 
-	
+	public String getLastUsedDate() 
+	{
+		return this.lastUsedDate;
+	}
+
+	public void setLastUsedDate(String lastUsedDate) 
+	{
+		this.lastUsedDate = lastUsedDate;
+	}
 
 	public int getIdSystemUser() 
 	{

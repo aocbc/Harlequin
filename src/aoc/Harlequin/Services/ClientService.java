@@ -1,4 +1,7 @@
 package aoc.Harlequin.Services;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 import javax.ws.rs.Consumes;
@@ -47,7 +50,7 @@ public class ClientService {
 		jsonObject.put("Client_Address_4", Client.getClientAddress4());
 		jsonObject.put("Client_Vat_Number", Client.getClientVatNumber());
 		jsonObject.put("Client_Comments", Client.getClientComments());
-		
+		jsonObject.put("Last_Used_Date", Client.getLastUsedDate());
 		
 		System.out.println(jsonObject.toString());
 	    
@@ -61,14 +64,13 @@ public class ClientService {
 	public  String update(String jsonTextObject) throws JSONException
 	{
 		
+		DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+		Date date = new Date();
+		
+		
 		ClientDAO t = new ClientDAO();
-		
-		
 		JSONObject test = new JSONObject(jsonTextObject);
-		
 		System.out.println("CLIENT ID:"+jsonTextObject);
-		
-		
 		SystemClient Client  = t.getClientInfoById(test.getInt("idClient"));
 				
 		
@@ -82,6 +84,7 @@ public class ClientService {
 		Client.setClientAddress1(test.getString("Client_Address_4"));
 		Client.setClientAddress1(test.getString("Client_Vat_Number"));
 		Client.setClientAddress1(test.getString("Client_Comments"));
+		Client.setLastUsedDate(dateFormat.format(date));
 		
 		t.update(Client);
 		
@@ -131,6 +134,7 @@ public class ClientService {
 			jsonObject.put("Client_Address_4", Clients.get(i).getClientAddress4());
 			jsonObject.put("Client_Vat_Number", Clients.get(i).getClientVatNumber());
 			jsonObject.put("Client_Comments", Clients.get(i).getClientComments());
+			jsonObject.put("Last_Used_Date", Clients.get(i).getLastUsedDate());
 			
 			JsonArray.put(jsonObject);
 		}
@@ -171,6 +175,7 @@ public class ClientService {
 			jsonObject.put("Client_Contact_Number", Client.get(i).getClientContactNumber());
 			jsonObject.put("Client_Address_1", Client.get(i).getClientAddress1());
 			jsonObject.put("Client_Address_3", Client.get(i).getClientAddress3());
+			jsonObject.put("Last_Used_Date", Client.get(i).getLastUsedDate());
 			
 			JsonArray.put(jsonObject);
 		}

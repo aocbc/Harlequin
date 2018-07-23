@@ -177,6 +177,12 @@
             <column name="Sms_Account_Active" length="3" />
         </property>
         
+        
+        
+        <property name="lastUsedDate" type="string">
+            <column name="Last_Used_Date" length="10" />
+        </property>
+        
              
     </class>
 </hibernate-mapping>

@@ -63,6 +63,8 @@ public class MacApplicants implements java.io.Serializable {
 	
 	private String smsAccountActive;
 	
+	private String lastUsedDate;
+	
 	public MacApplicants() {
 	}
 
@@ -76,7 +78,7 @@ public class MacApplicants implements java.io.Serializable {
 			String practicalDriversTestComments,String clientInterviewComplete, String clientInterviewComments,
 			String maritalStatus, String dependants, String homeLanguage,String referenceChecksComments,String referenceChecksComplete,
 			String workHistory1, String workHistory2, String workHistory3,String jobName,
-			String workHistory4, String email, String passportNumber,String expiryDateOfPassport, String city, String tax_No,String country,int age,String dateOfBirth,String lastSmsDate, String stageInTheProcess, String applicantStatus,String smsGroup,int smsGroupCount,String applicantType,String nationality, String smsAccountActive) 
+			String workHistory4, String email, String passportNumber,String expiryDateOfPassport, String city, String tax_No,String country,int age,String dateOfBirth,String lastSmsDate, String stageInTheProcess, String applicantStatus,String smsGroup,int smsGroupCount,String applicantType,String nationality, String smsAccountActive, String lastUsedDate) 
 	{
 		this.name = name;
 		this.surname = surname;
@@ -126,8 +128,18 @@ public class MacApplicants implements java.io.Serializable {
 		this.referenceChecksComments = referenceChecksComments;
 		this.referenceChecksComplete = referenceChecksComplete;
 		this.smsAccountActive = smsAccountActive;
+		this.lastUsedDate = lastUsedDate;
 	}
 
+
+	public String getLastUsedDate() {
+		return this.lastUsedDate;
+	}
+
+	public void setLastUsedDate(String lastUsedDate) {
+		this.lastUsedDate = lastUsedDate;
+	}
+	
 	public Integer getIdMacApplicants() {
 		return this.idMacApplicants;
 	}
