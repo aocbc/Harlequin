@@ -1,5 +1,8 @@
 package aoc.Harlequin.DAOs;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 import org.hibernate.Session;
@@ -78,6 +81,8 @@ public class ClientInterviewDAO extends HarlequinDAO {
 		
 		session.beginTransaction();
 		
+		DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+		Date date = new Date();
 		
 		
 		ClientInterviews Interview = new ClientInterviews();
@@ -94,6 +99,7 @@ public class ClientInterviewDAO extends HarlequinDAO {
 		Interview.setClientInterviewComplete(Client_Interview_Complete);
 		Interview.setIdNumber(Id_number);
 		Interview.setJobName(Job_Name);
+		Interview.setLastUsedDate(dateFormat.format(date));
 		
 		
 		

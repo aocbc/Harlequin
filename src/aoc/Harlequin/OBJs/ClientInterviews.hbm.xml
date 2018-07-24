@@ -49,5 +49,19 @@
          <property name="idNumber" type="string">
             <column name="Id_Number" length="13" />
         </property>
+        
+        <property name="lastUsedDate" type="string">
+            <column name="Last_Used_Date" length="19" />
+        </property>
+        
+        
+        
+        <property name="username" type="string">
+            <column name="Username" length="50" />
+        </property>
+        
+        <property name="usersurname" type="string">
+            <column name="Usersurname" length="50" />
+        </property>
     </class>
 </hibernate-mapping>

@@ -19,6 +19,11 @@ public class ClientInterviews implements java.io.Serializable {
 	private String clientInterviewComplete;
 	private String jobName;
 	private String idNumber;
+	
+	private String lastUsedDate;
+	private String usersurname;
+	private String username;
+	
 	public ClientInterviews() {
 	}
 
@@ -30,7 +35,7 @@ public class ClientInterviews implements java.io.Serializable {
 			String clientName, String applicantName, String applicantSurname,
 			String interviewQuestionsPassed, String applicantPresentable,
 			String applicantAttitude, String interviewComments,
-			String clientInterviewComplete,String jobName, String idNumber) {
+			String clientInterviewComplete,String jobName, String idNumber,String usersurname,String username, String lastUsedDate) {
 		this.idClientInterviews = idClientInterviews;
 		this.idMacApplicants = idMacApplicants;
 		this.clientName = clientName;
@@ -44,8 +49,44 @@ public class ClientInterviews implements java.io.Serializable {
 		this.jobName = jobName;
 		this.idNumber = idNumber;
 		
+		this.username = username;
+		this.usersurname = usersurname;
+		this.lastUsedDate = lastUsedDate;
+		
 	}
 
+	
+	public void setUsername(String username) 
+	{
+		this.username = username;
+	}
+
+	public String getUsername() 
+	{
+		return this.username;
+	}
+	
+	public void setUsersurname(String usersurname) 
+	{
+		this.username = usersurname;
+	}
+
+	public String getLastUsedDate() 
+	{
+		return this.lastUsedDate;
+	}
+	
+	public void setLastUsedDate(String lastUsedDate) 
+	{
+		this.lastUsedDate = lastUsedDate;
+	}
+
+	public String getUsersurname() 
+	{
+		return this.usersurname;
+	}
+	
+	
 	public int getIdClientInterviews() {
 		return this.idClientInterviews;
 	}

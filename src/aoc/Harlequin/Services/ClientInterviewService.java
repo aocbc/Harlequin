@@ -1,4 +1,7 @@
 package aoc.Harlequin.Services;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 import javax.ws.rs.Consumes;
@@ -55,7 +58,7 @@ public class ClientInterviewService {
 		jsonObject.put("Applicant_Attitude", Interview.getApplicantAttitude());
 		jsonObject.put("Interview_Comments", Interview.getInterviewComments());
 		jsonObject.put("Client_Interview_Complete", Interview.getClientInterviewComplete());
-
+		jsonObject.put("Last_Used_Date", Interview.getLastUsedDate());
 		
 	
 	
@@ -95,7 +98,7 @@ public class ClientInterviewService {
 			jsonObject.put("Applicant_Attitude", Interviews.get(i).getApplicantAttitude());
 			jsonObject.put("Interview_Comments", Interviews.get(i).getInterviewComments());
 			jsonObject.put("Client_Interview_Complete", Interviews.get(i).getClientInterviewComplete());
-
+			jsonObject.put("Last_Used_Date", Interviews.get(i).getLastUsedDate());
 			
 			JsonArray.put(jsonObject);
 		}
@@ -139,6 +142,7 @@ public class ClientInterviewService {
 			jsonObject.put("Applicant_Attitude", Interview.get(i).getApplicantAttitude());
 			jsonObject.put("Interview_Comments", Interview.get(i).getInterviewComments());
 			jsonObject.put("Client_Interview_Complete", Interview.get(i).getClientInterviewComplete());
+			jsonObject.put("Last_Used_Date", Interview.get(i).getLastUsedDate());
 			
 			JsonArray.put(jsonObject);
 		}
@@ -181,7 +185,9 @@ public class ClientInterviewService {
 				jsonObject.put("Applicant_Presentable", Interview.get(0).getApplicantPresentable());
 				jsonObject.put("Applicant_Attitude", Interview.get(0).getApplicantAttitude());
 				jsonObject.put("Interview_Comments", Interview.get(0).getInterviewComments());
-				jsonObject.put("Client_Interview_Complete", Interview.get(0).getClientInterviewComplete());		
+				jsonObject.put("Client_Interview_Complete", Interview.get(0).getClientInterviewComplete());
+				jsonObject.put("Last_Used_Date", Interview.get(0).getLastUsedDate());
+				
 			}
 			
 			
@@ -206,6 +212,9 @@ public class ClientInterviewService {
 	public  String create(String jsonTextObject) throws JSONException
 	{
 		
+		DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+		Date date = new Date();
+		
 		System.out.println(jsonTextObject);
 		JSONObject r = new JSONObject(jsonTextObject);	
 	
@@ -226,11 +235,13 @@ public class ClientInterviewService {
 			{
 				x.get(0).setClientInterviewComplete(r.getString("Client_Interview_Complete"));
 				x.get(0).setStageInTheProcess("Reference Checks");
+				x.get(0).setLastUsedDate(dateFormat.format(date));
 			}
 			else if(r.getString("Client_Interview_Complete").equals("No"))
 			{
 				x.get(0).setClientInterviewComplete(r.getString("Client_Interview_Complete"));
 				x.get(0).setStageInTheProcess("Client Interview");
+				x.get(0).setLastUsedDate(dateFormat.format(date));
 			}
 			
 			Applicant.update(x.get(0));

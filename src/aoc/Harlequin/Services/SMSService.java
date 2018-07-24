@@ -17,11 +17,13 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import aoc.Harlequin.DAOs.BlockedNumbersDAO;
 import aoc.Harlequin.DAOs.ClientDAO;
 import aoc.Harlequin.DAOs.MacApplicantDAO;
 import aoc.Harlequin.DAOs.PracticalDrivingAssessmentDAO;
 import aoc.Harlequin.DAOs.SmsHistoryDAO;
 import aoc.Harlequin.OBJs.ApplicantSmsHistory;
+import aoc.Harlequin.OBJs.BlockedNumberList;
 import aoc.Harlequin.OBJs.PracticalDriversAssessment;
 import aoc.Harlequin.message.SMSSender;
 import aoc.Harlequin.message.VodaSms;
@@ -190,9 +192,33 @@ public class SMSService
 			
 			try 
 		    {	
+				    BlockedNumbersDAO Object  = new BlockedNumbersDAO();
+					
+					List<BlockedNumberList> BlockedNumbers = Object.ReadAllBlockedNumbers();
+					
+					
+					boolean isBlocked = false;
+					
+					for(int j = 0; j < BlockedNumbers.size();j++)
+					{
+						if(BlockedNumbers.get(j).getCellNumber().trim().replaceFirst("0", "+27").equals(cell_Number.trim()))
+						{
+							System.out.println("Blocked Number:"+ BlockedNumbers.get(i).getCellNumber().trim().replaceFirst("0", "+27")+", SmsCellNumber:"+ cell_Number.trim() );
+							isBlocked = true;
+						}	
+						
+						
+					}
+					
+					if(!isBlocked)
+					{
+						
+						System.out.println(x.SendHttpRequest("https://xml2sms.gsm.co.za/send/?username=maclabour&password=th3unis1&number="+cell_Number+"&message="+ URLEncoder.encode(SMSMessage.getString("Message").toString(), "UTF-8") +"&ems=1"));
+						
+					}
+					
+					
 				
-				
-				System.out.println(x.SendHttpRequest("https://xml2sms.gsm.co.za/send/?username=maclabour&password=th3unis1&number="+cell_Number+"&message="+ URLEncoder.encode(SMSMessage.getString("Message").toString(), "UTF-8") +"&ems=1"));
 			} catch (Exception e) 
 		    {
 				// TODO Auto-generated catch block
