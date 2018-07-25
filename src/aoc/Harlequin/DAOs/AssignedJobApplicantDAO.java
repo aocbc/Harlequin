@@ -37,6 +37,26 @@ public class AssignedJobApplicantDAO extends HarlequinDAO
 		
 	}
 	
+	public List<AssignedJobApplicantList> ReadAllAssignedJobsInfobyIdNumber(String Id_Number)
+	{
+		Session session = this.getSession();
+		HibernateUtil.beginTransaction();
+		
+		
+		
+		Query query = session.createQuery("from AssignedJobApplicantList where idMacApplicants = '" + Id_Number+"'" );
+		List<AssignedJobApplicantList> AssignedJobs = query.list();
+		
+		session.clear(); // ADDED 170302
+		session.flush();
+		session.close();
+		
+		return AssignedJobs;
+		
+		
+		
+	}
+	
 	
 	public void UpdateAssignedJobStatusMacLabourInterview(String Id_Number, String JobName,String StageInProcess, String StageStatus, String Complete, String Comments)
 	{
