@@ -838,7 +838,7 @@ public class MacApplicantService {
 										jsonObject.put("Sms_Group_Count", Applicants.get(i).getSmsGroupCount());
 										jsonObject.put("Applicant_Type", Applicants.get(i).getApplicantType());
 										jsonObject.put("Applicant_Status", Applicants.get(i).getApplicantStatus());
-										jsonObject.put("Stage_In_Process", Applicants.get(i).getStageInTheProcess());
+										jsonObject.put("Stage_In_Process",  x.get(j).getStageInProcess());
 										jsonObject.put("Sms_Account_Active", Applicants.get(i).getSmsAccountActive());
 										
 										
@@ -940,7 +940,7 @@ public class MacApplicantService {
 				jsonObject.put("Sms_Group_Count", Applicants.get(i).getSmsGroupCount());
 				jsonObject.put("Applicant_Type", Applicants.get(i).getApplicantType());
 				jsonObject.put("Applicant_Status", Applicants.get(i).getApplicantStatus());
-				jsonObject.put("Stage_In_Process", Applicants.get(i).getStageInTheProcess());
+				jsonObject.put("Stage_In_Process",  x.get(j).getStageInProcess());
 				jsonObject.put("Sms_Account_Active", Applicants.get(i).getSmsAccountActive());
 				
 				jsonObject.put("Mac_Labour_Interview_Comments", x.get(j).getMacLabourInterviewComments());
@@ -1118,9 +1118,10 @@ public class MacApplicantService {
 				jsonObject.put("Applicant_Type", Applicants.get(i).getApplicantType());
 				jsonObject.put("Applicant_Status", Applicants.get(i).getApplicantStatus());
 		
-				jsonObject.put("Client_Interview_Comments", Applicants.get(i).getClientInterviewComments());
-				jsonObject.put("Client_Interview_Complete", Applicants.get(i).getClientInterviewComplete());
-				jsonObject.put("Stage_In_Process", Applicants.get(i).getStageInTheProcess());
+				jsonObject.put("Client_Interview_Comments", x.get(j).getClientInterviewComments());
+				jsonObject.put("Client_Interview_Complete", x.get(j).getClientInterviewComplete());
+			
+				jsonObject.put("Stage_In_Process", x.get(j).getStageInProcess());
 				jsonObject.put("Sms_Account_Active", Applicants.get(i).getSmsAccountActive());
 		
 				jsonObject.put("Practical_Drivers_Test_Comments", x.get(j).getPracticalDriversTestComments());

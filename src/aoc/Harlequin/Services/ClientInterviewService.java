@@ -16,6 +16,7 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import aoc.Harlequin.DAOs.AssignedJobApplicantDAO;
 import aoc.Harlequin.DAOs.ClientDAO;
 import aoc.Harlequin.DAOs.ClientInterviewDAO;
 import aoc.Harlequin.DAOs.JobDAO;
@@ -215,7 +216,7 @@ public class ClientInterviewService {
 		DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 		Date date = new Date();
 		
-		System.out.println(jsonTextObject);
+		
 		JSONObject r = new JSONObject(jsonTextObject);	
 	
 		ClientInterviewDAO Object  = new ClientInterviewDAO();
@@ -224,6 +225,7 @@ public class ClientInterviewService {
 		
 		Object.AddInterviewInformation(r.getString("Id_Number"),r.getString("Job_Name"),r.getString("idMac_Applicants"), r.getString("Client_Name"), r.getString("Applicant_Name"), r.getString("Applicant_Surname"), r.getString("Interview_questions_Passed"), r.getString("Applicant_Presentable"), r.getString("Applicant_Attitude"), r.getString("Interview_Comments"), r.getString("Client_Interview_Complete"));
 		
+		AssignedJobApplicantDAO assigned_job = new AssignedJobApplicantDAO();
 		
 		MacApplicantDAO Applicant = new MacApplicantDAO();
 		
@@ -236,12 +238,17 @@ public class ClientInterviewService {
 				x.get(0).setClientInterviewComplete(r.getString("Client_Interview_Complete"));
 				x.get(0).setStageInTheProcess("Reference Checks");
 				x.get(0).setLastUsedDate(dateFormat.format(date));
+				assigned_job.UpdateAssignedJobStatusClientrInterview(r.getString("Id_Number"), r.getString("Job_Name"), "Reference Checks", "beginning",r.getString("Client_Interview_Complete"),((r.getString("Interview_Comments").equals("")) ? "N/A" : r.getString("Interview_Comments")));
+				
+				
 			}
 			else if(r.getString("Client_Interview_Complete").equals("No"))
 			{
 				x.get(0).setClientInterviewComplete(r.getString("Client_Interview_Complete"));
 				x.get(0).setStageInTheProcess("Client Interview");
 				x.get(0).setLastUsedDate(dateFormat.format(date));
+				assigned_job.UpdateAssignedJobStatusClientrInterview(r.getString("Id_Number"), r.getString("Job_Name"), "Client Interview", "pending",r.getString("Client_Interview_Complete"),((r.getString("Interview_Comments").equals("")) ? "N/A" : r.getString("Interview_Comments")));
+				
 			}
 			
 			Applicant.update(x.get(0));

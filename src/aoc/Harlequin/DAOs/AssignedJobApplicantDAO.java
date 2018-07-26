@@ -136,6 +136,27 @@ public class AssignedJobApplicantDAO extends HarlequinDAO
 	}
 	
 	
+	public List<AssignedJobApplicantList> ReadAllAssignedJobsInfoByIDAndJobNameClientInterview(String Id_Number, String JobName)
+	{
+		Session session = this.getSession();
+		HibernateUtil.beginTransaction();
+		
+		Query query = session.createQuery("from AssignedJobApplicantList WHERE idMac_Applicants = '"+Id_Number+"' AND Job_Name = '"+JobName+"'");
+		List<AssignedJobApplicantList> AssignedJobs = query.list();
+		
+		//AssignedJobApplicantList x = AssignedJobs.get(0);
+		
+		
+	
+		
+		
+		return AssignedJobs;
+		
+		
+		
+	}
+	
+	
 	public List<AssignedJobApplicantList> ReadAllAssignedJobsInfoByIDAndJobNamePracticalDrivers(String Id_Number, String JobName)
 	{
 		Session session = this.getSession();
@@ -271,6 +292,34 @@ public class AssignedJobApplicantDAO extends HarlequinDAO
 				session.close();
 		}
 
+		
+	}
+	
+	public void UpdateAssignedJobStatusClientrInterview(String Id_Number, String JobName,String StageInProcess, String StageStatus, String Complete, String Comments)
+	{
+		List<AssignedJobApplicantList> AssignedJobs = ReadAllAssignedJobsInfoByIDAndJobNameClientInterview(Id_Number,  JobName);
+		
+		System.out.println("Size Assigned Jobs:"+ AssignedJobs.size() );
+		
+		if(AssignedJobs.size()> 0)
+		{
+			AssignedJobApplicantList Assigned_Job = AssignedJobs.get(0);
+			
+			Assigned_Job.setStageInProcess(StageInProcess);
+			Assigned_Job.setStageStatus(StageStatus);
+			Assigned_Job.setClientInterviewComplete(Complete);
+			Assigned_Job.setClientInterviewComments(Comments);
+			
+			Session hibernateSession = this.getSession();
+			hibernateSession.update(Assigned_Job);
+		     
+	        HibernateUtil.commitTransaction();
+	        
+	       
+	        
+		
+					
+		}
 		
 	}
 	

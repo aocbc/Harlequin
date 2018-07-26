@@ -183,6 +183,11 @@
             <column name="Last_Used_Date" length="10" />
         </property>
         
+        
+        <property name="employable" type="string">
+            <column name="Employable" length="3" />
+        </property>
+        
              
     </class>
 </hibernate-mapping>
