@@ -153,6 +153,8 @@ public class PracticalDrivingAssessmentService {
 	@Produces("text/plain")
 	public String GETAssessment(@PathParam("idMac_Applicants") String idMac_Applicants,@PathParam("Client_Name") String Client_Name ) throws Exception
 	{
+		DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+		Date date = new Date();
 		
 		PracticalDrivingAssessmentDAO Object  = new PracticalDrivingAssessmentDAO();
 		
@@ -200,7 +202,7 @@ public class PracticalDrivingAssessmentService {
 				jsonObject.put("Retarder_DSC_HillMode", Assessments.get(i).getRetarderDscHillMode());
 				jsonObject.put("Comments", Assessments.get(i).getComments());
 				jsonObject.put("PDA_No",Assessments.get(i).getPdaNo());
-				jsonObject.put("PDA_No",Assessments.get(i).getLastUsedDate());
+				
 				
 				jsonObject.put("Last_Used_Date",Assessments.get(i).getLastUsedDate());
 				

@@ -112,7 +112,8 @@ public class MacApplicantService {
 		jsonObject.put("Sms_Group", Applicant.getSmsGroup());
 		jsonObject.put("Sms_Account_Active", Applicant.getSmsAccountActive());
 		jsonObject.put("Last_Used_Date", Applicant.getLastUsedDate());
-		
+		jsonObject.put("Employable", Applicant.getEmployable());
+		jsonObject.put("Employable_Comments", Applicant.getEmployableComments());		
 		
 		System.out.println(jsonObject.toString());
 	    
@@ -181,6 +182,8 @@ public class MacApplicantService {
 			jsonObject.put("Sms_Account_Active", Applicants.get(i).getSmsAccountActive());
 			jsonObject.put("Last_Used_Date", Applicants.get(i).getLastUsedDate());
 			
+			jsonObject.put("Employable", Applicants.get(i).getEmployable());
+			jsonObject.put("Employable_Comments", Applicants.get(i).getEmployableComments());
 			
 			
 			JsonArray.put(jsonObject);
@@ -259,7 +262,8 @@ public class MacApplicantService {
 			jsonObject.put("Sms_Account_Active", Applicants.get(i).getSmsAccountActive());
 			jsonObject.put("Last_Used_Date", Applicants.get(i).getLastUsedDate());
 			
-			
+			jsonObject.put("Employable", Applicants.get(i).getEmployable());
+			jsonObject.put("Employable_Comments", Applicants.get(i).getEmployableComments());
 			
 			
 			JsonArray.put(jsonObject);
@@ -339,7 +343,8 @@ public class MacApplicantService {
 			
 			jsonObject.put("Last_Used_Date", Applicants.get(i).getLastUsedDate());
 			
-			
+			jsonObject.put("Employable", Applicants.get(i).getEmployable());
+			jsonObject.put("Employable_Comments", Applicants.get(i).getEmployableComments());
 			
 			
 			JsonArray.put(jsonObject);
@@ -425,7 +430,8 @@ public class MacApplicantService {
 			jsonObject.put("Sms_Account_Active", Applicants.get(i).getSmsAccountActive());
 			
 			jsonObject.put("Last_Used_Date", Applicants.get(i).getLastUsedDate());
-			
+			jsonObject.put("Employable", Applicants.get(i).getEmployable());
+			jsonObject.put("Employable_Comments", Applicants.get(i).getEmployableComments());
 			
 			JsonArray.put(jsonObject);
 		}
@@ -523,7 +529,8 @@ public class MacApplicantService {
 			
 			jsonObject.put("Last_Used_Date", Applicants.get(0).getLastUsedDate());
 			
-			
+			jsonObject.put("Employable", Applicants.get(0).getEmployable());
+			jsonObject.put("Employable_Comments", Applicants.get(0).getEmployableComments());
 		
 		
 		
@@ -595,6 +602,9 @@ public class MacApplicantService {
 			jsonObject.put("Sms_Account_Active", Applicants.get(i).getSmsAccountActive());
 			
 			jsonObject.put("Last_Used_Date", Applicants.get(i).getLastUsedDate());
+			
+			jsonObject.put("Employable", Applicants.get(i).getEmployable());
+			jsonObject.put("Employable_Comments", Applicants.get(i).getEmployableComments());
 			
 			JsonArray.put(jsonObject);
 		}
@@ -672,6 +682,9 @@ public class MacApplicantService {
 			jsonObject.put("Sms_Account_Active", Applicants.get(i).getSmsAccountActive());
 			
 			jsonObject.put("Last_Used_Date", Applicants.get(i).getLastUsedDate());
+			
+			jsonObject.put("Employable", Applicants.get(i).getEmployable());
+			jsonObject.put("Employable_Comments", Applicants.get(i).getEmployableComments());
 			
 			JsonArray.put(jsonObject);
 		}
@@ -752,6 +765,9 @@ public class MacApplicantService {
 			
 			jsonObject.put("Nationality", Applicants.get(i).getNationality());
 			jsonObject.put("Last_Used_Date", Applicants.get(i).getLastUsedDate());
+			
+			jsonObject.put("Employable", Applicants.get(i).getEmployable());
+			jsonObject.put("Employable_Comments", Applicants.get(i).getEmployableComments());
 			
 			JsonArray.put(jsonObject);
 		}
@@ -852,6 +868,9 @@ public class MacApplicantService {
 										
 										
 										jsonObject.put("Nationality", Applicants.get(i).getNationality());
+										
+										jsonObject.put("Employable", Applicants.get(i).getEmployable());
+										jsonObject.put("Employable_Comments", Applicants.get(i).getEmployableComments());
 										JsonArray.put(jsonObject);
 										
 									}
@@ -949,6 +968,9 @@ public class MacApplicantService {
 				
 				jsonObject.put("Nationality", Applicants.get(i).getNationality());
 				jsonObject.put("Last_Used_Date", Applicants.get(i).getLastUsedDate());
+				
+				jsonObject.put("Employable", Applicants.get(i).getEmployable());
+				jsonObject.put("Employable_Comments", Applicants.get(i).getEmployableComments());
 
 				
 				
@@ -1034,6 +1056,9 @@ public class MacApplicantService {
 			
 			jsonObject.put("Nationality", Applicants.get(i).getNationality());
 			jsonObject.put("Last_Used_Date", Applicants.get(i).getLastUsedDate());
+			
+			jsonObject.put("Employable", Applicants.get(i).getEmployable());
+			jsonObject.put("Employable_Comments", Applicants.get(i).getEmployableComments());
 			
 			
 			JsonArray.put(jsonObject);
@@ -1129,6 +1154,9 @@ public class MacApplicantService {
 		
 				jsonObject.put("Nationality", Applicants.get(i).getNationality());
 				jsonObject.put("Last_Used_Date", Applicants.get(i).getLastUsedDate());
+				
+				jsonObject.put("Employable", Applicants.get(i).getEmployable());
+				jsonObject.put("Employable_Comments", Applicants.get(i).getEmployableComments());
 		
 		
 				JsonArray.put(jsonObject);
@@ -1216,6 +1244,9 @@ public class MacApplicantService {
 			jsonObject.put("Nationality", Applicants.get(i).getNationality());
 			
 			jsonObject.put("Last_Used_Date", Applicants.get(i).getLastUsedDate());
+			
+			jsonObject.put("Employable", Applicants.get(i).getEmployable());
+			jsonObject.put("Employable_Comments", Applicants.get(i).getEmployableComments());
 			
 			JsonArray.put(jsonObject);
 		}
@@ -1554,6 +1585,25 @@ public class MacApplicantService {
 		
 		Object.UpdateAppplicantLastSmsDateById(r.getInt("idMac_Applicants"),"None",0);
 		
+		
+		
+		return "Sucessful";	
+		
+			
+	}
+	
+	
+	
+	@Path("/UpdateApplicantEmployable/{idMac_Applicants}/{Employable}/{EmployableComments}")
+	@GET
+	@Produces("text/plain")
+	public  String UpdateEmployable(@PathParam("idMac_Applicants") int idMac_Applicants,@PathParam("Employable") String Employable,@PathParam("EmployableComments") String EmployableComments) throws JSONException
+	{
+		
+
+		System.out.println("Updating Applicant Employable");
+		MacApplicantDAO x = new MacApplicantDAO();
+		x.UpdateAppplicantEmpoyableId(idMac_Applicants, Employable, EmployableComments);
 		
 		
 		return "Sucessful";	

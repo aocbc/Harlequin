@@ -188,6 +188,10 @@
             <column name="Employable" length="3" />
         </property>
         
+        <property name="employableComments" type="string">
+            <column name="Employable_Comments" length="250" />
+        </property>
+        
              
     </class>
 </hibernate-mapping>

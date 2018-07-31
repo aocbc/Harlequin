@@ -41,6 +41,31 @@ public class MacApplicantDAO extends HarlequinDAO {
 		
 	}
 	
+	public MacApplicants UpdateAppplicantEmpoyableId(int id, String Employable, String EmployableComments)
+	{
+		Session session = this.getSession();
+
+		HibernateUtil.beginTransaction();
+	   
+		MacApplicants applicants = session.get(MacApplicants.class, id);
+		
+		applicants.setEmployable(Employable);
+		if(!EmployableComments.equals(""))
+		{
+			applicants.setEmployableComments(EmployableComments);
+			
+		}
+		
+		session.clear(); 
+		session.flush();
+		session.close();
+		
+		update(applicants);
+		
+		return applicants;
+	
+	}
+	
 	
 	public MacApplicants UpdateAppplicantLastSmsDateById(int id, String Sms_Group,int SmsGroupCount)
 	{
