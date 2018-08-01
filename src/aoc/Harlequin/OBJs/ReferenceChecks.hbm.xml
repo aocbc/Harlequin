@@ -1,0 +1,51 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 01 Aug 2018 5:33:20 PM by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping>
+    <class name="aoc.Harlequin.Temp.ReferenceChecks" table="Reference_Checks" catalog="Harlequin">
+        <id name="idReferenceChecks" type="int">
+            <column name="idReference_Checks" />
+            <generator class="assigned" />
+        </id>
+        <property name="idMacApplicants" type="int">
+            <column name="idMac_Applicants" not-null="true" />
+        </property>
+        <property name="applicantName" type="string">
+            <column name="Applicant_Name" length="50" />
+        </property>
+        <property name="applicantSurname" type="string">
+            <column name="Applicant_Surname" length="50" />
+        </property>
+        <property name="idNumber" type="string">
+            <column name="Id_Number" length="25" />
+        </property>
+        <property name="allReferenceChecksPassed" type="string">
+            <column name="All_Reference_checks_Passed" length="3" />
+        </property>
+        <property name="applicantsOverallReference" type="string">
+            <column name="Applicants_Overall_Reference" length="45" />
+        </property>
+        <property name="criminalCheckPassed" type="string">
+            <column name="Criminal_Check_Passed" length="45" />
+        </property>
+        <property name="applicantsCriminalChecksCriteria" type="string">
+            <column name="Applicants_Criminal_Checks_Criteria" length="45" />
+        </property>
+        <property name="exitMedicalDone" type="string">
+            <column name="Exit_Medical_done" length="45" />
+        </property>
+        <property name="referenceCheckComplete" type="string">
+            <column name="Reference_Check_Complete" length="45" />
+        </property>
+        <property name="lastUsedDate" type="string">
+            <column name="Last_Used_Date" length="19" />
+        </property>
+        <property name="username" type="string">
+            <column name="Username" length="50" />
+        </property>
+        <property name="usersurname" type="string">
+            <column name="Usersurname" length="50" />
+        </property>
+    </class>
+</hibernate-mapping>
