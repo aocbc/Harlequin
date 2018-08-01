@@ -3,7 +3,7 @@
 "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
 <!-- Generated 01 Aug 2018 5:33:20 PM by Hibernate Tools 3.4.0.CR1 -->
 <hibernate-mapping>
-    <class name="aoc.Harlequin.Temp.ReferenceChecks" table="Reference_Checks" catalog="Harlequin">
+    <class name="aoc.Harlequin.OBJs.ReferenceChecks" table="Reference_Checks" catalog="Harlequin">
         <id name="idReferenceChecks" type="int">
             <column name="idReference_Checks" />
             <generator class="assigned" />

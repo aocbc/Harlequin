@@ -26,5 +26,9 @@
          <mapping resource="aoc/Harlequin/OBJs/BlockedNumberList.hbm.xml" />
          
          <mapping resource="aoc/Harlequin/OBJs/AssignedJobApplicantList.hbm.xml" />
+         <mapping resource="aoc/Harlequin/OBJs/ReferenceChecks.hbm.xml" />
+         
+         
+         
     </session-factory>
 </hibernate-configuration>
