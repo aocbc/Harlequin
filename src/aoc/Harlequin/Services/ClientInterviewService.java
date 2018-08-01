@@ -60,7 +60,7 @@ public class ClientInterviewService {
 		jsonObject.put("Interview_Comments", Interview.getInterviewComments());
 		jsonObject.put("Client_Interview_Complete", Interview.getClientInterviewComplete());
 		jsonObject.put("Last_Used_Date", Interview.getLastUsedDate());
-		
+		jsonObject.put("Client_Interview_Passed", Interview.getClientInterviewPassed());
 	
 	
 		
@@ -100,6 +100,9 @@ public class ClientInterviewService {
 			jsonObject.put("Interview_Comments", Interviews.get(i).getInterviewComments());
 			jsonObject.put("Client_Interview_Complete", Interviews.get(i).getClientInterviewComplete());
 			jsonObject.put("Last_Used_Date", Interviews.get(i).getLastUsedDate());
+			jsonObject.put("Client_Interview_Passed", Interviews.get(i).getClientInterviewPassed());
+			
+			
 			
 			JsonArray.put(jsonObject);
 		}
@@ -144,6 +147,9 @@ public class ClientInterviewService {
 			jsonObject.put("Interview_Comments", Interview.get(i).getInterviewComments());
 			jsonObject.put("Client_Interview_Complete", Interview.get(i).getClientInterviewComplete());
 			jsonObject.put("Last_Used_Date", Interview.get(i).getLastUsedDate());
+			jsonObject.put("Client_Interview_Passed", Interview.get(i).getClientInterviewPassed());
+			
+			
 			
 			JsonArray.put(jsonObject);
 		}
@@ -188,7 +194,7 @@ public class ClientInterviewService {
 				jsonObject.put("Interview_Comments", Interview.get(0).getInterviewComments());
 				jsonObject.put("Client_Interview_Complete", Interview.get(0).getClientInterviewComplete());
 				jsonObject.put("Last_Used_Date", Interview.get(0).getLastUsedDate());
-				
+				jsonObject.put("Client_Interview_Passed", Interview.get(0).getClientInterviewPassed());
 			}
 			
 			
@@ -223,7 +229,7 @@ public class ClientInterviewService {
 		
 		
 		
-		Object.AddInterviewInformation(r.getString("Id_Number"),r.getString("Job_Name"),r.getString("idMac_Applicants"), r.getString("Client_Name"), r.getString("Applicant_Name"), r.getString("Applicant_Surname"), r.getString("Interview_questions_Passed"), r.getString("Applicant_Presentable"), r.getString("Applicant_Attitude"), r.getString("Interview_Comments"), r.getString("Client_Interview_Complete"));
+		Object.AddInterviewInformation(r.getString("Id_Number"),r.getString("Job_Name"),r.getString("idMac_Applicants"), r.getString("Client_Name"), r.getString("Applicant_Name"), r.getString("Applicant_Surname"), r.getString("Interview_questions_Passed"), r.getString("Applicant_Presentable"), r.getString("Applicant_Attitude"), r.getString("Interview_Comments"), r.getString("Client_Interview_Complete"), r.getString("Client_Interview_Passed"));
 		
 		AssignedJobApplicantDAO assigned_job = new AssignedJobApplicantDAO();
 		

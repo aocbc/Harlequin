@@ -63,5 +63,9 @@
         <property name="usersurname" type="string">
             <column name="Usersurname" length="50" />
         </property>
+        
+        <property name="clientInterviewPassed" type="string">
+            <column name="Client_Interview_Passed" length="3" />
+        </property>
     </class>
 </hibernate-mapping>

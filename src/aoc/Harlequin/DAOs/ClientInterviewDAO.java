@@ -66,7 +66,7 @@ public class ClientInterviewDAO extends HarlequinDAO {
 		  
 	}
 	
-	public void AddInterviewInformation( String Id_number,String Job_Name,String idMac_Applicants, String Client_Name, String Applicant_Name,  String Applicant_Surname, String Interview_questions_Passed, String Applicant_Presentable,  String Applicant_Attitude, String Interview_Comments,String Client_Interview_Complete )
+	public void AddInterviewInformation( String Id_number,String Job_Name,String idMac_Applicants, String Client_Name, String Applicant_Name,  String Applicant_Surname, String Interview_questions_Passed, String Applicant_Presentable,  String Applicant_Attitude, String Interview_Comments,String Client_Interview_Complete, String clientInterviewPassed )
 	{
 		////////////////////////////////////////////////////////////////////////////////////////
 		List<ClientInterviews> OldInterview = GetInterviewByInfo(Id_number, idMac_Applicants, Job_Name);
@@ -100,6 +100,7 @@ public class ClientInterviewDAO extends HarlequinDAO {
 		Interview.setIdNumber(Id_number);
 		Interview.setJobName(Job_Name);
 		Interview.setLastUsedDate(dateFormat.format(date));
+		Interview.setClientInterviewPassed(clientInterviewPassed);
 		
 		
 		
