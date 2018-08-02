@@ -229,7 +229,7 @@ public class ReferenceChecksService
 	
 	
 	
-	@Path("/SaveUserInfo")
+	@Path("/SaveReferenceCheckInfo")
 	@POST
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Produces("text/plain")
@@ -242,10 +242,11 @@ public class ReferenceChecksService
 		JSONObject r = new JSONObject(jsonTextObject);	
 	
 		
-		System.out.println("WRITING TO DATABASE:"+ r.getString("Name"));
+		
 			
-		SystemUserDAO Object  = new SystemUserDAO();
-		Object.AddUserInformation(r.getString("User_Name"),r.getString("Name"), r.getString("Surname"), r.getString("Email_address"), r.getString("Tell_Number"), r.getString("Cell_Number"), r.getString("Password"), r.getString("Authorization_Level"));
+		ReferenceCheckDAO Object  = new ReferenceCheckDAO();
+		Object.AddReferenceChecksInfo(r.getString("idMac_Applicants"), r.getString("Applicant_Name"),r.getString("Applicant_Surname"), r.getString("Id_Number"), r.getString("All_Reference_Checks_Passed"), r.getString("Applicants_Overall_Reference"), r.getString("Criminal_Check_Passed"), r.getString("Applicants_Criminal_checks_Criteria"), r.getString("Exit_Medical_Done"), r.getString("Reference_Check_Complete"), r.getString("Username"), r.getString("Usersurname"), r.getString("Job_Name"));
+		
 		
 		return "Sucessful";	
 		
