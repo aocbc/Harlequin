@@ -13,6 +13,7 @@ import org.hibernate.Session;
 import org.hibernate.query.Query;
 
 import aoc.Harlequin.OBJs.ClientInterviews;
+import aoc.Harlequin.OBJs.MacApplicants;
 import aoc.Harlequin.OBJs.ReferenceChecks;
 import aoc.Harlequin.OBJs.SystemUser;
 import aoc.Harlequin.util.HibernateUtil;
@@ -77,6 +78,24 @@ public class ReferenceCheckDAO extends HarlequinDAO
 	}
 	
 	
+	public List<ReferenceChecks> GetUserByIdNumber(String Id_Number)
+	{
+		Session session = this.getSession();
+		HibernateUtil.beginTransaction();
+		
+		
+		
+		Query query = session.createQuery("from ReferenceChecks Where Id_Number = '"+Id_Number+"'");
+		List<ReferenceChecks> Reference = query.list();
+		
+		session.clear(); // ADDED 170302
+		session.flush();
+		session.close();
+		return Reference;
+	}
+	
+	
+	
 	public List<ReferenceChecks> GetUserByIdAndJob(String idMac_Applicants,String Job_Name)
 	{
 		Session session = this.getSession();
@@ -95,7 +114,7 @@ public class ReferenceCheckDAO extends HarlequinDAO
 	
 	
 	
-	public void AddReferenceChecksInfo(String idMac_Applicants,String Applicant_Name, String Applicant_Surname, String Id_Number, String All_Reference_Checks_Passed, String Applicants_Overall_Reference, String Criminal_Check_Passed, String Applicants_Criminal_checks_Criteria, String Exit_Medical_Done, String Reference_Check_Complete, String Username, String Usersurname, String Job_Name )
+	public void AddReferenceChecksInfo(String idMac_Applicants,String Applicant_Name, String Applicant_Surname, String Id_Number, String All_Reference_Checks_Passed, String Applicants_Overall_Reference, String Criminal_Check_Passed, String Applicants_Criminal_checks_Criteria, String Exit_Medical_Done, String Reference_Check_Complete, String Username, String Usersurname, String Job_Name , String ReferenceCheckComments)
 	{
 		////////////////////////////////////////////////////////////////////////////////////
 		////////////////////////////////////////////////////////////////////////////////////
@@ -109,11 +128,10 @@ public class ReferenceCheckDAO extends HarlequinDAO
 		////////////////////////////////////////////////////////////////////////////////////
 		DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 		Date date = new Date();
-		
 		Session session = HibernateUtil.getSessionFactory().openSession();
-		
 		session.beginTransaction();
 		
+		MacApplicants Applicant =  session.get(MacApplicants.class, Integer.valueOf(idMac_Applicants));
 		
 		
 		ReferenceChecks ReferenceCheck = new ReferenceChecks();
@@ -129,6 +147,7 @@ public class ReferenceCheckDAO extends HarlequinDAO
 		ReferenceCheck.setApplicantsCriminalChecksCriteria(Applicants_Criminal_checks_Criteria);
 		ReferenceCheck.setExitMedicalDone(Exit_Medical_Done);
 		ReferenceCheck.setReferenceCheckComplete(Reference_Check_Complete);
+		ReferenceCheck.setReferenceCheckComments(ReferenceCheckComments);
 		ReferenceCheck.setLastUsedDate(dateFormat.format(date));
 		ReferenceCheck.setUsername(Username);
 		ReferenceCheck.setUsersurname(Usersurname);
@@ -142,6 +161,11 @@ public class ReferenceCheckDAO extends HarlequinDAO
 		
 		
 		session.close();
+		
+		Applicant.setReferenceChecksComplete(Reference_Check_Complete);
+		Applicant.setReferenceChecksComments(ReferenceCheckComments);
+		
+		update(Applicant);
 
 		
 	}

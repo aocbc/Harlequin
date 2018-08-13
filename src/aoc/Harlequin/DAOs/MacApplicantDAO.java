@@ -504,6 +504,24 @@ public class MacApplicantDAO extends HarlequinDAO {
 		return Applicant;
 	}
 	
+	public List<MacApplicants> GetApplicantsReferenceCheck()
+	{
+		Session session = this.getSession();
+		HibernateUtil.beginTransaction();
+		
+		
+		
+		//Query query = session.createQuery("from MacApplicants as x where exists(from AssignedJobApplicantList as y WHERE x.idNumber = y.idMacApplicants )");
+		Query query = session.createQuery("from MacApplicants where Job_Name <> 'None' AND Job_Name <> 'NA' ");
+		
+		List<MacApplicants> Applicant = query.list();
+		
+		session.clear(); // ADDED 170302
+		session.flush();
+		session.close();
+		return Applicant;
+	}
+	
 	
 	public List<MacApplicants> GetApplicantsByApplicantId(String IdNumber)
 	{

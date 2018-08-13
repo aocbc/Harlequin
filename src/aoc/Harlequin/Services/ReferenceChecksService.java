@@ -80,11 +80,54 @@ public class ReferenceChecksService
 			jsonObject.put("Username", Referencecheck.get(i).getUsername());
 			jsonObject.put("Usersurname", Referencecheck.get(i).getUsersurname());
 			
+			jsonObject.put("Reference_Check_Comments", Referencecheck.get(i).getReferenceCheckComments());
+			
 			JsonArray.put(jsonObject);
 	     }
 		
 		    
 		return JsonArray.toString();
+	}
+	
+	
+	@Path("/GetUserInfoByIDNumber/{id_number}")
+	@GET
+	@Produces("text/plain")
+	public String GETid( @PathParam("id_number") String id_number) throws Exception
+	{
+		
+		ReferenceCheckDAO Object  = new ReferenceCheckDAO();
+		 
+		List<ReferenceChecks> Referencecheck  = Object.GetUserByIdNumber(id_number);
+		
+		
+		
+		
+			JSONObject jsonObject = new JSONObject();
+			
+			jsonObject.put("idReference_Checks", Referencecheck.get(0).getIdReferenceChecks());
+			jsonObject.put("idMac_Applicants", Referencecheck.get(0).getIdMacApplicants());
+			jsonObject.put("Applicant_Name", Referencecheck.get(0).getApplicantName());
+			jsonObject.put("Applicant_Surname", Referencecheck.get(0).getApplicantSurname());
+			jsonObject.put("Id_Number", Referencecheck.get(0).getIdNumber());		
+			jsonObject.put("All_Reference_checks_Passed", Referencecheck.get(0).getAllReferenceChecksPassed());
+			jsonObject.put("Applicants_Overall_Reference", Referencecheck.get(0).getApplicantsOverallReference());
+			jsonObject.put("Criminal_Check_Passed", Referencecheck.get(0).getCriminalCheckPassed());
+			jsonObject.put("Applicants_Criminal_Checks_Criteria", Referencecheck.get(0).getApplicantsCriminalChecksCriteria());
+			jsonObject.put("Exit_Medical_done", Referencecheck.get(0).getExitMedicalDone());
+			
+			jsonObject.put("Reference_Check_Complete", Referencecheck.get(0).getReferenceCheckComplete());
+			jsonObject.put("Last_Used_Date", Referencecheck.get(0).getLastUsedDate());
+			jsonObject.put("Username", Referencecheck.get(0).getUsername());
+			jsonObject.put("Usersurname", Referencecheck.get(0).getUsersurname());
+			
+			jsonObject.put("Reference_Check_Comments", Referencecheck.get(0).getReferenceCheckComments());
+			
+			
+	   
+		
+		    
+		return jsonObject.toString();
 	}
 	
 	@Path("/GetAllReferenceChecks")
@@ -245,7 +288,7 @@ public class ReferenceChecksService
 		
 			
 		ReferenceCheckDAO Object  = new ReferenceCheckDAO();
-		Object.AddReferenceChecksInfo(r.getString("idMac_Applicants"), r.getString("Applicant_Name"),r.getString("Applicant_Surname"), r.getString("Id_Number"), r.getString("All_Reference_Checks_Passed"), r.getString("Applicants_Overall_Reference"), r.getString("Criminal_Check_Passed"), r.getString("Applicants_Criminal_checks_Criteria"), r.getString("Exit_Medical_Done"), r.getString("Reference_Check_Complete"), r.getString("Username"), r.getString("Usersurname"), r.getString("Job_Name"));
+		Object.AddReferenceChecksInfo(r.getString("idMac_Applicants"), r.getString("Applicant_Name"),r.getString("Applicant_Surname"), r.getString("Id_Number"), r.getString("All_Reference_Checks_Passed"), r.getString("Applicants_Overall_Reference"), r.getString("Criminal_Check_Passed"), r.getString("Applicants_Criminal_checks_Criteria"), r.getString("Exit_Medical_Done"), r.getString("Reference_Check_Complete"), r.getString("Username"), r.getString("Usersurname"), r.getString("Job_Name"), r.getString("Reference_Check_Comments"));
 		
 		
 		return "Sucessful";	

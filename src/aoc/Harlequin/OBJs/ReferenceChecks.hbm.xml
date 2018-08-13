@@ -51,5 +51,9 @@
         <property name="jobName" type="string">
             <column name="Job_Name" length="50" />
         </property>
+        
+        <property name="referenceCheckComments" type="string">
+            <column name="Reference_Check_Comments" length="250" />
+        </property>
     </class>
 </hibernate-mapping>
