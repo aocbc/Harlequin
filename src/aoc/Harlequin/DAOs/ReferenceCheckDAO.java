@@ -147,7 +147,16 @@ public class ReferenceCheckDAO extends HarlequinDAO
 		ReferenceCheck.setApplicantsCriminalChecksCriteria(Applicants_Criminal_checks_Criteria);
 		ReferenceCheck.setExitMedicalDone(Exit_Medical_Done);
 		ReferenceCheck.setReferenceCheckComplete(Reference_Check_Complete);
-		ReferenceCheck.setReferenceCheckComments(ReferenceCheckComments);
+		
+		if(ReferenceCheckComments.equals(""))
+		{
+			ReferenceCheck.setReferenceCheckComments("N/A");
+		}
+		else
+		{
+			ReferenceCheck.setReferenceCheckComments(ReferenceCheckComments);
+		}
+		
 		ReferenceCheck.setLastUsedDate(dateFormat.format(date));
 		ReferenceCheck.setUsername(Username);
 		ReferenceCheck.setUsersurname(Usersurname);
@@ -163,7 +172,16 @@ public class ReferenceCheckDAO extends HarlequinDAO
 		session.close();
 		
 		Applicant.setReferenceChecksComplete(Reference_Check_Complete);
-		Applicant.setReferenceChecksComments(ReferenceCheckComments);
+		
+		if(ReferenceCheckComments.equals(""))
+		{
+			Applicant.setReferenceChecksComments("N/A");
+		}
+		else
+		{
+			Applicant.setReferenceChecksComments(ReferenceCheckComments);
+		}
+		
 		
 		update(Applicant);
 

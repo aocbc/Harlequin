@@ -30,7 +30,7 @@
             <column name="User_Password" length="50" />
         </property>
          <property name="authorizationLevel" type="string">
-            <column name="Authorization_Level" length="20" />
+            <column name="Authorization_Level" length="50" />
         </property>
         
         <property name="lastUsedDate" type="string">

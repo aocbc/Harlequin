@@ -6,13 +6,18 @@
     <session-factory>
         <property name="hibernate.connection.driver_class">com.mysql.jdbc.Driver</property>
         <property name="hibernate.connection.password">SecureA0C</property>
-        <property name="hibernate.connection.url">jdbc:mysql://41.79.78.120:3306/Harlequin</property>
-        <property name="hibernate.connection.username">jateen</property>
+        
+        <property name="hibernate.connection.url">jdbc:mysql://41.79.78.120:3306/Harlequin</property> 
+ 		<property name="hibernate.connection.username">jateen</property> 
+
+		<!-- <property name="hibernate.connection.url">jdbc:mysql://41.79.83.236:3306/Harlequin</property> 
+        <property name="hibernate.connection.username">harlequin</property>
+        <property name="hibernate.connection.password">SecureA0C!</property>
+         -->
         <property name="hibernate.default_schema">Harlequin</property>
         <property name="hibernate.dialect">org.hibernate.dialect.MySQLDialect</property>
         <property name="hibernate.hbm2ddl.auto">validate</property>
         <property name="hibernate.current_session_context_class">thread</property>
-        
         <mapping resource="aoc/Harlequin/OBJs/SystemUser.hbm.xml" />
         <mapping resource="aoc/Harlequin/OBJs/SystemClient.hbm.xml" />
         <mapping resource="aoc/Harlequin/OBJs/MacApplicants.hbm.xml" />
@@ -20,13 +25,13 @@
         <mapping resource="aoc/Harlequin/OBJs/JobHistory.hbm.xml" />
         <mapping resource="aoc/Harlequin/OBJs/PracticalDriversAssessment.hbm.xml" />
         <mapping resource="aoc/Harlequin/OBJs/MacLabourInterView.hbm.xml" />
-         <mapping resource="aoc/Harlequin/OBJs/ClientInterviews.hbm.xml" />
-         <mapping resource="aoc/Harlequin/OBJs/ApplicantMacInterview.hbm.xml" />
-         <mapping resource="aoc/Harlequin/OBJs/ApplicantSmsHistory.hbm.xml" />
-         <mapping resource="aoc/Harlequin/OBJs/BlockedNumberList.hbm.xml" />
+        <mapping resource="aoc/Harlequin/OBJs/ClientInterviews.hbm.xml" />
+        <mapping resource="aoc/Harlequin/OBJs/ApplicantMacInterview.hbm.xml" />
+        <mapping resource="aoc/Harlequin/OBJs/ApplicantSmsHistory.hbm.xml" />
+        <mapping resource="aoc/Harlequin/OBJs/BlockedNumberList.hbm.xml" />
          
-         <mapping resource="aoc/Harlequin/OBJs/AssignedJobApplicantList.hbm.xml" />
-         <mapping resource="aoc/Harlequin/OBJs/ReferenceChecks.hbm.xml" />
+        <mapping resource="aoc/Harlequin/OBJs/AssignedJobApplicantList.hbm.xml" />
+        <mapping resource="aoc/Harlequin/OBJs/ReferenceChecks.hbm.xml" />
          
          
          

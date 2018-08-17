@@ -1345,8 +1345,10 @@ public class MacApplicantService {
 			jsonObject.put("Sms_Group_Count", Applicants.get(i).getSmsGroupCount());
 			jsonObject.put("Applicant_Type", Applicants.get(i).getApplicantType());
 			jsonObject.put("Applicant_Status", Applicants.get(i).getApplicantStatus());
-			jsonObject.put("Reference_Checks_Comments", Applicants.get(i).getClientInterviewComments());
-			jsonObject.put("Reference_Checks_Complete", Applicants.get(i).getClientInterviewComplete());
+			
+			jsonObject.put("Reference_Checks_Comments", Applicants.get(i).getReferenceChecksComments());
+			jsonObject.put("Reference_Checks_Complete", Applicants.get(i).getReferenceChecksComplete());
+			
 			jsonObject.put("Stage_In_Process", Applicants.get(i).getStageInTheProcess());
 			jsonObject.put("Sms_Account_Active", Applicants.get(i).getSmsAccountActive());
 			jsonObject.put("Nationality", Applicants.get(i).getNationality());

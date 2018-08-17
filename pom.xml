@@ -23,6 +23,9 @@
           <failOnMissingWebXml>false</failOnMissingWebXml>
         </configuration>
       </plugin>
+      
+      
+	  
     </plugins>
   </build>
   <dependencies>
@@ -80,6 +83,11 @@
     <artifactId>httpclient</artifactId>
     <version>4.5.5</version>
 </dependency>
+
+
+
+	
+	
    
   </dependencies>
 </project>
