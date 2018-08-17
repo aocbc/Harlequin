@@ -79,11 +79,11 @@ public class ClientService {
 		Client.setClientContactNumber(test.getString("Client_Contact_Number"));
 		Client.setClientContactName(test.getString("Client_Contact_Name"));
 		Client.setClientAddress1(test.getString("Client_Address_1"));
-		Client.setClientAddress1(test.getString("Client_Address_2"));
-		Client.setClientAddress1(test.getString("Client_Address_3"));
-		Client.setClientAddress1(test.getString("Client_Address_4"));
-		Client.setClientAddress1(test.getString("Client_Vat_Number"));
-		Client.setClientAddress1(test.getString("Client_Comments"));
+		Client.setClientAddress2(test.getString("Client_Address_2"));
+		Client.setClientAddress3(test.getString("Client_Address_3"));
+		Client.setClientAddress4(test.getString("Client_Address_4"));
+		Client.setClientVatNumber(test.getString("Client_Vat_Number"));
+		Client.setClientComments(test.getString("Client_Comments"));
 		Client.setLastUsedDate(dateFormat.format(date));
 		
 		t.update(Client);
