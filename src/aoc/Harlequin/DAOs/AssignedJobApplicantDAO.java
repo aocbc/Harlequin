@@ -281,6 +281,8 @@ public class AssignedJobApplicantDAO extends HarlequinDAO
 				AssignedJob.setSurname(Applicant.get(0).getSurname().toString());
 				AssignedJob.setStageInProcess("MacLabour Interview");
 				AssignedJob.setStageStatus("Recently Assigned to a new Job");
+				AssignedJob.setMacLabInterviewComplete("No");
+				AssignedJob.setMacLabourInterviewComments("Please Add a Comment");
 				
 				
 				session.save(AssignedJob);
