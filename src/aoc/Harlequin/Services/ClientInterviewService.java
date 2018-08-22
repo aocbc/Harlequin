@@ -167,6 +167,58 @@ public class ClientInterviewService {
 	}
 	
 	
+	@Path("/GetInterviewInfoByID/{Id_Number}")
+	@GET
+	@Produces("text/plain")
+	public String GET5(@PathParam("Id_Number") String Id_Number ) throws Exception
+	{
+		
+		
+		
+		ClientInterviewDAO Object  = new ClientInterviewDAO();
+		
+		List<ClientInterviews> Interview = Object.GetClientInfoByIdNumber(Id_Number);
+		
+		JSONArray JsonArray = new JSONArray();
+		
+		for(int i = 0; i < Interview.size();i++)
+		{
+			JSONObject jsonObject = new JSONObject();
+			
+			jsonObject.put("idClientInterviews", Interview.get(i).getIdClientInterviews());
+			jsonObject.put("Id_Number", Interview.get(i).getIdNumber());
+			jsonObject.put("idMac_Applicants", Interview.get(i).getIdMacApplicants());
+			jsonObject.put("Client_Name", Interview.get(i).getClientName());
+			jsonObject.put("Applicant_Name", Interview.get(i).getApplicantName());
+			jsonObject.put("Applicant_Surname", Interview.get(i).getApplicantSurname());
+
+			jsonObject.put("Interview_questions_Passed", Interview.get(i).getInterviewQuestionsPassed());
+			jsonObject.put("Applicant_Presentable", Interview.get(i).getApplicantPresentable());
+
+			jsonObject.put("Applicant_Attitude", Interview.get(i).getApplicantAttitude());
+			jsonObject.put("Interview_Comments", Interview.get(i).getInterviewComments());
+			jsonObject.put("Client_Interview_Complete", Interview.get(i).getClientInterviewComplete());
+			jsonObject.put("Last_Used_Date", Interview.get(i).getLastUsedDate());
+			jsonObject.put("Client_Interview_Passed", Interview.get(i).getClientInterviewPassed());
+			
+			
+			
+			JsonArray.put(jsonObject);
+		}
+		
+		
+		
+		
+		
+		
+		System.out.println(JsonArray.toString());
+		
+		
+		
+		return JsonArray.toString();
+	}
+	
+	
 	
 	@Path("/GetInterview/{Id_Number}/{idMac_Applicants}/{Job_Name}")
 	@GET

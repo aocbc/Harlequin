@@ -129,6 +129,25 @@ public class ClientInterviewDAO extends HarlequinDAO {
 		return Client;
 	}
 	
+	
+	public List<ClientInterviews> GetClientInfoByIdNumber(String Id_Number)
+	{
+		Session session = this.getSession();
+		HibernateUtil.beginTransaction();
+		
+		
+		
+		Query query = session.createQuery("from ClientInterviews Where Id_Number = '"+Id_Number+"'");
+		List<ClientInterviews> Client = query.list();
+		
+		session.clear(); // ADDED 170302
+		session.flush();
+		session.close();
+		
+		return Client;
+	}
+	
+	
 	public List<ClientInterviews> GetInterviewByInfo(String Id_Number, String idMac_Applicants,String Job_Name)
 	{
 		Session session = this.getSession();

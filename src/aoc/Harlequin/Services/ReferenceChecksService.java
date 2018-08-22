@@ -133,6 +133,57 @@ public class ReferenceChecksService
 		return jsonObject.toString();
 	}
 	
+	
+	@Path("/GetReferenceChecksByIDNumber/{Id_Number}")
+	@GET
+	@Produces("text/plain")
+	public String GETidNumber( @PathParam("Id_Number") String Id_Number) throws Exception
+	{
+		
+		ReferenceCheckDAO Object  = new ReferenceCheckDAO();
+		 
+		List<ReferenceChecks> Referencecheck  = Object.GetUserByIdNumber(Id_Number);
+		
+		JSONArray JsonArray = new JSONArray();
+		System.out.println("Id_Number:"+Id_Number );
+		
+		for(int i = 0; i < Referencecheck.size();i++)
+		{
+		
+		
+				JSONObject jsonObject = new JSONObject();
+			
+				jsonObject.put("idReference_Checks", Referencecheck.get(i).getIdReferenceChecks());
+				jsonObject.put("idMac_Applicants", Referencecheck.get(i).getIdMacApplicants());
+				jsonObject.put("Applicant_Name", Referencecheck.get(i).getApplicantName());
+				jsonObject.put("Applicant_Surname", Referencecheck.get(i).getApplicantSurname());
+				jsonObject.put("Id_Number", Referencecheck.get(i).getIdNumber());		
+				jsonObject.put("All_Reference_checks_Passed", Referencecheck.get(i).getAllReferenceChecksPassed());
+				jsonObject.put("Applicants_Overall_Reference", Referencecheck.get(i).getApplicantsOverallReference());
+				jsonObject.put("Criminal_Check_Passed", Referencecheck.get(i).getCriminalCheckPassed());
+				jsonObject.put("Applicants_Criminal_Checks_Criteria", Referencecheck.get(i).getApplicantsCriminalChecksCriteria());
+				jsonObject.put("Exit_Medical_done", Referencecheck.get(i).getExitMedicalDone());
+				
+				jsonObject.put("Reference_Check_Complete", Referencecheck.get(i).getReferenceCheckComplete());
+				jsonObject.put("Last_Used_Date", Referencecheck.get(i).getLastUsedDate());
+				jsonObject.put("Username", Referencecheck.get(i).getUsername());
+				jsonObject.put("Usersurname", Referencecheck.get(i).getUsersurname());
+				
+				jsonObject.put("Reference_Check_Comments", Referencecheck.get(i).getReferenceCheckComments());
+				
+				JsonArray.put(jsonObject);
+		}
+			
+			
+			
+	   
+		
+		    
+		return JsonArray.toString();
+	}
+	
+	
+	
 	@Path("/GetAllReferenceChecks")
 	@GET
 	@Produces("text/plain")

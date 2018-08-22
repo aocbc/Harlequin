@@ -176,6 +176,69 @@ public class MacLabourInterviewService {
 		return JsonArray.toString();
 	}
 	
+	
+	@Path("/GetInterviewInfobyIdnumber/{Id_Number}")
+	@GET
+	@Produces("text/plain")
+	public String GET4(@PathParam("Id_Number") String Id_Number) throws Exception
+	{
+		
+		
+		MacInterviewDAO Object  = new MacInterviewDAO();
+		
+		List<MacLabourInterView> Interview = Object.GetInterviewByInfoIdNumber(Id_Number);
+		
+
+		
+		JSONArray JsonArray = new JSONArray();
+		
+		for(int i = 0; i < Interview.size();i++)
+		{
+				JSONObject jsonObject = new JSONObject();
+			
+			
+			
+				
+				jsonObject.put("idMacLabour_InterView", Interview.get(i).getIdMacLabourInterView());
+				jsonObject.put("idMac_Applicants", Interview.get(i).getIdMacApplicants());
+				jsonObject.put("Name", Interview.get(i).getName());
+				jsonObject.put("Surname", Interview.get(i).getSurname());
+				jsonObject.put("Id_Number", Interview.get(i).getIdNumber());		
+				jsonObject.put("Client_Name", Interview.get(i).getClientName());
+				jsonObject.put("Id_Verified", Interview.get(i).getIdVerified());
+				jsonObject.put("Work_History_Verified", Interview.get(i).getWorkHistoryVerified());
+				jsonObject.put("Job_Name", Interview.get(i).getJobName());
+				jsonObject.put("Drivers_License_Verified", Interview.get(i).getDriversLicenseVerified());
+				jsonObject.put("SAP_Check", Interview.get(i).getSapCheck());
+				jsonObject.put("Criminal_Record", Interview.get(i).getCriminalRecord());
+				jsonObject.put("Criminal_Record_Comments", Interview.get(i).getCriminalRecordComments());
+				jsonObject.put("Union_Member", Interview.get(i).getUnionMember());		
+				jsonObject.put("Union_Name", Interview.get(i).getUnionName());
+				jsonObject.put("Applicant_Passed_Interview", Interview.get(i).getApplicantPassedInterview());
+				jsonObject.put("Applicant_Presentable", Interview.get(i).getApplicantPresentable());
+				jsonObject.put("Applicant_Atttitude", Interview.get(i).getApplicantAtttitude());
+				jsonObject.put("Interview_comments", Interview.get(i).getInterviewComments());
+				jsonObject.put("Formal_Interview_Complete", Interview.get(i).getFormalInterviewComplete());
+				jsonObject.put("Last_Used_Date", Interview.get(i).getLastUsedDate());
+				
+				JsonArray.put(jsonObject);
+			}
+			
+			
+		
+		
+		
+		
+		
+		
+		System.out.println(JsonArray.toString());
+		
+		
+		
+		return JsonArray.toString();
+	}
+	
+	
 	@Path("/GetInterviewInfo/{Id_Number}/{idMac_Applicants}/{Job_Name}")
 	@GET
 	@Produces("text/plain")

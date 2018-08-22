@@ -222,6 +222,90 @@ public class PracticalDrivingAssessmentService {
 		return jsonObject.toString();
 	}
 	
+	@Path("/GetAssessmentByIDNumber/{Id_Number}")
+	@GET
+	@Produces("text/plain")
+	public String GETAssessmentsByIdNumber(@PathParam("Id_Number") String Id_Number) throws Exception
+	{
+		
+		PracticalDrivingAssessmentDAO Object  = new PracticalDrivingAssessmentDAO();
+		
+		List<PracticalDriversAssessment> Assessments = Object.ReadAssessmentsByInfoByIDnumber(Id_Number);
+		
+		
+		JSONArray JsonArray = new JSONArray();
+		
+		for(int i = 0; i < Assessments.size();i++)
+		{
+		
+				JSONObject jsonObject = new JSONObject();
+			
+				
+				
+				jsonObject.put("idPractical_Drivers_Assessment", Assessments.get(i).getIdPracticalDriversAssessment());
+				jsonObject.put("idMac_Applicants", Assessments.get(i).getIdMacApplicants());
+				jsonObject.put("Name", Assessments.get(i).getName());
+				
+				jsonObject.put("Surname", Assessments.get(i).getSurname());
+				jsonObject.put("Id_Number", Assessments.get(i).getIdNumber());
+				jsonObject.put("Client_Name",Assessments.get(i).getClientName());		
+				jsonObject.put("PDP_Expiry_Date", Assessments.get(i).getPdpExpiryDate());
+				jsonObject.put("Vehicle_Used", Assessments.get(i).getVehicleUsed());
+				jsonObject.put("Assessor_Name", Assessments.get(i).getAssessorName());
+				jsonObject.put("Assessor_Surname", Assessments.get(i).getAssessorSurname());
+				jsonObject.put("Assessor_User_Id", Assessments.get(i).getAssessorUserId());
+				jsonObject.put("Date", Assessments.get(i).getDate());
+				
+				jsonObject.put("KM_End", Assessments.get(i).getKmEnd());
+				jsonObject.put("KM_Start", Assessments.get(i).getKmStart());
+				jsonObject.put("Time_End", Assessments.get(i).getTimeEnd());
+				jsonObject.put("Time_Start", Assessments.get(i).getTimeStart());		
+				jsonObject.put("Weather", Assessments.get(i).getWeather());
+				jsonObject.put("Route", Assessments.get(i).getRoute());
+				jsonObject.put("Total_score",Assessments.get(i).getTotalScore());
+				jsonObject.put("Starting_And_Stopping", Assessments.get(i).getStartingAndStopping());
+				jsonObject.put("General_Driving", Assessments.get(i).getGeneralDriving());
+				jsonObject.put("Passing_Or_Overtaking", Assessments.get(i).getPassingOrOvertaking());
+				
+				jsonObject.put("General_Road_Behavior",Assessments.get(i).getGeneralRoadBehavior());
+				jsonObject.put("Observation_And_Anticipation", Assessments.get(i).getObservationAndAnticipation());
+				jsonObject.put("Approaching_Junctions_Turning_Exiting", Assessments.get(i).getApproachingJunctionsTurningExiting());
+				jsonObject.put("Reversing", Assessments.get(i).getReversing());		
+				jsonObject.put("Clutch", Assessments.get(i).getClutch());
+				jsonObject.put("Retarder_DSC_HillMode", Assessments.get(i).getRetarderDscHillMode());
+				jsonObject.put("Comments", Assessments.get(i).getComments());
+				jsonObject.put("PDA_No",Assessments.get(i).getPdaNo());
+				
+				jsonObject.put("License_Code",Assessments.get(i).getLicenseCode());
+				jsonObject.put("Practical_Drivers_Test_Complete",Assessments.get(i).getPracticalDriversTestComplete());
+				jsonObject.put("Practical_Drivers_Test_Comments",Assessments.get(i).getPracticalDriversTestComments());
+				
+				jsonObject.put("Job_Name",Assessments.get(i).getjobName());
+				jsonObject.put("Last_Used_Date",Assessments.get(i).getLastUsedDate());
+				
+				jsonObject.put("PDP_Expiry_Date",Assessments.get(i).getPdpExpiryDate());
+				
+				
+				
+				
+				
+				JsonArray.put(jsonObject);
+				
+			}
+			
+			
+		
+		
+		
+		
+		
+		
+		
+		
+	    
+		return JsonArray.toString();
+	}
+	
 	@Path("/SaveAssessmentInfo")
 	@POST
 	@Consumes(MediaType.APPLICATION_JSON)
