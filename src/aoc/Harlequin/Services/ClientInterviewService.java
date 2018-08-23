@@ -200,6 +200,7 @@ public class ClientInterviewService {
 			jsonObject.put("Client_Interview_Complete", Interview.get(i).getClientInterviewComplete());
 			jsonObject.put("Last_Used_Date", Interview.get(i).getLastUsedDate());
 			jsonObject.put("Client_Interview_Passed", Interview.get(i).getClientInterviewPassed());
+			jsonObject.put("Job_Name", Interview.get(i).getJobName());
 			
 			
 			
