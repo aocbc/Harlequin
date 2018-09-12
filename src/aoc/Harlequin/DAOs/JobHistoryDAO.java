@@ -74,13 +74,29 @@ public class JobHistoryDAO extends HarlequinDAO {
 	}
 
 	
+	///////////////////////////////////////////////////////////////////////////////
+	//Function to delete an object from the database
+	//////////////////////////////////////////////////////////////////////////////
+	public void delete(Object entity) {
+		  Session hibernateSession = this.getSession(); 
+		  
+		  HibernateUtil.beginTransaction();
+		        hibernateSession.delete(entity);
+		        hibernateSession.flush();
+		  HibernateUtil.commitTransaction();
+		  /*
+		    hibernateSession.clear(); // ADDED 170302
+	        hibernateSession.flush();
+	        hibernateSession.close();*/
+		 }
+	
 	public void AddJobHistroy( String Job_Role, String Job_Description, String Employer_Contact_Person,String Employer_Contact_Number, String Employer_Industry, String Period_From,String Period_To, String idMac_Applicants, String Name, String Surname,String Employer_Name)
 	{
 		
+		
+		
 		Session session = HibernateUtil.getSessionFactory().openSession();
-		
 		session.beginTransaction();
-		
 		
 		
 		JobHistory history = new JobHistory();

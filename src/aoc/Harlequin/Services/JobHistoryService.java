@@ -106,6 +106,7 @@ public class JobHistoryService {
 			
 		JobHistoryDAO Object  = new JobHistoryDAO();
 		Object.AddJobHistroy(r.getString("Job_Role"), r.getString("Job_Description"), r.getString("Employer_Contact_Person"), r.getString("Employer_Contact_Number"), r.getString("Employer_Industry"), r.getString("Period_From"), r.getString("Period_To"), r.getString("idMac_Applicants"), r.getString("Name"), r.getString("Surname"),r.getString("Employer_Name"));
+		
 		return "Sucessful";	
 		
 			
@@ -124,10 +125,47 @@ public class JobHistoryService {
 		System.out.println("Test"+json);
 		JSONArray Jobs = json.getJSONArray("Job");
 		
+		
+		//////////////////////////////////////////////////////////////////////////////
+		///////////////////////Removing Job History if exists/////////////////////////
+		//////////////////////////////////////////////////////////////////////////////
+		
+		if(Jobs.length()>0)
+		{
+			JSONObject x = new JSONObject( Jobs.get(0).toString());
+			JobHistoryDAO Object1  = new JobHistoryDAO();
+			List<JobHistory> History  = Object1.ReadAllJobHistoryByIdNumber(x.getString("idMac_Applicants"));
+			
+			System.out.println("Test2:" + History.size());
+			
+			if(History.size() > 0)
+			{
+			
+				for(int k = 0 ;k<History.size();k++)
+				{   
+					System.out.println("Test3");
+					Object1.delete(History.get(k));
+				}
+			
+			}
+		}
+		
+		
+		////////////////////////////////////////////////////////////////////////////
+		////////////////////////Adding user to database/////////////////////////////
+		////////////////////////////////////////////////////////////////////////////
+		
 		for (int i = 0; i < Jobs.length(); i++) 
 		{
+			
+			
 			JSONObject r = new JSONObject( Jobs.get(i).toString());
 			JobHistoryDAO Object  = new JobHistoryDAO();
+			
+			
+			
+			
+			
 			Object.AddJobHistroy(r.getString("Job_Role"), r.getString("Job_Description"), r.getString("Employer_Contact_Person"), r.getString("Employer_Contact_Number"), r.getString("Employer_Industry"), r.getString("Period_From"), r.getString("Period_To"), r.getString("idMac_Applicants"), r.getString("Name"), r.getString("Surname"),r.getString("Employer_Name"));
 		
 			
