@@ -113,5 +113,151 @@
          <property name="lastUsedDate" type="string">
             <column name="Last_Used_Date" length="19" />
         </property>
+        
+        
+        <property name="startingAndStopping1" type="java.lang.Integer">
+            <column name="StartingAndStopping1" />
+        </property>
+        <property name="startingAndStopping2" type="java.lang.Integer">
+            <column name="StartingAndStopping2" />
+        </property>
+        <property name="startingAndStopping3" type="java.lang.Integer">
+            <column name="StartingAndStopping3" />
+        </property>
+        <property name="startingAndStopping4" type="java.lang.Integer">
+            <column name="StartingAndStopping4" />
+        </property>
+        <property name="startingAndStopping5" type="java.lang.Integer">
+            <column name="StartingAndStopping5" />
+        </property>
+        <property name="startingAndStopping6" type="java.lang.Integer">
+            <column name="StartingAndStopping6" />
+        </property>
+        <property name="startingAndStopping7" type="java.lang.Integer">
+            <column name="StartingAndStopping7" />
+        </property>
+        
+         <property name="generalDriving8" type="java.lang.Integer">
+            <column name="GeneralDriving8" />
+        </property>
+        <property name="generalDriving9" type="java.lang.Integer">
+            <column name="GeneralDriving9" />
+        </property>
+        <property name="generalDriving10" type="java.lang.Integer">
+            <column name="GeneralDriving10" />
+        </property>
+        <property name="generalDriving11" type="java.lang.Integer">
+            <column name="GeneralDriving11" />
+        </property>
+        <property name="generalDriving12" type="java.lang.Integer">
+            <column name="GeneralDriving12" />
+        </property>
+        <property name="generalDriving13" type="java.lang.Integer">
+            <column name="GeneralDriving13" />
+        </property>
+        <property name="generalDriving14" type="java.lang.Integer">
+            <column name="GeneralDriving14" />
+        </property>
+        <property name="generalDriving15" type="java.lang.Integer">
+            <column name="GeneralDriving15" />
+        </property>
+        <property name="generalDriving16" type="java.lang.Integer">
+            <column name="GeneralDriving16" />
+        </property>
+        <property name="generalDriving17" type="java.lang.Integer">
+            <column name="GeneralDriving17" />
+        </property>
+        
+        <property name="passingOrOvertaking18" type="java.lang.Integer">
+            <column name="PassingOrOvertaking18" />
+        </property>
+        <property name="passingOrOvertaking19" type="java.lang.Integer">
+            <column name="PassingOrOvertaking19" />
+        </property>
+        <property name="passingOrOvertaking20" type="java.lang.Integer">
+            <column name="PassingOrOvertaking20" />
+        </property>
+        <property name="passingOrOvertaking21" type="java.lang.Integer">
+            <column name="PassingOrOvertaking21" />
+        </property>
+       
+       <property name="GeneralRoadBehavior22" type="java.lang.Integer">
+            <column name="GeneralRoadBehavior22" />
+       </property>
+       <property name="GeneralRoadBehavior23" type="java.lang.Integer">
+            <column name="GeneralRoadBehavior23" />
+        </property>
+	    
+	    <property name="observationAndAnticipation24" type="java.lang.Integer">
+            <column name="ObservationAndAnticipation24" />
+        </property>
+       <property name="observationAndAnticipation25" type="java.lang.Integer">
+            <column name="ObservationAndAnticipation25" />
+       </property>
+       <property name="observationAndAnticipation26" type="java.lang.Integer">
+            <column name="ObservationAndAnticipation26" />
+       </property>      
+       <property name="observationAndAnticipation27" type="java.lang.Integer">
+            <column name="ObservationAndAnticipation27" />
+       </property> 
+       <property name="observationAndAnticipation28" type="java.lang.Integer">
+            <column name="ObservationAndAnticipation28" />
+       </property> 
+      
+      
+      <property name="approachingJunctionsTurningExiting29" type="java.lang.Integer">
+            <column name="ApproachingJunctionsTurningExiting29" />
+        </property>
+       <property name="approachingJunctionsTurningExiting30" type="java.lang.Integer">
+            <column name="ApproachingJunctionsTurningExiting30" />
+       </property>
+       <property name="approachingJunctionsTurningExiting31" type="java.lang.Integer">
+            <column name="ApproachingJunctionsTurningExiting31" />
+       </property>      
+       <property name="approachingJunctionsTurningExiting32" type="java.lang.Integer">
+            <column name="ApproachingJunctionsTurningExiting32" />
+       </property> 
+       <property name="approachingJunctionsTurningExiting33" type="java.lang.Integer">
+            <column name="ApproachingJunctionsTurningExiting33" />
+       </property>
+       
+       <property name="approachingJunctionsTurningExiting34" type="java.lang.Integer">
+            <column name="ApproachingJunctionsTurningExiting34" />
+       </property>      
+       <property name="approachingJunctionsTurningExiting35" type="java.lang.Integer">
+            <column name="ApproachingJunctionsTurningExiting35" />
+       </property> 
+       <property name="approachingJunctionsTurningExiting36" type="java.lang.Integer">
+            <column name="ApproachingJunctionsTurningExiting36" />
+       </property>
+       
+       <property name="reversing37" type="java.lang.Integer">
+            <column name="Reversing37" />
+       </property>
+       <property name="reversing38" type="java.lang.Integer">
+            <column name="Reversing38" />
+       </property>
+       <property name="reversing39" type="java.lang.Integer">
+            <column name="Reversing39" />
+       </property>
+       
+       <property name="clutch40" type="java.lang.Integer">
+            <column name="Clutch40" />
+       </property>
+       <property name="clutch41" type="java.lang.Integer">
+            <column name="Clutch41" />
+       </property>
+
+
+       <property name="retarderDSCHillMode42" type="java.lang.Integer">
+            <column name="RetarderDSCHillMode42" />
+       </property>
+       <property name="retarderDSCHillMode43" type="java.lang.Integer">
+            <column name="RetarderDSCHillMode43" />
+       </property>
+	    <property name="retarderDSCHillMode44" type="java.lang.Integer">
+            <column name="RetarderDSCHillMode44" />
+       </property>         
+        
     </class>
 </hibernate-mapping>

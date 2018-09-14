@@ -72,6 +72,29 @@ public class BlockedNumbersService
 		return "Successful";
 	}
 	
+	@Path("/DeleteCellNumber/{Cell_Number}")
+	@GET
+	@Produces("text/plain")
+	public String Delete( @PathParam("Cell_Number") String Cell_Number) throws Exception
+	{
+		
+		BlockedNumbersDAO Object  = new BlockedNumbersDAO();
+		
+		List<BlockedNumberList> BlockedNumbers = Object.getBlockedNumberInfoByCellNumber(Cell_Number);
+		
+		if(BlockedNumbers.size()> 0)
+		{
+			for(int i = 0; i < BlockedNumbers.size();i++)
+			{
+				Object.delete(BlockedNumbers.get(i));
+			    
+			}
+				
+		}
+		
+		
+		return "Successful";
+	}
 	
 	@Path("/AddBlockedNumber")
 	@POST

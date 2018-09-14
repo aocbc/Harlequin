@@ -192,6 +192,9 @@ public class SMSService
 			
 			try 
 		    {	
+				//System.out.println(x.SendHttpRequest("https://xml2sms.gsm.co.za/send/?username=maclabour&password=th3unis1&number="+cell_Number+"&message="+ URLEncoder.encode(SMSMessage.getString("Message").toString(), "UTF-8") +"&ems=1"));
+				
+				
 				    BlockedNumbersDAO Object  = new BlockedNumbersDAO();
 					
 					List<BlockedNumberList> BlockedNumbers = Object.ReadAllBlockedNumbers();

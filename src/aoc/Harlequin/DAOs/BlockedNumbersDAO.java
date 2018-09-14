@@ -7,6 +7,7 @@ import org.hibernate.query.Query;
 
 import aoc.Harlequin.OBJs.BlockedNumberList;
 import aoc.Harlequin.OBJs.SystemClient;
+import aoc.Harlequin.OBJs.SystemJob;
 import aoc.Harlequin.OBJs.SystemUser;
 import aoc.Harlequin.util.HibernateUtil;
 
@@ -64,6 +65,22 @@ public class BlockedNumbersDAO extends HarlequinDAO {
 		return BlockedNumber;
 		
 		
+	}
+	
+	public List<BlockedNumberList> getBlockedNumberInfoByCellNumber(String CellNumber)
+	{
+		Session session = this.getSession();
+		HibernateUtil.beginTransaction();
+		
+		
+		
+		Query query = session.createQuery("from BlockedNumberList Where CellNumber = '"+CellNumber+"'");
+		List<BlockedNumberList> BlockedNumbers = query.list();
+		
+		session.clear(); // ADDED 170302
+		session.flush();
+		session.close();
+		return BlockedNumbers;
 	}
 	
 	
