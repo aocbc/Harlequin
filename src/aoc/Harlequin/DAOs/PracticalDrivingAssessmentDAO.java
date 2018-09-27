@@ -54,7 +54,7 @@ public class PracticalDrivingAssessmentDAO extends HarlequinDAO {
 		  
 	}
 	
-	public void AddAppicantInformation(String idMac_Applicants,String name, String surname, String Id_Number,String Client_Name,String PDP_Expiry_Date, String Vehicle_Used, String Assessor_Name,String Assessor_Surname, String Assessor_User_Id,String Date, String KM_End,String KM_Start, String Time_End, String Time_Start, String Weather, String Route,String Total_Score, String Starting_And_Stopping, String General_Driving,String Passing_Or_Overtaking, String General_Road_Behavior, String Observation_And_Anticipation, String Approaching_Junctions_Turning_Exiting, String Reversing, String Clutch, String Retarder_DSC_HillMode, String Comments, String PDA_No,String License_Code,String Job_Name,String PracticalDriversComplete, String StartingAndStoppingArray[], String GeneralDrivingArray[],String PassingOrOvertakingArray[], String GeneralRoadBehaviorArray[],String ObservationAndAnticipationArray[], String ApproachingJunctionsTurningExitingArray[], String ReversingArray[], String ClutchArray[], String RetarderDSCHillModeArray[] )
+	public void AddAppicantInformation(String idMac_Applicants,String name, String surname, String Id_Number,String Client_Name,String PDP_Expiry_Date, String Vehicle_Used, String Assessor_Name,String Assessor_Surname, String Assessor_User_Id,String Date, String KM_End,String KM_Start, String Time_End, String Time_Start, String Weather, String Route,String Total_Score, String Starting_And_Stopping, String General_Driving,String Passing_Or_Overtaking, String General_Road_Behavior, String Observation_And_Anticipation, String Approaching_Junctions_Turning_Exiting, String Reversing, String Clutch, String Retarder_DSC_HillMode, String Comments, String PDA_No,String License_Code,String Job_Name,String PracticalDriversComplete, String StartingAndStopping1 ,String StartingAndStopping2, String StartingAndStopping3,  String StartingAndStopping4,  String StartingAndStopping5,  String StartingAndStopping6,  String StartingAndStopping7,  String GeneralDriving8,  String GeneralDriving9,  String GeneralDriving10,  String GeneralDriving11,  String GeneralDriving12,  String GeneralDriving13,  String GeneralDriving14,  String GeneralDriving15,  String GeneralDriving16,  String GeneralDriving17,  String PassingOrOvertaking18,  String PassingOrOvertaking19,  String PassingOrOvertaking20,  String PassingOrOvertaking21,  String GeneralRoadBehavior22,  String GeneralRoadBehavior23,  String ObservationAndAnticipation24,  String ObservationAndAnticipation25,  String ObservationAndAnticipation26,  String ObservationAndAnticipation27,  String ObservationAndAnticipation28,  String ApproachingJunctionsTurningExiting29,  String ApproachingJunctionsTurningExiting30,  String ApproachingJunctionsTurningExiting31,  String ApproachingJunctionsTurningExiting32,  String ApproachingJunctionsTurningExiting33,  String ApproachingJunctionsTurningExiting34,  String ApproachingJunctionsTurningExiting35,  String ApproachingJunctionsTurningExiting36,  String Reversing37,  String Reversing38,  String Reversing39,  String Clutch40,  String Clutch41,  String RetarderDSCHillMode42,  String RetarderDSCHillMode43,  String RetarderDSCHillMode44 )
 	{
 		DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 		Date date = new Date();
@@ -111,94 +111,84 @@ public class PracticalDrivingAssessmentDAO extends HarlequinDAO {
 		Assessment.setPracticalDriversTestComplete(PracticalDriversComplete);
 		Assessment.setPracticalDriversTestComments(Comments);
 		Assessment.setLastUsedDate(dateFormat.format(date));		
+		Assessment.setPdaNo(PDA_No);
 		
-		if(StartingAndStoppingArray.length == 7)
-		{
 			
-			Assessment.setStartingAndStopping1(StartingAndStoppingArray[0]);
-			Assessment.setStartingAndStopping2(StartingAndStoppingArray[1]);
-			Assessment.setStartingAndStopping3(StartingAndStoppingArray[2]);
-			Assessment.setStartingAndStopping4(StartingAndStoppingArray[3]);
-			Assessment.setStartingAndStopping5(StartingAndStoppingArray[4]);
-			Assessment.setStartingAndStopping6(StartingAndStoppingArray[5]);
-			Assessment.setStartingAndStopping7(StartingAndStoppingArray[6]);
-		}
+			Assessment.setStartingAndStopping1(Integer.parseInt(StartingAndStopping1));
+			Assessment.setStartingAndStopping2(Integer.parseInt(StartingAndStopping2));
+			Assessment.setStartingAndStopping3(Integer.parseInt(StartingAndStopping3));
+			Assessment.setStartingAndStopping4(Integer.parseInt(StartingAndStopping4));
+			Assessment.setStartingAndStopping5(Integer.parseInt(StartingAndStopping5));
+			Assessment.setStartingAndStopping6(Integer.parseInt(StartingAndStopping6));
+			Assessment.setStartingAndStopping7(Integer.parseInt(StartingAndStopping7));
 		
-		if(GeneralDrivingArray.length == 10)
-		{
-			Assessment.setGeneralDriving8(GeneralDrivingArray[0]);
-			Assessment.setGeneralDriving9(GeneralDrivingArray[1]);
-			Assessment.setGeneralDriving10(GeneralDrivingArray[2]);
-			Assessment.setGeneralDriving11(GeneralDrivingArray[3]);
-			Assessment.setGeneralDriving12(GeneralDrivingArray[4]);
-			Assessment.setGeneralDriving13(GeneralDrivingArray[5]);
-			Assessment.setGeneralDriving14(GeneralDrivingArray[6]);
-			Assessment.setGeneralDriving15(GeneralDrivingArray[7]);
-			Assessment.setGeneralDriving16(GeneralDrivingArray[8]);
-			Assessment.setGeneralDriving17(GeneralDrivingArray[9]);
-		}
 		
-		if(PassingOrOvertakingArray.length == 4)
-		{
-			Assessment.setPassingOrOvertaking18(PassingOrOvertakingArray[0]);
-			Assessment.setPassingOrOvertaking19(PassingOrOvertakingArray[1]);
-			Assessment.setPassingOrOvertaking20(PassingOrOvertakingArray[2]);
-			Assessment.setPassingOrOvertaking21(PassingOrOvertakingArray[3]);
+		
+			Assessment.setGeneralDriving8(Integer.parseInt(GeneralDriving8));
+			Assessment.setGeneralDriving9(Integer.parseInt(GeneralDriving9));
+			Assessment.setGeneralDriving10(Integer.parseInt(GeneralDriving10));
+			Assessment.setGeneralDriving11(Integer.parseInt(GeneralDriving11));
+			Assessment.setGeneralDriving12(Integer.parseInt(GeneralDriving12));
+			Assessment.setGeneralDriving13(Integer.parseInt(GeneralDriving13));
+			Assessment.setGeneralDriving14(Integer.parseInt(GeneralDriving14));
+			Assessment.setGeneralDriving15(Integer.parseInt(GeneralDriving15));
+			Assessment.setGeneralDriving16(Integer.parseInt(GeneralDriving16));
+			Assessment.setGeneralDriving17(Integer.parseInt(GeneralDriving17));
+		
+		
+		
+			Assessment.setPassingOrOvertaking18(Integer.parseInt(PassingOrOvertaking18));
+			Assessment.setPassingOrOvertaking19(Integer.parseInt(PassingOrOvertaking19));
+			Assessment.setPassingOrOvertaking20(Integer.parseInt(PassingOrOvertaking20));
+			Assessment.setPassingOrOvertaking21(Integer.parseInt(PassingOrOvertaking21));
 			
 			
-		}
 		
-		if(GeneralRoadBehaviorArray.length == 2)
-		{
-			Assessment.setGeneralRoadBehavior22(GeneralRoadBehaviorArray[0]);
-			Assessment.setGeneralRoadBehavior23(GeneralRoadBehaviorArray[1]);
-		}
 		
-		if(ObservationAndAnticipationArray.length == 5)
-		{
-			Assessment.setObservationAndAnticipation24(ObservationAndAnticipationArray[0]);
-			Assessment.setObservationAndAnticipation25(ObservationAndAnticipationArray[1]);
-			Assessment.setObservationAndAnticipation26(ObservationAndAnticipationArray[2]);
-			Assessment.setObservationAndAnticipation27(ObservationAndAnticipationArray[3]);
-			Assessment.setObservationAndAnticipation28(ObservationAndAnticipationArray[4]);
-		}
+			Assessment.setGeneralRoadBehavior22(Integer.parseInt(GeneralRoadBehavior22));
+			Assessment.setGeneralRoadBehavior23(Integer.parseInt(GeneralRoadBehavior23));
 		
-		if(ApproachingJunctionsTurningExitingArray.length == 8)
-		{
-			Assessment.setApproachingJunctionsTurningExiting29(ApproachingJunctionsTurningExitingArray[0]);
-			Assessment.setApproachingJunctionsTurningExiting30(ApproachingJunctionsTurningExitingArray[1]);
-			Assessment.setApproachingJunctionsTurningExiting31(ApproachingJunctionsTurningExitingArray[2]);
-			Assessment.setApproachingJunctionsTurningExiting32(ApproachingJunctionsTurningExitingArray[3]);
+		
+		
+			Assessment.setObservationAndAnticipation24(Integer.parseInt(ObservationAndAnticipation24));
+			Assessment.setObservationAndAnticipation25(Integer.parseInt(ObservationAndAnticipation25));
+			Assessment.setObservationAndAnticipation26(Integer.parseInt(ObservationAndAnticipation26));
+			Assessment.setObservationAndAnticipation27(Integer.parseInt(ObservationAndAnticipation27));
+			Assessment.setObservationAndAnticipation28(Integer.parseInt(ObservationAndAnticipation28));
+		
+		
+		
+			Assessment.setApproachingJunctionsTurningExiting29(Integer.parseInt(ApproachingJunctionsTurningExiting29));
+			Assessment.setApproachingJunctionsTurningExiting30(Integer.parseInt(ApproachingJunctionsTurningExiting30));
+			Assessment.setApproachingJunctionsTurningExiting31(Integer.parseInt(ApproachingJunctionsTurningExiting31));
+			Assessment.setApproachingJunctionsTurningExiting32(Integer.parseInt(ApproachingJunctionsTurningExiting32));
 			
-			Assessment.setApproachingJunctionsTurningExiting33(ApproachingJunctionsTurningExitingArray[4]);
-			Assessment.setApproachingJunctionsTurningExiting34(ApproachingJunctionsTurningExitingArray[5]);
-			Assessment.setApproachingJunctionsTurningExiting35(ApproachingJunctionsTurningExitingArray[6]);
-			Assessment.setApproachingJunctionsTurningExiting36(ApproachingJunctionsTurningExitingArray[7]);
+			Assessment.setApproachingJunctionsTurningExiting33(Integer.parseInt(ApproachingJunctionsTurningExiting33));
+			Assessment.setApproachingJunctionsTurningExiting34(Integer.parseInt(ApproachingJunctionsTurningExiting34));
+			Assessment.setApproachingJunctionsTurningExiting35(Integer.parseInt(ApproachingJunctionsTurningExiting35));
+			Assessment.setApproachingJunctionsTurningExiting36(Integer.parseInt(ApproachingJunctionsTurningExiting36));
 			
 			
-		}
 		
-		if(ReversingArray.length == 3)
-		{
-			Assessment.setReversing37(ReversingArray[0]);
-			Assessment.setReversing38(ReversingArray[1]);
-			Assessment.setReversing39(ReversingArray[2]);
-		}
+			Assessment.setReversing37(Integer.parseInt(Reversing37));
+			Assessment.setReversing38(Integer.parseInt(Reversing38));
+			Assessment.setReversing39(Integer.parseInt(Reversing39));
 		
-		if(ClutchArray.length == 2)
-		{
-			Assessment.setClutch40(ClutchArray[0]);
-			Assessment.setClutch41(ClutchArray[1]);
+			Assessment.setClutch40(Integer.parseInt(Clutch40));
+			Assessment.setClutch41(Integer.parseInt(Clutch41));
 			
-		}
 		
-		if(RetarderDSCHillModeArray.length == 3)
-		{
-			Assessment.setRetarderDSCHillMode42(RetarderDSCHillModeArray[0]);
-			Assessment.setRetarderDSCHillMode43(RetarderDSCHillModeArray[1]);
-			Assessment.setRetarderDSCHillMode44(RetarderDSCHillModeArray[2]);
+			Assessment.setRetarderDSCHillMode42(Integer.parseInt(RetarderDSCHillMode42));
+			Assessment.setRetarderDSCHillMode43(Integer.parseInt(RetarderDSCHillMode43));
+			Assessment.setRetarderDSCHillMode44(Integer.parseInt(RetarderDSCHillMode44));
 			
-		}
+			System.out.println("RetarderDSCHillMode42:" + RetarderDSCHillMode42);
+			System.out.println("RetarderDSCHillMode43:" + RetarderDSCHillMode43);
+
+			System.out.println("RetarderDSCHillMode44:" + RetarderDSCHillMode44);
+			
+			
+		
 		
 		session.save(Assessment);
 		session.getTransaction().commit();

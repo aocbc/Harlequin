@@ -202,11 +202,64 @@ public class PracticalDrivingAssessmentService {
 				jsonObject.put("Retarder_DSC_HillMode", Assessments.get(i).getRetarderDscHillMode());
 				jsonObject.put("Comments", Assessments.get(i).getComments());
 				jsonObject.put("PDA_No",Assessments.get(i).getPdaNo());
+								
+				jsonObject.put("StartingAndStopping1", Assessments.get(i).getStartingAndStopping1());
+				jsonObject.put("StartingAndStopping2", Assessments.get(i).getStartingAndStopping2());
+				jsonObject.put("StartingAndStopping3", Assessments.get(i).getStartingAndStopping3());
+				jsonObject.put("StartingAndStopping4", Assessments.get(i).getStartingAndStopping4());
+				jsonObject.put("StartingAndStopping5", Assessments.get(i).getStartingAndStopping5());
+				jsonObject.put("StartingAndStopping6", Assessments.get(i).getStartingAndStopping6());
+				jsonObject.put("StartingAndStopping7", Assessments.get(i).getStartingAndStopping7());
+			
+				jsonObject.put("GeneralDriving8", Assessments.get(i).getGeneralDriving8());
+				jsonObject.put("GeneralDriving9", Assessments.get(i).getGeneralDriving9());
+				jsonObject.put("GeneralDriving10", Assessments.get(i).getGeneralDriving10());
+				jsonObject.put("GeneralDriving11", Assessments.get(i).getGeneralDriving11());
+				jsonObject.put("GeneralDriving12", Assessments.get(i).getGeneralDriving12());
+				jsonObject.put("GeneralDriving13", Assessments.get(i).getGeneralDriving13());
+				jsonObject.put("GeneralDriving14", Assessments.get(i).getGeneralDriving14());
+				jsonObject.put("GeneralDriving15", Assessments.get(i).getGeneralDriving15());
+				jsonObject.put("GeneralDriving16", Assessments.get(i).getGeneralDriving16());
+				jsonObject.put("GeneralDriving17", Assessments.get(i).getGeneralDriving17());
 				
+				jsonObject.put("PassingOrOvertaking18", Assessments.get(i).getPassingOrOvertaking18());
+				jsonObject.put("PassingOrOvertaking19", Assessments.get(i).getPassingOrOvertaking19());
+				jsonObject.put("PassingOrOvertaking20", Assessments.get(i).getPassingOrOvertaking20());
+				jsonObject.put("PassingOrOvertaking21", Assessments.get(i).getPassingOrOvertaking21());
 				
+				jsonObject.put("GeneralRoadBehavior22", Assessments.get(i).getGeneralRoadBehavior22());
+				jsonObject.put("GeneralRoadBehavior23", Assessments.get(i).getGeneralRoadBehavior23());
+
+				jsonObject.put("ObservationAndAnticipation24", Assessments.get(i).getObservationAndAnticipation24());
+				jsonObject.put("ObservationAndAnticipation25", Assessments.get(i).getObservationAndAnticipation25());
+				jsonObject.put("ObservationAndAnticipation26", Assessments.get(i).getObservationAndAnticipation26());
+				jsonObject.put("ObservationAndAnticipation27", Assessments.get(i).getObservationAndAnticipation27());
+				jsonObject.put("ObservationAndAnticipation28", Assessments.get(i).getObservationAndAnticipation28());
+				
+				jsonObject.put("ApproachingJunctionsTurningExiting29", Assessments.get(i).getApproachingJunctionsTurningExiting29());
+				jsonObject.put("ApproachingJunctionsTurningExiting30", Assessments.get(i).getApproachingJunctionsTurningExiting30());
+				jsonObject.put("ApproachingJunctionsTurningExiting31", Assessments.get(i).getApproachingJunctionsTurningExiting31());
+				jsonObject.put("ApproachingJunctionsTurningExiting32", Assessments.get(i).getApproachingJunctionsTurningExiting32());
+				jsonObject.put("ApproachingJunctionsTurningExiting33", Assessments.get(i).getApproachingJunctionsTurningExiting33());
+				jsonObject.put("ApproachingJunctionsTurningExiting34", Assessments.get(i).getApproachingJunctionsTurningExiting34());
+				jsonObject.put("ApproachingJunctionsTurningExiting35", Assessments.get(i).getApproachingJunctionsTurningExiting35());
+				jsonObject.put("ApproachingJunctionsTurningExiting36", Assessments.get(i).getApproachingJunctionsTurningExiting36());
+				
+				jsonObject.put("Reversing37", Assessments.get(i).getReversing37());
+				jsonObject.put("Reversing38", Assessments.get(i).getReversing38());
+				jsonObject.put("Reversing39", Assessments.get(i).getReversing39());
+				
+				jsonObject.put("Clutch40", Assessments.get(i).getClutch40());
+				jsonObject.put("Clutch41", Assessments.get(i).getClutch41());
+				
+				jsonObject.put("RetarderDSCHillMode42", Assessments.get(i).getRetarderDSCHillMode42());
+				jsonObject.put("RetarderDSCHillMode43", Assessments.get(i).getRetarderDSCHillMode43());
+				jsonObject.put("RetarderDSCHillMode44", Assessments.get(i).getRetarderDSCHillMode44());
+		
+				jsonObject.put("Practical_Drivers_Complete", Assessments.get(i).getPracticalDriversTestComplete());
+			
 				jsonObject.put("Last_Used_Date",Assessments.get(i).getLastUsedDate());
-				
-				
+			
 			}
 			
 			
@@ -221,6 +274,9 @@ public class PracticalDrivingAssessmentService {
 	    
 		return jsonObject.toString();
 	}
+	
+	
+	
 	
 	@Path("/GetAssessmentByIDNumber/{Id_Number}")
 	@GET
@@ -322,7 +378,7 @@ public class PracticalDrivingAssessmentService {
 		System.out.println("WRITING TO DATABASE:"+ r.getString("Client_Name"));
 			
 		PracticalDrivingAssessmentDAO Object  = new PracticalDrivingAssessmentDAO();
-		Object.AddAppicantInformation(r.getString("idMac_Applicants"), r.getString("Name"), r.getString("Surname"), r.getString("Id_Number"), r.getString("Client_Name"), r.getString("PDP_Expiry_Date"), r.getString("Vehicle_Used"), r.getString("Assessor_Name"), r.getString("Assessor_Surname"), "01", r.getString("Date"), r.getString("KM_End"), r.getString("KM_Start"), r.getString("Time_End"), r.getString("Time_Start"), r.getString("Weather"), r.getString("Route"), r.getString ("Total_Score"), r.getString("Starting_And_Stopping"), r.getString("General_Driving"), r.getString("Passing_Or_Overtaking"), r.getString("General_Road_Behavior"), r.getString("Observation_And_Anticipation"), r.getString("Approaching_Junctions_Turning_Exiting"), r.getString("Reversing"), r.getString("Clutch"), r.getString("Retarder_DSC_HillMode"), r.getString("Comments"), r.getString("PDA_No"), r.getString("License_Code"), r.getString("Job_Name"),r.getString("PracticalDriversTestComplete"));
+		Object.AddAppicantInformation(r.getString("idMac_Applicants"), r.getString("Name"), r.getString("Surname"), r.getString("Id_Number"), r.getString("Client_Name"), r.getString("PDP_Expiry_Date"), r.getString("Vehicle_Used"), r.getString("Assessor_Name"), r.getString("Assessor_Surname"), "01", r.getString("Date"), r.getString("KM_End"), r.getString("KM_Start"), r.getString("Time_End"), r.getString("Time_Start"), r.getString("Weather"), r.getString("Route"), r.getString ("Total_Score"), r.getString("Starting_And_Stopping"), r.getString("General_Driving"), r.getString("Passing_Or_Overtaking"), r.getString("General_Road_Behavior"), r.getString("Observation_And_Anticipation"), r.getString("Approaching_Junctions_Turning_Exiting"), r.getString("Reversing"), r.getString("Clutch"), r.getString("Retarder_DSC_HillMode"), r.getString("Comments"), r.getString("PDA_No"), r.getString("License_Code"), r.getString("Job_Name"),r.getString("PracticalDriversTestComplete"),r.getString("StartingAndStopping1") ,r.getString("StartingAndStopping2"),r.getString("StartingAndStopping3"), r.getString("StartingAndStopping4"), r.getString("StartingAndStopping5"), r.getString("StartingAndStopping6"), r.getString("StartingAndStopping7"), r.getString("GeneralDriving8"), r.getString("GeneralDriving9"), r.getString("GeneralDriving10"), r.getString("GeneralDriving11"), r.getString("GeneralDriving12"), r.getString("GeneralDriving13"), r.getString("GeneralDriving14"), r.getString("GeneralDriving15"), r.getString("GeneralDriving16"), r.getString("GeneralDriving17"), r.getString("PassingOrOvertaking18"), r.getString("PassingOrOvertaking19"), r.getString("PassingOrOvertaking20"), r.getString("PassingOrOvertaking21"), r.getString("GeneralRoadBehavior22"), r.getString("GeneralRoadBehavior23"), r.getString("ObservationAndAnticipation24"), r.getString("ObservationAndAnticipation25"), r.getString("ObservationAndAnticipation26"), r.getString("ObservationAndAnticipation27"), r.getString("ObservationAndAnticipation28"), r.getString("ApproachingJunctionsTurningExiting29"), r.getString("ApproachingJunctionsTurningExiting30"), r.getString("ApproachingJunctionsTurningExiting31"), r.getString("ApproachingJunctionsTurningExiting32"), r.getString("ApproachingJunctionsTurningExiting33"), r.getString("ApproachingJunctionsTurningExiting34"), r.getString("ApproachingJunctionsTurningExiting35"), r.getString("ApproachingJunctionsTurningExiting36"), r.getString("Reversing37"), r.getString("Reversing38"), r.getString("Reversing39"), r.getString("Clutch40"), r.getString("Clutch41"), r.getString("RetarderDSCHillMode42"), r.getString("RetarderDSCHillMode43"), r.getString("RetarderDSCHillMode44"));
 		
 		
 		/////////////////////////////////////////////////////////

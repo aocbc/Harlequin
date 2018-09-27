@@ -9,13 +9,13 @@
       
         <property name="hibernate.connection.password">SecureA0C</property>  
         <property name="hibernate.connection.url">jdbc:mysql://41.79.78.120:3306/Harlequin</property> 
- 		<property name="hibernate.connection.username">jateen</property>  
- 	  
+ 		<property name="hibernate.connection.username">jateen</property>   
+ 	   
 
 		<!-- <property name="hibernate.connection.url">jdbc:mysql://41.79.83.236:3306/Harlequin</property> 
         <property name="hibernate.connection.username">harlequin</property>
-        <property name="hibernate.connection.password">SecureA0C!</property>
-         -->
+        <property name="hibernate.connection.password">SecureA0C!</property>  -->
+         
         <property name="hibernate.default_schema">Harlequin</property>
         <property name="hibernate.dialect">org.hibernate.dialect.MySQLDialect</property>
         <property name="hibernate.hbm2ddl.auto">validate</property>

@@ -42,65 +42,65 @@ public class PracticalDriversAssessment implements java.io.Serializable {
 	private BigDecimal clutch;
 	private BigDecimal retarderDscHillMode;
 	private String comments;
-	private Integer pdaNo;
+	private String pdaNo;
 	private String licenseCode;
 	private String practicalDriversTestComplete;
 	private String practicalDriversTestComments;
 	private String jobName;
 	private String lastUsedDate;
 	
-	private String StartingAndStopping1;
-	private String StartingAndStopping2;
-	private String StartingAndStopping3;
-	private String StartingAndStopping4;
-	private String StartingAndStopping5;
-	private String StartingAndStopping6;
-	private String StartingAndStopping7;
+	private int StartingAndStopping1;
+	private int StartingAndStopping2;
+	private int StartingAndStopping3;
+	private int StartingAndStopping4;
+	private int StartingAndStopping5;
+	private int StartingAndStopping6;
+	private int StartingAndStopping7;
 	
-	private String GeneralDriving8;
-	private String GeneralDriving9;
-	private String GeneralDriving10;
-	private String GeneralDriving11;
-	private String GeneralDriving12;
-	private String GeneralDriving13;
-	private String GeneralDriving14;
-	private String GeneralDriving15;
-	private String GeneralDriving16;
-	private String GeneralDriving17;
+	private int GeneralDriving8;
+	private int GeneralDriving9;
+	private int GeneralDriving10;
+	private int GeneralDriving11;
+	private int GeneralDriving12;
+	private int GeneralDriving13;
+	private int GeneralDriving14;
+	private int GeneralDriving15;
+	private int GeneralDriving16;
+	private int GeneralDriving17;
 	
-	private String PassingOrOvertaking18;
-	private String PassingOrOvertaking19;
-	private String PassingOrOvertaking20;
-	private String PassingOrOvertaking21;
+	private int PassingOrOvertaking18;
+	private int PassingOrOvertaking19;
+	private int PassingOrOvertaking20;
+	private int PassingOrOvertaking21;
 	
-	private String GeneralRoadBehavior22;
-	private String GeneralRoadBehavior23;
+	private int GeneralRoadBehavior22;
+	private int GeneralRoadBehavior23;
 	
-	private String ObservationAndAnticipation24;
-	private String ObservationAndAnticipation25;
-	private String ObservationAndAnticipation26;
-	private String ObservationAndAnticipation27;
-	private String ObservationAndAnticipation28;
+	private int ObservationAndAnticipation24;
+	private int ObservationAndAnticipation25;
+	private int ObservationAndAnticipation26;
+	private int ObservationAndAnticipation27;
+	private int ObservationAndAnticipation28;
 	
-	private String ApproachingJunctionsTurningExiting29;
-	private String ApproachingJunctionsTurningExiting30;
-	private String ApproachingJunctionsTurningExiting31;
-	private String ApproachingJunctionsTurningExiting32;
-	private String ApproachingJunctionsTurningExiting33;
-	private String ApproachingJunctionsTurningExiting34;
-	private String ApproachingJunctionsTurningExiting35;
-	private String ApproachingJunctionsTurningExiting36;
+	private int ApproachingJunctionsTurningExiting29;
+	private int ApproachingJunctionsTurningExiting30;
+	private int ApproachingJunctionsTurningExiting31;
+	private int ApproachingJunctionsTurningExiting32;
+	private int ApproachingJunctionsTurningExiting33;
+	private int ApproachingJunctionsTurningExiting34;
+	private int ApproachingJunctionsTurningExiting35;
+	private int ApproachingJunctionsTurningExiting36;
 	
-	private String Reversing37;
-	private String Reversing38;
-	private String Reversing39;
+	private int Reversing37;
+	private int Reversing38;
+	private int Reversing39;
 	
-	private String Clutch40;
-	private String Clutch41;
+	private int Clutch40;
+	private int Clutch41;
 	
-	private String RetarderDSCHillMode42;
-	private String RetarderDSCHillMode43;
-	private String RetarderDSCHillMode44;
+	private int RetarderDSCHillMode42;
+	private int RetarderDSCHillMode43;
+	private int RetarderDSCHillMode44;
 
 
 	public PracticalDriversAssessment() 
@@ -125,18 +125,18 @@ public class PracticalDriversAssessment implements java.io.Serializable {
 			BigDecimal observationAndAnticipation,
 			BigDecimal approachingJunctionsTurningExiting,
 			BigDecimal reversing, BigDecimal clutch,
-			BigDecimal retarderDscHillMode, String comments, Integer pdaNo,
+			BigDecimal retarderDscHillMode, String comments, String pdaNo,
 			String licenseCode,String practicalDriversTestComplete,String practicalDriversTestComments,
 			String jobName, String lastUsedDate,
-			String StartingAndStopping1, String StartingAndStopping2, String StartingAndStopping3, String StartingAndStopping4, String StartingAndStopping5, String StartingAndStopping6, String StartingAndStopping7,
-			String GeneralDriving8, String GeneralDriving9, String GeneralDriving10, String GeneralDriving11, String GeneralDriving12, String GeneralDriving13, String GeneralDriving14, String GeneralDriving15, String GeneralDriving16, String GeneralDriving17,
-			String PassingOrOvertaking18, String PassingOrOvertaking19, String PassingOrOvertaking20, String PassingOrOvertaking21,
-			String GeneralRoadBehavior22, String GeneralRoadBehavior23,
-			String ObservationAndAnticipation24, String ObservationAndAnticipation25, String ObservationAndAnticipation26, String ObservationAndAnticipation27,  String ObservationAndAnticipation28,
-			String ApproachingJunctionsTurningExiting29,String ApproachingJunctionsTurningExiting30, String ApproachingJunctionsTurningExiting31,String ApproachingJunctionsTurningExiting32, String ApproachingJunctionsTurningExiting33, String ApproachingJunctionsTurningExiting34, String ApproachingJunctionsTurningExiting35,String ApproachingJunctionsTurningExiting36,
-			String Reversing37, String Reversing38, String Reversing39,
-			String Clutch40, String Clutch41,
-			String RetarderDSCHillMode42, String RetarderDSCHillMode43, String RetarderDSCHillMode44) {
+			int StartingAndStopping1, int StartingAndStopping2, int StartingAndStopping3, int StartingAndStopping4, int StartingAndStopping5, int StartingAndStopping6, int StartingAndStopping7,
+			int GeneralDriving8, int GeneralDriving9, int GeneralDriving10, int GeneralDriving11, int GeneralDriving12, int GeneralDriving13, int GeneralDriving14, int GeneralDriving15, int GeneralDriving16, int GeneralDriving17,
+			int PassingOrOvertaking18, int PassingOrOvertaking19, int PassingOrOvertaking20, int PassingOrOvertaking21,
+			int GeneralRoadBehavior22, int GeneralRoadBehavior23,
+			int ObservationAndAnticipation24, int ObservationAndAnticipation25, int ObservationAndAnticipation26, int ObservationAndAnticipation27,  int ObservationAndAnticipation28,
+			int ApproachingJunctionsTurningExiting29,int ApproachingJunctionsTurningExiting30, int ApproachingJunctionsTurningExiting31,int ApproachingJunctionsTurningExiting32, int ApproachingJunctionsTurningExiting33, int ApproachingJunctionsTurningExiting34, int ApproachingJunctionsTurningExiting35,int ApproachingJunctionsTurningExiting36,
+			int Reversing37, int Reversing38, int Reversing39,
+			int Clutch40, int Clutch41,
+			int RetarderDSCHillMode42, int RetarderDSCHillMode43, int RetarderDSCHillMode44) {
 		this.idPracticalDriversAssessment = idPracticalDriversAssessment;
 		this.idMacApplicants = idMacApplicants;
 		this.name = name;
@@ -498,7 +498,7 @@ public class PracticalDriversAssessment implements java.io.Serializable {
 		this.comments = comments;
 	}
 
-	public Integer getPdaNo() {
+	public String getPdaNo() {
 		return this.pdaNo;
 	}
 
@@ -506,7 +506,7 @@ public class PracticalDriversAssessment implements java.io.Serializable {
 		return this.licenseCode;
 	}
 	
-	public void setPdaNo(Integer pdaNo) {
+	public void setPdaNo(String pdaNo) {
 		this.pdaNo = pdaNo;
 	}
 
@@ -541,403 +541,403 @@ public class PracticalDriversAssessment implements java.io.Serializable {
 	
 	
 	
-	public String getStartingAndStopping1() 
+	public int getStartingAndStopping1() 
 	{
 		return this.StartingAndStopping1;
 	}
-	public void setStartingAndStopping1(String StartingAndStopping1) 
+	public void setStartingAndStopping1(int StartingAndStopping1) 
 	{
 		this.StartingAndStopping1 = StartingAndStopping1;
 	}
 	
-	public String getStartingAndStopping2() 
+	public int getStartingAndStopping2() 
 	{
 		return this.StartingAndStopping2;
 	}
-public void setStartingAndStopping2(String StartingAndStopping2) 
+public void setStartingAndStopping2(int StartingAndStopping2) 
 	{
 		this.StartingAndStopping2 = StartingAndStopping2;
 	}
 	
-	public String getStartingAndStopping3() 
+	public int getStartingAndStopping3() 
 	{
 		return this.StartingAndStopping3;
 	}
-	public void setStartingAndStopping3(String StartingAndStopping3) 
+	public void setStartingAndStopping3(int StartingAndStopping3) 
 	{
 		this.StartingAndStopping3 = StartingAndStopping3;
 	}
 	
-	public String getStartingAndStopping4() 
+	public int getStartingAndStopping4() 
 	{
 		return this.StartingAndStopping4;
 	}
-	public void setStartingAndStopping4(String StartingAndStopping4) 
+	public void setStartingAndStopping4(int StartingAndStopping4) 
 	{
 		this.StartingAndStopping4 = StartingAndStopping4;
 	}
 	
-	public String getStartingAndStopping5() 
+	public int getStartingAndStopping5() 
 	{
 		return this.StartingAndStopping5;
 	}
-	public void setStartingAndStopping5(String StartingAndStopping5) 
+	public void setStartingAndStopping5(int StartingAndStopping5) 
 	{
 		this.StartingAndStopping5 = StartingAndStopping5;
 	}
 	
-	public String getStartingAndStopping6() 
+	public int getStartingAndStopping6() 
 	{
 		return this.StartingAndStopping6;
 	}
-	public void setStartingAndStopping6(String StartingAndStopping6) 
+	public void setStartingAndStopping6(int StartingAndStopping6) 
 	{
 		this.StartingAndStopping6 = StartingAndStopping6;
 	}
 	
-	public String getStartingAndStopping7() 
+	public int getStartingAndStopping7() 
 	{
 		return this.StartingAndStopping7;
 	}
-	public void setStartingAndStopping7(String StartingAndStopping7) 
+	public void setStartingAndStopping7(int StartingAndStopping7) 
 	{
 		this.StartingAndStopping7 = StartingAndStopping7;
 	}
 	
 	
-	public String getGeneralDriving8() 
+	public int getGeneralDriving8() 
 	{
 		return this.GeneralDriving8;
 	}
-	public void setGeneralDriving8(String GeneralDriving8) 
+	public void setGeneralDriving8(int GeneralDriving8) 
 	{
 		this.GeneralDriving8 = GeneralDriving8;
 	}
 	
-	public String getGeneralDriving9() 
+	public int getGeneralDriving9() 
 	{
 		return this.GeneralDriving9;
 	}
-	public void setGeneralDriving9(String GeneralDriving9) 
+	public void setGeneralDriving9(int GeneralDriving9) 
 	{
 		this.GeneralDriving9 = GeneralDriving9;
 	}
 
-	public String getGeneralDriving10() 
+	public int getGeneralDriving10() 
 	{
 		return this.GeneralDriving10;
 	}
-	public void setGeneralDriving10(String GeneralDriving10) 
+	public void setGeneralDriving10(int GeneralDriving10) 
 	{
 		this.GeneralDriving10 = GeneralDriving10;
 	}
 	
-	public String getGeneralDriving11() 
+	public int getGeneralDriving11() 
 	{
 		return this.GeneralDriving11;
 	}
-	public void setGeneralDriving11(String GeneralDriving11) 
+	public void setGeneralDriving11(int GeneralDriving11) 
 	{
 		this.GeneralDriving11 = GeneralDriving11;
 	}
 	
-	public String getGeneralDriving12() 
+	public int getGeneralDriving12() 
 	{
 		return this.GeneralDriving12;
 	}
-	public void setGeneralDriving12(String GeneralDriving12) 
+	public void setGeneralDriving12(int GeneralDriving12) 
 	{
 		this.GeneralDriving12 = GeneralDriving12;
 	}
 	
-	public String getGeneralDriving13() 
+	public int getGeneralDriving13() 
 	{
 		return this.GeneralDriving13;
 	}
-	public void setGeneralDriving13(String GeneralDriving13) 
+	public void setGeneralDriving13(int GeneralDriving13) 
 	{
 		this.GeneralDriving13 = GeneralDriving13;
 	}
 	
-	public String getGeneralDriving14() 
+	public int getGeneralDriving14() 
 	{
 		return this.GeneralDriving14;
 	}
-	public void setGeneralDriving14(String GeneralDriving14) 
+	public void setGeneralDriving14(int GeneralDriving14) 
 	{
 		this.GeneralDriving14 = GeneralDriving14;
 	}
 	
-	public String getGeneralDriving15() 
+	public int getGeneralDriving15() 
 	{
 		return this.GeneralDriving15;
 	}
-	public void setGeneralDriving15(String GeneralDriving15) 
+	public void setGeneralDriving15(int GeneralDriving15) 
 	{
 		this.GeneralDriving15 = GeneralDriving15;
 	}
 	
-	public String getGeneralDriving16() 
+	public int getGeneralDriving16() 
 	{
 		return this.GeneralDriving16;
 	}
-	public void setGeneralDriving16(String GeneralDriving16) 
+	public void setGeneralDriving16(int GeneralDriving16) 
 	{
 		this.GeneralDriving16 = GeneralDriving16;
 	}
 	
 	
-	public String getGeneralDriving17() 
+	public int getGeneralDriving17() 
 	{
 		return this.GeneralDriving17;
 	}
-	public void setGeneralDriving17(String GeneralDriving17) 
+	public void setGeneralDriving17(int GeneralDriving17) 
 	{
 		this.GeneralDriving17 = GeneralDriving17;
 	}
 	
 	
-	public String getPassingOrOvertaking18() 
+	public int getPassingOrOvertaking18() 
 	{
 		return this.PassingOrOvertaking18;
 	}
-	public void setPassingOrOvertaking18(String PassingOrOvertaking18) 
+	public void setPassingOrOvertaking18(int PassingOrOvertaking18) 
 	{
 		this.PassingOrOvertaking18 = PassingOrOvertaking18;
 	}
-	public String getPassingOrOvertaking19() 
+	public int getPassingOrOvertaking19() 
 	{
 		return this.PassingOrOvertaking19;
 	}
-	public void setPassingOrOvertaking19(String PassingOrOvertaking19) 
+	public void setPassingOrOvertaking19(int PassingOrOvertaking19) 
 	{
 		this.PassingOrOvertaking19 = PassingOrOvertaking19;
 	}
-	public String getPassingOrOvertaking20() 
+	public int getPassingOrOvertaking20() 
 	{
 		return this.PassingOrOvertaking20;
 	}
-	public void setPassingOrOvertaking20(String PassingOrOvertaking20) 
+	public void setPassingOrOvertaking20(int PassingOrOvertaking20) 
 	{
 		this.PassingOrOvertaking20 = PassingOrOvertaking20;
 	}
 	
-	public String getPassingOrOvertaking21() 
+	public int getPassingOrOvertaking21() 
 	{
 		return this.PassingOrOvertaking21;
 	}
-	public void setPassingOrOvertaking21(String PassingOrOvertaking21) 
+	public void setPassingOrOvertaking21(int PassingOrOvertaking21) 
 	{
 		this.PassingOrOvertaking21 = PassingOrOvertaking21;
 	}
 	
-	public String getGeneralRoadBehavior22() 
+	public int getGeneralRoadBehavior22() 
 	{
 		return this.GeneralRoadBehavior22;
 	}
-	public void setGeneralRoadBehavior22(String GeneralRoadBehavior22) 
+	public void setGeneralRoadBehavior22(int GeneralRoadBehavior22) 
 	{
 		this.GeneralRoadBehavior22 = GeneralRoadBehavior22;
 	}
 	
-	public String getGeneralRoadBehavior23() 
+	public int getGeneralRoadBehavior23() 
 	{
 		return this.GeneralRoadBehavior23;
 	}
-	public void setGeneralRoadBehavior23(String GeneralRoadBehavior23) 
+	public void setGeneralRoadBehavior23(int GeneralRoadBehavior23) 
 	{
 		this.GeneralRoadBehavior23 = GeneralRoadBehavior23;
 	}
 	
-	public String getObservationAndAnticipation24() 
+	public int getObservationAndAnticipation24() 
 	{
 		return this.ObservationAndAnticipation24;
 	}
-	public void setObservationAndAnticipation24(String ObservationAndAnticipation24) 
+	public void setObservationAndAnticipation24(int ObservationAndAnticipation24) 
 	{
 		this.ObservationAndAnticipation24 = ObservationAndAnticipation24;
 	}
 	
-	public String getObservationAndAnticipation25() 
+	public int getObservationAndAnticipation25() 
 	{
 		return this.ObservationAndAnticipation25;
 	}
-	public void setObservationAndAnticipation25(String ObservationAndAnticipation25) 
+	public void setObservationAndAnticipation25(int ObservationAndAnticipation25) 
 	{
 		this.ObservationAndAnticipation25 = ObservationAndAnticipation25;
 	}
 	
-	public String getObservationAndAnticipation26() 
+	public int getObservationAndAnticipation26() 
 	{
 		return this.ObservationAndAnticipation26;
 	}
-	public void setObservationAndAnticipation26(String ObservationAndAnticipation26) 
+	public void setObservationAndAnticipation26(int ObservationAndAnticipation26) 
 	{
 		this.ObservationAndAnticipation26 = ObservationAndAnticipation26;
 	}
 	
-	public String getObservationAndAnticipation27() 
+	public int getObservationAndAnticipation27() 
 	{
 		return this.ObservationAndAnticipation27;
 	}
-	public void setObservationAndAnticipation27(String ObservationAndAnticipation27) 
+	public void setObservationAndAnticipation27(int ObservationAndAnticipation27) 
 	{
 		this.ObservationAndAnticipation27 = ObservationAndAnticipation27;
 	}
 	
-	public String getObservationAndAnticipation28() 
+	public int getObservationAndAnticipation28() 
 	{
 		return this.ObservationAndAnticipation28;
 	}
-	public void setObservationAndAnticipation28(String ObservationAndAnticipation28) 
+	public void setObservationAndAnticipation28(int ObservationAndAnticipation28) 
 	{
 		this.ObservationAndAnticipation28 = ObservationAndAnticipation28;
 	}
 	
-	public String getApproachingJunctionsTurningExiting29() 
+	public int getApproachingJunctionsTurningExiting29() 
 	{
 		return this.ApproachingJunctionsTurningExiting29;
 	}
-	public void setApproachingJunctionsTurningExiting29(String ApproachingJunctionsTurningExiting29) 
+	public void setApproachingJunctionsTurningExiting29(int ApproachingJunctionsTurningExiting29) 
 	{
 		this.ApproachingJunctionsTurningExiting29 = ApproachingJunctionsTurningExiting29;
 	}
 	
 	
-	public String getApproachingJunctionsTurningExiting30() 
+	public int getApproachingJunctionsTurningExiting30() 
 	{
 		return this.ApproachingJunctionsTurningExiting30;
 	}
-	public void setApproachingJunctionsTurningExiting30(String ApproachingJunctionsTurningExiting30) 
+	public void setApproachingJunctionsTurningExiting30(int ApproachingJunctionsTurningExiting30) 
 	{
 		this.ApproachingJunctionsTurningExiting30 = ApproachingJunctionsTurningExiting30;
 	}
 	
-	public String getApproachingJunctionsTurningExiting31() 
+	public int getApproachingJunctionsTurningExiting31() 
 	{
 		return this.ApproachingJunctionsTurningExiting31;
 	}
-	public void setApproachingJunctionsTurningExiting31(String ApproachingJunctionsTurningExiting31) 
+	public void setApproachingJunctionsTurningExiting31(int ApproachingJunctionsTurningExiting31) 
 	{
 		this.ApproachingJunctionsTurningExiting31 = ApproachingJunctionsTurningExiting31;
 	}
 	
-	public String getApproachingJunctionsTurningExiting32() 
+	public int getApproachingJunctionsTurningExiting32() 
 	{
 		return this.ApproachingJunctionsTurningExiting32;
 	}
-	public void setApproachingJunctionsTurningExiting32(String ApproachingJunctionsTurningExiting31) 
+	public void setApproachingJunctionsTurningExiting32(int ApproachingJunctionsTurningExiting32) 
 	{
 		this.ApproachingJunctionsTurningExiting32 = ApproachingJunctionsTurningExiting32;
 	}
 
 	
-	public String getApproachingJunctionsTurningExiting33() 
+	public int getApproachingJunctionsTurningExiting33() 
 	{
 		return this.ApproachingJunctionsTurningExiting33;
 	}
-	public void setApproachingJunctionsTurningExiting33(String ApproachingJunctionsTurningExiting33) 
+	public void setApproachingJunctionsTurningExiting33(int ApproachingJunctionsTurningExiting33) 
 	{
 		this.ApproachingJunctionsTurningExiting33 = ApproachingJunctionsTurningExiting33;
 	}
 	
-	public String getApproachingJunctionsTurningExiting34() 
+	public int getApproachingJunctionsTurningExiting34() 
 	{
 		return this.ApproachingJunctionsTurningExiting34;
 	}
-	public void setApproachingJunctionsTurningExiting34(String ApproachingJunctionsTurningExiting34) 
+	public void setApproachingJunctionsTurningExiting34(int ApproachingJunctionsTurningExiting34) 
 	{
 		this.ApproachingJunctionsTurningExiting34 = ApproachingJunctionsTurningExiting34;
 	}
 	
-	public String getApproachingJunctionsTurningExiting35() 
+	public int getApproachingJunctionsTurningExiting35() 
 	{
 		return this.ApproachingJunctionsTurningExiting35;
 	}
-	public void setApproachingJunctionsTurningExiting35(String ApproachingJunctionsTurningExiting35) 
+	public void setApproachingJunctionsTurningExiting35(int ApproachingJunctionsTurningExiting35) 
 	{
 		this.ApproachingJunctionsTurningExiting35 = ApproachingJunctionsTurningExiting35;
 	}
 	
-	public String getApproachingJunctionsTurningExiting36() 
+	public int getApproachingJunctionsTurningExiting36() 
 	{
 		return this.ApproachingJunctionsTurningExiting36;
 	}
-	public void setApproachingJunctionsTurningExiting36(String ApproachingJunctionsTurningExiting36) 
+	public void setApproachingJunctionsTurningExiting36(int ApproachingJunctionsTurningExiting36) 
 	{
 		this.ApproachingJunctionsTurningExiting36 = ApproachingJunctionsTurningExiting36;
 	}
 	
 	
-	public String getReversing37() 
+	public int getReversing37() 
 	{
 		return this.Reversing37;
 	}
-	public void setReversing37(String Reversing37) 
+	public void setReversing37(int Reversing37) 
 	{
 		this.Reversing37 = Reversing37;
 	}
-	public String getReversing38() 
+	public int getReversing38() 
 	{
 		return this.Reversing38;
 	}
-	public void setReversing38(String Reversing38) 
+	public void setReversing38(int Reversing38) 
 	{
 		this.Reversing38 = Reversing38;
 	}
 	
-	public String getReversing39() 
+	public int getReversing39() 
 	{
 		return this.Reversing39;
 	}
-	public void setReversing39(String Reversing39) 
+	public void setReversing39(int Reversing39) 
 	{
 		this.Reversing39 = Reversing39;
 	}
 	
-	public String getClutch40() 
+	public int getClutch40() 
 	{
 		return this.Clutch40;
 	}
-	public void setClutch40(String Clutch40) 
+	public void setClutch40(int Clutch40) 
 	{
 		this.Clutch40 = Clutch40;
 	}
-	public String getClutch41() 
+	public int getClutch41() 
 	{
 		return this.Clutch41;
 	}
-	public void setClutch41(String Clutch41) 
+	public void setClutch41(int Clutch41) 
 	{
 		this.Clutch41 = Clutch41;
 	}
 	
 	
-	public String getRetarderDSCHillMode42() 
+	public int getRetarderDSCHillMode42() 
 	{
 		return this.RetarderDSCHillMode42;
 	}
-	public void setRetarderDSCHillMode42(String RetarderDSCHillMode42) 
+	public void setRetarderDSCHillMode42(int RetarderDSCHillMode42) 
 	{
 		this.RetarderDSCHillMode42 = RetarderDSCHillMode42;
 	}
 	
-	public String getRetarderDSCHillMode43() 
+	public int getRetarderDSCHillMode43() 
 	{
 		return this.RetarderDSCHillMode43;
 	}
-	public void setRetarderDSCHillMode43(String RetarderDSCHillMode43) 
+	public void setRetarderDSCHillMode43(int RetarderDSCHillMode43) 
 	{
 		this.RetarderDSCHillMode43 = RetarderDSCHillMode43;
 	}
 	
-	public String getRetarderDSCHillMode44() 
+	public int getRetarderDSCHillMode44() 
 	{
 		return this.RetarderDSCHillMode44;
 	}
-	public void setRetarderDSCHillMode44(String RetarderDSCHillMode43) 
+	public void setRetarderDSCHillMode44(int RetarderDSCHillMode44) 
 	{
-		this.RetarderDSCHillMode43 = RetarderDSCHillMode43;
+		this.RetarderDSCHillMode44 = RetarderDSCHillMode44;
 	}
 	
 }

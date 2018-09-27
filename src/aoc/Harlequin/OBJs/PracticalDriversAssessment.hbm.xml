@@ -92,8 +92,8 @@
         <property name="comments" type="string">
             <column name="Comments" length="250" />
         </property>
-        <property name="pdaNo" type="java.lang.Integer">
-            <column name="PDA_No" />
+        <property name="pdaNo" type="string">
+            <column name="PDA_No" length="45" />
         </property>
          <property name="licenseCode" type="string">
             <column name="License_Code" />
