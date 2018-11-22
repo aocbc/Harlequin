@@ -88,10 +88,10 @@ public class MacApplicantDAO extends HarlequinDAO {
 		String lastSmsDate = localDate.toString();
 		
 		applicants.setLastSmsDate(lastSmsDate);
-		applicants.setSmsGroup(Sms_Group);
+		applicants.setSmsGroup(Sms_Group.trim());
 		applicants.setSmsGroupCount(SmsGroupCount);
 		
-		
+		System.out.println("SMSGROUP:"+Sms_Group);
 		
 		
 		session.clear(); // ADDED 170302
