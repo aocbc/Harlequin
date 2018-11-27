@@ -203,6 +203,29 @@ public class AssignedJobApplicantDAO extends HarlequinDAO
 	}
 	
 	
+	
+	public List<AssignedJobApplicantList> CheckAllAssignedJobsInfoByID(String Id_Number, String Name, String Surname, int JobId)
+	{
+		Session session = this.getSession();
+		HibernateUtil.beginTransaction();
+		
+		Query query = session.createQuery("from AssignedJobApplicantList WHERE idMac_Applicants = '"+Id_Number+"' AND Name ='"+Name+"' And Surname ='"+Surname+"' And Job_Id ="+JobId);
+		List<AssignedJobApplicantList> AssignedJobs = query.list();
+		
+		
+		
+		
+		session.clear(); 
+		session.flush();
+		session.close();
+		
+		return AssignedJobs;
+		
+		
+		
+	}
+	
+	
 	///////////////////////////////////////////////////////////////////////////////
 	//Function to delete an object from the database
 	//////////////////////////////////////////////////////////////////////////////
@@ -261,47 +284,62 @@ public class AssignedJobApplicantDAO extends HarlequinDAO
 		////////////////////////////////////////
 		if(Jobs.size() > 0 && Applicant.size()> 0)
 		{	
-			    Session session = HibernateUtil.getSessionFactory().openSession();
-				session.beginTransaction();
-				
-				
-				
-				AssignedJobApplicantList AssignedJob = new AssignedJobApplicantList();
-				
-				
-				AssignedJob.setJobId(Jobs.get(0).getJobId());
-				AssignedJob.setJobName(Jobs.get(0).getJobName());
-				AssignedJob.setJobCode(Jobs.get(0).getJobCode());
-				AssignedJob.setJobClientName(Jobs.get(0).getJobClientName());
-				AssignedJob.setJobDetails(Jobs.get(0).getJobDetails()	);
-				AssignedJob.setJobComments(StringEscapeUtils.escapeJava(Jobs.get(0).getJobComments().toString()));
-				AssignedJob.setJobType(Jobs.get(0).getJobType());
-				AssignedJob.setIdMacApplicants(idMacApplicants);
-				AssignedJob.setName(Applicant.get(0).getName().toString());
-				AssignedJob.setSurname(Applicant.get(0).getSurname().toString());
-				AssignedJob.setStageInProcess("MacLabour Interview");
-				AssignedJob.setStageStatus("Recently Assigned to a new Job");
-				
-				AssignedJob.setMacLabInterviewComplete("No");
-				AssignedJob.setMacLabourInterviewComments("Please Add a Comment");
-				
-				AssignedJob.setPracticalDriversTestComplete("No");
-				AssignedJob.setPracticalDriversTestComments("Please Add a comment");
-				
-				AssignedJob.setClientInterviewComplete("No");
-				AssignedJob.setClientInterviewComments("Please Add a comment");
-				
-				
-				AssignedJob.setReferenceChecksComplete("No");
-				AssignedJob.setReferenceChecksComments("Please Add a comment");
-				
-				session.save(AssignedJob);
-						
-				session.getTransaction().commit();
-				
-				
-				
-				session.close();
+			
+			
+			   List<AssignedJobApplicantList> IsApplicantAlreadyAssigned = CheckAllAssignedJobsInfoByID(idMacApplicants,Applicant.get(0).getName().toString(),Applicant.get(0).getSurname().toString(),Jobs.get(0).getJobId());
+			
+			   if(IsApplicantAlreadyAssigned.size() == 0 )
+			   {
+				   Session session = HibernateUtil.getSessionFactory().openSession();
+					session.beginTransaction();
+					
+					
+					
+					AssignedJobApplicantList AssignedJob = new AssignedJobApplicantList();
+					
+					
+					AssignedJob.setJobId(Jobs.get(0).getJobId());
+					AssignedJob.setJobName(Jobs.get(0).getJobName());
+					AssignedJob.setJobCode(Jobs.get(0).getJobCode());
+					AssignedJob.setJobClientName(Jobs.get(0).getJobClientName());
+					AssignedJob.setJobDetails(Jobs.get(0).getJobDetails()	);
+					AssignedJob.setJobComments(StringEscapeUtils.escapeJava(Jobs.get(0).getJobComments().toString()));
+					AssignedJob.setJobType(Jobs.get(0).getJobType());
+					AssignedJob.setIdMacApplicants(idMacApplicants);
+					AssignedJob.setName(Applicant.get(0).getName().toString());
+					AssignedJob.setSurname(Applicant.get(0).getSurname().toString());
+					AssignedJob.setStageInProcess("MacLabour Interview");
+					AssignedJob.setStageStatus("Recently Assigned to a new Job");
+					
+					AssignedJob.setMacLabInterviewComplete("No");
+					AssignedJob.setMacLabourInterviewComments("Please Add a Comment");
+					
+					AssignedJob.setPracticalDriversTestComplete("No");
+					AssignedJob.setPracticalDriversTestComments("Please Add a comment");
+					
+					AssignedJob.setClientInterviewComplete("No");
+					AssignedJob.setClientInterviewComments("Please Add a comment");
+					
+					
+					AssignedJob.setReferenceChecksComplete("No");
+					AssignedJob.setReferenceChecksComments("Please Add a comment");
+					
+					session.save(AssignedJob);
+							
+					session.getTransaction().commit();
+					
+					
+					
+					session.close();
+				   
+			   }
+			   else
+			   {
+				   System.out.println("Applicant Already Assigned to the job selected.");
+			   }
+			
+			
+			    
 		}
 
 		

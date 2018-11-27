@@ -50,6 +50,16 @@ public class ClientDAO extends HarlequinDAO {
 		 
 	}
 	
+	/*public void delete(Object entity) 
+	{
+		  Session hibernateSession = this.getSession(); 
+		  
+		  HibernateUtil.beginTransaction();
+		        hibernateSession.delete(entity);
+		        //hibernateSession.flush();
+		  HibernateUtil.commitTransaction();
+	}*/
+  
 	public void delete(Object entity) 
 	{
 		  Session hibernateSession = this.getSession(); 
@@ -58,9 +68,11 @@ public class ClientDAO extends HarlequinDAO {
 		        hibernateSession.delete(entity);
 		        hibernateSession.flush();
 		  HibernateUtil.commitTransaction();
-	}
-  
-	
+		  
+		    hibernateSession.clear(); // ADDED 170302
+	        hibernateSession.flush();
+	        hibernateSession.close();
+		 }
 	
 	public void AddClientInformation( String clientName, String clientEMail,String clientContactName, String clientContactNumber,	String clientAddress1, String clientAddress2,String clientAddress3, String clientAddress4,String clientVatNumber, String clientComments)
 	{
@@ -90,7 +102,10 @@ public class ClientDAO extends HarlequinDAO {
 				
 		session.getTransaction().commit();
 		
+		session.clear();
+		session.flush();
 		session.close();
+		
 		
 	}
 	

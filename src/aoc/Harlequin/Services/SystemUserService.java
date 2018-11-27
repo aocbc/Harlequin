@@ -136,7 +136,7 @@ public class SystemUserService
 			}
 		}
 		
-		System.out.println("Password:" + Password + ", UserPassword:" + PasswordUser) ;
+		//System.out.println("Password:" + Password + ", UserPassword:" + PasswordUser) ;
 		
 		
 		

@@ -61,8 +61,6 @@ public class SystemUserDAO extends HarlequinDAO
 		Session session = this.getSession();
 		HibernateUtil.beginTransaction();
 		
-		
-		
 		Query query = session.createQuery("from SystemUser Where User_Name = '"+Username+"'");
 		List<SystemUser> User = query.list();
 		
@@ -132,13 +130,10 @@ public class SystemUserDAO extends HarlequinDAO
 		  HibernateUtil.beginTransaction();
 		        //hibernateSession.save(entity);        
 		        //hibernateSession.saveOrUpdate(entity);
-		        hibernateSession.update(entity);
+		  hibernateSession.update(entity);
 		     
-		        HibernateUtil.commitTransaction();
+		  HibernateUtil.commitTransaction();
 		      
-		        
-		        
-		 
 	}
 	
 	public List<SystemUser> ReadAllUsers()
