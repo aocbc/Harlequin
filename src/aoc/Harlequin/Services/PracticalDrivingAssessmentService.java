@@ -14,19 +14,19 @@ import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
+import org.apache.commons.lang3.StringEscapeUtils;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import aoc.Harlequin.DAOs.AssignedJobApplicantDAO;
-import aoc.Harlequin.DAOs.ClientDAO;
 import aoc.Harlequin.DAOs.MacApplicantDAO;
 import aoc.Harlequin.DAOs.PracticalDrivingAssessmentDAO;
-import aoc.Harlequin.OBJs.AssignedJobApplicantList;
 import aoc.Harlequin.OBJs.MacApplicants;
 import aoc.Harlequin.OBJs.PracticalDriversAssessment;
-import aoc.Harlequin.OBJs.SystemClient;
 
+
+@SuppressWarnings("deprecation")
 @Path("PracticalDrivingAssessment")
 public class PracticalDrivingAssessmentService {
 	
@@ -70,7 +70,7 @@ public class PracticalDrivingAssessmentService {
 		jsonObject.put("Reversing", Assessment.getReversing());		
 		jsonObject.put("Clutch", Assessment.getClutch());
 		jsonObject.put("Retarder_DSC_HillMode", Assessment.getRetarderDscHillMode());
-		jsonObject.put("Comments", Assessment.getComments());
+		jsonObject.put("Comments", StringEscapeUtils.escapeJava(Assessment.getComments()));
 		jsonObject.put("PDA_No", Assessment.getPdaNo());
 		
 		jsonObject.put("Last_Used_Date", Assessment.getLastUsedDate());
@@ -129,7 +129,7 @@ public class PracticalDrivingAssessmentService {
 			jsonObject.put("Reversing", Assessments.get(i).getReversing());		
 			jsonObject.put("Clutch", Assessments.get(i).getClutch());
 			jsonObject.put("Retarder_DSC_HillMode", Assessments.get(i).getRetarderDscHillMode());
-			jsonObject.put("Comments", Assessments.get(i).getComments());
+			jsonObject.put("Comments", StringEscapeUtils.escapeJava(Assessments.get(i).getComments()));
 			jsonObject.put("PDA_No",Assessments.get(i).getPdaNo());
 			jsonObject.put("Last_Used_Date",Assessments.get(i).getLastUsedDate());
 			
@@ -200,7 +200,7 @@ public class PracticalDrivingAssessmentService {
 				jsonObject.put("Reversing", Assessments.get(i).getReversing());		
 				jsonObject.put("Clutch", Assessments.get(i).getClutch());
 				jsonObject.put("Retarder_DSC_HillMode", Assessments.get(i).getRetarderDscHillMode());
-				jsonObject.put("Comments", Assessments.get(i).getComments());
+				jsonObject.put("Comments", StringEscapeUtils.escapeJava(Assessments.get(i).getComments()));
 				jsonObject.put("PDA_No",Assessments.get(i).getPdaNo());
 								
 				jsonObject.put("StartingAndStopping1", Assessments.get(i).getStartingAndStopping1());
@@ -329,12 +329,12 @@ public class PracticalDrivingAssessmentService {
 				jsonObject.put("Reversing", Assessments.get(i).getReversing());		
 				jsonObject.put("Clutch", Assessments.get(i).getClutch());
 				jsonObject.put("Retarder_DSC_HillMode", Assessments.get(i).getRetarderDscHillMode());
-				jsonObject.put("Comments", Assessments.get(i).getComments());
+				jsonObject.put("Comments", StringEscapeUtils.escapeJava(Assessments.get(i).getComments()));
 				jsonObject.put("PDA_No",Assessments.get(i).getPdaNo());
 				
 				jsonObject.put("License_Code",Assessments.get(i).getLicenseCode());
 				jsonObject.put("Practical_Drivers_Test_Complete",Assessments.get(i).getPracticalDriversTestComplete());
-				jsonObject.put("Practical_Drivers_Test_Comments",Assessments.get(i).getPracticalDriversTestComments());
+				jsonObject.put("Practical_Drivers_Test_Comments",StringEscapeUtils.escapeJava(Assessments.get(i).getPracticalDriversTestComments()));
 				
 				jsonObject.put("Job_Name",Assessments.get(i).getjobName());
 				jsonObject.put("Last_Used_Date",Assessments.get(i).getLastUsedDate());

@@ -10,6 +10,7 @@ import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
+import org.apache.commons.lang3.StringEscapeUtils;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
@@ -22,6 +23,7 @@ public class AssignedJobListService
 {
 
 	
+	@SuppressWarnings("deprecation")
 	@Path("/ReadAllAssignedJobs")
 	@GET
 	@Produces("text/plain")
@@ -55,17 +57,17 @@ public class AssignedJobListService
 
 			jsonObject.put("Stage_Status", AssignedJobs.get(i).getStageStatus());
 			
-			jsonObject.put("Mac_Labour_Interview_Comments", AssignedJobs.get(i).getMacLabourInterviewComments());
+			jsonObject.put("Mac_Labour_Interview_Comments",StringEscapeUtils.escapeJava( AssignedJobs.get(i).getMacLabourInterviewComments()));
 			jsonObject.put("Mac_Lab_Interview_Complete", AssignedJobs.get(i).getMacLabInterviewComplete());
 			
 			jsonObject.put("Practical_Drivers_Test_Complete", AssignedJobs.get(i).getPracticalDriversTestComplete());
-			jsonObject.put("Practical_Drivers_Test_Comments", AssignedJobs.get(i).getPracticalDriversTestComments());
+			jsonObject.put("Practical_Drivers_Test_Comments", StringEscapeUtils.escapeJava(AssignedJobs.get(i).getPracticalDriversTestComments()));
 			
 			jsonObject.put("Client_Interview_Complete", AssignedJobs.get(i).getClientInterviewComplete());
-			jsonObject.put("Client_Interview_Comments", AssignedJobs.get(i).getClientInterviewComments());
+			jsonObject.put("Client_Interview_Comments", StringEscapeUtils.escapeJava(AssignedJobs.get(i).getClientInterviewComments()));
 			
 			jsonObject.put("Reference_Checks_Complete", AssignedJobs.get(i).getReferenceChecksComplete());
-			jsonObject.put("Reference_Checks_Comments", AssignedJobs.get(i).getReferenceChecksComments());
+			jsonObject.put("Reference_Checks_Comments", StringEscapeUtils.escapeJava(AssignedJobs.get(i).getReferenceChecksComments()));
 			
 			
 			
@@ -78,6 +80,7 @@ public class AssignedJobListService
 		return JsonArray.toString();
 	}
 	
+	@SuppressWarnings("deprecation")
 	@Path("/ReadAllAssignedJobsByIDNumber/{Id_Number}")
 	@GET
 	@Produces("text/plain")
@@ -111,17 +114,17 @@ public class AssignedJobListService
 
 			jsonObject.put("Stage_Status", AssignedJobs.get(i).getStageStatus());
 			
-			jsonObject.put("Mac_Labour_Interview_Comments", AssignedJobs.get(i).getMacLabourInterviewComments());
+			jsonObject.put("Mac_Labour_Interview_Comments", StringEscapeUtils.escapeJava(AssignedJobs.get(i).getMacLabourInterviewComments()));
 			jsonObject.put("Mac_Lab_Interview_Complete", AssignedJobs.get(i).getMacLabInterviewComplete());
 			
 			jsonObject.put("Practical_Drivers_Test_Complete", AssignedJobs.get(i).getPracticalDriversTestComplete());
-			jsonObject.put("Practical_Drivers_Test_Comments", AssignedJobs.get(i).getPracticalDriversTestComments());
+			jsonObject.put("Practical_Drivers_Test_Comments", StringEscapeUtils.escapeJava(AssignedJobs.get(i).getPracticalDriversTestComments()));
 			
 			jsonObject.put("Client_Interview_Complete", AssignedJobs.get(i).getClientInterviewComplete());
-			jsonObject.put("Client_Interview_Comments", AssignedJobs.get(i).getClientInterviewComments());
+			jsonObject.put("Client_Interview_Comments", StringEscapeUtils.escapeJava(AssignedJobs.get(i).getClientInterviewComments()));
 			
 			jsonObject.put("Reference_Checks_Complete", AssignedJobs.get(i).getReferenceChecksComplete());
-			jsonObject.put("Reference_Checks_Comments", AssignedJobs.get(i).getReferenceChecksComments());
+			jsonObject.put("Reference_Checks_Comments", StringEscapeUtils.escapeJava(AssignedJobs.get(i).getReferenceChecksComments()));
 			
 			
 			

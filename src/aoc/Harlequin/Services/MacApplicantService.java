@@ -13,6 +13,7 @@ import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
+import org.apache.commons.lang3.StringEscapeUtils;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -22,6 +23,7 @@ import aoc.Harlequin.DAOs.ClientDAO;
 import aoc.Harlequin.DAOs.MacApplicantDAO;
 import aoc.Harlequin.DAOs.SystemUserDAO;
 import aoc.Harlequin.OBJs.AssignedJobApplicantList;
+import aoc.Harlequin.OBJs.GeneralHelpUtility;
 import aoc.Harlequin.OBJs.MacApplicants;
 import aoc.Harlequin.OBJs.SystemClient;
 import aoc.Harlequin.OBJs.SystemUser;
@@ -870,9 +872,9 @@ public class MacApplicantService {
 										
 										
 										
-										jsonObject.put("Practical_Drivers_Test_Comments", x.get(j).getPracticalDriversTestComments());
+										jsonObject.put("Practical_Drivers_Test_Comments", StringEscapeUtils.escapeJava(x.get(j).getPracticalDriversTestComments()));
 										jsonObject.put("Practical_Drivers_Test_Complete", x.get(j).getPracticalDriversTestComplete());
-										jsonObject.put("Mac_Labour_Interview_Comments", x.get(j).getMacLabourInterviewComments());
+										jsonObject.put("Mac_Labour_Interview_Comments", StringEscapeUtils.escapeJava(x.get(j).getMacLabourInterviewComments()));
 										jsonObject.put("Mac_Lab_Interview_Complete", x.get(j).getMacLabInterviewComplete());
 										jsonObject.put("Last_Used_Date", Applicants.get(i).getLastUsedDate());
 										
@@ -977,7 +979,7 @@ public class MacApplicantService {
 				jsonObject.put("Stage_In_Process",  x.get(j).getStageInProcess());
 				jsonObject.put("Sms_Account_Active", Applicants.get(i).getSmsAccountActive());
 				
-				jsonObject.put("Mac_Labour_Interview_Comments", x.get(j).getMacLabourInterviewComments());
+				jsonObject.put("Mac_Labour_Interview_Comments", StringEscapeUtils.escapeJava(x.get(j).getMacLabourInterviewComments()));
 				jsonObject.put("Mac_Lab_Interview_Complete", x.get(j).getMacLabInterviewComplete());
 				
 				
@@ -1079,7 +1081,7 @@ public class MacApplicantService {
 				jsonObject.put("Stage_In_Process",  x.get(j).getStageInProcess());
 				jsonObject.put("Sms_Account_Active", Applicants.get(i).getSmsAccountActive());
 				
-				jsonObject.put("Mac_Labour_Interview_Comments", x.get(j).getMacLabourInterviewComments());
+				jsonObject.put("Mac_Labour_Interview_Comments",  StringEscapeUtils.escapeJava(x.get(j).getMacLabourInterviewComments()));
 				jsonObject.put("Mac_Lab_Interview_Complete", x.get(j).getMacLabInterviewComplete());
 				
 				
@@ -1164,7 +1166,7 @@ public class MacApplicantService {
 			jsonObject.put("Applicant_Type", Applicants.get(i).getApplicantType());
 			jsonObject.put("Applicant_Status", Applicants.get(i).getApplicantStatus());
 			
-			jsonObject.put("Client_Interview_Comments", Applicants.get(i).getClientInterviewComments());
+			jsonObject.put("Client_Interview_Comments", StringEscapeUtils.escapeJava(Applicants.get(i).getClientInterviewComments()));
 			jsonObject.put("Client_Interview_Complete", Applicants.get(i).getClientInterviewComplete());
 			jsonObject.put("Stage_In_Process", Applicants.get(i).getStageInTheProcess());
 			jsonObject.put("Sms_Account_Active", Applicants.get(i).getSmsAccountActive());
@@ -1260,13 +1262,13 @@ public class MacApplicantService {
 				jsonObject.put("Applicant_Type", Applicants.get(i).getApplicantType());
 				jsonObject.put("Applicant_Status", Applicants.get(i).getApplicantStatus());
 		
-				jsonObject.put("Client_Interview_Comments", x.get(j).getClientInterviewComments());
+				jsonObject.put("Client_Interview_Comments", StringEscapeUtils.escapeJava(x.get(j).getClientInterviewComments()));
 				jsonObject.put("Client_Interview_Complete", x.get(j).getClientInterviewComplete());
 			
 				jsonObject.put("Stage_In_Process", x.get(j).getStageInProcess());
 				jsonObject.put("Sms_Account_Active", Applicants.get(i).getSmsAccountActive());
 		
-				jsonObject.put("Practical_Drivers_Test_Comments", x.get(j).getPracticalDriversTestComments());
+				jsonObject.put("Practical_Drivers_Test_Comments", StringEscapeUtils.escapeJava(x.get(j).getPracticalDriversTestComments()));
 				jsonObject.put("Practical_Drivers_Test_Complete", x.get(j).getPracticalDriversTestComplete());
 		
 				jsonObject.put("Nationality", Applicants.get(i).getNationality());
@@ -1350,7 +1352,7 @@ public class MacApplicantService {
 			jsonObject.put("Applicant_Type", Applicants.get(i).getApplicantType());
 			jsonObject.put("Applicant_Status", Applicants.get(i).getApplicantStatus());
 			
-			jsonObject.put("Reference_Checks_Comments", Applicants.get(i).getReferenceChecksComments());
+			jsonObject.put("Reference_Checks_Comments", StringEscapeUtils.escapeJava(Applicants.get(i).getReferenceChecksComments()));
 			jsonObject.put("Reference_Checks_Complete", Applicants.get(i).getReferenceChecksComplete());
 			
 			jsonObject.put("Stage_In_Process", Applicants.get(i).getStageInTheProcess());
@@ -1510,9 +1512,9 @@ public class MacApplicantService {
 			Applicant.setJobName(r.getString("Job_Name"));
 			
 			Applicant.setStageInTheProcess(r.getString("Stage_In_Process"));
-			Applicant.setApplicantType(r.getString("Applicant_Type"));
+			Applicant.setApplicantType("New");
 			
-			Applicant.setApplicantStatus("New");
+			/*Applicant.setApplicantStatus("New");*/
 			Applicant.setSmsAccountActive("Yes");
 			Applicant.setLastUsedDate(dateFormat.format(date));
 			
@@ -1662,12 +1664,14 @@ public class MacApplicantService {
 			
 		MacApplicantDAO Object  = new MacApplicantDAO();
 		//Object.UpdateAppplicantMacLabourById(Integer.parseInt(r.getString("idMac_Applicants")), r.getString("Formal_Interview_Complete"), r.getString("Interview_Comments"));
-		Object.UpdateAppplicantMacLabourByIdJobName(Integer.parseInt(r.getString("idMac_Applicants")), r.getString("Formal_Interview_Complete"), r.getString("Interview_Comments"), r.getString("Job_Name"),r.getString("Id_Number"));
+		Object.UpdateAppplicantMacLabourByIdJobName(Integer.parseInt(r.getString("idMac_Applicants")), r.getString("Formal_Interview_Complete"), GeneralHelpUtility.escapeMetaCharacters(r.getString("Interview_Comments")), r.getString("Job_Name"),r.getString("Id_Number"));
 		
 		return "Sucessful";	
 		
 			
 	}
+	
+	
 	
 	
 	@Path("/UpdateApplicantSmsDate")

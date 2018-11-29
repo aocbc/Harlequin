@@ -195,6 +195,12 @@ public class MacApplicantDAO extends HarlequinDAO {
 	
 	}
 	
+	public String removeSpecialCharacters(String string)
+	{
+		//string = string.replace("'", "/'");
+
+		return string;
+	}
 	
 	public MacApplicants UpdateAppplicantMacLabourByIdJobName(int id, String InterviewComplete, String InterviewComments,String JobName, String Id_Number)
 	{
@@ -221,7 +227,7 @@ public class MacApplicantDAO extends HarlequinDAO {
 			}
 			else
 			{
-				assigned_job.UpdateAssignedJobStatusMacLabourInterview(Id_Number, JobName, "Practical Drivers Test", "beginning",InterviewComplete,InterviewComments);
+				assigned_job.UpdateAssignedJobStatusMacLabourInterview(Id_Number, JobName, "Practical Drivers Test", "beginning",InterviewComplete,removeSpecialCharacters(InterviewComments));
 				
 			}
 			
@@ -237,14 +243,14 @@ public class MacApplicantDAO extends HarlequinDAO {
 			}
 			else
 			{
-				assigned_job.UpdateAssignedJobStatusMacLabourInterview(Id_Number, JobName, "MacLabour Interview", "pending",InterviewComplete,InterviewComments);
+				assigned_job.UpdateAssignedJobStatusMacLabourInterview(Id_Number, JobName, "MacLabour Interview", "pending",InterviewComplete,removeSpecialCharacters(InterviewComments));
 				
 			}
 			
 		}
 		
 		
-		applicants.setmacLabourInterviewComments(InterviewComments);
+		applicants.setmacLabourInterviewComments(removeSpecialCharacters(InterviewComments));
 		
 		
 		if(InterviewComments.equals(""))

@@ -12,27 +12,21 @@ import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
+import org.apache.commons.lang3.StringEscapeUtils;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
-
 import aoc.Harlequin.DAOs.AssignedJobApplicantDAO;
-import aoc.Harlequin.DAOs.ClientDAO;
 import aoc.Harlequin.DAOs.ClientInterviewDAO;
-import aoc.Harlequin.DAOs.JobDAO;
 import aoc.Harlequin.DAOs.MacApplicantDAO;
-import aoc.Harlequin.DAOs.MacInterviewDAO;
-import aoc.Harlequin.DAOs.SystemUserDAO;
 import aoc.Harlequin.OBJs.ClientInterviews;
 import aoc.Harlequin.OBJs.MacApplicants;
-import aoc.Harlequin.OBJs.MacLabourInterView;
-import aoc.Harlequin.OBJs.SystemClient;
-import aoc.Harlequin.OBJs.SystemJob;
-import aoc.Harlequin.OBJs.SystemUser;
 
 
 
 
+
+@SuppressWarnings("deprecation")
 @Path("ClientInterview")
 public class ClientInterviewService {
 	
@@ -57,7 +51,7 @@ public class ClientInterviewService {
 		jsonObject.put("Applicant_Presentable", Interview.getApplicantPresentable());
 
 		jsonObject.put("Applicant_Attitude", Interview.getApplicantAttitude());
-		jsonObject.put("Interview_Comments", Interview.getInterviewComments());
+		jsonObject.put("Interview_Comments", StringEscapeUtils.escapeJava(Interview.getInterviewComments()));
 		jsonObject.put("Client_Interview_Complete", Interview.getClientInterviewComplete());
 		jsonObject.put("Last_Used_Date", Interview.getLastUsedDate());
 		jsonObject.put("Client_Interview_Passed", Interview.getClientInterviewPassed());
@@ -97,7 +91,7 @@ public class ClientInterviewService {
 			jsonObject.put("Applicant_Presentable", Interviews.get(i).getApplicantPresentable());
 
 			jsonObject.put("Applicant_Attitude", Interviews.get(i).getApplicantAttitude());
-			jsonObject.put("Interview_Comments", Interviews.get(i).getInterviewComments());
+			jsonObject.put("Interview_Comments", StringEscapeUtils.escapeJava(Interviews.get(i).getInterviewComments()));
 			jsonObject.put("Client_Interview_Complete", Interviews.get(i).getClientInterviewComplete());
 			jsonObject.put("Last_Used_Date", Interviews.get(i).getLastUsedDate());
 			jsonObject.put("Client_Interview_Passed", Interviews.get(i).getClientInterviewPassed());
@@ -144,7 +138,7 @@ public class ClientInterviewService {
 			jsonObject.put("Applicant_Presentable", Interview.get(i).getApplicantPresentable());
 
 			jsonObject.put("Applicant_Attitude", Interview.get(i).getApplicantAttitude());
-			jsonObject.put("Interview_Comments", Interview.get(i).getInterviewComments());
+			jsonObject.put("Interview_Comments", StringEscapeUtils.escapeJava(Interview.get(i).getInterviewComments()));
 			jsonObject.put("Client_Interview_Complete", Interview.get(i).getClientInterviewComplete());
 			jsonObject.put("Last_Used_Date", Interview.get(i).getLastUsedDate());
 			jsonObject.put("Client_Interview_Passed", Interview.get(i).getClientInterviewPassed());
@@ -196,7 +190,7 @@ public class ClientInterviewService {
 			jsonObject.put("Applicant_Presentable", Interview.get(i).getApplicantPresentable());
 
 			jsonObject.put("Applicant_Attitude", Interview.get(i).getApplicantAttitude());
-			jsonObject.put("Interview_Comments", Interview.get(i).getInterviewComments());
+			jsonObject.put("Interview_Comments", StringEscapeUtils.escapeJava(Interview.get(i).getInterviewComments()));
 			jsonObject.put("Client_Interview_Complete", Interview.get(i).getClientInterviewComplete());
 			jsonObject.put("Last_Used_Date", Interview.get(i).getLastUsedDate());
 			jsonObject.put("Client_Interview_Passed", Interview.get(i).getClientInterviewPassed());
@@ -244,7 +238,7 @@ public class ClientInterviewService {
 				jsonObject.put("Interview_questions_Passed", Interview.get(0).getInterviewQuestionsPassed());
 				jsonObject.put("Applicant_Presentable", Interview.get(0).getApplicantPresentable());
 				jsonObject.put("Applicant_Attitude", Interview.get(0).getApplicantAttitude());
-				jsonObject.put("Interview_Comments", Interview.get(0).getInterviewComments());
+				jsonObject.put("Interview_Comments", StringEscapeUtils.escapeJava(Interview.get(0).getInterviewComments()));
 				jsonObject.put("Client_Interview_Complete", Interview.get(0).getClientInterviewComplete());
 				jsonObject.put("Last_Used_Date", Interview.get(0).getLastUsedDate());
 				jsonObject.put("Client_Interview_Passed", Interview.get(0).getClientInterviewPassed());

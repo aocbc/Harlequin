@@ -12,6 +12,7 @@ import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
+import org.apache.commons.lang3.StringEscapeUtils;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -80,7 +81,7 @@ public class ReferenceChecksService
 			jsonObject.put("Username", Referencecheck.get(i).getUsername());
 			jsonObject.put("Usersurname", Referencecheck.get(i).getUsersurname());
 			
-			jsonObject.put("Reference_Check_Comments", Referencecheck.get(i).getReferenceCheckComments());
+			jsonObject.put("Reference_Check_Comments", StringEscapeUtils.escapeJava(Referencecheck.get(i).getReferenceCheckComments()));
 			
 			JsonArray.put(jsonObject);
 	     }
@@ -122,7 +123,7 @@ public class ReferenceChecksService
 				jsonObject.put("Username", Referencecheck.get(0).getUsername());
 				jsonObject.put("Usersurname", Referencecheck.get(0).getUsersurname());
 				
-				jsonObject.put("Reference_Check_Comments", Referencecheck.get(0).getReferenceCheckComments());
+				jsonObject.put("Reference_Check_Comments", StringEscapeUtils.escapeJava(Referencecheck.get(0).getReferenceCheckComments()));
 			}
 			
 			
@@ -169,7 +170,7 @@ public class ReferenceChecksService
 				jsonObject.put("Username", Referencecheck.get(i).getUsername());
 				jsonObject.put("Usersurname", Referencecheck.get(i).getUsersurname());
 				
-				jsonObject.put("Reference_Check_Comments", Referencecheck.get(i).getReferenceCheckComments());
+				jsonObject.put("Reference_Check_Comments", StringEscapeUtils.escapeJava(Referencecheck.get(i).getReferenceCheckComments()));
 				
 				JsonArray.put(jsonObject);
 		}

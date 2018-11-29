@@ -8,19 +8,19 @@
       
       
         <property name="hibernate.connection.password">SecureA0C</property>  
-        <property name="hibernate.connection.url">jdbc:mysql://41.79.78.120:3306/Harlequin</property> <!-- AOC TEST SERVER DATABASE --> 
+        <property name="hibernate.connection.url">jdbc:mysql://41.79.78.120:3306/Harlequin</property> <!-- AOC TEST SERVER DATABASE  -->
  		<property name="hibernate.connection.username">jateen</property>    
- 	   
- 	   
- 	  <!-- <property name="hibernate.connection.password">SecureA0C!</property>  
+ 	    
+ 	    <!--  
+ 	    <property name="hibernate.connection.password">SecureA0C!</property>  
         <property name="hibernate.connection.url">jdbc:mysql://41.181.43.67:3306/Harlequin</property> Thys Live SERVER DATABASE
- 		<property name="hibernate.connection.username">root</property>    
- 		 -->
+ 		<property name="hibernate.connection.username">root</property>    --> 
+ 		 
  		
- 	   <!-- <property name="hibernate.connection.password">SecureA0C!</property>  
+ 	    <!-- <property name="hibernate.connection.password">SecureA0C!</property>  
         <property name="hibernate.connection.url">jdbc:mysql://localhost:3306/Harlequin</property> Thys Live SERVER DATABASE
- 		<property name="hibernate.connection.username">root</property>    
- 	    -->
+ 		<property name="hibernate.connection.username">root</property>     -->
+ 	    
 
 		<!-- <property name="hibernate.connection.url">jdbc:mysql://localhost:3306/Harlequin</property>  
 		<property name="hibernate.connection.url">jdbc:mysql://41.79.83.236:3306/Harlequin</property> 
