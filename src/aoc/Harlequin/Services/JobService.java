@@ -95,9 +95,7 @@ public class JobService {
 		jsonObject.put("Job_Type", Job.getJobType());
 		jsonObject.put("Last_Used_Date", Job.getLastUsedDate());
 		
-		
-		
-		System.out.println(jsonObject.toString());
+
 	    
 		return jsonObject.toString();
 	}
@@ -146,12 +144,7 @@ public class JobService {
 			JsonArray.put(jsonObject);
 		}
 		
-		
-		
-		
-		
-		
-		System.out.println(JsonArray.toString());
+
 	    
 		return JsonArray.toString();
 	}
@@ -165,7 +158,6 @@ public class JobService {
 	public  String createAssignedJobInfo(String jsonTextObject) throws JSONException
 	{
 
-		System.out.println(jsonTextObject);
 		JSONObject r = new JSONObject(jsonTextObject);	
 		
 		//System.out.println("WRITING TO DATABASE:"+ r.getString("Client_Name"));			
@@ -211,12 +203,6 @@ public class JobService {
 			JsonArray.put(jsonObject);
 		}
 		
-		
-		
-		
-		
-		
-		System.out.println(JsonArray.toString());
 	    
 		return JsonArray.toString();
 	}
@@ -228,7 +214,7 @@ public class JobService {
 	@Produces("text/plain")
 	public  String create(String jsonTextObject) throws JSONException
 	{
-		System.out.println(jsonTextObject);
+
 		JSONObject r = new JSONObject(jsonTextObject);	
 		
 		//System.out.println("WRITING TO DATABASE:"+ r.getString("Client_Name"));			
@@ -252,7 +238,7 @@ public class JobService {
 		
 		JobDAO t = new JobDAO();
 		JSONObject test = new JSONObject(jsonTextObject);
-		System.out.println("Applicant Update"+test.toString());
+
 		
 		SystemJob Job  = t.getJobInfoById(test.getInt("Job_Id"));
 		

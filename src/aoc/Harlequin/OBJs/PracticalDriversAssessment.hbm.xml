@@ -18,7 +18,7 @@
             <column name="Surname" length="50" />
         </property>
         <property name="idNumber" type="string">
-            <column name="Id_Number" length="13" />
+            <column name="Id_Number" length="25" />
         </property>
         <property name="clientName" type="string">
             <column name="Client_Name" length="100" />
@@ -257,7 +257,16 @@
        </property>
 	    <property name="retarderDSCHillMode44" type="java.lang.Integer">
             <column name="RetarderDSCHillMode44" />
-       </property>         
+       </property>  
+       
+       
+       <property name="roadTestPassed" type="string">
+            <column name="RoadTestPassed" length="3" />
+        </property>
+        
+        <property name="parkingTestPassed" type="string">
+            <column name="ParkingTestPassed" length="3" />
+        </property>       
         
     </class>
 </hibernate-mapping>

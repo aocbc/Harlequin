@@ -221,9 +221,7 @@ public class ClientInterviewService {
 	public String GET1(@PathParam("Id_Number") String Id_Number,@PathParam("idMac_Applicants") String idMac_Applicants, @PathParam("Job_Name") String Job_Name ) throws Exception
 	{
 		
-		
-		
-		System.out.println("Hello world"+Id_Number+","+idMac_Applicants+","+Job_Name);
+
 		
 		ClientInterviewDAO Object  = new ClientInterviewDAO();
 		
@@ -244,16 +242,6 @@ public class ClientInterviewService {
 				jsonObject.put("Client_Interview_Passed", Interview.get(0).getClientInterviewPassed());
 			}
 			
-			
-		
-		
-		
-		
-		
-		
-		System.out.println(jsonObject.toString());
-		
-		
 		
 		return jsonObject.toString();
 	}

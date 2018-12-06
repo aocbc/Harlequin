@@ -39,23 +39,16 @@ public class MacApplicantService {
 	public String MarkApplicantInactiveActive( @PathParam("idMac_Applicants") int idMac_Applicants, @PathParam("Sms_Account_Active") String Sms_Account_Active ) throws Exception
 	{
 		
-		System.out.println("ID:"+idMac_Applicants+","+Sms_Account_Active);
+		
 		
 		MacApplicantDAO Object  = new MacApplicantDAO();
 		MacApplicants Applicant  = Object.getClientApplicantoById(idMac_Applicants);
-		
-		System.out.println("Name:"+Applicant.getName());
-		
-		
+
 		Applicant.setSmsAccountActive(Sms_Account_Active);
 		
 		
 		Object.update(Applicant);
-		
-		
-		
-		
-		
+
 		
 		return "Applicant Inactive";
 	}
@@ -116,8 +109,7 @@ public class MacApplicantService {
 		jsonObject.put("Last_Used_Date", Applicant.getLastUsedDate());
 		jsonObject.put("Employable", Applicant.getEmployable());
 		jsonObject.put("Employable_Comments", Applicant.getEmployableComments());		
-		
-		System.out.println(jsonObject.toString());
+
 	    
 		return jsonObject.toString();
 	}
@@ -191,16 +183,7 @@ public class MacApplicantService {
 			JsonArray.put(jsonObject);
 		}
 		
-		
-		
-		
-		
-		
-		System.out.println(JsonArray.toString());
-		
-		
-		
-		
+
 		
 		return JsonArray.toString();
 	}
@@ -266,22 +249,13 @@ public class MacApplicantService {
 			
 			jsonObject.put("Employable", Applicants.get(i).getEmployable());
 			jsonObject.put("Employable_Comments", Applicants.get(i).getEmployableComments());
-			
+			jsonObject.put("Age", Applicants.get(i).getAge());
+			jsonObject.put("Date_Of_Birth", Applicants.get(i).getDateOfBirth());
 			
 			JsonArray.put(jsonObject);
 		}
 		
-		
-		
-		
-		
-		
-		System.out.println(JsonArray.toString());
-		
-		
-		
-		
-		
+
 		return JsonArray.toString();
 	}
 	
@@ -356,16 +330,7 @@ public class MacApplicantService {
 			JsonArray.put(jsonObject);
 		}
 		
-		
-		
-		
-		
-		
-		System.out.println(JsonArray.toString());
-		
-		
-		
-		
+
 		
 		return JsonArray.toString();
 	}
@@ -540,13 +505,7 @@ public class MacApplicantService {
 			jsonObject.put("Employable_Comments", Applicants.get(0).getEmployableComments());
 		}
 		
-		
-			
-			
-			
-		
-		
-		
+
 		return jsonObject.toString();
 	}
 	
@@ -622,12 +581,7 @@ public class MacApplicantService {
 			JsonArray.put(jsonObject);
 		}
 		
-		
-		
-		
-		
-		
-		
+
 	    
 		return JsonArray.toString();
 	}
@@ -702,12 +656,7 @@ public class MacApplicantService {
 			JsonArray.put(jsonObject);
 		}
 		
-		
-		
-		
-		
-		
-		
+
 	    
 		return JsonArray.toString();
 	}
@@ -785,12 +734,6 @@ public class MacApplicantService {
 			JsonArray.put(jsonObject);
 		}
 		
-		
-		
-		
-		
-		
-		System.out.println(JsonArray.toString());
 	    
 		return JsonArray.toString();
 	}
@@ -878,6 +821,9 @@ public class MacApplicantService {
 										jsonObject.put("Mac_Lab_Interview_Complete", x.get(j).getMacLabInterviewComplete());
 										jsonObject.put("Last_Used_Date", Applicants.get(i).getLastUsedDate());
 										
+										jsonObject.put("RoadTestPassed", x.get(j).getRoadTestPassed());
+										jsonObject.put("ParkingTestPassed", x.get(j).getParkingTestPassed());
+										
 										
 										
 										jsonObject.put("Nationality", Applicants.get(i).getNationality());
@@ -889,15 +835,9 @@ public class MacApplicantService {
 									}
 									
 						}
+
 	
-	
-	
-	
-	
-	
-	System.out.println(JsonArray.toString());
-	
-	return JsonArray.toString();
+						return JsonArray.toString();
 	}
 ////////////////////////////////////////////////////
 ////////////////////////////////////////////////////
@@ -1284,12 +1224,6 @@ public class MacApplicantService {
 		}
 	
 	
-	
-	
-	
-	
-		System.out.println(JsonArray.toString());
-	
 		return JsonArray.toString();
 	}
 	
@@ -1365,7 +1299,7 @@ public class MacApplicantService {
 			JsonArray.put(jsonObject);
 		}
 
-		System.out.println(JsonArray.toString());
+
 		return JsonArray.toString();
 	}
 	
@@ -1382,7 +1316,7 @@ public class MacApplicantService {
 		
 		MacApplicantDAO t = new MacApplicantDAO();
 		JSONObject test = new JSONObject(jsonTextObject);
-		System.out.println("Applicant Update"+test.toString());
+
 		
 		MacApplicants Applicant  = t.getClientApplicantoById(Integer.parseInt(test.getString("idMac_Applicants")));
 		
@@ -1470,8 +1404,6 @@ public class MacApplicantService {
 		
 		if(Flag.equals("0")|| Flag.equals("2"))
 		{
-			System.out.println("WRITING TO DATABASE:"+ r.getString("Name"));
-			
 			
 			Object.AddAppicantInformation(r.getString("Name"), r.getString("Surname"), r.getString("RSA_Citizen"), r.getString("Id_Number"),r.getString("Passport_Number"),r.getString("Expiry_Date_Of_Passport"), r.getString("Work_Permit_Validity"), r.getString("Cell_Number"), r.getString("Telephone_Number"), r.getString("Job_Type"), r.getString("Date_First_issue_license"), r.getString("License_Code"), r.getString("Expiry_Date_Of_License"), r.getString("PDP_Expiry_Date"), r.getString("Gender"), r.getString("Physical_Address_1"), r.getString("Physical_Address_2"), r.getString("Physical_Address_3"), r.getString("Physical_Address_4"),r.getString("City"),r.getString("Country"),r.getString("Tax_No"), r.getString("Marital_Status"), r.getString("Dependants"), r.getString("Home_Language"), r.getString("Work_History_1"), r.getString("Work_History_2"), r.getString("Work_History_3"), r.getString("Work_History_1"), r.getString("E_Mail"), r.getInt("Age"), r.getString("Date_Of_Birth"), r.getString("Last_Sms_Date"), r.getString("Job_Name"), r.getString("Stage_In_Process"),"New",r.getString("Applicant_Type"),r.getString("Sms_Group"),r.getString("Nationality"));
 			
@@ -1619,7 +1551,6 @@ public class MacApplicantService {
 	{
 		JSONObject r = new JSONObject(jsonTextObject);	
 
-		System.out.println("WRITING TO DATABASE:"+ r.getString("Name"));
 			
 		MacApplicantDAO Object  = new MacApplicantDAO();
 		Object.AddPermanentInformation(r.getString("Name"), r.getString("Surname"), r.getString("RSA_Citizen"), r.getString("Id_Number"),r.getString("Passport_Number"),r.getString("Expiry_Date_Of_Passport"), r.getString("Work_Permit_Validity"), r.getString("Cell_Number"), r.getString("Telephone_Number"), r.getString("Job_Type"), r.getString("Date_First_issue_license"), r.getString("License_Code"), r.getString("Expiry_Date_Of_License"), r.getString("PDP_Expiry_Date"), r.getString("Gender"), r.getString("Physical_Address_1"), r.getString("Physical_Address_2"), r.getString("Physical_Address_3"), r.getString("Physical_Address_4"),r.getString("City"),r.getString("Country"),r.getString("Tax_No"), r.getString("Marital_Status"), r.getString("Dependants"), r.getString("Home_Language"), r.getString("Work_History_1"), r.getString("Work_History_2"), r.getString("Work_History_3"), r.getString("Work_History_1"), r.getString("E_Mail"), r.getInt("Age"), r.getString("Date_Of_Birth"), r.getString("Last_Sms_Date"), r.getString("Job_Name"), "Applicant recently added On Harlequin.","New", r.getString("Applicant_Type"));
@@ -1638,8 +1569,7 @@ public class MacApplicantService {
 		System.out.println(jsonTextObject);
 		JSONObject r = new JSONObject(jsonTextObject);	
 	
-		
-		System.out.println("WRITING TO DATABASE:"+ r.getString("Name"));
+
 			
 		MacApplicantDAO Object  = new MacApplicantDAO();
 		Object.AddAppicantInformation(r.getString("Name"), r.getString("Surname"), r.getString("Id_Number"), r.getString("Cell_Number"), r.getString("Job_Type"), r.getString("E_Mail"),0);
@@ -1655,8 +1585,7 @@ public class MacApplicantService {
 	@Produces("text/plain")
 	public  String UpdateMacInterview(String jsonTextObject) throws JSONException
 	{
-		
-		System.out.println(jsonTextObject);
+
 		JSONObject r = new JSONObject(jsonTextObject);	
 	
 		
@@ -1681,22 +1610,12 @@ public class MacApplicantService {
 	public  String Update(String jsonTextObject) throws JSONException
 	{
 		
-		System.out.println(jsonTextObject);
 		JSONObject r = new JSONObject(jsonTextObject);	
 	
-		
-		
-			
-		
-		
-		
-		
 		MacApplicantDAO Object  = new MacApplicantDAO();
 		
 		Object.UpdateAppplicantLastSmsDateById(r.getInt("idMac_Applicants"),"None",0);
-		
-		
-		
+			
 		return "Sucessful";	
 		
 			
@@ -1709,9 +1628,7 @@ public class MacApplicantService {
 	@Produces("text/plain")
 	public  String UpdateEmployable(@PathParam("idMac_Applicants") int idMac_Applicants,@PathParam("Employable") String Employable,@PathParam("EmployableComments") String EmployableComments) throws JSONException
 	{
-		
 
-		System.out.println("Updating Applicant Employable");
 		MacApplicantDAO x = new MacApplicantDAO();
 		x.UpdateAppplicantEmpoyableId(idMac_Applicants, Employable, EmployableComments);
 		

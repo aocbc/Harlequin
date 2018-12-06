@@ -105,9 +105,6 @@ public class BlockedNumbersService
 		
 		System.out.println(jsonTextObject);
 		JSONObject r = new JSONObject(jsonTextObject);	
-	
-		
-		System.out.println("WRITING TO DATABASE:"+ r.getString("CellNumber"));
 			
 		BlockedNumbersDAO Object  = new BlockedNumbersDAO();
 		

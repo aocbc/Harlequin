@@ -27,6 +27,7 @@ public class HibernateUtil
 	{
 		Session hibernateSession = sessionFactory.getCurrentSession();
 		
+		
 		return hibernateSession;
 	}
 	
@@ -41,7 +42,12 @@ public class HibernateUtil
 	public static Session beginTransaction() 
 	{
 		Session hibernateSession = HibernateUtil.getSession();
-		hibernateSession.beginTransaction();
+		if(!hibernateSession.getTransaction().isActive())
+		{
+			hibernateSession.beginTransaction();
+			
+		}
+		
 		
 				//hibernateSession.setCacheMode(CacheMode.REFRESH);
 		//hibernateSession.setFlushMode(FlushMode.ALWAYS);

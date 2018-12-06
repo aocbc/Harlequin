@@ -41,13 +41,7 @@ public class SMSService
 	@Produces("text/plain")
 	public String GETAllHistory( ) throws Exception
 	{
-		
-		
-		
-		
 		SmsHistoryDAO Object  = new SmsHistoryDAO();
-		
-		
 		List<ApplicantSmsHistory> SmsHistory = Object.ReadAllSmsHistory();
 		
 		JSONArray JsonArray = new JSONArray();
@@ -55,10 +49,6 @@ public class SMSService
 		for(int i = 0; i < SmsHistory.size();i++)
 		{
 			JSONObject jsonObject = new JSONObject();
-			
-			
-			
-			
 			jsonObject.put("idApplicant_Sms_History", SmsHistory.get(i).getIdApplicantSmsHistory());
 			jsonObject.put("idMac_Applicants", SmsHistory.get(i).getIdMacApplicants());
 			jsonObject.put("Cell_Number", SmsHistory.get(i).getCellNumber());
@@ -68,19 +58,9 @@ public class SMSService
 			jsonObject.put("Sms_Group", SmsHistory.get(i).getSmsGroup());
 			jsonObject.put("Sms_Date", SmsHistory.get(i).getSmsDate());
 			
-			
-			
-			
 			JsonArray.put(jsonObject);
 		}
 		
-		
-		
-		
-		
-		
-		System.out.println(JsonArray.toString());
-	    
 		return JsonArray.toString();
 	}
 	
@@ -91,24 +71,12 @@ public class SMSService
 	{
 		
 		SmsHistoryDAO Object  = new SmsHistoryDAO();
-		
-		
-		
-		
 		List SmsGroups = Object.ReadGroupHistory(GroupCode);
-		
 		
 		for(int i = 0; i < SmsGroups.size();i++)
 		{
 			Object.delete(SmsGroups.get(i));
 		}
-		
-		
-		
-		
-		
-		
-		//System.out.println(JsonArray.toString());
 	    
 		return "Deleted";
 	}
@@ -120,10 +88,7 @@ public class SMSService
 	{
 		
 		SmsHistoryDAO Object  = new SmsHistoryDAO();
-		
-		
 		System.out.println("GROUP::"+ Object.ReadSMSGroups());
-		
 		
 		List SmsGroups = Object.ReadSMSGroups();
 		
@@ -132,22 +97,10 @@ public class SMSService
 		for(int i = 0; i < SmsGroups.size();i++)
 		{
 			JSONObject jsonObject = new JSONObject();
-			
-			
-			
-			
 			jsonObject.put("Sms_Group", SmsGroups.get(i));
-				
 			JsonArray.put(jsonObject);
 		}
 		
-		
-		
-		
-		
-		
-		//System.out.println(JsonArray.toString());
-	    
 		return JsonArray.toString();
 	}
 	
@@ -174,22 +127,14 @@ public class SMSService
 		for (int i = 0; i < TotalApplicants.length(); i++) 
 		{
 			
-			
-			
-			
 			JSONObject Applicants = new JSONObject( TotalApplicants.get(i).toString());
 		
 			//Adding country code +27 to beginning of every cell number and removing first 0
 			String cell_Number = Applicants.getString("Cell_Number").toString();
 			cell_Number = cell_Number.replaceFirst("0", "+27");
-			
-			
-			
 			/////Sending the sms using bulk sms
     		//SMSSender sms = new SMSSender(cell_Number,SMSMessage.getString("Message").toString());
      	    //sms.send();
-		    
-			
 			try 
 		    {	
 				//System.out.println(x.SendHttpRequest("https://xml2sms.gsm.co.za/send/?username=maclabour&password=th3unis1&number="+cell_Number+"&message="+ URLEncoder.encode(SMSMessage.getString("Message").toString(), "UTF-8") +"&ems=1"));

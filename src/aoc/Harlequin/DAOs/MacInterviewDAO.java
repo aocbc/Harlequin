@@ -2,6 +2,7 @@ package aoc.Harlequin.DAOs;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -18,20 +19,34 @@ public class MacInterviewDAO extends HarlequinDAO {
 	
 	public MacLabourInterView getInterviewInfoById(int id)
 	{
-		
-		
-		Session session = this.getSession();
 
-		HibernateUtil.beginTransaction();
-	   
-		
-		MacLabourInterView Interview = session.get(MacLabourInterView.class, id);
-		
-		session.clear(); // ADDED 170302
-		session.flush();
-		session.close();
-	   
-		
+		Session session = this.getSession();
+		MacLabourInterView Interview = new MacLabourInterView();
+		try
+		{
+			HibernateUtil.beginTransaction();
+			Interview = session.get(MacLabourInterView.class, id);
+
+		}
+		catch(Exception ex)
+		{
+
+			System.out.println("Error In Function: getInterviewInfoById - MacInterviewDAO");
+			System.out.println(ex.toString());
+		}
+		finally
+		{
+
+
+			if(session != null && session.isConnected())
+			{
+				session.clear();
+				session.flush();
+				session.close();
+			}
+
+		}
+
 		return Interview;
 		
 		
@@ -43,10 +58,33 @@ public class MacInterviewDAO extends HarlequinDAO {
 	{
 		  Session hibernateSession = this.getSession(); 
 		  
-		  HibernateUtil.beginTransaction();
-		  hibernateSession.delete(entity);
-		  hibernateSession.flush();
-		  HibernateUtil.commitTransaction();
+		  
+		  try
+		  {
+			  HibernateUtil.beginTransaction();
+			  hibernateSession.delete(entity);
+			  hibernateSession.flush();
+			  HibernateUtil.commitTransaction();
+		  }
+		  catch(Exception ex)
+		  {
+
+		  	System.out.println("Error In Function: AddAppicantInformation - MacInterviewDAO");
+		  	System.out.println(ex.toString());
+		  }
+		  finally
+		  {
+
+
+		  	if(hibernateSession != null && hibernateSession.isConnected())
+		  	{
+		  		hibernateSession.clear();
+		  		hibernateSession.flush();
+		  		hibernateSession.close();
+		  	}
+
+		  }
+
 		  
 	}
   
@@ -64,60 +102,101 @@ public class MacInterviewDAO extends HarlequinDAO {
 		}
 		///////////////////////////////////////////////////////////////////////////////////////////////////
 		///////////////////////////////////////////////////////////////////////////////////////////////////
-		
-		Session session = HibernateUtil.getSessionFactory().openSession();
-		
-		session.beginTransaction();
-		
 
+/*		Session session = HibernateUtil.getSessionFactory().openSession();
+		session.beginTransaction();
+*/		
+		
+		Session session = this.getSession();
 		MacLabourInterView Interview = new MacLabourInterView();
 		
-		
-		Interview.setIdMacApplicants(Integer.parseInt(idMac_Applicants));
-		Interview.setName(Name);
-		Interview.setSurname(Surname);
-		Interview.setIdNumber(Id_Number);
-		Interview.setClientName(Client_Name);
-		Interview.setIdVerified(Id_Verified);
-		Interview.setWorkHistoryVerified(Work_History_Verified);
-		Interview.setJobName(Job_Name);
-		Interview.setDriversLicenseVerified(Drivers_License_Verified);
-		Interview.setSapCheck(SAP_Check);
-		Interview.setCriminalRecord(Criminal_Record);
-		Interview.setCriminalRecordComments(Criminal_Record_comments);
-		Interview.setUnionMember(Union_Member);
-		Interview.setUnionName(Union_Name);
-		Interview.setApplicantPassedInterview(Applicant_Passed_Interview);
-		Interview.setApplicantPresentable(Applicant_Presentable);
-		Interview.setApplicantAtttitude(Applicant_Attitude);
-		Interview.setInterviewComments(Interview_Comments);
-		Interview.setFormalInterviewComplete(Formal_Interview_Complete);
-		
-		Interview.setLastUsedDate(dateFormat.format(date));
-		
-		
-		
-		session.save(Interview);
+		try
+		{
+			HibernateUtil.beginTransaction();
+
+			Interview.setIdMacApplicants(Integer.parseInt(idMac_Applicants));
+			Interview.setName(Name);
+			Interview.setSurname(Surname);
+			Interview.setIdNumber(Id_Number);
+			Interview.setClientName(Client_Name);
+			Interview.setIdVerified(Id_Verified);
+			Interview.setWorkHistoryVerified(Work_History_Verified);
+			Interview.setJobName(Job_Name);
+			Interview.setDriversLicenseVerified(Drivers_License_Verified);
+			Interview.setSapCheck(SAP_Check);
+			Interview.setCriminalRecord(Criminal_Record);
+			Interview.setCriminalRecordComments(Criminal_Record_comments);
+			Interview.setUnionMember(Union_Member);
+			Interview.setUnionName(Union_Name);
+			Interview.setApplicantPassedInterview(Applicant_Passed_Interview);
+			Interview.setApplicantPresentable(Applicant_Presentable);
+			Interview.setApplicantAtttitude(Applicant_Attitude);
+			Interview.setInterviewComments(Interview_Comments);
+			Interview.setFormalInterviewComplete(Formal_Interview_Complete);
+			
+			Interview.setLastUsedDate(dateFormat.format(date));
+
+			session.save(Interview);
+					
+			session.getTransaction().commit();
+
+		}
+		catch(Exception ex)
+		{
+
+			System.out.println("Error In Function: AddInterviewInformation - MacInterviewDAO");
+			System.out.println(ex.toString());
+		}
+		finally
+		{
+
+
+			if(session != null && session.isConnected())
+			{
 				
-		session.getTransaction().commit();
+				session.close();
+			}
+
+		}
 		
-		session.close();
+		
 		
 	}
 	
 	public List<MacLabourInterView> GetClientInfoByName(String ClientName)
 	{
 		Session session = this.getSession();
-		HibernateUtil.beginTransaction();
+		List<MacLabourInterView> Client = new ArrayList<MacLabourInterView>();
+		
+		try
+		{
+			HibernateUtil.beginTransaction();
+			Query<MacLabourInterView> query = session.createQuery("from MacLabourInterView Where Client_Name = '"+ClientName+"'");
+			Client = query.list();
+			
+
+		}
+		catch(Exception ex)
+		{
+
+			System.out.println("Error In Function: GetClientInfoByName - MacInterviewDAO");
+			System.out.println(ex.toString());
+		}
+		finally
+		{
+
+
+			if(session != null && session.isConnected())
+			{
+				session.clear();
+				session.flush();
+				session.close();
+			}
+
+		}
 		
 		
 		
-		Query query = session.createQuery("from MacLabourInterView Where Client_Name = '"+ClientName+"'");
-		List<MacLabourInterView> Client = query.list();
-		
-		session.clear(); // ADDED 170302
-		session.flush();
-		session.close();
 		return Client;
 	}
 	
@@ -126,15 +205,31 @@ public class MacInterviewDAO extends HarlequinDAO {
 	{
 		Session session = this.getSession();
 		HibernateUtil.beginTransaction();
-		
-		
-		
-		Query query = session.createQuery("from MacLabourInterView Where idMac_Applicants = '"+idMac_Applicants.trim()+"' AND Id_Number = '"+Id_Number.trim()+"' AND Job_Name ='"+Job_Name.trim()+"'");
-		List<MacLabourInterView> Interview = query.list();
-		
-		session.clear(); // ADDED 170302
-		session.flush();
-		session.close();
+		List<MacLabourInterView> Interview = new ArrayList<MacLabourInterView>();
+		try
+		{
+			Query<MacLabourInterView> query = session.createQuery("from MacLabourInterView Where idMac_Applicants = '"+idMac_Applicants.trim()+"' AND Id_Number = '"+Id_Number.trim()+"' AND Job_Name ='"+Job_Name.trim()+"'");
+			Interview = query.list();
+
+		}
+		catch(Exception ex)
+		{
+
+			System.out.println("Error In Function: GetInterviewByInfo - MacInterviewDAO");
+			System.out.println(ex.toString());
+		}
+		finally
+		{
+
+
+			if(session != null && session.isConnected())
+			{
+				session.clear();
+				session.flush();
+				session.close();
+			}
+
+		}
 		
 		
 		return Interview;
@@ -144,15 +239,32 @@ public class MacInterviewDAO extends HarlequinDAO {
 	{
 		Session session = this.getSession();
 		HibernateUtil.beginTransaction();
+		List<MacLabourInterView> Interview = new ArrayList<MacLabourInterView>();
+		try
+		{
+			Query<MacLabourInterView> query = session.createQuery("from MacLabourInterView Where Id_Number = '"+Id_Number.trim()+"'");
+			Interview = query.list();
 		
-		
-		
-		Query query = session.createQuery("from MacLabourInterView Where Id_Number = '"+Id_Number.trim()+"'");
-		List<MacLabourInterView> Interview = query.list();
-		
-		session.clear(); // ADDED 170302
-		session.flush();
-		session.close();
+
+		}
+		catch(Exception ex)
+		{
+
+			System.out.println("Error In Function: AddAppicantInformation - MacInterviewDAO");
+			System.out.println(ex.toString());
+		}
+		finally
+		{
+
+
+			if(session != null && session.isConnected())
+			{
+				session.clear();
+				session.flush();
+				session.close();
+			}
+
+		}
 		
 		
 		return Interview;
@@ -163,16 +275,35 @@ public class MacInterviewDAO extends HarlequinDAO {
 	{
 		Session session = this.getSession();
 		HibernateUtil.beginTransaction();
+		List<MacLabourInterView> Interview = new ArrayList<MacLabourInterView>();
 		
+		try
+		{
+			Query<MacLabourInterView> query = session.createQuery("from MacLabourInterView");
+			Interview = query.list();
 		
+
+		}
+		catch(Exception ex)
+		{
+
+			System.out.println("Error In Function: AddAppicantInformation - MacInterviewDAO");
+			System.out.println(ex.toString());
+		}
+		finally
+		{
+
+
+			if(session != null && session.isConnected())
+			{
+				session.clear();
+				session.flush();
+				session.close();
+			}
+
+		}
 		
-		Query query = session.createQuery("from MacLabourInterView");
-		List<MacLabourInterView> Interview = query.list();
-		
-		session.clear(); // ADDED 170302
-		session.flush();
-		session.close();
-		
+	
 		return Interview;
 		
 		

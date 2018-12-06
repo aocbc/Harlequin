@@ -97,8 +97,7 @@ public class JobHistoryService {
 	@Produces("text/plain")
 	public  String create(String jsonTextObject) throws JSONException
 	{
-		
-		System.out.println(jsonTextObject);
+
 		JSONObject r = new JSONObject(jsonTextObject);	
 	
 		
@@ -122,7 +121,6 @@ public class JobHistoryService {
 	{
 		/*JSONArray json = new JSONArray(jsonTextObject);*/
 		JSONObject json = new JSONObject(jsonTextObject);
-		System.out.println("Test"+json);
 		JSONArray Jobs = json.getJSONArray("Job");
 		
 		
@@ -135,8 +133,7 @@ public class JobHistoryService {
 			JSONObject x = new JSONObject( Jobs.get(0).toString());
 			JobHistoryDAO Object1  = new JobHistoryDAO();
 			List<JobHistory> History  = Object1.ReadAllJobHistoryByIdNumber(x.getString("idMac_Applicants"));
-			
-			System.out.println("Test2:" + History.size());
+
 			
 			if(History.size() > 0)
 			{
@@ -211,13 +208,7 @@ public class JobHistoryService {
 			JsonArray.put(jsonObject);
 		}
 		
-		
-		
-		
-		
-		
-		System.out.println(JsonArray.toString());
-	    
+
 		return JsonArray.toString();
 	}
 

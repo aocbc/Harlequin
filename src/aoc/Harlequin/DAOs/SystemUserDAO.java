@@ -6,6 +6,7 @@ package aoc.Harlequin.DAOs;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -28,16 +29,32 @@ public class SystemUserDAO extends HarlequinDAO
 		
 		
 		Session session = this.getSession();
+		SystemUser users = new SystemUser();
+		
+		try
+		{
+			HibernateUtil.beginTransaction();
+			users = session.get(SystemUser.class, id);
 
-		HibernateUtil.beginTransaction();
-	   
-		
-		SystemUser users = session.get(SystemUser.class, id);
-		
-		session.clear(); // ADDED 170302
-		session.flush();
-		session.close();
-	   
+		}
+		catch(Exception ex)
+		{
+
+			System.out.println("Error In Function: getUserInfoById - SystemUserDAO");
+			System.out.println(ex.toString());
+		}
+		finally
+		{
+
+
+			if(session != null && session.isConnected())
+			{
+				session.clear();
+				session.flush();
+				session.close();
+			}
+
+		}
 		
 		return users;
 		
@@ -49,24 +66,71 @@ public class SystemUserDAO extends HarlequinDAO
 	{
 		  Session hibernateSession = this.getSession(); 
 		  
-		  HibernateUtil.beginTransaction();
-		        hibernateSession.delete(entity);
-		        hibernateSession.flush();
-		  HibernateUtil.commitTransaction();
+		  try
+		  {
+
+			  HibernateUtil.beginTransaction();
+			        hibernateSession.delete(entity);
+			        hibernateSession.flush();
+			  HibernateUtil.commitTransaction();
+
+		  }
+		  catch(Exception ex)
+		  {
+
+		  	System.out.println("Error In Function: delete - SystemUserDAO");
+		  	System.out.println(ex.toString());
+		  }
+		  finally
+		  {
+
+
+		  	if(hibernateSession != null && hibernateSession.isConnected())
+		  	{
+		  		hibernateSession.clear();
+		  		hibernateSession.flush();
+		  		hibernateSession.close();
+		  	}
+
+		  }
+		  
+		  
+		  
 	}
   
 	
 	public List<SystemUser> CheckUserPassword(String Username, String Password)
 	{
 		Session session = this.getSession();
-		HibernateUtil.beginTransaction();
+		List<SystemUser> User = new ArrayList<SystemUser>();
 		
-		Query query = session.createQuery("from SystemUser Where User_Name = '"+Username+"'");
-		List<SystemUser> User = query.list();
 		
-		session.clear(); // ADDED 170302
-		session.flush();
-		session.close();
+		try
+		{
+			HibernateUtil.beginTransaction();
+			Query<SystemUser> query = session.createQuery("from SystemUser Where User_Name = '"+Username+"'");
+			User = query.list();
+			
+		}
+		catch(Exception ex)
+		{
+
+			System.out.println("Error In Function: CheckUserPassword - SystemUserDAO");
+			System.out.println(ex.toString());
+		}
+		finally
+		{
+
+
+			if(session != null && session.isConnected())
+			{
+				session.clear();
+				session.flush();
+				session.close();
+			}
+
+		}
+		
 		return User;
 	}
 	
@@ -74,16 +138,34 @@ public class SystemUserDAO extends HarlequinDAO
 	public List<SystemUser> GetUserById(String IdNumber)
 	{
 		Session session = this.getSession();
-		HibernateUtil.beginTransaction();
+		List<SystemUser> User = new ArrayList<SystemUser>();
 		
+		try
+		{
+			HibernateUtil.beginTransaction();
+			Query<SystemUser> query = session.createQuery("from SystemUser Where idSystem_User = '"+IdNumber+"'");
+			User = query.list();
+		}
+		catch(Exception ex)
+		{
+
+			System.out.println("Error In Function: GetUserById - SystemUserDAO");
+			System.out.println(ex.toString());
+		}
+		finally
+		{
+
+
+			if(session != null && session.isConnected())
+			{
+				session.clear();
+				session.flush();
+				session.close();
+			}
+
+		}
 		
-		
-		Query query = session.createQuery("from SystemUser Where idSystem_User = '"+IdNumber+"'");
-		List<SystemUser> User = query.list();
-		
-		session.clear(); // ADDED 170302
-		session.flush();
-		session.close();
+
 		return User;
 	}
 	
@@ -94,61 +176,113 @@ public class SystemUserDAO extends HarlequinDAO
 		DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 		Date date = new Date();
 		
-		Session session = HibernateUtil.getSessionFactory().openSession();
-		
+/*		Session session = HibernateUtil.getSessionFactory().openSession();
 		session.beginTransaction();
-		
-		
-		
+*/		
+		Session session = this.getSession();
 		SystemUser user = new SystemUser();
+	
 		
-		user.setUserName(User_Name);
-		user.setName(name);
-		user.setSurname(surname);
-		user.setEMail(EMail);
-		user.setTellNumber(tellNumber);
-		user.setCellNumber(cellNumber);
-		user.setUserPassword(userPassword);
-		user.setAuthorizationLevel(authorizationLevel);
-		user.setLastUsedDate(dateFormat.format(date));
-		
-		
-		session.save(user);
-				
-		session.getTransaction().commit();
-		
-		
-		
-		session.close();
+		try
+		{
+			
+			HibernateUtil.beginTransaction();
+			user.setUserName(User_Name);
+			user.setName(name);
+			user.setSurname(surname);
+			user.setEMail(EMail);
+			user.setTellNumber(tellNumber);
+			user.setCellNumber(cellNumber);
+			user.setUserPassword(userPassword);
+			user.setAuthorizationLevel(authorizationLevel);
+			user.setLastUsedDate(dateFormat.format(date));
+			
+			
+			session.save(user);
+					
+			session.getTransaction().commit();
 
-		
+		}
+		catch(Exception ex)
+		{
+
+			System.out.println("Error In Function: AddUserInformation - SystemUserDAO");
+			System.out.println(ex.toString());
+		}
+		finally
+		{
+
+
+			if(session != null && session.isConnected())
+			{
+				/*session.clear();
+				session.flush();*/
+				session.close();
+			}
+
+		}
+
 	}
 	
 	public void update(Object entity) 
 	{  
 		  Session hibernateSession = this.getSession();
-		  HibernateUtil.beginTransaction();
+
+		  try
+		  {
+			  HibernateUtil.beginTransaction();
 		        //hibernateSession.save(entity);        
 		        //hibernateSession.saveOrUpdate(entity);
-		  hibernateSession.update(entity);
-		     
-		  HibernateUtil.commitTransaction();
-		      
+			  hibernateSession.update(entity);
+			  HibernateUtil.commitTransaction();
+		  }
+		  catch(Exception ex)
+		  {
+			  	System.out.println("Error In Function: update - SystemUserDAO");
+			  	System.out.println(ex.toString());
+		  }
+		  finally
+		  {
+		  	    if(hibernateSession != null && hibernateSession.isConnected())
+			  	{
+			  		hibernateSession.clear();
+			  		hibernateSession.flush();
+			  		hibernateSession.close();
+			  	}
+
+		  }
+     
 	}
 	
 	public List<SystemUser> ReadAllUsers()
 	{
 		Session session = this.getSession();
 		HibernateUtil.beginTransaction();
-		
-		
-		
-		Query query = session.createQuery("from SystemUser");
-		List<SystemUser> User = query.list();
-		
-		session.clear(); // ADDED 170302
-		session.flush();
-		session.close();
+		List<SystemUser> User = new ArrayList<SystemUser>();
+		try
+		{
+			Query<SystemUser> query = session.createQuery("from SystemUser");
+			User = query.list();
+
+		}
+		catch(Exception ex)
+		{
+
+			System.out.println("Error In Function: ReadAllUsers - SystemUserDAO");
+			System.out.println(ex.toString());
+		}
+		finally
+		{
+
+
+			if(session != null && session.isConnected())
+			{
+				session.clear();
+				session.flush();
+				session.close();
+			}
+
+		}
 		
 		return User;
 		

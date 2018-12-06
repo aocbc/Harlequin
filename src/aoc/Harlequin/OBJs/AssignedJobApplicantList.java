@@ -34,6 +34,8 @@ public class AssignedJobApplicantList implements java.io.Serializable {
 	private String referenceChecksComplete;
 	private String referenceChecksComments;
 	
+	private String RoadTestPassed;
+	private String ParkingTestPassed;
 	
 	
 	
@@ -51,7 +53,9 @@ public class AssignedJobApplicantList implements java.io.Serializable {
 
 	public AssignedJobApplicantList(int idAssignedJobApplicantList, int jobId, String jobName, String jobCode, String jobClientName, String jobDetails,
 			String jobComments, String jobType, String idMacApplicants,
-			String name, String surname, String stageInProcess, String stageStatus,String macLabourInterviewComments, String macLabInterviewComplete, String practicalDriversTestComplete, String practicalDriversTestComments,String clientInterviewComplete, String clientInterviewComments, String referenceChecksComplete, String referenceChecksComments  ) 
+			String name, String surname, String stageInProcess, String stageStatus,String macLabourInterviewComments, String macLabInterviewComplete, 
+			String practicalDriversTestComplete, String practicalDriversTestComments,String clientInterviewComplete, String clientInterviewComments,
+			String referenceChecksComplete, String referenceChecksComments, String RoadTestPassed , String ParkingTestPassed  ) 
 	{
 		this.idAssignedJobApplicantList = idAssignedJobApplicantList;
 		this.jobId = jobId;
@@ -79,12 +83,34 @@ public class AssignedJobApplicantList implements java.io.Serializable {
 		this.practicalDriversTestComments = practicalDriversTestComments;
 		this.practicalDriversTestComplete = practicalDriversTestComplete;
 		
+		this.RoadTestPassed = RoadTestPassed;
+		this.ParkingTestPassed = ParkingTestPassed;
+		
 		
 	}
 
 
 	
+	/////////////////////////////////////////////////////////////////////////////
+	public String getRoadTestPassed() 
+	{
+		return this.RoadTestPassed;
+	}
 	
+	public void setRoadTestPassed(String RoadTestPassed) 
+	{
+		this.RoadTestPassed = RoadTestPassed;
+	}
+	/////////////////////////////////////////////////////////////////////////////
+	public String getParkingTestPassed() 
+	{
+		return this.ParkingTestPassed;
+	}
+	
+	public void setParkingTestPassed(String ParkingTestPassed) 
+	{
+		this.ParkingTestPassed = ParkingTestPassed;
+	}
 	////////////////////////////////////////////////////////////////////////////
 		
 	public String getClientInterviewComments() 

@@ -51,9 +51,7 @@ public class ClientService {
 		jsonObject.put("Client_Vat_Number", Client.getClientVatNumber());
 		jsonObject.put("Client_Comments", Client.getClientComments());
 		jsonObject.put("Last_Used_Date", Client.getLastUsedDate());
-		
-		System.out.println(jsonObject.toString());
-	    
+
 		return jsonObject.toString();
 	}
 	
@@ -70,7 +68,7 @@ public class ClientService {
 		
 		ClientDAO t = new ClientDAO();
 		JSONObject test = new JSONObject(jsonTextObject);
-		System.out.println("CLIENT ID:"+jsonTextObject);
+
 		SystemClient Client  = t.getClientInfoById(test.getInt("idClient"));
 				
 		
@@ -180,15 +178,7 @@ public class ClientService {
 			JsonArray.put(jsonObject);
 		}
 		
-		
-		
-		
-		
-		
-		System.out.println(JsonArray.toString());
-		
-		
-		
+
 		return JsonArray.toString();
 	}
 	
@@ -199,8 +189,7 @@ public class ClientService {
 	@Produces("text/plain")
 	public  String create(String jsonTextObject) throws JSONException
 	{
-		
-		System.out.println(jsonTextObject);
+
 		JSONObject r = new JSONObject(jsonTextObject);	
 	
 		

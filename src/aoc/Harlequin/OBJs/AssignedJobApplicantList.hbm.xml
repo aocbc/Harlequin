@@ -77,7 +77,13 @@
             <column name="Reference_Checks_Comments" length="250" />
         </property>
         
+        <property name="roadTestPassed" type="string">
+            <column name="RoadTestPassed" length="3" />
+        </property>
         
+        <property name="parkingTestPassed" type="string">
+            <column name="ParkingTestPassed" length="3" />
+        </property>       
         
     </class>
 </hibernate-mapping>

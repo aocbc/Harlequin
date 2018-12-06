@@ -103,12 +103,6 @@ public class SystemUserService
 			JsonArray.put(jsonObject);
 		}
 		
-		
-		
-		
-		
-		
-		System.out.println(JsonArray.toString());
 	    
 		return JsonArray.toString();
 	}
@@ -135,12 +129,6 @@ public class SystemUserService
 				Matched = "true";
 			}
 		}
-		
-		//System.out.println("Password:" + Password + ", UserPassword:" + PasswordUser) ;
-		
-		
-		
-		
 		
 		return Matched;
 	}
@@ -209,8 +197,7 @@ public class SystemUserService
 		jsonObject.put("Authorization_Level", User.get(0).getAuthorizationLevel().toString());
 		jsonObject.put("Last_Used_Date", User.get(0).getLastUsedDate().toString());
 		
-		
-		System.out.println(jsonObject.toString());
+
 		return jsonObject.toString();
 	}
 	
@@ -224,12 +211,9 @@ public class SystemUserService
 	{
 		
 		
-		
-		System.out.println(jsonTextObject);
+
 		JSONObject r = new JSONObject(jsonTextObject);	
-	
-		
-		System.out.println("WRITING TO DATABASE:"+ r.getString("Name"));
+
 			
 		SystemUserDAO Object  = new SystemUserDAO();
 		Object.AddUserInformation(r.getString("User_Name"),r.getString("Name"), r.getString("Surname"), r.getString("Email_address"), r.getString("Tell_Number"), r.getString("Cell_Number"), r.getString("Password"), r.getString("Authorization_Level"));

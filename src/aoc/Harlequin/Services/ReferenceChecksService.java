@@ -246,13 +246,7 @@ public class ReferenceChecksService
 				Matched = "true";
 			}
 		}
-		
-		System.out.println("Password:" + Password + ", UserPassword:" + PasswordUser) ;
-		
-		
-		
-		
-		
+				
 		return Matched;
 	}
 	
@@ -282,10 +276,7 @@ public class ReferenceChecksService
 		
 		j.put("UsersName", UsersName);
 		j.put("UsersSurname", UsersSurname);
-		
-		
-		
-		
+
 		
 		return j.toString();
 	}
@@ -303,9 +294,7 @@ public class ReferenceChecksService
 		SystemUserDAO Object  = new SystemUserDAO();
 		
 		List<SystemUser> User = Object.GetUserById(Id);
-		
-		
-		System.out.println("IdNumber:" + User.get(0).getName().toString() ) ;
+
 		
         JSONObject jsonObject = new JSONObject();
 		
@@ -320,8 +309,7 @@ public class ReferenceChecksService
 		jsonObject.put("Authorization_Level", User.get(0).getAuthorizationLevel().toString());
 		jsonObject.put("Last_Used_Date", User.get(0).getLastUsedDate().toString());
 		
-		
-		System.out.println(jsonObject.toString());
+
 		return jsonObject.toString();
 	}
 	
@@ -334,22 +322,13 @@ public class ReferenceChecksService
 	public  String create(String jsonTextObject) throws JSONException
 	{
 		
-		
-		
-		System.out.println(jsonTextObject);
 		JSONObject r = new JSONObject(jsonTextObject);	
-	
-		
-		
 			
 		ReferenceCheckDAO Object  = new ReferenceCheckDAO();
 		Object.AddReferenceChecksInfo(r.getString("idMac_Applicants"), r.getString("Applicant_Name"),r.getString("Applicant_Surname"), r.getString("Id_Number"), r.getString("All_Reference_Checks_Passed"), r.getString("Applicants_Overall_Reference"), r.getString("Criminal_Check_Passed"), r.getString("Applicants_Criminal_checks_Criteria"), r.getString("Exit_Medical_Done"), r.getString("Reference_Check_Complete"), r.getString("Username"), r.getString("Usersurname"), r.getString("Job_Name"), r.getString("Reference_Check_Comments"));
-		
-		
-		
+				
 		return "Sucessful";	
 		
-			
 	}
 	
 	
@@ -362,7 +341,6 @@ public class ReferenceChecksService
 	{
 		DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 		Date date = new Date();
-		
 		
 		SystemUserDAO t = new SystemUserDAO();
 		JSONObject test = new JSONObject(jsonTextObject);
@@ -377,12 +355,7 @@ public class ReferenceChecksService
 		User.setUserPassword(test.getString("Password"));
 		User.setLastUsedDate(dateFormat.format(date));
 		
-		
-		
 		t.update(User);
-		
-		
-		
 		
 		return "Updated";
 	}

@@ -1,5 +1,6 @@
 package aoc.Harlequin.DAOs;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.hibernate.Session;
@@ -17,16 +18,33 @@ public class JobHistoryDAO extends HarlequinDAO {
 		
 		
 		Session session = this.getSession();
+		JobHistory jobs = new JobHistory();
 
-		HibernateUtil.beginTransaction();
-	   
-		
-		JobHistory jobs = session.get(JobHistory.class, id);
-		
-		session.clear(); // ADDED 170302
-		session.flush();
-		session.close();
-	   
+		try
+		{
+			HibernateUtil.beginTransaction();
+			jobs = session.get(JobHistory.class, id);
+			
+		}
+		catch(Exception ex)
+		{
+
+			System.out.println("Error In Function: getJobInfoById - JobHistoryDAO");
+			System.out.println(ex.toString());
+		}
+		finally
+		{
+
+
+			if(session != null && session.isConnected())
+			{
+				session.clear();
+				session.flush();
+				session.close();
+			}
+
+		}
+
 		
 		return jobs;
 		
@@ -36,17 +54,34 @@ public class JobHistoryDAO extends HarlequinDAO {
 	public List<JobHistory> ReadAllJobHistoryByIdNumber(String IdNumber)
 	{
 		Session session = this.getSession();
-		HibernateUtil.beginTransaction();
+		List<JobHistory> JobHistory = new ArrayList<JobHistory>();
 		
-		
-		
-		Query query = session.createQuery("from JobHistory WHERE idMac_Applicants = '"+ IdNumber+"'");
-		List<JobHistory> JobHistory = query.list();
-		
-		session.clear(); // ADDED 170302
-		session.flush();
-		session.close();
-		
+		try
+		{
+			HibernateUtil.beginTransaction();
+			Query<JobHistory> query = session.createQuery("from JobHistory WHERE idMac_Applicants = '"+ IdNumber+"'");
+			JobHistory = query.list();
+
+		}
+		catch(Exception ex)
+		{
+
+			System.out.println("Error In Function: ReadAllJobHistoryByIdNumber - JobHistoryDAO");
+			System.out.println(ex.toString());
+		}
+		finally
+		{
+
+
+			if(session != null && session.isConnected())
+			{
+				session.clear();
+				session.flush();
+				session.close();
+			}
+
+		}	
+	
 		return JobHistory;
 		
 		
@@ -56,16 +91,36 @@ public class JobHistoryDAO extends HarlequinDAO {
 	public List<JobHistory> ReadAllJobHistory()
 	{
 		Session session = this.getSession();
-		HibernateUtil.beginTransaction();
+		List<JobHistory> JobHistory = new ArrayList<JobHistory>();
+		
+		try
+		{
+			HibernateUtil.beginTransaction();
+			Query<JobHistory> query = session.createQuery("from JobHistory");
+			JobHistory = query.list();
+
+		}
+		catch(Exception ex)
+		{
+
+			System.out.println("Error In Function: ReadAllJobHistory - JobHistoryDAO");
+			System.out.println(ex.toString());
+		}
+		finally
+		{
+
+
+			if(session != null && session.isConnected())
+			{
+				session.clear();
+				session.flush();
+				session.close();
+			}
+
+		}
 		
 		
-		
-		Query query = session.createQuery("from JobHistory");
-		List<JobHistory> JobHistory = query.list();
-		
-		session.clear(); // ADDED 170302
-		session.flush();
-		session.close();
+	
 		
 		return JobHistory;
 		
@@ -77,46 +132,90 @@ public class JobHistoryDAO extends HarlequinDAO {
 	///////////////////////////////////////////////////////////////////////////////
 	//Function to delete an object from the database
 	//////////////////////////////////////////////////////////////////////////////
-	public void delete(Object entity) {
+	public void delete(Object entity) 
+	{
 		  Session hibernateSession = this.getSession(); 
 		  
-		  HibernateUtil.beginTransaction();
+		 
+		  try
+		  {
+			    HibernateUtil.beginTransaction();
 		        hibernateSession.delete(entity);
 		        hibernateSession.flush();
-		  HibernateUtil.commitTransaction();
-		  /*
-		    hibernateSession.clear(); // ADDED 170302
-	        hibernateSession.flush();
-	        hibernateSession.close();*/
-		 }
+		        HibernateUtil.commitTransaction();
+
+		  }
+		  catch(Exception ex)
+		  {
+
+		  	System.out.println("Error In Function: AddAppicantInformation - JobHistoryDAO");
+		  	System.out.println(ex.toString());
+		  }
+		  finally
+		  {
+
+
+		  	if(hibernateSession != null && hibernateSession.isConnected())
+		  	{
+		  		hibernateSession.clear();
+		  		hibernateSession.flush();
+		  		hibernateSession.close();
+		  	}
+
+		  }
+		  
+		  
+		  
+		  
+	}
 	
 	public void AddJobHistroy( String Job_Role, String Job_Description, String Employer_Contact_Person,String Employer_Contact_Number, String Employer_Industry, String Period_From,String Period_To, String idMac_Applicants, String Name, String Surname,String Employer_Name)
 	{
 		
+		/*Session session = HibernateUtil.getSessionFactory().openSession();
+		session.beginTransaction();*/
+		Session session = this.getSession(); 
 		
-		
-		Session session = HibernateUtil.getSessionFactory().openSession();
-		session.beginTransaction();
-		
-		
-		JobHistory history = new JobHistory();
-		
-		history.setJobRole(Job_Role);;
-		history.setJobDescription(Job_Description);
-		history.setEmployerContactPerson(Employer_Contact_Person);
-		history.setEmployerContactNumber(Employer_Contact_Number);
-		history.setEmployerIndustry(Employer_Industry);
-		history.setPeriodTo(Period_To);
-		history.setPeriodFrom(Period_From);
-		history.setName(Name);
-		history.setSurname(Surname);
-		history.setEmployerName(Employer_Name);
-		history.setIdMacApplicants(idMac_Applicants);
-		
-		session.save(history);
-				
-		session.getTransaction().commit();
-		
+		try
+		{
+			HibernateUtil.beginTransaction();
+			JobHistory history = new JobHistory();
+			
+			history.setJobRole(Job_Role);;
+			history.setJobDescription(Job_Description);
+			history.setEmployerContactPerson(Employer_Contact_Person);
+			history.setEmployerContactNumber(Employer_Contact_Number);
+			history.setEmployerIndustry(Employer_Industry);
+			history.setPeriodTo(Period_To);
+			history.setPeriodFrom(Period_From);
+			history.setName(Name);
+			history.setSurname(Surname);
+			history.setEmployerName(Employer_Name);
+			history.setIdMacApplicants(idMac_Applicants);
+			
+			session.save(history);		
+			session.getTransaction().commit();
+
+		}
+		catch(Exception ex)
+		{
+
+			System.out.println("Error In Function: AddJobHistroy - JobHistoryDAO");
+			System.out.println(ex.toString());
+		}
+		finally
+		{
+
+
+			if(session != null && session.isConnected())
+			{
+				session.clear();
+				session.flush();
+				session.close();
+			}
+
+		}
+
 		session.close();
 		
 	}

@@ -137,12 +137,6 @@ public class PracticalDrivingAssessmentService {
 			JsonArray.put(jsonObject);
 		}
 		
-		
-		
-		
-		
-		
-		System.out.println(JsonArray.toString());
 	    
 		return JsonArray.toString();
 	}
@@ -260,18 +254,10 @@ public class PracticalDrivingAssessmentService {
 			
 				jsonObject.put("Last_Used_Date",Assessments.get(i).getLastUsedDate());
 			
+				jsonObject.put("RoadTestPassed", Assessments.get(i).getRoadTestPassed());
+				jsonObject.put("ParkingTestPassed",Assessments.get(i).getParkingTestPassed());
 			}
-			
-			
-		
-		
-		
-		
-		
-		
-		
-		
-	    
+
 		return jsonObject.toString();
 	}
 	
@@ -341,23 +327,13 @@ public class PracticalDrivingAssessmentService {
 				
 				jsonObject.put("PDP_Expiry_Date",Assessments.get(i).getPdpExpiryDate());
 				
-				
-				
-				
-				
+				jsonObject.put("RoadTestPassed",Assessments.get(i).getRoadTestPassed());
+				jsonObject.put("ParkingTestPassed",Assessments.get(i).getParkingTestPassed());
+
 				JsonArray.put(jsonObject);
 				
 			}
 			
-			
-		
-		
-		
-		
-		
-		
-		
-		
 	    
 		return JsonArray.toString();
 	}
@@ -373,12 +349,9 @@ public class PracticalDrivingAssessmentService {
 		
 		System.out.println(jsonTextObject);
 		JSONObject r = new JSONObject(jsonTextObject);	
-	
-		
-		System.out.println("WRITING TO DATABASE:"+ r.getString("Client_Name"));
 			
 		PracticalDrivingAssessmentDAO Object  = new PracticalDrivingAssessmentDAO();
-		Object.AddAppicantInformation(r.getString("idMac_Applicants"), r.getString("Name"), r.getString("Surname"), r.getString("Id_Number"), r.getString("Client_Name"), r.getString("PDP_Expiry_Date"), r.getString("Vehicle_Used"), r.getString("Assessor_Name"), r.getString("Assessor_Surname"), "01", r.getString("Date"), r.getString("KM_End"), r.getString("KM_Start"), r.getString("Time_End"), r.getString("Time_Start"), r.getString("Weather"), r.getString("Route"), r.getString ("Total_Score"), r.getString("Starting_And_Stopping"), r.getString("General_Driving"), r.getString("Passing_Or_Overtaking"), r.getString("General_Road_Behavior"), r.getString("Observation_And_Anticipation"), r.getString("Approaching_Junctions_Turning_Exiting"), r.getString("Reversing"), r.getString("Clutch"), r.getString("Retarder_DSC_HillMode"), r.getString("Comments"), r.getString("PDA_No"), r.getString("License_Code"), r.getString("Job_Name"),r.getString("PracticalDriversTestComplete"),r.getString("StartingAndStopping1") ,r.getString("StartingAndStopping2"),r.getString("StartingAndStopping3"), r.getString("StartingAndStopping4"), r.getString("StartingAndStopping5"), r.getString("StartingAndStopping6"), r.getString("StartingAndStopping7"), r.getString("GeneralDriving8"), r.getString("GeneralDriving9"), r.getString("GeneralDriving10"), r.getString("GeneralDriving11"), r.getString("GeneralDriving12"), r.getString("GeneralDriving13"), r.getString("GeneralDriving14"), r.getString("GeneralDriving15"), r.getString("GeneralDriving16"), r.getString("GeneralDriving17"), r.getString("PassingOrOvertaking18"), r.getString("PassingOrOvertaking19"), r.getString("PassingOrOvertaking20"), r.getString("PassingOrOvertaking21"), r.getString("GeneralRoadBehavior22"), r.getString("GeneralRoadBehavior23"), r.getString("ObservationAndAnticipation24"), r.getString("ObservationAndAnticipation25"), r.getString("ObservationAndAnticipation26"), r.getString("ObservationAndAnticipation27"), r.getString("ObservationAndAnticipation28"), r.getString("ApproachingJunctionsTurningExiting29"), r.getString("ApproachingJunctionsTurningExiting30"), r.getString("ApproachingJunctionsTurningExiting31"), r.getString("ApproachingJunctionsTurningExiting32"), r.getString("ApproachingJunctionsTurningExiting33"), r.getString("ApproachingJunctionsTurningExiting34"), r.getString("ApproachingJunctionsTurningExiting35"), r.getString("ApproachingJunctionsTurningExiting36"), r.getString("Reversing37"), r.getString("Reversing38"), r.getString("Reversing39"), r.getString("Clutch40"), r.getString("Clutch41"), r.getString("RetarderDSCHillMode42"), r.getString("RetarderDSCHillMode43"), r.getString("RetarderDSCHillMode44"));
+		Object.AddAppicantInformation(r.getString("idMac_Applicants"), r.getString("Name"), r.getString("Surname"), r.getString("Id_Number"), r.getString("Client_Name"), r.getString("PDP_Expiry_Date"), r.getString("Vehicle_Used"), r.getString("Assessor_Name"), r.getString("Assessor_Surname"), "01", r.getString("Date"), r.getString("KM_End"), r.getString("KM_Start"), r.getString("Time_End"), r.getString("Time_Start"), r.getString("Weather"), r.getString("Route"), r.getString ("Total_Score"), r.getString("Starting_And_Stopping"), r.getString("General_Driving"), r.getString("Passing_Or_Overtaking"), r.getString("General_Road_Behavior"), r.getString("Observation_And_Anticipation"), r.getString("Approaching_Junctions_Turning_Exiting"), r.getString("Reversing"), r.getString("Clutch"), r.getString("Retarder_DSC_HillMode"), r.getString("Comments"), r.getString("PDA_No"), r.getString("License_Code"), r.getString("Job_Name"),r.getString("PracticalDriversTestComplete"),r.getString("StartingAndStopping1") ,r.getString("StartingAndStopping2"),r.getString("StartingAndStopping3"), r.getString("StartingAndStopping4"), r.getString("StartingAndStopping5"), r.getString("StartingAndStopping6"), r.getString("StartingAndStopping7"), r.getString("GeneralDriving8"), r.getString("GeneralDriving9"), r.getString("GeneralDriving10"), r.getString("GeneralDriving11"), r.getString("GeneralDriving12"), r.getString("GeneralDriving13"), r.getString("GeneralDriving14"), r.getString("GeneralDriving15"), r.getString("GeneralDriving16"), r.getString("GeneralDriving17"), r.getString("PassingOrOvertaking18"), r.getString("PassingOrOvertaking19"), r.getString("PassingOrOvertaking20"), r.getString("PassingOrOvertaking21"), r.getString("GeneralRoadBehavior22"), r.getString("GeneralRoadBehavior23"), r.getString("ObservationAndAnticipation24"), r.getString("ObservationAndAnticipation25"), r.getString("ObservationAndAnticipation26"), r.getString("ObservationAndAnticipation27"), r.getString("ObservationAndAnticipation28"), r.getString("ApproachingJunctionsTurningExiting29"), r.getString("ApproachingJunctionsTurningExiting30"), r.getString("ApproachingJunctionsTurningExiting31"), r.getString("ApproachingJunctionsTurningExiting32"), r.getString("ApproachingJunctionsTurningExiting33"), r.getString("ApproachingJunctionsTurningExiting34"), r.getString("ApproachingJunctionsTurningExiting35"), r.getString("ApproachingJunctionsTurningExiting36"), r.getString("Reversing37"), r.getString("Reversing38"), r.getString("Reversing39"), r.getString("Clutch40"), r.getString("Clutch41"), r.getString("RetarderDSCHillMode42"), r.getString("RetarderDSCHillMode43"), r.getString("RetarderDSCHillMode44"), r.getString("RoadTestComplete"), r.getString("ParkingTestComplete"));
 		
 		
 		/////////////////////////////////////////////////////////
@@ -390,7 +363,7 @@ public class PracticalDrivingAssessmentService {
 		
 		
 		List<MacApplicants> Applicants = Object1.GetApplicantsByApplicantId(r.getString("Id_Number"));
-		System.out.println("HELLOWORLD:"+ Applicants.size()+", ID:"+r.getString("Id_Number")+", PC:"+r.getString("PracticalDriversTestComplete"));
+
 		
 		if(Applicants.size()>0)
 		{
@@ -401,7 +374,7 @@ public class PracticalDrivingAssessmentService {
 				Applicants.get(0).setStageInTheProcess("Client Interview");
 				Applicants.get(0).setJobName(r.getString("Job_Name"));
 				Applicants.get(0).setLastUsedDate(dateFormat.format(date));
-				assignedjobdao.UpdateAssignedJobStatusPracticalDrivers(r.getString("Id_Number"), r.getString("Job_Name"), "Client Interview", "beginning", r.getString("PracticalDriversTestComplete"), ((r.getString("Comments").equals("")) ? "N/A" : r.getString("Comments"))); 
+				assignedjobdao.UpdateAssignedJobStatusPracticalDrivers(r.getString("Id_Number"), r.getString("Job_Name"), "Client Interview", "beginning", r.getString("PracticalDriversTestComplete"), ((r.getString("Comments").equals("")) ? "N/A" : r.getString("Comments")),r.getString("RoadTestComplete"), r.getString("ParkingTestComplete")); 
 				
 			}
 			else if(r.getString("PracticalDriversTestComplete").equals("No"))
@@ -411,7 +384,7 @@ public class PracticalDrivingAssessmentService {
 				Applicants.get(0).setStageInTheProcess("Practical Drivers Test");
 				Applicants.get(0).setJobName(r.getString("Job_Name"));
 				Applicants.get(0).setLastUsedDate(dateFormat.format(date));
-				assignedjobdao.UpdateAssignedJobStatusPracticalDrivers(r.getString("Id_Number"), r.getString("Job_Name"), "Client Interview", "beginning", r.getString("PracticalDriversTestComplete"), ((r.getString("Comments").equals("")) ? "N/A" : r.getString("Comments"))); 
+				assignedjobdao.UpdateAssignedJobStatusPracticalDrivers(r.getString("Id_Number"), r.getString("Job_Name"), "Client Interview", "beginning", r.getString("PracticalDriversTestComplete"), ((r.getString("Comments").equals("")) ? "N/A" : r.getString("Comments")),r.getString("RoadTestComplete"), r.getString("ParkingTestComplete")); 
 				
 			}
 			Object1.update(Applicants.get(0));

@@ -47,7 +47,7 @@
             <column name="Job_Name" length="45" />
         </property>
          <property name="idNumber" type="string">
-            <column name="Id_Number" length="13" />
+            <column name="Id_Number" length="25" />
         </property>
         
         <property name="lastUsedDate" type="string">

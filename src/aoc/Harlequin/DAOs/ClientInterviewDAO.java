@@ -2,6 +2,7 @@ package aoc.Harlequin.DAOs;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -22,16 +23,35 @@ public class ClientInterviewDAO extends HarlequinDAO {
 		
 		
 		Session session = this.getSession();
+		ClientInterviews Interview = new ClientInterviews();
+		
+		
+		try
+		{
+			HibernateUtil.beginTransaction();
+			Interview = session.get(ClientInterviews.class, id);
+			
 
-		HibernateUtil.beginTransaction();
-	   
-		
-		ClientInterviews Interview = session.get(ClientInterviews.class, id);
-		
-		session.clear(); // ADDED 170302
-		session.flush();
-		session.close();
-	   
+		}
+		catch(Exception ex)
+		{
+
+			System.out.println("Error In Function: getInterviewInfoById - ClientInterviewDAO");
+			System.out.println(ex.toString());
+		}
+		finally
+		{
+
+
+			if(session != null && session.isConnected())
+			{
+				session.clear();
+				session.flush();
+				session.close();
+			}
+
+		}
+
 		
 		return Interview;
 		
@@ -45,12 +65,38 @@ public class ClientInterviewDAO extends HarlequinDAO {
 	public void update(Object entity) 
 	{  
 		  Session hibernateSession = this.getSession();
-		  HibernateUtil.beginTransaction();
+		  
+		  try
+		  {
+			    HibernateUtil.beginTransaction();
 		        //hibernateSession.save(entity);        
 		        //hibernateSession.saveOrUpdate(entity);
 		        hibernateSession.update(entity);
 		        
 		        HibernateUtil.commitTransaction();
+
+		  }
+		  catch(Exception ex)
+		  {
+
+		  	System.out.println("Error In Function: update - MacInterviewDAO");
+		  	System.out.println(ex.toString());
+		  }
+		  finally
+		  {
+
+
+		  	if(hibernateSession != null && hibernateSession.isConnected())
+		  	{
+		  		hibernateSession.clear();
+		  		hibernateSession.flush();
+		  		hibernateSession.close();
+		  	}
+
+		  }
+		  
+		  
+		  
 		 
 	}
 	
@@ -59,10 +105,35 @@ public class ClientInterviewDAO extends HarlequinDAO {
 	{
 		  Session hibernateSession = this.getSession(); 
 		  
-		  HibernateUtil.beginTransaction();
-		  hibernateSession.delete(entity);
-		  hibernateSession.flush();
-		  HibernateUtil.commitTransaction();
+		  
+		  try
+		  {
+			  HibernateUtil.beginTransaction();
+			  hibernateSession.delete(entity);
+			  hibernateSession.flush();
+			  HibernateUtil.commitTransaction();
+
+		  }
+		  catch(Exception ex)
+		  {
+
+		  	System.out.println("Error In Function: delete - ClientInterviewDAO");
+		  	System.out.println(ex.toString());
+		  }
+		  finally
+		  {
+
+
+		  	if(hibernateSession != null && hibernateSession.isConnected())
+		  	{
+		  		hibernateSession.clear();
+		  		hibernateSession.flush();
+		  		hibernateSession.close();
+		  	}
+
+		  }
+		  
+		  
 		  
 	}
 	
@@ -77,55 +148,88 @@ public class ClientInterviewDAO extends HarlequinDAO {
 		
 		//////////////////////////////////////////////////////////////////////////////////////
 		
-		Session session = HibernateUtil.getSessionFactory().openSession();
+		/*Session session = HibernateUtil.getSessionFactory().openSession();
+		session.beginTransaction();*/
 		
-		session.beginTransaction();
-		
-		DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-		Date date = new Date();
-		
-		
-		ClientInterviews Interview = new ClientInterviews();
-		
-		
-		Interview.setIdMacApplicants(Integer.parseInt(idMac_Applicants));
-		Interview.setClientName(Client_Name);
-		Interview.setApplicantName(Applicant_Name);
-		Interview.setApplicantSurname(Applicant_Surname);
-		Interview.setInterviewQuestionsPassed(Interview_questions_Passed);
-		Interview.setApplicantPresentable(Applicant_Presentable);
-		Interview.setApplicantAttitude(Applicant_Attitude);
-		Interview.setInterviewComments(Interview_Comments);
-		Interview.setClientInterviewComplete(Client_Interview_Complete);
-		Interview.setIdNumber(Id_number);
-		Interview.setJobName(Job_Name);
-		Interview.setLastUsedDate(dateFormat.format(date));
-		Interview.setClientInterviewPassed(clientInterviewPassed);
-		
-		
-		
-		
-		session.save(Interview);
-				
-		session.getTransaction().commit();
-		
-		session.close();
-		
+		Session session = this.getSession(); 
+		try
+		{
+			HibernateUtil.beginTransaction();
+			DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+			Date date = new Date();
+						
+			ClientInterviews Interview = new ClientInterviews();
+
+			Interview.setIdMacApplicants(Integer.parseInt(idMac_Applicants));
+			Interview.setClientName(Client_Name);
+			Interview.setApplicantName(Applicant_Name);
+			Interview.setApplicantSurname(Applicant_Surname);
+			Interview.setInterviewQuestionsPassed(Interview_questions_Passed);
+			Interview.setApplicantPresentable(Applicant_Presentable);
+			Interview.setApplicantAttitude(Applicant_Attitude);
+			Interview.setInterviewComments(Interview_Comments);
+			Interview.setClientInterviewComplete(Client_Interview_Complete);
+			Interview.setIdNumber(Id_number);
+			Interview.setJobName(Job_Name);
+			Interview.setLastUsedDate(dateFormat.format(date));
+			Interview.setClientInterviewPassed(clientInterviewPassed);
+			
+			session.save(Interview);
+			session.getTransaction().commit();
+
+		}
+		catch(Exception ex)
+		{
+
+			System.out.println("Error In Function: AddInterviewInformation - ClientInterviewDAO");
+			System.out.println(ex.toString());
+		}
+		finally
+		{
+
+
+			if(session != null && session.isConnected())
+			{
+				session.clear();
+				session.flush();
+				session.close();
+			}
+
+		}
+
 	}
 	
 	public List<ClientInterviews> GetClientInfoByName(String ClientName)
 	{
 		Session session = this.getSession();
-		HibernateUtil.beginTransaction();
+		List<ClientInterviews> Client = new ArrayList<ClientInterviews>();
 		
+		try
+		{
+			HibernateUtil.beginTransaction();
+			Query<ClientInterviews> query = session.createQuery("from ClientInterviews Where Client_Name = '"+ClientName.trim()+"'");
+			Client = query.list();
+		}
+		catch(Exception ex)
+		{
+
+			System.out.println("Error In Function: GetClientInfoByName - ClientInterviewDAO");
+			System.out.println(ex.toString());
+		}
+		finally
+		{
+
+
+			if(session != null && session.isConnected())
+			{
+				session.clear();
+				session.flush();
+				session.close();
+			}
+
+		}
 		
-		
-		Query query = session.createQuery("from ClientInterviews Where Client_Name = '"+ClientName+"'");
-		List<ClientInterviews> Client = query.list();
-		
-		session.clear(); // ADDED 170302
-		session.flush();
-		session.close();
+
 		return Client;
 	}
 	
@@ -133,16 +237,35 @@ public class ClientInterviewDAO extends HarlequinDAO {
 	public List<ClientInterviews> GetClientInfoByIdNumber(String Id_Number)
 	{
 		Session session = this.getSession();
+		List<ClientInterviews> Client = new ArrayList<ClientInterviews>();
+		
+		
 		HibernateUtil.beginTransaction();
-		
-		
-		
-		Query query = session.createQuery("from ClientInterviews Where Id_Number = '"+Id_Number+"'");
-		List<ClientInterviews> Client = query.list();
-		
-		session.clear(); // ADDED 170302
-		session.flush();
-		session.close();
+		try
+		{
+			Query<ClientInterviews> query = session.createQuery("from ClientInterviews Where Id_Number = '"+Id_Number+"'");
+			Client = query.list();
+			
+
+		}
+		catch(Exception ex)
+		{
+
+			System.out.println("Error In Function: AddAppicantInformation - ClientInterviewDAO");
+			System.out.println(ex.toString());
+		}
+		finally
+		{
+
+
+			if(session != null && session.isConnected())
+			{
+				session.clear();
+				session.flush();
+				session.close();
+			}
+
+		}
 		
 		return Client;
 	}
@@ -151,17 +274,34 @@ public class ClientInterviewDAO extends HarlequinDAO {
 	public List<ClientInterviews> GetInterviewByInfo(String Id_Number, String idMac_Applicants,String Job_Name)
 	{
 		Session session = this.getSession();
-		HibernateUtil.beginTransaction();
+		List<ClientInterviews> Interview = new ArrayList<ClientInterviews>();
 		
+		try
+		{
+			HibernateUtil.beginTransaction();
+			Query<ClientInterviews> query = session.createQuery("from ClientInterviews Where idMac_Applicants = '"+idMac_Applicants.trim()+"' AND Id_Number = '"+Id_Number.trim()+"' AND Job_Name ='"+Job_Name.trim()+"'");
+			Interview = query.list();
 		
-		
-		Query query = session.createQuery("from ClientInterviews Where idMac_Applicants = '"+idMac_Applicants.trim()+"' AND Id_Number = '"+Id_Number.trim()+"' AND Job_Name ='"+Job_Name.trim()+"'");
-		List<ClientInterviews> Interview = query.list();
-		
-		session.clear(); // ADDED 170302
-		session.flush();
-		session.close();
-		
+
+		}
+		catch(Exception ex)
+		{
+
+			System.out.println("Error In Function: GetInterviewByInfo - ClientInterviewDAO");
+			System.out.println(ex.toString());
+		}
+		finally
+		{
+
+
+			if(session != null && session.isConnected())
+			{
+				session.clear();
+				session.flush();
+				session.close();
+			}
+
+		}
 		
 		return Interview;
 	}
@@ -169,20 +309,35 @@ public class ClientInterviewDAO extends HarlequinDAO {
 	public List<ClientInterviews> ReadAllInterviews()
 	{
 		Session session = this.getSession();
-		HibernateUtil.beginTransaction();
+		List<ClientInterviews> Interview = new ArrayList<ClientInterviews>();
 		
-		
-		
-		Query query = session.createQuery("from MacLabourInterView");
-		List<ClientInterviews> Interview = query.list();
-		
-		session.clear(); // ADDED 170302
-		session.flush();
-		session.close();
+		try
+		{
+			HibernateUtil.beginTransaction();
+			Query<ClientInterviews> query = session.createQuery("from MacLabourInterView");
+			Interview = query.list();
+
+		}
+		catch(Exception ex)
+		{
+
+			System.out.println("Error In Function: ReadAllInterviews - ClientInterviewDAO");
+			System.out.println(ex.toString());
+		}
+		finally
+		{
+
+
+			if(session != null && session.isConnected())
+			{
+				session.clear();
+				session.flush();
+				session.close();
+			}
+
+		}
 		
 		return Interview;
-		
-		
 		
 	}
 

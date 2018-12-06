@@ -101,6 +101,10 @@ public class PracticalDriversAssessment implements java.io.Serializable {
 	private int RetarderDSCHillMode42;
 	private int RetarderDSCHillMode43;
 	private int RetarderDSCHillMode44;
+	
+	
+	private String RoadTestPassed;
+	private String ParkingTestPassed;
 
 
 	public PracticalDriversAssessment() 
@@ -136,7 +140,8 @@ public class PracticalDriversAssessment implements java.io.Serializable {
 			int ApproachingJunctionsTurningExiting29,int ApproachingJunctionsTurningExiting30, int ApproachingJunctionsTurningExiting31,int ApproachingJunctionsTurningExiting32, int ApproachingJunctionsTurningExiting33, int ApproachingJunctionsTurningExiting34, int ApproachingJunctionsTurningExiting35,int ApproachingJunctionsTurningExiting36,
 			int Reversing37, int Reversing38, int Reversing39,
 			int Clutch40, int Clutch41,
-			int RetarderDSCHillMode42, int RetarderDSCHillMode43, int RetarderDSCHillMode44) {
+			int RetarderDSCHillMode42, int RetarderDSCHillMode43, int RetarderDSCHillMode44,
+			String ParkingTestPassed, String RoadTestPassed) {
 		this.idPracticalDriversAssessment = idPracticalDriversAssessment;
 		this.idMacApplicants = idMacApplicants;
 		this.name = name;
@@ -228,12 +233,30 @@ public class PracticalDriversAssessment implements java.io.Serializable {
 		this.RetarderDSCHillMode43 = RetarderDSCHillMode43;
 		this.RetarderDSCHillMode44 = RetarderDSCHillMode44; 
 		
-		
-		
-		
+		this.RoadTestPassed = RoadTestPassed;
+		this.ParkingTestPassed = ParkingTestPassed;
 		
 	}
 
+	public String getRoadTestPassed()
+	{
+		return this.RoadTestPassed;
+	}
+
+	public void setRoadTestPassed(String RoadTestPassed) 
+	{
+		this.RoadTestPassed = RoadTestPassed;
+	}
+	
+	public String getParkingTestPassed()
+	{
+		return this.ParkingTestPassed;
+	}
+
+	public void setParkingTestPassed(String ParkingTestPassed) 
+	{
+		this.ParkingTestPassed = ParkingTestPassed;
+	}
 	
 	
 	public String getLastUsedDate()

@@ -2,6 +2,7 @@ package aoc.Harlequin.DAOs;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -27,17 +28,33 @@ public class JobDAO extends HarlequinDAO {
 		
 		
 		Session session = this.getSession();
+		SystemJob jobs = new SystemJob();
+		try
+		{
+			HibernateUtil.beginTransaction();
+			jobs = session.get(SystemJob.class, id);
 
-		HibernateUtil.beginTransaction();
+		}
+		catch(Exception ex)
+		{
+
+			System.out.println("Error In Function: getJobInfoById - JobDAO");
+			System.out.println(ex.toString());
+		}
+		finally
+		{
+
+
+			if(session != null && session.isConnected())
+			{
+				session.clear();
+				session.flush();
+				session.close();
+			}
+
+		}
 	   
-		
-		SystemJob jobs = session.get(SystemJob.class, id);
-		
-		session.clear(); // ADDED 170302
-		session.flush();
-		session.close();
-	   
-		
+
 		return jobs;
 		
 		
@@ -46,17 +63,36 @@ public class JobDAO extends HarlequinDAO {
 	public List<SystemJob> ReadAllJobs()
 	{
 		Session session = this.getSession();
-		HibernateUtil.beginTransaction();
+		List<SystemJob> Job = new ArrayList<SystemJob>();
 		
-		
-		
-		Query query = session.createQuery("from SystemJob");
-		List<SystemJob> Job = query.list();
-		
-		session.clear(); // ADDED 170302
-		session.flush();
-		session.close();
-		
+		try
+		{
+			HibernateUtil.beginTransaction();
+			
+			Query<SystemJob> query = session.createQuery("from SystemJob");
+			Job = query.list();
+			
+
+		}
+		catch(Exception ex)
+		{
+
+			System.out.println("Error In Function: ReadAllJobs - JobDAO");
+			System.out.println(ex.toString());
+		}
+		finally
+		{
+
+
+			if(session != null && session.isConnected())
+			{
+				session.clear();
+				session.flush();
+				session.close();
+			}
+
+		}
+
 		return Job;
 		
 		
@@ -65,18 +101,41 @@ public class JobDAO extends HarlequinDAO {
 	///////////////////////////////////////////////////////////////////////////////
 	//Function to delete an object from the database
 	//////////////////////////////////////////////////////////////////////////////
-	public void delete(Object entity) {
-		  Session hibernateSession = this.getSession(); 
+	public void delete(Object entity) 
+	{
+			  Session hibernateSession = this.getSession(); 
+			  
+			  try
+			  {
+				  	HibernateUtil.beginTransaction();
+			        hibernateSession.delete(entity);
+			        hibernateSession.flush();
+			        HibernateUtil.commitTransaction();
+	
+			  }
+			  catch(Exception ex)
+			  {
+	
+			  		System.out.println("Error In Function: delete - JobDAO");
+			  		System.out.println(ex.toString());
+			  }
+			  finally
+			  {
+	
+	
+			  	if(hibernateSession != null && hibernateSession.isConnected())
+			  	{
+			  		 hibernateSession.clear(); // ADDED 170302
+				     hibernateSession.flush();
+				     hibernateSession.close();
+			  	}
+	
+			  }
+			  
+		 
 		  
-		  HibernateUtil.beginTransaction();
-		        hibernateSession.delete(entity);
-		        hibernateSession.flush();
-		  HibernateUtil.commitTransaction();
-		  
-		    hibernateSession.clear(); // ADDED 170302
-	        hibernateSession.flush();
-	        hibernateSession.close();
-		 }
+		   
+		}
 	
 	///////////////////////////////////////////////////////////////////////////////
 	//Function to Update a database object from the database
@@ -84,15 +143,32 @@ public class JobDAO extends HarlequinDAO {
 	public void update(Object entity) 
 	{  
 		  Session hibernateSession = this.getSession();
-		  HibernateUtil.beginTransaction();
+		  
+		  try
+		  {
+			    HibernateUtil.beginTransaction();
 		        //hibernateSession.save(entity);        
 		        //hibernateSession.saveOrUpdate(entity);
 		        hibernateSession.update(entity);
-		     
 		        HibernateUtil.commitTransaction();
-		      
-		        
-		        
+
+		  }
+		  catch(Exception ex)
+		  {
+			  	System.out.println("Error In Function: AddAppicantInformation - MacApplicantDAO");
+			  	System.out.println(ex.toString());
+		  }
+		  finally
+		  {
+
+			  	if(hibernateSession != null && hibernateSession.isConnected())
+			  	{
+			  		hibernateSession.clear();
+			  		hibernateSession.flush();
+			  		hibernateSession.close();
+			  	}
+
+		  }   
 		 
 	}
 	
@@ -100,37 +176,74 @@ public class JobDAO extends HarlequinDAO {
 	{
 		Session session = this.getSession();
 		HibernateUtil.beginTransaction();
+		List<SystemJob> Job = new ArrayList<>();
 		
+		try
+		{
+			Query<SystemJob> query = session.createQuery("from SystemJob order by Job_Id DESC");
+			query.setMaxResults(1);
+			Job = query.list();
+
+		}
+		catch(Exception ex)
+		{
+
+			System.out.println("Error In Function: ReadLastJob - JobDAO");
+			System.out.println(ex.toString());
+		}
+		finally
+		{
+
+
+			if(session != null && session.isConnected())
+			{
+				session.clear();
+				session.flush();
+				session.close();
+			}
+
+		}
 		
-		
-		Query query = session.createQuery("from SystemJob order by Job_Id DESC");
-		query.setMaxResults(1);
-		List<SystemJob> Job = query.list();
-		
-		session.clear(); 
-		session.flush();
-		session.close();
-		
+
 		return Job;
-		
-		
-		
+
 	}
 	
 	
 	public List<SystemJob> GetClientNameByJobName(String Job_Name)
 	{
 		Session session = this.getSession();
-		HibernateUtil.beginTransaction();
+		List<SystemJob> Job = new ArrayList<SystemJob>();
 		
 		
+		try
+		{
+			HibernateUtil.beginTransaction();
+			Query<SystemJob> query = session.createQuery("from SystemJob Where Job_Name = '"+Job_Name+"'");
+			Job = query.list();
+			
+
+		}
+		catch(Exception ex)
+		{
+
+			System.out.println("Error In Function: GetClientNameByJobName - JobDAO");
+			System.out.println(ex.toString());
+		}
+		finally
+		{
+
+
+			if(session != null && session.isConnected())
+			{
+				session.clear();
+				session.flush();
+				session.close();
+			}
+
+		}
 		
-		Query query = session.createQuery("from SystemJob Where Job_Name = '"+Job_Name+"'");
-		List<SystemJob> Job = query.list();
-		
-		session.clear(); // ADDED 170302
-		session.flush();
-		session.close();
+	
 		return Job;
 	}
 	
@@ -139,16 +252,35 @@ public class JobDAO extends HarlequinDAO {
 	public List<SystemJob> GetJobInfoByJobName(String Job_Name)
 	{
 		Session session = this.getSession();
-		HibernateUtil.beginTransaction();
+		List<SystemJob> Job = new ArrayList<SystemJob>();
 		
 		
+		try
+		{
+			HibernateUtil.beginTransaction();
+			Query<SystemJob> query = session.createQuery("from SystemJob Where Job_Name = '"+Job_Name+"'");
+			Job = query.list();
 		
-		Query query = session.createQuery("from SystemJob Where Job_Name = '"+Job_Name+"'");
-		List<SystemJob> Job = query.list();
-		
-		session.clear(); // ADDED 170302
-		session.flush();
-		session.close();
+
+		}
+		catch(Exception ex)
+		{
+
+			System.out.println("Error In Function: GetJobInfoByJobName - MacApplicantDAO");
+			System.out.println(ex.toString());
+		}
+		finally
+		{
+
+			if(session != null && session.isConnected())
+			{
+				session.clear();
+				session.flush();
+				session.close();
+			}
+
+		}
+
 		return Job;
 	}
 	
@@ -159,26 +291,46 @@ public class JobDAO extends HarlequinDAO {
 	{
 		DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 		Date date = new Date();
+		Session session = this.getSession();
 		
-		Session session = HibernateUtil.getSessionFactory().openSession();
-		session.beginTransaction();
-		SystemJob job = new SystemJob();
-		
-		job.setJobName(jobName);
-		job.setJobCode(jobCode);
-		job.setJobClientName(jobClientName);
-		job.setJobDetails(jobDetails);
-		job.setJobComments(jobComments);
-		job.setJobType(jobtype);
-		job.setLastUsedDate(dateFormat.format(date));
-		
-		
-		
-		session.save(job);
-				
-		session.getTransaction().commit();
-		
-		session.close();
+		try
+		{
+			/*Session session = HibernateUtil.getSessionFactory().openSession();
+			session.beginTransaction();*/
+			HibernateUtil.beginTransaction();
+			SystemJob job = new SystemJob();
+
+			job.setJobName(jobName);
+			job.setJobCode(jobCode);
+			job.setJobClientName(jobClientName);
+			job.setJobDetails(jobDetails);
+			job.setJobComments(jobComments);
+			job.setJobType(jobtype);
+			job.setLastUsedDate(dateFormat.format(date));
+
+			session.save(job);				
+			session.getTransaction().commit();
+
+		}
+		catch(Exception ex)
+		{
+
+			System.out.println("Error In Function: AddAppicantInformation - MacApplicantDAO");
+			System.out.println(ex.toString());
+		}
+		finally
+		{
+
+
+			if(session != null && session.isConnected())
+			{
+				session.clear();
+				session.flush();
+				session.close();
+			}
+
+		}
+
 		
 	}
 	

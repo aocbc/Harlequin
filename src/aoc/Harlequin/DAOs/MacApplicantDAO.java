@@ -4,6 +4,7 @@ import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -22,19 +23,30 @@ public class MacApplicantDAO extends HarlequinDAO {
 		
 		
 		Session session = this.getSession();
-
-		HibernateUtil.beginTransaction();
-	   
-		
-		MacApplicants applicants = session.get(MacApplicants.class, id);
-		
-		
-		
-		
-		session.clear(); // ADDED 170302
-		session.flush();
-		session.close();
-	   
+		MacApplicants applicants = new MacApplicants();
+		try
+		{
+			HibernateUtil.beginTransaction();			
+			applicants = session.get(MacApplicants.class, id);
+		}
+		catch(Exception ex)
+		{
+			System.out.println("Error In Function: getClientApplicantoById - MacApplicantDAO");
+			System.out.println(ex.toString());
+			
+		}
+		finally
+		{
+			
+			if(session != null && session.isConnected())
+			{
+				session.clear(); // ADDED 170302
+				session.flush();
+				session.close();
+			   	
+			}
+			
+		}
 		
 		return applicants;
 		
@@ -44,23 +56,40 @@ public class MacApplicantDAO extends HarlequinDAO {
 	public MacApplicants UpdateAppplicantEmpoyableId(int id, String Employable, String EmployableComments)
 	{
 		Session session = this.getSession();
-
-		HibernateUtil.beginTransaction();
-	   
-		MacApplicants applicants = session.get(MacApplicants.class, id);
+		MacApplicants applicants = new MacApplicants();
 		
-		applicants.setEmployable(Employable);
-		if(!EmployableComments.equals(""))
+		try
 		{
-			applicants.setEmployableComments(EmployableComments);
+			HibernateUtil.beginTransaction();
+			   
+			applicants = session.get(MacApplicants.class, id);
 			
+			applicants.setEmployable(Employable);
+			if(!EmployableComments.equals(""))
+			{
+				applicants.setEmployableComments(EmployableComments);
+				
+			}
+		}
+		catch(Exception ex)
+		{
+			System.out.println("Error In Function: UpdateAppplicantEmpoyableId - MacApplicantDAO");
+			System.out.println(ex.toString());
+		}
+		finally
+		{
+			if(session != null & session.isConnected())
+			{
+				session.clear(); 
+				session.flush();
+				session.close();
+				
+			}
+			
+			update(applicants);
 		}
 		
-		session.clear(); 
-		session.flush();
-		session.close();
 		
-		update(applicants);
 		
 		return applicants;
 	
@@ -69,37 +98,40 @@ public class MacApplicantDAO extends HarlequinDAO {
 	
 	public MacApplicants UpdateAppplicantLastSmsDateById(int id, String Sms_Group,int SmsGroupCount)
 	{
-		
-		
-		
-		
-		
 		Session session = this.getSession();
+		MacApplicants applicants = new MacApplicants();
+		
+		
+		try
+		{
+			HibernateUtil.beginTransaction();
+			applicants = session.get(MacApplicants.class, id);
+			
+			DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+			LocalDate localDate = LocalDate.now();
 
-		HibernateUtil.beginTransaction();
-	   
-		
-		MacApplicants applicants = session.get(MacApplicants.class, id);
-		
-		DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy-MM-dd");
-		LocalDate localDate = LocalDate.now();
-		
-		
-		String lastSmsDate = localDate.toString();
-		
-		applicants.setLastSmsDate(lastSmsDate);
-		applicants.setSmsGroup(Sms_Group.trim());
-		applicants.setSmsGroupCount(SmsGroupCount);
-		
-		System.out.println("SMSGROUP:"+Sms_Group);
-		
-		
-		session.clear(); // ADDED 170302
-		session.flush();
-		session.close();
-		update(applicants);
-		
-		
+			String lastSmsDate = localDate.toString();
+			
+			applicants.setLastSmsDate(lastSmsDate);
+			applicants.setSmsGroup(Sms_Group.trim());
+			applicants.setSmsGroupCount(SmsGroupCount);
+		}
+		catch(Exception ex)
+		{
+			System.out.println("Error In Function: UpdateAppplicantLastSmsDateById - MacApplicantDAO");
+			System.out.println(ex.toString());
+		}
+		finally
+		{
+			if(session != null && session.isConnected() )
+			{
+				session.clear(); // ADDED 170302
+				session.flush();
+				session.close();
+			}
+			
+			update(applicants);
+		}
 		
 		return applicants;
 		
@@ -112,18 +144,32 @@ public class MacApplicantDAO extends HarlequinDAO {
 	public MacApplicants UpdateAppplicantStatusById(int id, String Applicant_Status)
 	{
 		Session session = this.getSession();
-
-		HibernateUtil.beginTransaction();
-	   
-		MacApplicants applicants = session.get(MacApplicants.class, id);
+		MacApplicants applicants = new MacApplicants();
 		
-		applicants.setStageInTheProcess(Applicant_Status);
-		
-		session.clear(); 
-		session.flush();
-		session.close();
-		
-		update(applicants);
+		try
+		{
+			HibernateUtil.beginTransaction();
+			applicants = session.get(MacApplicants.class, id);
+			
+			applicants.setStageInTheProcess(Applicant_Status);
+		}
+		catch(Exception ex)
+		{
+			System.out.println("Error In Function: UpdateAppplicantStatusById - MacApplicantDAO");
+			System.out.println(ex.toString());
+		}
+		finally
+		{
+			if(session != null &&  session.isConnected())
+			{
+				session.clear(); 
+				session.flush();
+				session.close();
+				
+			}
+			
+			update(applicants);
+		}
 		
 		return applicants;
 	
@@ -133,18 +179,34 @@ public class MacApplicantDAO extends HarlequinDAO {
 	public MacApplicants UpdateAppplicantStageInProcessById(int id, String Stage_In_Process)
 	{
 		Session session = this.getSession();
+		MacApplicants applicants = new MacApplicants();
+		
+		try
+		{
+			HibernateUtil.beginTransaction();
+			applicants = session.get(MacApplicants.class, id);
+			applicants.setStageInTheProcess(Stage_In_Process);   
+		}
+		catch(Exception ex)
+		{
+			System.out.println("Error In Function: UpdateAppplicantStageInProcessById - MacApplicantDAO");
+			System.out.println(ex.toString());
+		}
+		finally
+		{
+			
+			if(session != null &&  session.isConnected())
+			{
+				session.clear(); 
+				session.flush();
+				session.close();
+			}
+			
+			update(applicants);
+			
+		}
 
-		HibernateUtil.beginTransaction();
-	   
-		MacApplicants applicants = session.get(MacApplicants.class, id);
 		
-		applicants.setStageInTheProcess(Stage_In_Process);
-		
-		session.clear(); 
-		session.flush();
-		session.close();
-		
-		update(applicants);
 		
 		return applicants;
 	
@@ -156,40 +218,54 @@ public class MacApplicantDAO extends HarlequinDAO {
 		DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 		Date date = new Date();
 		Session session = this.getSession();
+		MacApplicants applicants = new MacApplicants();
 
-		HibernateUtil.beginTransaction();
-	   
-		MacApplicants applicants = session.get(MacApplicants.class, id);
-		
-		applicants.setmacLabInterviewComplete(InterviewComplete);
-		
-		if(InterviewComplete.equals("Yes"))
+		try
 		{
-			applicants.setStageInTheProcess("Practical Drivers Test");
-		}
-		else if(InterviewComplete.equals("No"))
-		{
-			applicants.setStageInTheProcess("MacLabour Interview");
-		}
-		
-		
-		applicants.setmacLabourInterviewComments(InterviewComments);
-		
-		
-		if(InterviewComments.equals(""))
-		{
-			applicants.setmacLabourInterviewComments("N/A");
+			HibernateUtil.beginTransaction();
+			applicants = session.get(MacApplicants.class, id);
 			
+			
+			applicants.setmacLabInterviewComplete(InterviewComplete);
+			
+			if(InterviewComplete.equals("Yes"))
+			{
+				applicants.setStageInTheProcess("Practical Drivers Test");
+			}
+			else if(InterviewComplete.equals("No"))
+			{
+				applicants.setStageInTheProcess("MacLabour Interview");
+			}
+			
+			
+			applicants.setmacLabourInterviewComments(InterviewComments);
+			
+			
+			if(InterviewComments.equals(""))
+			{
+				applicants.setmacLabourInterviewComments("N/A");
+				
+			}
+			
+			applicants.setLastUsedDate(dateFormat.format(date));
 		}
-		
-		applicants.setLastUsedDate(dateFormat.format(date));
-		
-		
-		session.clear(); 
-		session.flush();
-		session.close();
-		
-		update(applicants);
+		catch(Exception ex)
+		{
+			System.out.println("Error In Function: UpdateAppplicantMacLabourById - MacApplicantDAO");
+			System.out.println(ex.toString());
+		}
+		finally
+		{
+			if(session != null && session.isConnected())
+			{
+				session.clear(); 
+				session.flush();
+				session.close();
+			}
+			
+			update(applicants);
+		}
+
 		
 		return applicants;
 	
@@ -209,62 +285,77 @@ public class MacApplicantDAO extends HarlequinDAO {
 		Date date = new Date();
 		
 		Session session = this.getSession();
-		HibernateUtil.beginTransaction();
-		MacApplicants applicants = session.get(MacApplicants.class, id);
-		applicants.setmacLabInterviewComplete(InterviewComplete);
-		
-		
-		AssignedJobApplicantDAO assigned_job = new AssignedJobApplicantDAO();
-		
-		if(InterviewComplete.equals("Yes"))
+		MacApplicants applicants = new MacApplicants();
+		try
 		{
-			applicants.setStageInTheProcess("Practical Drivers Test");
+			HibernateUtil.beginTransaction();
+			applicants = session.get(MacApplicants.class, id);
+			
+			applicants.setmacLabInterviewComplete(InterviewComplete);
+			
+			
+			AssignedJobApplicantDAO assigned_job = new AssignedJobApplicantDAO();
+			
+			if(InterviewComplete.equals("Yes"))
+			{
+				applicants.setStageInTheProcess("Practical Drivers Test");
+				
+				if(InterviewComments.equals(""))
+				{
+					assigned_job.UpdateAssignedJobStatusMacLabourInterview(Id_Number, JobName, "Practical Drivers Test", "beginning",InterviewComplete,"N/A");
+					
+				}
+				else
+				{
+					assigned_job.UpdateAssignedJobStatusMacLabourInterview(Id_Number, JobName, "Practical Drivers Test", "beginning",InterviewComplete,removeSpecialCharacters(InterviewComments));
+					
+				}
+				
+				
+			}
+			else if(InterviewComplete.equals("No"))
+			{
+				applicants.setStageInTheProcess("MacLabour Interview");
+				
+				if(InterviewComments.equals(""))
+				{
+					assigned_job.UpdateAssignedJobStatusMacLabourInterview(Id_Number, JobName, "MacLabour Interview", "pending",InterviewComplete,"N/A");
+				}
+				else
+				{
+					assigned_job.UpdateAssignedJobStatusMacLabourInterview(Id_Number, JobName, "MacLabour Interview", "pending",InterviewComplete,removeSpecialCharacters(InterviewComments));
+					
+				}
+				
+			}
+			
+			
+			applicants.setmacLabourInterviewComments(removeSpecialCharacters(InterviewComments));
+			
 			
 			if(InterviewComments.equals(""))
 			{
-				assigned_job.UpdateAssignedJobStatusMacLabourInterview(Id_Number, JobName, "Practical Drivers Test", "beginning",InterviewComplete,"N/A");
-				
-			}
-			else
-			{
-				assigned_job.UpdateAssignedJobStatusMacLabourInterview(Id_Number, JobName, "Practical Drivers Test", "beginning",InterviewComplete,removeSpecialCharacters(InterviewComments));
+				applicants.setmacLabourInterviewComments("N/A");
 				
 			}
 			
-			
+			applicants.setLastUsedDate(dateFormat.format(date));
 		}
-		else if(InterviewComplete.equals("No"))
+		catch(Exception ex)
 		{
-			applicants.setStageInTheProcess("MacLabour Interview");
-			
-			if(InterviewComments.equals(""))
+			System.out.println("Error In Function: UpdateAppplicantMacLabourByIdJobName - MacApplicantDAO");
+			System.out.println(ex.toString());
+		}
+		finally
+		{
+			if(session != null && session.isConnected())
 			{
-				assigned_job.UpdateAssignedJobStatusMacLabourInterview(Id_Number, JobName, "MacLabour Interview", "pending",InterviewComplete,"N/A");
-			}
-			else
-			{
-				assigned_job.UpdateAssignedJobStatusMacLabourInterview(Id_Number, JobName, "MacLabour Interview", "pending",InterviewComplete,removeSpecialCharacters(InterviewComments));
+				session.clear(); 
+				session.flush();
+				session.close();
 				
 			}
-			
 		}
-		
-		
-		applicants.setmacLabourInterviewComments(removeSpecialCharacters(InterviewComments));
-		
-		
-		if(InterviewComments.equals(""))
-		{
-			applicants.setmacLabourInterviewComments("N/A");
-			
-		}
-		
-		applicants.setLastUsedDate(dateFormat.format(date));
-		
-		
-		/*session.clear(); 
-		session.flush();
-		session.close();*/
 		
 		update(applicants);
 		
@@ -281,31 +372,46 @@ public class MacApplicantDAO extends HarlequinDAO {
 		Date date = new Date();
 		
 		Session session = this.getSession();
-		HibernateUtil.beginTransaction();
-		MacApplicants applicants = session.get(MacApplicants.class, id);
-		
-		applicants.setPracticalDriversTestComments(TestComments);
-		applicants.setPracticalDriversTestComplete(TestComplete);
-		
-		
+		MacApplicants applicants = new MacApplicants();
+		try
+		{
+			HibernateUtil.beginTransaction();
+			applicants = session.get(MacApplicants.class, id);
+			applicants.setPracticalDriversTestComments(TestComments);
+			applicants.setPracticalDriversTestComplete(TestComplete);
+			
+			
+			if(TestComplete.equals("Yes"))
+			{
+				applicants.setStageInTheProcess("Client Interview");
+			}
+			else if(TestComplete.equals("No"))
+			{
+				applicants.setStageInTheProcess("Practical Drivers Test");
+			}
+			
+			applicants.setLastUsedDate(dateFormat.format(date));
+			
+			
+			
+		}
+		catch(Exception ex)
+		{
+			System.out.println("Error In Function: UpdateAppplicantDriversById - MacApplicantDAO");
+			System.out.println(ex.toString());
+		}
+		finally
+		{
+			if(session != null&&session.isConnected())
+			{
+				session.clear(); 
+				session.flush();
+				session.close();
+			}
+			
+			update(applicants);
+		}
 
-		
-		if(TestComplete.equals("Yes"))
-		{
-			applicants.setStageInTheProcess("Client Interview");
-		}
-		else if(TestComplete.equals("No"))
-		{
-			applicants.setStageInTheProcess("Practical Drivers Test");
-		}
-		
-		applicants.setLastUsedDate(dateFormat.format(date));
-		
-		session.clear(); 
-		session.flush();
-		session.close();
-		
-		update(applicants);
 		
 		return applicants;
 	
@@ -319,44 +425,72 @@ public class MacApplicantDAO extends HarlequinDAO {
 	
 	
 	
-	public MacApplicants UpdateAppplicantDriversByIdJobNAme(int id, String TestComplete, String TestComments, String Id_Number, String JobName)
+	/*public MacApplicants UpdateAppplicantDriversByIdJobNAme(int id, String TestComplete, String TestComments, String Id_Number, String JobName)
 	{
 		
 		DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 		Date date = new Date();
 		
 		Session session = this.getSession();
-		HibernateUtil.beginTransaction();
-		MacApplicants applicants = session.get(MacApplicants.class, id);
+		MacApplicants applicants = new MacApplicants();
 		
-		applicants.setPracticalDriversTestComments(TestComments);
-		applicants.setPracticalDriversTestComplete(TestComplete);
-		
-		AssignedJobApplicantDAO assigned_job = new AssignedJobApplicantDAO();
-		
-		
-		if(TestComplete.equals("Yes"))
+		try
 		{
-			applicants.setStageInTheProcess("Client Interview");
-			assigned_job.UpdateAssignedJobStatusPracticalDrivers(Id_Number, JobName, "Client Interview", "beginning", TestComplete, TestComments);
+			HibernateUtil.beginTransaction();
+			applicants = session.get(MacApplicants.class, id);
+			
+			applicants.setPracticalDriversTestComments(TestComments);
+			applicants.setPracticalDriversTestComplete(TestComplete);
+			
+			
+			if(TestComplete.equals("Yes"))
+			{
+				applicants.setStageInTheProcess("Client Interview");
+				
+			}
+			else if(TestComplete.equals("No"))
+			{
+				applicants.setStageInTheProcess("Practical Drivers Test");
+				
+			}
+			
+			
+			applicants.setLastUsedDate(dateFormat.format(date));
 		}
-		else if(TestComplete.equals("No"))
+		catch(Exception ex)
 		{
-			applicants.setStageInTheProcess("Practical Drivers Test");
-			assigned_job.UpdateAssignedJobStatusPracticalDrivers(Id_Number, JobName, "Practical Drivers Test", "pending", TestComplete, TestComments);
+			System.out.println("Error In Function: UpdateAppplicantDriversByIdJobNAme - MacApplicantDAO");
+			System.out.println(ex.toString());
 		}
-		
-		
-		applicants.setLastUsedDate(dateFormat.format(date));
-		/*session.clear(); 
-		session.flush();
-		session.close();*/
-		
-		update(applicants);
+		finally
+		{
+			
+			if(session != null && session.isConnected())
+			{
+				session.clear(); 
+				session.flush();
+				session.close();
+			}
+			
+			
+			update(applicants);
+	
+			AssignedJobApplicantDAO assigned_job = new AssignedJobApplicantDAO();
+
+			if(TestComplete.equals("Yes"))
+			{
+				assigned_job.UpdateAssignedJobStatusPracticalDrivers(Id_Number, JobName, "Client Interview", "beginning", TestComplete, TestComments);
+			}
+			else if(TestComplete.equals("No"))
+			{
+				assigned_job.UpdateAssignedJobStatusPracticalDrivers(Id_Number, JobName, "Practical Drivers Test", "pending", TestComplete, TestComments);
+			}
+			
+		}
 		
 		return applicants;
 	
-	}
+	}*/
 	
 	
 	
@@ -371,29 +505,61 @@ public class MacApplicantDAO extends HarlequinDAO {
 	public void update(Object entity) 
 	{  
 		  Session hibernateSession = this.getSession();
-		  HibernateUtil.beginTransaction();
+
+		  try
+		  {
+			  HibernateUtil.beginTransaction();
 		        //hibernateSession.save(entity);        
 		        //hibernateSession.saveOrUpdate(entity);
-		  hibernateSession.update(entity);
-		        
-		        HibernateUtil.commitTransaction();
-		 
+		      hibernateSession.update(entity);  
+		      HibernateUtil.commitTransaction();
+		  }
+		  catch(Exception ex)
+		  {
+			  System.out.println("Error In Function: update - MacApplicantDAO");
+			  System.out.println(ex.toString());
+			  
+		  }
+		  finally
+		  {
+			  if(hibernateSession != null && hibernateSession.isConnected())
+			  {
+				  hibernateSession.clear();
+				  hibernateSession.flush();
+				  hibernateSession.close();
+			  }
+		  }
+		  
 	}
 	
 	
 	public List<MacApplicants> GetApplicantsByJobType(String JobType)
 	{
 		Session session = this.getSession();
-		HibernateUtil.beginTransaction();
+		List<MacApplicants> Applicant = new ArrayList<MacApplicants>();
 		
-		
-		
-		Query query = session.createQuery("from MacApplicants Where Job_Type = '"+JobType+"'");
-		List<MacApplicants> Applicant = query.list();
-		
-		session.clear(); // ADDED 170302
-		session.flush();
-		session.close();
+		try
+		{
+			HibernateUtil.beginTransaction();
+			Query<MacApplicants> query = session.createQuery("from MacApplicants Where Job_Type = '"+JobType+"'");
+			Applicant = query.list();
+			
+		}
+		catch(Exception ex)
+		{
+			System.out.println("Error In Function: GetApplicantsByJobType - MacApplicantDAO");
+			System.out.println(ex.toString());
+		}
+		finally
+		{
+			if(session != null && session.isConnected())
+			{
+				session.clear(); // ADDED 170302
+				session.flush();
+				session.close();
+			}
+		}
+	
 		return Applicant;
 	}
 	
@@ -401,16 +567,31 @@ public class MacApplicantDAO extends HarlequinDAO {
 	public List<MacApplicants> GetApplicantsMacInterviewComplete()
 	{
 		Session session = this.getSession();
-		HibernateUtil.beginTransaction();
+		List<MacApplicants> Applicant = new ArrayList<MacApplicants>();
 		
+		try
+		{
+			HibernateUtil.beginTransaction();
+			Query<MacApplicants> query = session.createQuery("from MacApplicants Where Mac_Lab_Interview_Complete = 'Yes'");
+			Applicant = query.list();
+			
+		}
+		catch(Exception ex)
+		{
+			System.out.println("Error In Function: GetApplicantsMacInterviewComplete - MacApplicantDAO");
+			System.out.println(ex.toString());
+		}
+		finally
+		{
+			if(session != null && session.isConnected())
+			{
+				session.clear(); // ADDED 170302
+				session.flush();
+				session.close();
+			}
+		}
 		
-		
-		Query query = session.createQuery("from MacApplicants Where Mac_Lab_Interview_Complete = 'Yes'");
-		List<MacApplicants> Applicant = query.list();
-		
-		session.clear(); // ADDED 170302
-		session.flush();
-		session.close();
+	
 		return Applicant;
 	}
 	
@@ -420,16 +601,31 @@ public class MacApplicantDAO extends HarlequinDAO {
 	public List<MacApplicants> GetApplicantsMacInterviewCompleteNew()
 	{
 		Session session = this.getSession();
-		HibernateUtil.beginTransaction();
+		List<MacApplicants> Applicant = new ArrayList<MacApplicants>();
 		
+		try
+		{
+			HibernateUtil.beginTransaction();
+			Query<MacApplicants> query = session.createQuery("from MacApplicants as x where exists(from AssignedJobApplicantList as y WHERE ((x.idNumber = y.idMacApplicants) AND (y.macLabInterviewComplete = 'Yes')))");
+			Applicant = query.list();
+			
+		}
+		catch(Exception ex)
+		{
+			System.out.println("Error In Function: GetApplicantsMacInterviewCompleteNew - MacApplicantDAO");
+			System.out.println(ex.toString());
+		}
+		finally
+		{
+			if(session != null && session.isConnected())
+			{
+				session.clear(); 
+				session.flush();
+				session.close();
+				
+			}
+		}
 		
-		
-		Query query = session.createQuery("from MacApplicants as x where exists(from AssignedJobApplicantList as y WHERE ((x.idNumber = y.idMacApplicants) AND (y.macLabInterviewComplete = 'Yes')))");
-		List<MacApplicants> Applicant = query.list();
-		
-		session.clear(); 
-		session.flush();
-		session.close();
 		return Applicant;
 	}
 	//////////////////////////////////////////////////////////////////////////////
@@ -438,18 +634,33 @@ public class MacApplicantDAO extends HarlequinDAO {
 	public List<MacApplicants> GetApplicantsSiteComplete()
 	{
 		Session session = this.getSession();
-		HibernateUtil.beginTransaction();
+		List<MacApplicants> Applicant = new ArrayList<MacApplicants>();
 		
 		
-		
-		//Query query = session.createQuery("from MacApplicants Where Job_Name <> 'NA' AND Job_Name <> 'None'");
-		Query query = session.createQuery("from MacApplicants as x where exists(from AssignedJobApplicantList as y WHERE x.idNumber = y.idMacApplicants )");
-		List<MacApplicants> Applicant = query.list();
-		
-		
-		session.clear(); // ADDED 170302
-		session.flush();
-		session.close();
+		try
+		{
+			HibernateUtil.beginTransaction();
+			
+			Query<MacApplicants> query = session.createQuery("from MacApplicants as x where exists(from AssignedJobApplicantList as y WHERE x.idNumber = y.idMacApplicants )");
+			Applicant = query.list();
+
+			
+		}
+		catch(Exception ex)
+		{
+			System.out.println("Error In Function: GetApplicantsSiteComplete - MacApplicantDAO");
+			System.out.println(ex.toString());
+		}
+		finally
+		{
+			if(session != null && session.isConnected())
+			{
+				session.clear(); // ADDED 170302
+				session.flush();
+				session.close();
+			}
+		}
+
 		return Applicant;
 	}
 	
@@ -461,16 +672,33 @@ public class MacApplicantDAO extends HarlequinDAO {
 	public List<MacApplicants> GetApplicantsDriversComplete()
 	{
 		Session session = this.getSession();
-		HibernateUtil.beginTransaction();
+		List<MacApplicants> Applicant = new ArrayList<MacApplicants>();
+			
+		try
+		{
+			HibernateUtil.beginTransaction();
+			Query<MacApplicants> query = session.createQuery("from MacApplicants Where Practical_Drivers_Test_Complete = 'Yes'");
+			Applicant = query.list();
+			
+		}
+		catch(Exception ex)
+		{
+			System.out.println("Error In Function: GetApplicantsDriversComplete - MacApplicantDAO");
+			System.out.println(ex.toString());
+		}
+		finally
+		{
+			if(session != null && session.isConnected())
+			{
+
+				session.clear(); // ADDED 170302
+				session.flush();
+				session.close();
+			}
+			
+		}
 		
-		
-		
-		Query query = session.createQuery("from MacApplicants Where Practical_Drivers_Test_Complete = 'Yes'");
-		List<MacApplicants> Applicant = query.list();
-		
-		session.clear(); // ADDED 170302
-		session.flush();
-		session.close();
+	
 		return Applicant;
 	}
 	/////////////////////////////////////////////////////////////////////
@@ -479,16 +707,34 @@ public class MacApplicantDAO extends HarlequinDAO {
 	public List<MacApplicants> GetApplicantsDriversCompleteNew()
 	{
 		Session session = this.getSession();
-		HibernateUtil.beginTransaction();
+		List<MacApplicants> Applicant = new ArrayList<MacApplicants>();
 		
+		System.out.println("testing jateen");
 		
+		try
+		{
+			HibernateUtil.beginTransaction();
+			Query<MacApplicants> query = session.createQuery("from MacApplicants as x where exists(from AssignedJobApplicantList as y WHERE ((x.idNumber = y.idMacApplicants) AND (y.practicalDriversTestComplete = 'Yes') AND (y.roadTestPassed = 'Yes') AND (y.parkingTestPassed = 'Yes')))");
+			Applicant = query.list();
+			
+		}
+		catch(Exception ex)
+		{
+			System.out.println("Error In Function: GetApplicantsDriversCompleteNew - MacApplicantDAO");
+			System.out.println(ex.toString());
+		}
+		finally
+		{
+			if(session != null && session.isConnected())
+			{
+			
+				session.clear(); // ADDED 170302
+				session.flush();
+				session.close();
+			}
+		}
 		
-		Query query = session.createQuery("from MacApplicants as x where exists(from AssignedJobApplicantList as y WHERE ((x.idNumber = y.idMacApplicants) AND (y.practicalDriversTestComplete = 'Yes')))");
-		List<MacApplicants> Applicant = query.list();
-		
-		session.clear(); // ADDED 170302
-		session.flush();
-		session.close();
+
 		return Applicant;
 	}
 	
@@ -497,34 +743,64 @@ public class MacApplicantDAO extends HarlequinDAO {
 	public List<MacApplicants> GetApplicantsReferenceComplete()
 	{
 		Session session = this.getSession();
-		HibernateUtil.beginTransaction();
+		List<MacApplicants> Applicant = new ArrayList<MacApplicants>();
 		
+		try
+		{
+			HibernateUtil.beginTransaction();
+			Query query = session.createQuery("from MacApplicants Where Client_Interview_Complete = 'Yes'");
+			Applicant = query.list();
+		}
+		catch(Exception ex)
+		{
+			System.out.println("Error In Function: GetApplicantsReferenceComplete - MacApplicantDAO");
+			System.out.println(ex.toString());
+		}
+		finally
+		{
+			if(session != null && session.isConnected())
+			{
+
+				session.clear(); // ADDED 170302
+				session.flush();
+				session.close();
+			}
+			
+		}
 		
-		
-		Query query = session.createQuery("from MacApplicants Where Client_Interview_Complete = 'Yes'");
-		List<MacApplicants> Applicant = query.list();
-		
-		session.clear(); // ADDED 170302
-		session.flush();
-		session.close();
 		return Applicant;
 	}
 	
 	public List<MacApplicants> GetApplicantsReferenceCheck()
 	{
 		Session session = this.getSession();
-		HibernateUtil.beginTransaction();
+		List<MacApplicants> Applicant = new ArrayList<MacApplicants>();
 		
+		try 
+		{
+			HibernateUtil.beginTransaction();
+			//Query query = session.createQuery("from MacApplicants as x where exists(from AssignedJobApplicantList as y WHERE x.idNumber = y.idMacApplicants )");
+			Query<MacApplicants> query = session.createQuery("from MacApplicants where Job_Name <> 'None' AND Job_Name <> 'NA' ");
+			Applicant = query.list();
+			
+			
+		}
+		catch(Exception ex)
+		{
+			System.out.println("Error In Function: GetApplicantsReferenceCheck - MacApplicantDAO");
+			System.out.println(ex.toString());
+		}
+		finally
+		{
+			if(session != null && session.isConnected())
+			{
+				session.clear();
+				session.flush();
+				session.close();
+			}
+		}
 		
-		
-		//Query query = session.createQuery("from MacApplicants as x where exists(from AssignedJobApplicantList as y WHERE x.idNumber = y.idMacApplicants )");
-		Query query = session.createQuery("from MacApplicants where Job_Name <> 'None' AND Job_Name <> 'NA' ");
-		
-		List<MacApplicants> Applicant = query.list();
-		
-		session.clear(); // ADDED 170302
-		session.flush();
-		session.close();
+
 		return Applicant;
 	}
 	
@@ -532,14 +808,31 @@ public class MacApplicantDAO extends HarlequinDAO {
 	public List<MacApplicants> GetApplicantsByApplicantId(String IdNumber)
 	{
 		Session session = this.getSession();
-		HibernateUtil.beginTransaction();
+		List<MacApplicants> Applicant = new ArrayList<MacApplicants>();
 		
-		Query query = session.createQuery("from MacApplicants Where Id_Number = '"+IdNumber+"'");
-		List<MacApplicants> Applicant = query.list();
+		try
+		{
+			HibernateUtil.beginTransaction();
+			
+			Query<MacApplicants> query = session.createQuery("from MacApplicants Where Id_Number = '"+IdNumber+"'");
+		    Applicant = query.list();
+		}
+		catch(Exception ex)
+		{
+			System.out.println("Error In Function: GetApplicantsByApplicantId - MacApplicantDAO");
+			System.out.println(ex.toString());
+		}
+		finally
+		{
+			if(session != null & session.isConnected())
+			{
+				session.clear();
+				session.flush();
+				session.close();
+				
+			}
+		}
 		
-		session.clear(); // ADDED 170302
-		session.flush();
-		session.close();
 		return Applicant;
 	}
 	
@@ -547,14 +840,31 @@ public class MacApplicantDAO extends HarlequinDAO {
 	public List<MacApplicants> GetApplicantsByApplicantIdCell(String IdNumber,String Cell_Number)
 	{
 		Session session = this.getSession();
-		HibernateUtil.beginTransaction();
+		List<MacApplicants> Applicant = new ArrayList<MacApplicants>();
 		
-		Query query = session.createQuery("from MacApplicants Where Id_Number = '"+IdNumber+"' OR Cell_Number = '"+Cell_Number.trim()+"'");
-		List<MacApplicants> Applicant = query.list();
-		
-		session.clear(); // ADDED 170302
-		session.flush();
-		session.close();
+		try
+		{
+			HibernateUtil.beginTransaction();
+			
+			Query<MacApplicants> query = session.createQuery("from MacApplicants Where Id_Number = '"+IdNumber+"' OR Cell_Number = '"+Cell_Number.trim()+"'");
+			Applicant = query.list();
+			
+			
+		}
+		catch(Exception ex)
+		{
+			
+		}
+		finally
+		{
+			if(session != null && session.isConnected())
+			{
+				session.clear();
+				session.flush();
+				session.close();
+			}
+		}
+
 		return Applicant;
 	}
 	
@@ -562,16 +872,31 @@ public class MacApplicantDAO extends HarlequinDAO {
 	public List<MacApplicants> GetApplicantByidMac_Applicants(String idMac_Applicants)
 	{
 		Session session = this.getSession();
-		HibernateUtil.beginTransaction();
+
+		List<MacApplicants> Applicant = new ArrayList<MacApplicants>();
 		
+		try 
+		{
+			HibernateUtil.beginTransaction();
+			Query<MacApplicants> query = session.createQuery("from SystemUser Where idMac_Applicants = '"+idMac_Applicants+"'");
+			Applicant = query.list();
+			
+		}
+		catch(Exception ex)
+		{
+			System.out.println("Error In Function: GetApplicantsByApplicantId - MacApplicantDAO");
+			System.out.println(ex.toString());
+		}
+		finally
+		{
+			if(session != null && session.isConnected())
+			{
+				session.clear(); // ADDED 170302
+				session.flush();
+				session.close();
+			}
+		}
 		
-		
-		Query query = session.createQuery("from SystemUser Where idMac_Applicants = '"+idMac_Applicants+"'");
-		List<MacApplicants> Applicant = query.list();
-		
-		session.clear(); // ADDED 170302
-		session.flush();
-		session.close();
 		return Applicant;
 	}
 	
@@ -582,76 +907,88 @@ public class MacApplicantDAO extends HarlequinDAO {
 		DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 		Date date = new Date();
 		
+		//Session session = HibernateUtil.getSessionFactory().openSession();
+		//session.beginTransaction();
 		
 		
-		
-		Session session = HibernateUtil.getSessionFactory().openSession();
-		
-		session.beginTransaction();
-		
-		
-		
+		Session session = this.getSession();
 		MacApplicants Applicant = new MacApplicants();
 		
-		Applicant.setName(name);
-		Applicant.setSurname(surname);
-		Applicant.setRsaCitizen(rsaCitizen);
-		Applicant.setIdNumber(Id_Number);
-		Applicant.setPassportNumber(Passport_Number);
-		Applicant.setExpiryDateOfPassport(expiryDateOfPassport);
-		Applicant.setWorkPermitValidity(workPermitValidity);
-		Applicant.setCellNumber(cellNumber);
-		Applicant.setTelephoneNumber(telephoneNumber);
-		Applicant.setJobType(jobType);
-		Applicant.setDateFirstIssueLicense(dateFirstIssueLicense);
-		Applicant.setLicenseCode(licenseCode);
-		Applicant.setExpiryDateOfLicense(expiryDateOfLicense);
-		Applicant.setPdpExpiryDate(pdpExpiryDate);
-		Applicant.setGender(gender);
-		Applicant.setPhysicalAddress1(physicalAddress1);
-		Applicant.setPhysicalAddress2(physicalAddress2);
-		Applicant.setPhysicalAddress3(physicalAddress3);
-		Applicant.setPhysicalAddress4(physicalAddress4);
-		Applicant.setCity(City);
-		Applicant.setCountry(Country);
-		Applicant.setTaxNo(Tax_No);
-		Applicant.setMaritalStatus(maritalStatus);
-		Applicant.setDependants(dependants);
-		Applicant.setHomeLanguage(homeLanguage);
-		Applicant.setWorkHistory1(workHistory1);
-		Applicant.setWorkHistory2(workHistory2);
-		Applicant.setWorkHistory3(workHistory3);
-		Applicant.setWorkHistory4(workHistory4);
-		Applicant.setEmail(email);
-		Applicant.setAge(Age);
-		Applicant.setDateOfBirth(DateOfBirth);
-		Applicant.setLastSmsDate(lastSmsDate);
-		Applicant.setJobName(Job_Name);
-		Applicant.setStageInTheProcess(Stage_In_Process);
-		Applicant.setApplicantStatus(Applicant_Status);
-		Applicant.setApplicantType(Applicant_Type);
-		Applicant.setSmsGroup(Sms_Group);
-		Applicant.setNationality(Nationality);
-		
-		Applicant.setmacLabInterviewComplete("No");
-		Applicant.setmacLabourInterviewComments("N/A");
-		Applicant.setSmsGroupCount(0);
-		Applicant.setPracticalDriversTestComments("N/A");
-		Applicant.setPracticalDriversTestComplete("No");
-		Applicant.setClientInterviewComments("N/A");
-		Applicant.setClientInterviewComplete("No");
-		Applicant.setReferenceChecksComments("N/A");
-		Applicant.setReferenceChecksComplete("No");
-		Applicant.setSmsAccountActive("Yes");
-		
-		Applicant.setLastUsedDate(dateFormat.format(date));
-		
-		session.save(Applicant);
+		try
+		{
+			HibernateUtil.beginTransaction();
+
+			Applicant.setName(name);
+			Applicant.setSurname(surname);
+			Applicant.setRsaCitizen(rsaCitizen);
+			Applicant.setIdNumber(Id_Number);
+			Applicant.setPassportNumber(Passport_Number);
+			Applicant.setExpiryDateOfPassport(expiryDateOfPassport);
+			Applicant.setWorkPermitValidity(workPermitValidity);
+			Applicant.setCellNumber(cellNumber);
+			Applicant.setTelephoneNumber(telephoneNumber);
+			Applicant.setJobType(jobType);
+			Applicant.setDateFirstIssueLicense(dateFirstIssueLicense);
+			Applicant.setLicenseCode(licenseCode);
+			Applicant.setExpiryDateOfLicense(expiryDateOfLicense);
+			Applicant.setPdpExpiryDate(pdpExpiryDate);
+			Applicant.setGender(gender);
+			Applicant.setPhysicalAddress1(physicalAddress1);
+			Applicant.setPhysicalAddress2(physicalAddress2);
+			Applicant.setPhysicalAddress3(physicalAddress3);
+			Applicant.setPhysicalAddress4(physicalAddress4);
+			Applicant.setCity(City);
+			Applicant.setCountry(Country);
+			Applicant.setTaxNo(Tax_No);
+			Applicant.setMaritalStatus(maritalStatus);
+			Applicant.setDependants(dependants);
+			Applicant.setHomeLanguage(homeLanguage);
+			Applicant.setWorkHistory1(workHistory1);
+			Applicant.setWorkHistory2(workHistory2);
+			Applicant.setWorkHistory3(workHistory3);
+			Applicant.setWorkHistory4(workHistory4);
+			Applicant.setEmail(email);
+			Applicant.setAge(Age);
+			Applicant.setDateOfBirth(DateOfBirth);
+			Applicant.setLastSmsDate(lastSmsDate);
+			Applicant.setJobName(Job_Name);
+			Applicant.setStageInTheProcess(Stage_In_Process);
+			Applicant.setApplicantStatus(Applicant_Status);
+			Applicant.setApplicantType(Applicant_Type);
+			Applicant.setSmsGroup(Sms_Group);
+			Applicant.setNationality(Nationality);
+			
+			Applicant.setmacLabInterviewComplete("No");
+			Applicant.setmacLabourInterviewComments("N/A");
+			Applicant.setSmsGroupCount(0);
+			Applicant.setPracticalDriversTestComments("N/A");
+			Applicant.setPracticalDriversTestComplete("No");
+			Applicant.setClientInterviewComments("N/A");
+			Applicant.setClientInterviewComplete("No");
+			Applicant.setReferenceChecksComments("N/A");
+			Applicant.setReferenceChecksComplete("No");
+			Applicant.setSmsAccountActive("Yes");
+			
+			Applicant.setLastUsedDate(dateFormat.format(date));
+			session.save(Applicant);
+			
+			session.getTransaction().commit();
+		}
+		catch(Exception ex)
+		{
+			System.out.println("Error In Function: AddAppicantInformation - MacApplicantDAO");
+			System.out.println(ex.toString());
+		}
+		finally
+		{
+			if(session != null && session.isConnected())
+			{
 				
-		session.getTransaction().commit();
-		
-		session.close();
-		
+				session.close();
+			}
+			
+		}
+
 	}
 	
 	
@@ -660,124 +997,146 @@ public class MacApplicantDAO extends HarlequinDAO {
 		
 		DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 		Date date = new Date();
+
+		//Session session = HibernateUtil.getSessionFactory().openSession();
+		//session.beginTransaction();
 		
-		
-		Session session = HibernateUtil.getSessionFactory().openSession();
-		
-		session.beginTransaction();
-		
-		
-		
+		Session session = this.getSession();
 		MacApplicants Applicant = new MacApplicants();
-		
-		Applicant.setName(name);
-		Applicant.setSurname(surname);
-		Applicant.setRsaCitizen(rsaCitizen);
-		Applicant.setIdNumber(Id_Number);
-		Applicant.setPassportNumber(Passport_Number);
-		Applicant.setExpiryDateOfPassport(expiryDateOfPassport);
-		Applicant.setWorkPermitValidity(workPermitValidity);
-		Applicant.setCellNumber(cellNumber);
-		Applicant.setTelephoneNumber(telephoneNumber);
-		Applicant.setJobType(jobType);
-		Applicant.setDateFirstIssueLicense(dateFirstIssueLicense);
-		Applicant.setLicenseCode(licenseCode);
-		Applicant.setExpiryDateOfLicense(expiryDateOfLicense);
-		Applicant.setPdpExpiryDate(pdpExpiryDate);
-		Applicant.setGender(gender);
-		Applicant.setPhysicalAddress1(physicalAddress1);
-		Applicant.setPhysicalAddress2(physicalAddress2);
-		Applicant.setPhysicalAddress3(physicalAddress3);
-		Applicant.setPhysicalAddress4(physicalAddress4);
-		Applicant.setCity(City);
-		Applicant.setCountry(Country);
-		Applicant.setTaxNo(Tax_No);
-		Applicant.setMaritalStatus(maritalStatus);
-		Applicant.setDependants(dependants);
-		Applicant.setHomeLanguage(homeLanguage);
-		Applicant.setWorkHistory1(workHistory1);
-		Applicant.setWorkHistory2(workHistory2);
-		Applicant.setWorkHistory3(workHistory3);
-		Applicant.setWorkHistory4(workHistory4);
-		Applicant.setEmail(email);
-		Applicant.setAge(Age);
-		Applicant.setDateOfBirth(DateOfBirth);
-		Applicant.setLastSmsDate(lastSmsDate);
-		Applicant.setJobName(Job_Name);
-		Applicant.setStageInTheProcess(Stage_In_Process);
-		Applicant.setApplicantStatus(Applicant_Status);
-		Applicant.setApplicantType(Applicant_Type);
-		
-		Applicant.setmacLabInterviewComplete("No");
-		Applicant.setmacLabourInterviewComments("N/A");
-		Applicant.setSmsGroupCount(0);
-		Applicant.setPracticalDriversTestComments("N/A");
-		Applicant.setPracticalDriversTestComplete("No");
-		Applicant.setClientInterviewComments("N/A");
-		Applicant.setClientInterviewComplete("No");
-		Applicant.setReferenceChecksComments("N/A");
-		Applicant.setReferenceChecksComplete("No");
-		Applicant.setSmsGroup("None");
-		Applicant.setSmsGroupCount(3);
-		
-		
-		if(rsaCitizen == "Yes")
+
+		try
 		{
-			Applicant.setNationality("SA");
+			HibernateUtil.beginTransaction();
+			Applicant.setName(name);
+			Applicant.setSurname(surname);
+			Applicant.setRsaCitizen(rsaCitizen);
+			Applicant.setIdNumber(Id_Number);
+			Applicant.setPassportNumber(Passport_Number);
+			Applicant.setExpiryDateOfPassport(expiryDateOfPassport);
+			Applicant.setWorkPermitValidity(workPermitValidity);
+			Applicant.setCellNumber(cellNumber);
+			Applicant.setTelephoneNumber(telephoneNumber);
+			Applicant.setJobType(jobType);
+			Applicant.setDateFirstIssueLicense(dateFirstIssueLicense);
+			Applicant.setLicenseCode(licenseCode);
+			Applicant.setExpiryDateOfLicense(expiryDateOfLicense);
+			Applicant.setPdpExpiryDate(pdpExpiryDate);
+			Applicant.setGender(gender);
+			Applicant.setPhysicalAddress1(physicalAddress1);
+			Applicant.setPhysicalAddress2(physicalAddress2);
+			Applicant.setPhysicalAddress3(physicalAddress3);
+			Applicant.setPhysicalAddress4(physicalAddress4);
+			Applicant.setCity(City);
+			Applicant.setCountry(Country);
+			Applicant.setTaxNo(Tax_No);
+			Applicant.setMaritalStatus(maritalStatus);
+			Applicant.setDependants(dependants);
+			Applicant.setHomeLanguage(homeLanguage);
+			Applicant.setWorkHistory1(workHistory1);
+			Applicant.setWorkHistory2(workHistory2);
+			Applicant.setWorkHistory3(workHistory3);
+			Applicant.setWorkHistory4(workHistory4);
+			Applicant.setEmail(email);
+			Applicant.setAge(Age);
+			Applicant.setDateOfBirth(DateOfBirth);
+			Applicant.setLastSmsDate(lastSmsDate);
+			Applicant.setJobName(Job_Name);
+			Applicant.setStageInTheProcess(Stage_In_Process);
+			Applicant.setApplicantStatus(Applicant_Status);
+			Applicant.setApplicantType(Applicant_Type);
+			
+			Applicant.setmacLabInterviewComplete("No");
+			Applicant.setmacLabourInterviewComments("N/A");
+			Applicant.setSmsGroupCount(0);
+			Applicant.setPracticalDriversTestComments("N/A");
+			Applicant.setPracticalDriversTestComplete("No");
+			Applicant.setClientInterviewComments("N/A");
+			Applicant.setClientInterviewComplete("No");
+			Applicant.setReferenceChecksComments("N/A");
+			Applicant.setReferenceChecksComplete("No");
+			Applicant.setSmsGroup("None");
+			Applicant.setSmsGroupCount(3);
+			
+			
+			if(rsaCitizen == "Yes")
+			{
+				Applicant.setNationality("SA");
+				
+			}
+			else
+			{
+				Applicant.setNationality("N/A");
+			}
+
+			Applicant.setSmsAccountActive("Yes");
+			Applicant.setLastUsedDate(dateFormat.format(date));
+			
+			session.save(Applicant);
+			
+			session.getTransaction().commit();
 			
 		}
-		else
+		catch(Exception ex)
 		{
-			Applicant.setNationality("N/A");
+			System.out.println("Error In Function: AddPermanentInformation - MacApplicantDAO");
+			System.out.println(ex.toString());
 		}
-		
-		
-		
-		
-		Applicant.setSmsAccountActive("Yes");
-		Applicant.setLastUsedDate(dateFormat.format(date));
-		
-		session.save(Applicant);
+		finally
+		{
+			if(session != null && session.isConnected())
+			{
 				
-		session.getTransaction().commit();
-		
-		session.close();
-		
+				session.close();
+			}
+		}
+
 	}
 	
 	
 	public void AddAppicantInformation(String name, String surname,String Id_Number,String cellNumber, String jobType,String email,int age)
 	{
-		
-		
 		DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 		Date date = new Date();
 		
-		
-		
-		Session session = HibernateUtil.getSessionFactory().openSession();
-		
-		session.beginTransaction();
-		
+		//Session session = HibernateUtil.getSessionFactory().openSession();
+		//session.beginTransaction();
+			
+		Session session = this.getSession();
 		cellNumber= cellNumber.replaceAll("0", "+27");
-		
 		MacApplicants Applicant = new MacApplicants();
 		
-		Applicant.setName(name);
-		Applicant.setSurname(surname);
-		Applicant.setIdNumber(Id_Number);
-		Applicant.setCellNumber(cellNumber);
-		Applicant.setJobType(jobType);
-		Applicant.setEmail(email);
-		Applicant.setAge(age);
 		
-		Applicant.setLastUsedDate(dateFormat.format(date));
-		
-		session.save(Applicant);
+		try
+		{
+			HibernateUtil.beginTransaction();
+			Applicant.setName(name);
+			Applicant.setSurname(surname);
+			Applicant.setIdNumber(Id_Number);
+			Applicant.setCellNumber(cellNumber);
+			Applicant.setJobType(jobType);
+			Applicant.setEmail(email);
+			Applicant.setAge(age);
+			
+			Applicant.setLastUsedDate(dateFormat.format(date));
+			
+			session.save(Applicant);
+					
+			session.getTransaction().commit();
+		}
+		catch(Exception ex)
+		{
+			System.out.println("Error In Function: AddAppicantInformation - MacApplicantDAO");
+			System.out.println(ex.toString());
+		}
+		finally
+		{
+			if(session != null && session.isConnected())
+			{
+				session.close();
 				
-		session.getTransaction().commit();
-		
-		session.close();
+			}
+		}
+	
 		
 	}
 	
@@ -785,15 +1144,28 @@ public class MacApplicantDAO extends HarlequinDAO {
 	{
 		Session session = this.getSession();
 		HibernateUtil.beginTransaction();
+		List<MacApplicants> Applicant = new ArrayList<MacApplicants>();
+			
+		try
+		{
+			Query<MacApplicants> query = session.createQuery("from MacApplicants");
+			Applicant = query.list();
+		}
+		catch(Exception ex)
+		{
+			System.out.println("Error In Function: ReadAllApplicants - MacApplicantDAO");
+			System.out.println(ex.toString());
+		}
+		finally
+		{
+			if(session != null && session.isConnected())
+			{
+				session.clear(); // ADDED 170302
+				session.flush();
+				session.close();
+			}
+		}
 		
-		
-		
-		Query query = session.createQuery("from MacApplicants");
-		List<MacApplicants> Applicant = query.list();
-		
-		session.clear(); // ADDED 170302
-		session.flush();
-		session.close();
 		
 		return Applicant;
 		
@@ -805,16 +1177,31 @@ public class MacApplicantDAO extends HarlequinDAO {
 	public List<MacApplicants> ReadAllApplicantsSmsConsole()
 	{
 		Session session = this.getSession();
-		HibernateUtil.beginTransaction();
+		List<MacApplicants> Applicant = new ArrayList<MacApplicants>();
 		
-		
-		
-		Query query = session.createQuery("from MacApplicants WHERE Sms_Account_Active = 'Yes' ");
-		List<MacApplicants> Applicant = query.list();
-		
-		session.clear(); // ADDED 170302
-		session.flush();
-		session.close();
+		try
+		{
+
+			HibernateUtil.beginTransaction();
+			Query<MacApplicants> query = session.createQuery("from MacApplicants WHERE Sms_Account_Active = 'Yes' ");
+			Applicant = query.list();
+			
+		}
+		catch(Exception ex)
+		{
+			System.out.println("Error In Function: ReadAllApplicantsSmsConsole - MacApplicantDAO");
+			System.out.println(ex.toString());
+		}
+		finally
+		{
+			if(session != null && session.isConnected())
+			{
+				session.clear(); // ADDED 170302
+				session.flush();
+				session.close();
+			}
+		}
+	
 		
 		return Applicant;
 		

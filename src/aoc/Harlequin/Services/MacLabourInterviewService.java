@@ -54,8 +54,7 @@ public class MacLabourInterviewService {
 		jsonObject.put("Formal_Interview_Complete", Interview.getFormalInterviewComplete());
 		
 		jsonObject.put("Last_Used_Date", Interview.getLastUsedDate());
-		
-		System.out.println(jsonObject.toString());
+
 	    
 		return jsonObject.toString();
 	}
@@ -104,8 +103,7 @@ public class MacLabourInterviewService {
 			JsonArray.put(jsonObject);
 		}
 
-		
-		System.out.println(JsonArray.toString());
+
 	    
 		return JsonArray.toString();
 	}
@@ -155,14 +153,6 @@ public class MacLabourInterviewService {
 			
 			JsonArray.put(jsonObject);
 		}
-		
-		
-		
-		
-		
-		
-		System.out.println(JsonArray.toString());
-		
 		
 		
 		return JsonArray.toString();
@@ -215,17 +205,6 @@ public class MacLabourInterviewService {
 				
 				JsonArray.put(jsonObject);
 			}
-			
-			
-		
-		
-		
-		
-		
-		
-		System.out.println(JsonArray.toString());
-		
-		
 		
 		return JsonArray.toString();
 	}
@@ -237,8 +216,6 @@ public class MacLabourInterviewService {
 	public String GET3(String Surname,@PathParam("Id_Number") String Id_Number, @PathParam("idMac_Applicants") String idMac_Applicants , @PathParam("Job_Name") String Job_Name  ) throws Exception
 	{
 		
-		System.out.println("Hello world"+Id_Number+","+idMac_Applicants+","+Job_Name);
-		
 		MacInterviewDAO Object  = new MacInterviewDAO();
 		
 		List<MacLabourInterView> Interview = Object.GetInterviewByInfo(Id_Number, idMac_Applicants,Job_Name);
@@ -248,7 +225,7 @@ public class MacLabourInterviewService {
 			
 			if(Interview.size()>0)
 			{
-				System.out.println("Hellowaorld");
+
 				jsonObject.put("idMacLabour_InterView", Interview.get(0).getIdMacLabourInterView());
 				jsonObject.put("idMac_Applicants", Interview.get(0).getIdMacApplicants());
 				jsonObject.put("Name", Interview.get(0).getName());
@@ -272,7 +249,6 @@ public class MacLabourInterviewService {
 				jsonObject.put("Last_Used_Date", Interview.get(0).getLastUsedDate());
 			}
 					
-		System.out.println(jsonObject.toString());
 		
 		return jsonObject.toString();
 	}
@@ -289,7 +265,7 @@ public class MacLabourInterviewService {
 		
 		JobDAO Job = new JobDAO();
 			
-		System.out.println(jsonTextObject);
+
 		JSONObject r = new JSONObject(jsonTextObject);	
 	
 		List<SystemJob> Job_For_Interview = Job.GetClientNameByJobName(r.getString("Job_Name"));
