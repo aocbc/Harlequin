@@ -41,22 +41,21 @@ public class SMSService
 	@Produces("text/plain")
 	public String GETAllHistory( ) throws Exception
 	{
-		SmsHistoryDAO Object  = new SmsHistoryDAO();
-		List<ApplicantSmsHistory> SmsHistory = Object.ReadAllSmsHistory();
-		
+		SmsHistoryDAO smsHistoryDAO  = new SmsHistoryDAO();
+		List<ApplicantSmsHistory> smsHistory = smsHistoryDAO.ReadAllSmsHistory();
 		JSONArray JsonArray = new JSONArray();
 		
-		for(int i = 0; i < SmsHistory.size();i++)
+		for(int i = 0; i < smsHistory.size();i++)
 		{
 			JSONObject jsonObject = new JSONObject();
-			jsonObject.put("idApplicant_Sms_History", SmsHistory.get(i).getIdApplicantSmsHistory());
-			jsonObject.put("idMac_Applicants", SmsHistory.get(i).getIdMacApplicants());
-			jsonObject.put("Cell_Number", SmsHistory.get(i).getCellNumber());
-			jsonObject.put("Message", SmsHistory.get(i).getMessage());
-			jsonObject.put("Job_Name",SmsHistory.get(i).getJobName());		
-			jsonObject.put("Client_Name", SmsHistory.get(i).getClientName());
-			jsonObject.put("Sms_Group", SmsHistory.get(i).getSmsGroup());
-			jsonObject.put("Sms_Date", SmsHistory.get(i).getSmsDate());
+			jsonObject.put("idApplicant_Sms_History", smsHistory.get(i).getIdApplicantSmsHistory());
+			jsonObject.put("idMac_Applicants", smsHistory.get(i).getIdMacApplicants());
+			jsonObject.put("Cell_Number", smsHistory.get(i).getCellNumber());
+			jsonObject.put("Message", smsHistory.get(i).getMessage());
+			jsonObject.put("Job_Name",smsHistory.get(i).getJobName());		
+			jsonObject.put("Client_Name", smsHistory.get(i).getClientName());
+			jsonObject.put("Sms_Group", smsHistory.get(i).getSmsGroup());
+			jsonObject.put("Sms_Date", smsHistory.get(i).getSmsDate());
 			
 			JsonArray.put(jsonObject);
 		}
@@ -70,12 +69,12 @@ public class SMSService
 	public String GETdelete( @PathParam("GroupCode") String GroupCode) throws Exception
 	{
 		
-		SmsHistoryDAO Object  = new SmsHistoryDAO();
-		List SmsGroups = Object.ReadGroupHistory(GroupCode);
+		SmsHistoryDAO smsHistoryDAO  = new SmsHistoryDAO();
+		List<ApplicantSmsHistory> SmsGroups = smsHistoryDAO.ReadGroupHistory(GroupCode);
 		
 		for(int i = 0; i < SmsGroups.size();i++)
 		{
-			Object.delete(SmsGroups.get(i));
+			smsHistoryDAO.delete(SmsGroups.get(i));
 		}
 	    
 		return "Deleted";
@@ -87,21 +86,18 @@ public class SMSService
 	public String GETAllAssessments( ) throws Exception
 	{
 		
-		SmsHistoryDAO Object  = new SmsHistoryDAO();
-		System.out.println("GROUP::"+ Object.ReadSMSGroups());
-		
-		List SmsGroups = Object.ReadSMSGroups();
-		
-		JSONArray JsonArray = new JSONArray();
+		SmsHistoryDAO smsHistoryDao  = new SmsHistoryDAO();
+		List<ApplicantSmsHistory> SmsGroups = smsHistoryDao.ReadSMSGroups();
+		JSONArray jsonArray = new JSONArray();
 		
 		for(int i = 0; i < SmsGroups.size();i++)
 		{
 			JSONObject jsonObject = new JSONObject();
 			jsonObject.put("Sms_Group", SmsGroups.get(i));
-			JsonArray.put(jsonObject);
+			jsonArray.put(jsonObject);
 		}
 		
-		return JsonArray.toString();
+		return jsonArray.toString();
 	}
 	
 	

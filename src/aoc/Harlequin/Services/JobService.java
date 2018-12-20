@@ -35,39 +35,36 @@ public class JobService {
 	
 	
 	@SuppressWarnings("deprecation")
-	@Path("/GetJobInfoByName/{Job_Name}")
+	@Path("/GetJobInfoByName/{job_Name}")
 	@GET
 	@Produces("text/plain")
-	public String GETJobByName( @PathParam("Job_Name") String Job_Name) throws Exception
+	public String GETJobByName( @PathParam("job_Name") String job_Name) throws Exception
 	{
 		
-		JobDAO Object  = new JobDAO();
-		List<SystemJob> Jobs  = Object.GetJobInfoByJobName(Job_Name);
+		JobDAO jobDao  = new JobDAO();
+		List<SystemJob> jobs  = jobDao.GetJobInfoByJobName(job_Name);
 		
-        JSONArray JsonArray = new JSONArray();
+        JSONArray jsonArray = new JSONArray();
 		
-		for(int i = 0; i < Jobs.size();i++)
+		for(int i = 0; i < jobs.size();i++)
 		{
 			JSONObject jsonObject = new JSONObject();
-			jsonObject.put("Job_Id", Jobs.get(i).getJobId());
-			jsonObject.put("Job_Name", Jobs.get(i).getJobName());
-			jsonObject.put("Job_Code", Jobs.get(i).getJobCode());
-			jsonObject.put("Job_Client_Name", Jobs.get(i).getJobClientName());
-			jsonObject.put("Job_Details", Jobs.get(i).getJobDetails());		
-			jsonObject.put("Job_Comments", StringEscapeUtils.escapeJava(Jobs.get(i).getJobComments().toString()));
-			jsonObject.put("Job_Type", Jobs.get(i).getJobType());
-			jsonObject.put("Last_Used_Date", Jobs.get(i).getLastUsedDate());
+			jsonObject.put("Job_Id", jobs.get(i).getJobId());
+			jsonObject.put("Job_Name", jobs.get(i).getJobName());
+			jsonObject.put("Job_Code", jobs.get(i).getJobCode());
+			jsonObject.put("Job_Client_Name", jobs.get(i).getJobClientName());
+			jsonObject.put("Job_Details", jobs.get(i).getJobDetails());		
+			jsonObject.put("Job_Comments", StringEscapeUtils.escapeJava(jobs.get(i).getJobComments().toString()));
+			jsonObject.put("Job_Type", jobs.get(i).getJobType());
+			jsonObject.put("Last_Used_Date", jobs.get(i).getLastUsedDate());
 			
 			
-			JsonArray.put(jsonObject);
+			jsonArray.put(jsonObject);
 		
 		}
 		
-		
-		
-		
 	    
-		return JsonArray.toString();
+		return jsonArray.toString();
 	}
 	
 	
@@ -75,25 +72,25 @@ public class JobService {
 	
 	
 	@SuppressWarnings("deprecation")
-	@Path("/GetJobInfo/{Id}")
+	@Path("/GetJobInfo/{id}")
 	@GET
 	@Produces("text/plain")
-	public String GET( @PathParam("Id") int Id) throws Exception
+	public String GET( @PathParam("id") int id) throws Exception
 	{
 		
-		JobDAO Object  = new JobDAO();
-		SystemJob Job  = Object.getJobInfoById(Id);
+		JobDAO jobDao  = new JobDAO();
+		SystemJob job  = jobDao.getJobInfoById(id);
 		
 		JSONObject jsonObject = new JSONObject();
 		
-		jsonObject.put("Job_Id", Job.getJobId());
-		jsonObject.put("Job_Name", Job.getJobName());
-		jsonObject.put("Job_Code", Job.getJobCode());
-		jsonObject.put("Job_Client_Name", Job.getJobClientName());
-		jsonObject.put("Job_Details", Job.getJobDetails());		
-		jsonObject.put("Job_Comments", StringEscapeUtils.escapeJava(Job.getJobComments().toString()));
-		jsonObject.put("Job_Type", Job.getJobType());
-		jsonObject.put("Last_Used_Date", Job.getLastUsedDate());
+		jsonObject.put("Job_Id", job.getJobId());
+		jsonObject.put("Job_Name", job.getJobName());
+		jsonObject.put("Job_Code", job.getJobCode());
+		jsonObject.put("Job_Client_Name", job.getJobClientName());
+		jsonObject.put("Job_Details", job.getJobDetails());		
+		jsonObject.put("Job_Comments", StringEscapeUtils.escapeJava(job.getJobComments().toString()));
+		jsonObject.put("Job_Type", job.getJobType());
+		jsonObject.put("Last_Used_Date", job.getLastUsedDate());
 		
 
 	    
@@ -102,15 +99,15 @@ public class JobService {
 	
 	
 	
-	@Path("/DeleteJob/{Id}")
+	@Path("/DeleteJob/{id}")
 	@GET
 	@Produces("text/plain")
-	public String Delete( @PathParam("Id") int Id) throws Exception
+	public String Delete( @PathParam("id") int id) throws Exception
 	{
 		
-		JobDAO Object  = new JobDAO();
+		JobDAO jobDAO  = new JobDAO();
 		
-		Object.delete(Object.getJobInfoById(Id));
+		jobDAO.delete(jobDAO.getJobInfoById(id));
 	    
 		return "Successful";
 	}
@@ -122,31 +119,29 @@ public class JobService {
 	public String GETClients( ) throws Exception
 	{
 		
-		JobDAO Object  = new JobDAO();
+		JobDAO jobDao  = new JobDAO();
+		List<SystemJob> jobs = jobDao.ReadAllJobs();
+		JSONArray jsonArray = new JSONArray();
 		
-		List<SystemJob> Jobs = Object.ReadAllJobs();
-		
-		JSONArray JsonArray = new JSONArray();
-		
-		for(int i = 0; i < Jobs.size();i++)
+		for(int i = 0; i < jobs.size();i++)
 		{
 			JSONObject jsonObject = new JSONObject();
-			jsonObject.put("Job_Id", Jobs.get(i).getJobId());
-			jsonObject.put("Job_Name", Jobs.get(i).getJobName());
-			jsonObject.put("Job_Code", Jobs.get(i).getJobCode());
-			jsonObject.put("Job_Client_Name", Jobs.get(i).getJobClientName());
-			jsonObject.put("Job_Details", Jobs.get(i).getJobDetails());		
-			jsonObject.put("Job_Comments", StringEscapeUtils.escapeJava(Jobs.get(i).getJobComments().toString()));
-			jsonObject.put("Job_Type", Jobs.get(i).getJobType());
-			jsonObject.put("Last_Used_Date", Jobs.get(i).getLastUsedDate());
+			jsonObject.put("Job_Id", jobs.get(i).getJobId());
+			jsonObject.put("Job_Name", jobs.get(i).getJobName());
+			jsonObject.put("Job_Code", jobs.get(i).getJobCode());
+			jsonObject.put("Job_Client_Name", jobs.get(i).getJobClientName());
+			jsonObject.put("Job_Details", jobs.get(i).getJobDetails());		
+			jsonObject.put("Job_Comments", StringEscapeUtils.escapeJava(jobs.get(i).getJobComments().toString()));
+			jsonObject.put("Job_Type", jobs.get(i).getJobType());
+			jsonObject.put("Last_Used_Date", jobs.get(i).getLastUsedDate());
 			
 			
-			JsonArray.put(jsonObject);
+			jsonArray.put(jsonObject);
 		}
 		
 
 	    
-		return JsonArray.toString();
+		return jsonArray.toString();
 	}
 	
 	
@@ -158,16 +153,10 @@ public class JobService {
 	public  String createAssignedJobInfo(String jsonTextObject) throws JSONException
 	{
 
-		JSONObject r = new JSONObject(jsonTextObject);	
-		
-		//System.out.println("WRITING TO DATABASE:"+ r.getString("Client_Name"));			
-		JobDAO Object  = new JobDAO();
-		
-		
-		
-		
-		
-		Object.AddJobInformation(r.getString("Job_Name"), r.getString("Job_Code"), r.getString("Job_Client_Name"), r.getString("Job_Details"), r.getString("Job_Comments"), r.getString("Job_Type"));
+		JSONObject jsonObject = new JSONObject(jsonTextObject);	
+		JobDAO jobDao  = new JobDAO();
+				
+		jobDao.AddJobInformation(jsonObject.getString("Job_Name"), jsonObject.getString("Job_Code"), jsonObject.getString("Job_Client_Name"), jsonObject.getString("Job_Details"), jsonObject.getString("Job_Comments"), jsonObject.getString("Job_Type"));
 		
 		return "Sucessful";	
 	}
@@ -181,30 +170,30 @@ public class JobService {
 	public String GETJob( ) throws Exception
 	{
 		
-		JobDAO Object  = new JobDAO();
+		JobDAO jobDao  = new JobDAO();
 		
-		List<SystemJob> Jobs = Object.ReadLastJob();
+		List<SystemJob> jobs = jobDao.ReadLastJob();
 		
-		JSONArray JsonArray = new JSONArray();
+		JSONArray jsonArray = new JSONArray();
 		
-		for(int i = 0; i < Jobs.size();i++)
+		for(int i = 0; i < jobs.size();i++)
 		{
 			JSONObject jsonObject = new JSONObject();
-			jsonObject.put("Job_Id", Jobs.get(i).getJobId());
-			jsonObject.put("Job_Name", Jobs.get(i).getJobName());
-			jsonObject.put("Job_Code", Jobs.get(i).getJobCode());
-			jsonObject.put("Job_Client_Name", Jobs.get(i).getJobClientName());
-			jsonObject.put("Job_Details", Jobs.get(i).getJobDetails());		
-			jsonObject.put("Job_Comments", StringEscapeUtils.escapeJava(Jobs.get(i).getJobComments().toString()));
-			jsonObject.put("Job_Type", Jobs.get(i).getJobType());
-			jsonObject.put("Last_Used_Date", Jobs.get(i).getJobType());
+			jsonObject.put("Job_Id", jobs.get(i).getJobId());
+			jsonObject.put("Job_Name", jobs.get(i).getJobName());
+			jsonObject.put("Job_Code", jobs.get(i).getJobCode());
+			jsonObject.put("Job_Client_Name", jobs.get(i).getJobClientName());
+			jsonObject.put("Job_Details", jobs.get(i).getJobDetails());		
+			jsonObject.put("Job_Comments", StringEscapeUtils.escapeJava(jobs.get(i).getJobComments().toString()));
+			jsonObject.put("Job_Type", jobs.get(i).getJobType());
+			jsonObject.put("Last_Used_Date", jobs.get(i).getJobType());
 			
 			
-			JsonArray.put(jsonObject);
+			jsonArray.put(jsonObject);
 		}
 		
 	    
-		return JsonArray.toString();
+		return jsonArray.toString();
 	}
 	
 	
@@ -215,11 +204,11 @@ public class JobService {
 	public  String create(String jsonTextObject) throws JSONException
 	{
 
-		JSONObject r = new JSONObject(jsonTextObject);	
+		JSONObject jsonObject = new JSONObject(jsonTextObject);	
 		
 		//System.out.println("WRITING TO DATABASE:"+ r.getString("Client_Name"));			
-		JobDAO Object  = new JobDAO();
-		Object.AddJobInformation(r.getString("Job_Name"), r.getString("Job_Code"), r.getString("Job_Client_Name"), r.getString("Job_Details"), r.getString("Job_Comments"), r.getString("Job_Type"));
+		JobDAO jobDao  = new JobDAO();
+		jobDao.AddJobInformation(jsonObject.getString("Job_Name"), jsonObject.getString("Job_Code"), jsonObject.getString("Job_Client_Name"), jsonObject.getString("Job_Details"), jsonObject.getString("Job_Comments"), jsonObject.getString("Job_Type"));
 		
 		return "Sucessful";	
 	}
@@ -236,29 +225,18 @@ public class JobService {
 		DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 		Date date = new Date();
 		
-		JobDAO t = new JobDAO();
-		JSONObject test = new JSONObject(jsonTextObject);
+		JobDAO jobDao = new JobDAO();
+		JSONObject jsonObject = new JSONObject(jsonTextObject);		
+		SystemJob job  = jobDao.getJobInfoById(jsonObject.getInt("Job_Id"));
 
-		
-		SystemJob Job  = t.getJobInfoById(test.getInt("Job_Id"));
-		
-		
-		
-		Job.setJobName(test.getString("Job_Name"));
-		
-		Job.setJobClientName(test.getString("Job_Client_Name"));
-		Job.setJobDetails(test.getString("Job_Details"));
-		Job.setJobComments(test.getString("Job_Comments"));
-		Job.setJobType(test.getString("Job_Type"));
-		Job.setLastUsedDate(dateFormat.format(date));
-		
-		
-		
-		
-		t.update(Job);
-		
-		
-		
+		job.setJobName(jsonObject.getString("Job_Name"));
+		job.setJobClientName(jsonObject.getString("Job_Client_Name"));
+		job.setJobDetails(jsonObject.getString("Job_Details"));
+		job.setJobComments(jsonObject.getString("Job_Comments"));
+		job.setJobType(jsonObject.getString("Job_Type"));
+		job.setLastUsedDate(dateFormat.format(date));
+				
+		jobDao.update(job);
 		
 		return "Successful";
 	}

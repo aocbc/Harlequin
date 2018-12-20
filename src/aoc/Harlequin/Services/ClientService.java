@@ -3,7 +3,6 @@ import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
-
 import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
@@ -11,19 +10,11 @@ import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
-
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
-
 import aoc.Harlequin.DAOs.ClientDAO;
-import aoc.Harlequin.DAOs.JobDAO;
-import aoc.Harlequin.DAOs.SystemUserDAO;
 import aoc.Harlequin.OBJs.SystemClient;
-import aoc.Harlequin.OBJs.SystemUser;
-
-
-
 
 @Path("Client")
 public class ClientService {
@@ -34,23 +25,22 @@ public class ClientService {
 	public String GET(@PathParam("idClient") int idClient ) throws Exception
 	{
 		
-		ClientDAO Object  = new ClientDAO();
-		SystemClient Client  = Object.getClientInfoById(idClient);
-		
+		ClientDAO clientDao  = new ClientDAO();
+		SystemClient client  = clientDao.getClientInfoById(idClient);
 		JSONObject jsonObject = new JSONObject();
 		
-		jsonObject.put("idClient", Client.getIdClient());
-		jsonObject.put("Client_Name", Client.getClientName());
-		jsonObject.put("Client_E_Mail", Client.getClientEMail());
-		jsonObject.put("Client_Contact_Name", Client.getClientContactName());
-		jsonObject.put("Client_Contact_Number", Client.getClientContactNumber());		
-		jsonObject.put("Client_Address_1", Client.getClientAddress1());
-		jsonObject.put("Client_Address_2", Client.getClientAddress2());
-		jsonObject.put("Client_Address_3", Client.getClientAddress3());
-		jsonObject.put("Client_Address_4", Client.getClientAddress4());
-		jsonObject.put("Client_Vat_Number", Client.getClientVatNumber());
-		jsonObject.put("Client_Comments", Client.getClientComments());
-		jsonObject.put("Last_Used_Date", Client.getLastUsedDate());
+		jsonObject.put("idClient", client.getIdClient());
+		jsonObject.put("Client_Name", client.getClientName());
+		jsonObject.put("Client_E_Mail", client.getClientEMail());
+		jsonObject.put("Client_Contact_Name", client.getClientContactName());
+		jsonObject.put("Client_Contact_Number", client.getClientContactNumber());		
+		jsonObject.put("Client_Address_1", client.getClientAddress1());
+		jsonObject.put("Client_Address_2", client.getClientAddress2());
+		jsonObject.put("Client_Address_3", client.getClientAddress3());
+		jsonObject.put("Client_Address_4", client.getClientAddress4());
+		jsonObject.put("Client_Vat_Number", client.getClientVatNumber());
+		jsonObject.put("Client_Comments", client.getClientComments());
+		jsonObject.put("Last_Used_Date", client.getLastUsedDate());
 
 		return jsonObject.toString();
 	}
@@ -65,42 +55,38 @@ public class ClientService {
 		DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 		Date date = new Date();
 		
-		
-		ClientDAO t = new ClientDAO();
-		JSONObject test = new JSONObject(jsonTextObject);
+		ClientDAO clientDao = new ClientDAO();
+		JSONObject jsonObject = new JSONObject(jsonTextObject);
 
-		SystemClient Client  = t.getClientInfoById(test.getInt("idClient"));
-				
-		
-		Client.setClientName(test.getString("Client_Name"));
-		Client.setClientEMail(test.getString("Client_E_Mail"));
-		Client.setClientContactNumber(test.getString("Client_Contact_Number"));
-		Client.setClientContactName(test.getString("Client_Contact_Name"));
-		Client.setClientAddress1(test.getString("Client_Address_1"));
-		Client.setClientAddress2(test.getString("Client_Address_2"));
-		Client.setClientAddress3(test.getString("Client_Address_3"));
-		Client.setClientAddress4(test.getString("Client_Address_4"));
-		Client.setClientVatNumber(test.getString("Client_Vat_Number"));
-		Client.setClientComments(test.getString("Client_Comments"));
+		SystemClient Client  = clientDao.getClientInfoById(jsonObject.getInt("idClient"));
+
+		Client.setClientName(jsonObject.getString("Client_Name"));
+		Client.setClientEMail(jsonObject.getString("Client_E_Mail"));
+		Client.setClientContactNumber(jsonObject.getString("Client_Contact_Number"));
+		Client.setClientContactName(jsonObject.getString("Client_Contact_Name"));
+		Client.setClientAddress1(jsonObject.getString("Client_Address_1"));
+		Client.setClientAddress2(jsonObject.getString("Client_Address_2"));
+		Client.setClientAddress3(jsonObject.getString("Client_Address_3"));
+		Client.setClientAddress4(jsonObject.getString("Client_Address_4"));
+		Client.setClientVatNumber(jsonObject.getString("Client_Vat_Number"));
+		Client.setClientComments(jsonObject.getString("Client_Comments"));
 		Client.setLastUsedDate(dateFormat.format(date));
 		
-		t.update(Client);
-		
-		
-		
+		clientDao.update(Client);
+			
 		return "Updated";
 	}
 	
 	
-	@Path("/DeleteClient/{Id}")
+	@Path("/DeleteClient/{id}")
 	@GET
 	@Produces("text/plain")
-	public String Delete( @PathParam("Id") int Id) throws Exception
+	public String Delete( @PathParam("id") int id) throws Exception
 	{
 		
-		ClientDAO Object  = new ClientDAO();
+		ClientDAO clientDao  = new ClientDAO();
 		
-		Object.delete(Object.getClientInfoById(Id));
+		clientDao.delete(clientDao.getClientInfoById(id));
 	    
 		return "Successful";
 	}
@@ -112,74 +98,60 @@ public class ClientService {
 	public String GETClients( ) throws Exception
 	{
 		
-		ClientDAO Object  = new ClientDAO();
+		ClientDAO clientDao  = new ClientDAO();
+		List<SystemClient> clients = clientDao.ReadAllClients();
+		JSONArray jsonArray = new JSONArray();
 		
-		List<SystemClient> Clients = Object.ReadAllClients();
-		
-		JSONArray JsonArray = new JSONArray();
-		
-		for(int i = 0; i < Clients.size();i++)
+		for(int i = 0; i < clients.size();i++)
 		{
 			JSONObject jsonObject = new JSONObject();
-			jsonObject.put("idClient", Clients.get(i).getIdClient());
-			jsonObject.put("Client_Name", Clients.get(i).getClientName());
-			jsonObject.put("Client_E_Mail", Clients.get(i).getClientEMail());
-			jsonObject.put("Client_Contact_Name", Clients.get(i).getClientContactName());
-			jsonObject.put("Client_Contact_Number", Clients.get(i).getClientContactNumber());		
-			jsonObject.put("Client_Address_1", Clients.get(i).getClientAddress1());
-			jsonObject.put("Client_Address_2", Clients.get(i).getClientAddress2());
-			jsonObject.put("Client_Address_3", Clients.get(i).getClientAddress3());
-			jsonObject.put("Client_Address_4", Clients.get(i).getClientAddress4());
-			jsonObject.put("Client_Vat_Number", Clients.get(i).getClientVatNumber());
-			jsonObject.put("Client_Comments", Clients.get(i).getClientComments());
-			jsonObject.put("Last_Used_Date", Clients.get(i).getLastUsedDate());
+			jsonObject.put("idClient", clients.get(i).getIdClient());
+			jsonObject.put("Client_Name", clients.get(i).getClientName());
+			jsonObject.put("Client_E_Mail", clients.get(i).getClientEMail());
+			jsonObject.put("Client_Contact_Name", clients.get(i).getClientContactName());
+			jsonObject.put("Client_Contact_Number", clients.get(i).getClientContactNumber());		
+			jsonObject.put("Client_Address_1", clients.get(i).getClientAddress1());
+			jsonObject.put("Client_Address_2", clients.get(i).getClientAddress2());
+			jsonObject.put("Client_Address_3", clients.get(i).getClientAddress3());
+			jsonObject.put("Client_Address_4", clients.get(i).getClientAddress4());
+			jsonObject.put("Client_Vat_Number", clients.get(i).getClientVatNumber());
+			jsonObject.put("Client_Comments", clients.get(i).getClientComments());
+			jsonObject.put("Last_Used_Date", clients.get(i).getLastUsedDate());
 			
-			JsonArray.put(jsonObject);
+			jsonArray.put(jsonObject);
 		}
 		
-		
-		
-		
-		
-		
-		System.out.println(JsonArray.toString());
-	    
-		return JsonArray.toString();
+   
+		return jsonArray.toString();
 	}
 	
 	
 	
 	
-	@Path("/GetClientInfo/{Client_Name}")
+	@Path("/GetClientInfo/{client_Name}")
 	@GET
 	@Produces("text/plain")
-	public String GET1(@PathParam("Client_Name") String Client_Name ) throws Exception
-	{
+	public String GET1(@PathParam("client_Name") String client_Name ) throws Exception
+	{	
+		ClientDAO clientDao  = new ClientDAO();
+		List<SystemClient> client = clientDao.GetClientInfoByName(client_Name);
+		JSONArray jsonArray = new JSONArray();
 		
-		
-		
-		ClientDAO Object  = new ClientDAO();
-		
-		List<SystemClient> Client = Object.GetClientInfoByName(Client_Name);
-		
-		JSONArray JsonArray = new JSONArray();
-		
-		for(int i = 0; i < Client.size();i++)
+		for(int i = 0; i < client.size();i++)
 		{
 			JSONObject jsonObject = new JSONObject();
+			jsonObject.put("Client_Name", client.get(i).getClientName());
+			jsonObject.put("Client_Contact_Name", client.get(i).getClientContactName());
+			jsonObject.put("Client_Contact_Number", client.get(i).getClientContactNumber());
+			jsonObject.put("Client_Address_1", client.get(i).getClientAddress1());
+			jsonObject.put("Client_Address_3", client.get(i).getClientAddress3());
+			jsonObject.put("Last_Used_Date", client.get(i).getLastUsedDate());
 			
-			jsonObject.put("Client_Name", Client.get(i).getClientName());
-			jsonObject.put("Client_Contact_Name", Client.get(i).getClientContactName());
-			jsonObject.put("Client_Contact_Number", Client.get(i).getClientContactNumber());
-			jsonObject.put("Client_Address_1", Client.get(i).getClientAddress1());
-			jsonObject.put("Client_Address_3", Client.get(i).getClientAddress3());
-			jsonObject.put("Last_Used_Date", Client.get(i).getLastUsedDate());
-			
-			JsonArray.put(jsonObject);
+			jsonArray.put(jsonObject);
 		}
 		
 
-		return JsonArray.toString();
+		return jsonArray.toString();
 	}
 	
 	
@@ -190,13 +162,10 @@ public class ClientService {
 	public  String create(String jsonTextObject) throws JSONException
 	{
 
-		JSONObject r = new JSONObject(jsonTextObject);	
+		JSONObject jsonObject = new JSONObject(jsonTextObject);	
 	
-		
-		System.out.println("WRITING TO DATABASE:"+ r.getString("Client_Name"));
-			
-		ClientDAO Object  = new ClientDAO();
-		Object.AddClientInformation(r.getString("Client_Name"), r.getString("Client_E_Mail"), r.getString("Client_Contact_Name"), r.getString("Client_Contact_Number"), r.getString("Client_Address_1"), r.getString("Client_Address_2"), r.getString("Client_Address_3"), r.getString("Client_Address_4"), r.getString("Client_Vat_Number"), r.getString("Client_Comments"));
+		ClientDAO clientDao  = new ClientDAO();
+		clientDao.AddClientInformation(jsonObject.getString("Client_Name"), jsonObject.getString("Client_E_Mail"), jsonObject.getString("Client_Contact_Name"), jsonObject.getString("Client_Contact_Number"), jsonObject.getString("Client_Address_1"), jsonObject.getString("Client_Address_2"), jsonObject.getString("Client_Address_3"), jsonObject.getString("Client_Address_4"), jsonObject.getString("Client_Vat_Number"), jsonObject.getString("Client_Comments"));
 		return "Sucessful";	
 		
 			

@@ -1,7 +1,6 @@
 package aoc.Harlequin.Services;
 
 import java.util.List;
-
 import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
@@ -9,14 +8,10 @@ import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
-
-import org.apache.commons.lang3.StringEscapeUtils;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
-
 import aoc.Harlequin.DAOs.BlockedNumbersDAO;
-
 import aoc.Harlequin.OBJs.BlockedNumberList;
 
 @Path("BlockedCellNumbers")
@@ -31,7 +26,6 @@ public class BlockedNumbersService
 	    BlockedNumbersDAO Object  = new BlockedNumbersDAO();
 		
 		List<BlockedNumberList> BlockedNumbers = Object.ReadAllBlockedNumbers();
-		
 		JSONArray JsonArray = new JSONArray();
 		
 		for(int i = 0; i < BlockedNumbers.size();i++)
@@ -40,21 +34,9 @@ public class BlockedNumbersService
 			jsonObject.put("idBlockedNumberList", BlockedNumbers.get(i).getIdBlockedNumberList());
 			jsonObject.put("cellNumber", BlockedNumbers.get(i).getCellNumber());
 			jsonObject.put("dateBlocked", BlockedNumbers.get(i).getDateBlocked());
-			
-			
-			
 			JsonArray.put(jsonObject);
 		}
 		
-		
-		
-		
-		
-		
-	
-		
-		
-	    
 		return JsonArray.toString();
 	}
 	
@@ -66,9 +48,7 @@ public class BlockedNumbersService
 	{
 		
 		BlockedNumbersDAO Object  = new BlockedNumbersDAO();
-		
 		Object.delete(Object.getBlockedNumberInfoById(Id));
-	    
 		return "Successful";
 	}
 	
@@ -79,19 +59,15 @@ public class BlockedNumbersService
 	{
 		
 		BlockedNumbersDAO Object  = new BlockedNumbersDAO();
-		
 		List<BlockedNumberList> BlockedNumbers = Object.getBlockedNumberInfoByCellNumber(Cell_Number);
 		
 		if(BlockedNumbers.size()> 0)
 		{
 			for(int i = 0; i < BlockedNumbers.size();i++)
 			{
-				Object.delete(BlockedNumbers.get(i));
-			    
-			}
-				
+				Object.delete(BlockedNumbers.get(i)); 
+			}	
 		}
-		
 		
 		return "Successful";
 	}
@@ -104,15 +80,12 @@ public class BlockedNumbersService
 	{
 		
 		System.out.println(jsonTextObject);
-		JSONObject r = new JSONObject(jsonTextObject);	
-			
+		JSONObject r = new JSONObject(jsonTextObject);		
 		BlockedNumbersDAO Object  = new BlockedNumbersDAO();
-		
 		Object.AddBlockedNumberInfo(r.getString("CellNumber"), r.getString("Date_Blocked"));
 		
 		return "Sucessful";	
 		
-			
 	}
 	
 

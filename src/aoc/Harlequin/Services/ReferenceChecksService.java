@@ -37,17 +37,12 @@ public class ReferenceChecksService
 	@Produces("text/plain")
 	public String Delete( @PathParam("Id") int Id) throws Exception
 	{
-		
-		
-		SystemUserDAO Object  = new SystemUserDAO();
-		
-		Object.delete(Object.getUserInfoById(Id));
+
+		SystemUserDAO systemUserDao  = new SystemUserDAO();
+		systemUserDao.delete(systemUserDao.getUserInfoById(Id));
 	    
 		return "Successful";
 	}
-	
-	
-	
 	
 	@Path("/GetUserInfoByID/{idMac_Applicants}")
 	@GET
@@ -55,39 +50,34 @@ public class ReferenceChecksService
 	public String GET( @PathParam("idMac_Applicants") String idMac_Applicants) throws Exception
 	{
 		
-		ReferenceCheckDAO Object  = new ReferenceCheckDAO();
-		 
-		List<ReferenceChecks> Referencecheck  = Object.GetUserById(idMac_Applicants);
+		ReferenceCheckDAO referenceCheckDao  = new ReferenceCheckDAO();
+		List<ReferenceChecks> referenceChecks  = referenceCheckDao.GetUserById(idMac_Applicants);
+		JSONArray jsonArray = new JSONArray();
 		
-		JSONArray JsonArray = new JSONArray();
-		
-		for(int i = 0; i < Referencecheck.size();i++)
+		for(int i = 0; i < referenceChecks.size();i++)
 		{
 			JSONObject jsonObject = new JSONObject();
+			jsonObject.put("idReference_Checks", referenceChecks.get(i).getIdReferenceChecks());
+			jsonObject.put("idMac_Applicants", referenceChecks.get(i).getIdMacApplicants());
+			jsonObject.put("Applicant_Name", referenceChecks.get(i).getApplicantName());
+			jsonObject.put("Applicant_Surname", referenceChecks.get(i).getApplicantSurname());
+			jsonObject.put("Id_Number", referenceChecks.get(i).getIdNumber());		
+			jsonObject.put("All_Reference_checks_Passed", referenceChecks.get(i).getAllReferenceChecksPassed());
+			jsonObject.put("Applicants_Overall_Reference", referenceChecks.get(i).getApplicantsOverallReference());
+			jsonObject.put("Criminal_Check_Passed", referenceChecks.get(i).getCriminalCheckPassed());
+			jsonObject.put("Applicants_Criminal_Checks_Criteria", referenceChecks.get(i).getApplicantsCriminalChecksCriteria());
+			jsonObject.put("Exit_Medical_done", referenceChecks.get(i).getExitMedicalDone());
+			jsonObject.put("Reference_Check_Complete", referenceChecks.get(i).getReferenceCheckComplete());
+			jsonObject.put("Last_Used_Date", referenceChecks.get(i).getLastUsedDate());
+			jsonObject.put("Username", referenceChecks.get(i).getUsername());
+			jsonObject.put("Usersurname", referenceChecks.get(i).getUsersurname());
+			jsonObject.put("Reference_Check_Comments", StringEscapeUtils.escapeJava(referenceChecks.get(i).getReferenceCheckComments()));
 			
-			jsonObject.put("idReference_Checks", Referencecheck.get(i).getIdReferenceChecks());
-			jsonObject.put("idMac_Applicants", Referencecheck.get(i).getIdMacApplicants());
-			jsonObject.put("Applicant_Name", Referencecheck.get(i).getApplicantName());
-			jsonObject.put("Applicant_Surname", Referencecheck.get(i).getApplicantSurname());
-			jsonObject.put("Id_Number", Referencecheck.get(i).getIdNumber());		
-			jsonObject.put("All_Reference_checks_Passed", Referencecheck.get(i).getAllReferenceChecksPassed());
-			jsonObject.put("Applicants_Overall_Reference", Referencecheck.get(i).getApplicantsOverallReference());
-			jsonObject.put("Criminal_Check_Passed", Referencecheck.get(i).getCriminalCheckPassed());
-			jsonObject.put("Applicants_Criminal_Checks_Criteria", Referencecheck.get(i).getApplicantsCriminalChecksCriteria());
-			jsonObject.put("Exit_Medical_done", Referencecheck.get(i).getExitMedicalDone());
-			
-			jsonObject.put("Reference_Check_Complete", Referencecheck.get(i).getReferenceCheckComplete());
-			jsonObject.put("Last_Used_Date", Referencecheck.get(i).getLastUsedDate());
-			jsonObject.put("Username", Referencecheck.get(i).getUsername());
-			jsonObject.put("Usersurname", Referencecheck.get(i).getUsersurname());
-			
-			jsonObject.put("Reference_Check_Comments", StringEscapeUtils.escapeJava(Referencecheck.get(i).getReferenceCheckComments()));
-			
-			JsonArray.put(jsonObject);
+			jsonArray.put(jsonObject);
 	     }
 		
 		    
-		return JsonArray.toString();
+		return jsonArray.toString();
 	}
 	
 	
@@ -97,90 +87,68 @@ public class ReferenceChecksService
 	public String GETid( @PathParam("id_number") String id_number) throws Exception
 	{
 		
-		ReferenceCheckDAO Object  = new ReferenceCheckDAO();
-		 
-		List<ReferenceChecks> Referencecheck  = Object.GetUserByIdNumber(id_number);
-		
-		
-		
+			ReferenceCheckDAO referenceCheckDao  = new ReferenceCheckDAO(); 
+			List<ReferenceChecks> referenceChecks  = referenceCheckDao.GetUserByIdNumber(id_number);
 		
 			JSONObject jsonObject = new JSONObject();
-			if(Referencecheck.size() > 0)
+			if(referenceChecks.size() > 0)
 			{
-				jsonObject.put("idReference_Checks", Referencecheck.get(0).getIdReferenceChecks());
-				jsonObject.put("idMac_Applicants", Referencecheck.get(0).getIdMacApplicants());
-				jsonObject.put("Applicant_Name", Referencecheck.get(0).getApplicantName());
-				jsonObject.put("Applicant_Surname", Referencecheck.get(0).getApplicantSurname());
-				jsonObject.put("Id_Number", Referencecheck.get(0).getIdNumber());		
-				jsonObject.put("All_Reference_checks_Passed", Referencecheck.get(0).getAllReferenceChecksPassed());
-				jsonObject.put("Applicants_Overall_Reference", Referencecheck.get(0).getApplicantsOverallReference());
-				jsonObject.put("Criminal_Check_Passed", Referencecheck.get(0).getCriminalCheckPassed());
-				jsonObject.put("Applicants_Criminal_Checks_Criteria", Referencecheck.get(0).getApplicantsCriminalChecksCriteria());
-				jsonObject.put("Exit_Medical_done", Referencecheck.get(0).getExitMedicalDone());
-				
-				jsonObject.put("Reference_Check_Complete", Referencecheck.get(0).getReferenceCheckComplete());
-				jsonObject.put("Last_Used_Date", Referencecheck.get(0).getLastUsedDate());
-				jsonObject.put("Username", Referencecheck.get(0).getUsername());
-				jsonObject.put("Usersurname", Referencecheck.get(0).getUsersurname());
-				
-				jsonObject.put("Reference_Check_Comments", StringEscapeUtils.escapeJava(Referencecheck.get(0).getReferenceCheckComments()));
+				jsonObject.put("idReference_Checks", referenceChecks.get(0).getIdReferenceChecks());
+				jsonObject.put("idMac_Applicants", referenceChecks.get(0).getIdMacApplicants());
+				jsonObject.put("Applicant_Name", referenceChecks.get(0).getApplicantName());
+				jsonObject.put("Applicant_Surname", referenceChecks.get(0).getApplicantSurname());
+				jsonObject.put("Id_Number", referenceChecks.get(0).getIdNumber());		
+				jsonObject.put("All_Reference_checks_Passed", referenceChecks.get(0).getAllReferenceChecksPassed());
+				jsonObject.put("Applicants_Overall_Reference", referenceChecks.get(0).getApplicantsOverallReference());
+				jsonObject.put("Criminal_Check_Passed", referenceChecks.get(0).getCriminalCheckPassed());
+				jsonObject.put("Applicants_Criminal_Checks_Criteria", referenceChecks.get(0).getApplicantsCriminalChecksCriteria());
+				jsonObject.put("Exit_Medical_done", referenceChecks.get(0).getExitMedicalDone());
+				jsonObject.put("Reference_Check_Complete", referenceChecks.get(0).getReferenceCheckComplete());
+				jsonObject.put("Last_Used_Date", referenceChecks.get(0).getLastUsedDate());
+				jsonObject.put("Username", referenceChecks.get(0).getUsername());
+				jsonObject.put("Usersurname", referenceChecks.get(0).getUsersurname());
+				jsonObject.put("Reference_Check_Comments", StringEscapeUtils.escapeJava(referenceChecks.get(0).getReferenceCheckComments()));
 			}
-			
-			
-			
-	   
-		
+
 		    
 		return jsonObject.toString();
 	}
 	
 	
-	@Path("/GetReferenceChecksByIDNumber/{Id_Number}")
+	@Path("/GetReferenceChecksByIDNumber/{id_Number}")
 	@GET
 	@Produces("text/plain")
-	public String GETidNumber( @PathParam("Id_Number") String Id_Number) throws Exception
+	public String GETidNumber( @PathParam("id_Number") String id_Number) throws Exception
 	{
 		
-		ReferenceCheckDAO Object  = new ReferenceCheckDAO();
-		 
-		List<ReferenceChecks> Referencecheck  = Object.GetUserByIdNumber(Id_Number);
+		ReferenceCheckDAO referenceCheckDAO  = new ReferenceCheckDAO();
+		List<ReferenceChecks> referenceChecks  = referenceCheckDAO.GetUserByIdNumber(id_Number);
+		JSONArray jsonArray = new JSONArray();
+	
 		
-		JSONArray JsonArray = new JSONArray();
-		System.out.println("Id_Number:"+Id_Number );
-		
-		for(int i = 0; i < Referencecheck.size();i++)
+		for(int i = 0; i < referenceChecks.size();i++)
 		{
-		
-		
 				JSONObject jsonObject = new JSONObject();
-			
-				jsonObject.put("idReference_Checks", Referencecheck.get(i).getIdReferenceChecks());
-				jsonObject.put("idMac_Applicants", Referencecheck.get(i).getIdMacApplicants());
-				jsonObject.put("Applicant_Name", Referencecheck.get(i).getApplicantName());
-				jsonObject.put("Applicant_Surname", Referencecheck.get(i).getApplicantSurname());
-				jsonObject.put("Id_Number", Referencecheck.get(i).getIdNumber());		
-				jsonObject.put("All_Reference_checks_Passed", Referencecheck.get(i).getAllReferenceChecksPassed());
-				jsonObject.put("Applicants_Overall_Reference", Referencecheck.get(i).getApplicantsOverallReference());
-				jsonObject.put("Criminal_Check_Passed", Referencecheck.get(i).getCriminalCheckPassed());
-				jsonObject.put("Applicants_Criminal_Checks_Criteria", Referencecheck.get(i).getApplicantsCriminalChecksCriteria());
-				jsonObject.put("Exit_Medical_done", Referencecheck.get(i).getExitMedicalDone());
-				
-				jsonObject.put("Reference_Check_Complete", Referencecheck.get(i).getReferenceCheckComplete());
-				jsonObject.put("Last_Used_Date", Referencecheck.get(i).getLastUsedDate());
-				jsonObject.put("Username", Referencecheck.get(i).getUsername());
-				jsonObject.put("Usersurname", Referencecheck.get(i).getUsersurname());
-				
-				jsonObject.put("Reference_Check_Comments", StringEscapeUtils.escapeJava(Referencecheck.get(i).getReferenceCheckComments()));
-				
-				JsonArray.put(jsonObject);
+				jsonObject.put("idReference_Checks", referenceChecks.get(i).getIdReferenceChecks());
+				jsonObject.put("idMac_Applicants", referenceChecks.get(i).getIdMacApplicants());
+				jsonObject.put("Applicant_Name", referenceChecks.get(i).getApplicantName());
+				jsonObject.put("Applicant_Surname", referenceChecks.get(i).getApplicantSurname());
+				jsonObject.put("Id_Number", referenceChecks.get(i).getIdNumber());		
+				jsonObject.put("All_Reference_checks_Passed", referenceChecks.get(i).getAllReferenceChecksPassed());
+				jsonObject.put("Applicants_Overall_Reference", referenceChecks.get(i).getApplicantsOverallReference());
+				jsonObject.put("Criminal_Check_Passed", referenceChecks.get(i).getCriminalCheckPassed());
+				jsonObject.put("Applicants_Criminal_Checks_Criteria", referenceChecks.get(i).getApplicantsCriminalChecksCriteria());
+				jsonObject.put("Exit_Medical_done", referenceChecks.get(i).getExitMedicalDone());
+				jsonObject.put("Reference_Check_Complete", referenceChecks.get(i).getReferenceCheckComplete());
+				jsonObject.put("Last_Used_Date", referenceChecks.get(i).getLastUsedDate());
+				jsonObject.put("Username", referenceChecks.get(i).getUsername());
+				jsonObject.put("Usersurname", referenceChecks.get(i).getUsersurname());
+				jsonObject.put("Reference_Check_Comments", StringEscapeUtils.escapeJava(referenceChecks.get(i).getReferenceCheckComments()));
+				jsonArray.put(jsonObject);
 		}
 			
-			
-			
-	   
 		
-		    
-		return JsonArray.toString();
+		return jsonArray.toString();
 	}
 	
 	
@@ -191,36 +159,26 @@ public class ReferenceChecksService
 	public String GETUSERS( ) throws Exception
 	{
 		
-		SystemUserDAO Object  = new SystemUserDAO();
-		
-		List<SystemUser> Users = Object.ReadAllUsers();
-		
+		SystemUserDAO systemUserDAO  = new SystemUserDAO();
+		List<SystemUser> users = systemUserDAO.ReadAllUsers();
 		JSONArray JsonArray = new JSONArray();
 		
-		for(int i = 0; i < Users.size();i++)
+		for(int i = 0; i < users.size();i++)
 		{
 			JSONObject jsonObject = new JSONObject();
-			jsonObject.put("idSystem_User", Users.get(i).getIdSystemUser());
-			jsonObject.put("User_Name", Users.get(i).getUserName());
-			jsonObject.put("Name", Users.get(i).getName());
-			jsonObject.put("Surname", Users.get(i).getSurname());
-			jsonObject.put("E_Mail", Users.get(i).getEMail());		
-			jsonObject.put("Cell_Number", Users.get(i).getCellNumber());
-			jsonObject.put("Tell_Number", Users.get(i).getTellNumber());
-			jsonObject.put("Authorization_Level", Users.get(i).getAuthorizationLevel());
-			jsonObject.put("Last_Used_Date", Users.get(i).getLastUsedDate());
-			
+			jsonObject.put("idSystem_User", users.get(i).getIdSystemUser());
+			jsonObject.put("User_Name", users.get(i).getUserName());
+			jsonObject.put("Name", users.get(i).getName());
+			jsonObject.put("Surname", users.get(i).getSurname());
+			jsonObject.put("E_Mail", users.get(i).getEMail());		
+			jsonObject.put("Cell_Number", users.get(i).getCellNumber());
+			jsonObject.put("Tell_Number", users.get(i).getTellNumber());
+			jsonObject.put("Authorization_Level", users.get(i).getAuthorizationLevel());
+			jsonObject.put("Last_Used_Date", users.get(i).getLastUsedDate());
 			
 			JsonArray.put(jsonObject);
 		}
-		
-		
-		
-		
-		
-		
-		System.out.println(JsonArray.toString());
-	    
+
 		return JsonArray.toString();
 	}
 	
@@ -234,13 +192,12 @@ public class ReferenceChecksService
 		String Matched = "false";
 		String PasswordUser = "";
 		
-		SystemUserDAO Object  = new SystemUserDAO();
+		SystemUserDAO systemUserDAO  = new SystemUserDAO();
+		List<SystemUser> user = systemUserDAO.CheckUserPassword(Username, Password);
 		
-		List<SystemUser> User = Object.CheckUserPassword(Username, Password);
-		
-		if(User.size() != 0)
+		if(user.size() != 0)
 		{
-			PasswordUser = User.get(0).getUserPassword().toString();
+			PasswordUser = user.get(0).getUserPassword().toString();
 			if(Password.equals(PasswordUser.trim()))
 			{
 				Matched = "true";
@@ -260,25 +217,25 @@ public class ReferenceChecksService
 		String UsersName ="";
 		String UsersSurname = "";
 		
-		SystemUserDAO Object  = new SystemUserDAO();
+		SystemUserDAO systemUserDao  = new SystemUserDAO();
 		
-		List<SystemUser> User = Object.CheckUserPassword(Username, Password);
+		List<SystemUser> users = systemUserDao.CheckUserPassword(Username, Password);
 		
 		
-		if(User.size() != 0)
+		if(users.size() != 0)
 		{
-			UsersName = User.get(0).getName().toString();
-			UsersSurname = User.get(0).getSurname().toString();
+			UsersName = users.get(0).getName().toString();
+			UsersSurname = users.get(0).getSurname().toString();
 		}
 		
 		
-		JSONObject j = new JSONObject();
+		JSONObject jsonObject = new JSONObject();
 		
-		j.put("UsersName", UsersName);
-		j.put("UsersSurname", UsersSurname);
+		jsonObject.put("UsersName", UsersName);
+		jsonObject.put("UsersSurname", UsersSurname);
 
 		
-		return j.toString();
+		return jsonObject.toString();
 	}
 	
 	
@@ -288,26 +245,20 @@ public class ReferenceChecksService
 	@Produces("text/plain")
 	public String GETUser(@PathParam("Id") String Id ) throws Exception
 	{
-		
-		
-		
-		SystemUserDAO Object  = new SystemUserDAO();
-		
-		List<SystemUser> User = Object.GetUserById(Id);
-
-		
+		SystemUserDAO systemUserDAO  = new SystemUserDAO();
+		List<SystemUser> users = systemUserDAO.GetUserById(Id);
+	
         JSONObject jsonObject = new JSONObject();
-		
-		jsonObject.put("idSystem_User", User.get(0).getIdSystemUser());
-		jsonObject.put("User_Name", User.get(0).getUserName().toString());
-		jsonObject.put("Name", User.get(0).getUserName().toString());
-		jsonObject.put("Surname", User.get(0).getSurname().toString());
-		jsonObject.put("E_Mail", User.get(0).getEMail().toString());		
-		jsonObject.put("Cell_Number", User.get(0).getCellNumber().toString());
-		jsonObject.put("Tell_Number", User.get(0).getTellNumber().toString());
-		jsonObject.put("Password", User.get(0).getUserPassword().toString());
-		jsonObject.put("Authorization_Level", User.get(0).getAuthorizationLevel().toString());
-		jsonObject.put("Last_Used_Date", User.get(0).getLastUsedDate().toString());
+		jsonObject.put("idSystem_User", users.get(0).getIdSystemUser());
+		jsonObject.put("User_Name", users.get(0).getUserName().toString());
+		jsonObject.put("Name", users.get(0).getUserName().toString());
+		jsonObject.put("Surname", users.get(0).getSurname().toString());
+		jsonObject.put("E_Mail", users.get(0).getEMail().toString());		
+		jsonObject.put("Cell_Number", users.get(0).getCellNumber().toString());
+		jsonObject.put("Tell_Number", users.get(0).getTellNumber().toString());
+		jsonObject.put("Password", users.get(0).getUserPassword().toString());
+		jsonObject.put("Authorization_Level", users.get(0).getAuthorizationLevel().toString());
+		jsonObject.put("Last_Used_Date", users.get(0).getLastUsedDate().toString());
 		
 
 		return jsonObject.toString();
@@ -321,11 +272,9 @@ public class ReferenceChecksService
 	@Produces("text/plain")
 	public  String create(String jsonTextObject) throws JSONException
 	{
-		
-		JSONObject r = new JSONObject(jsonTextObject);	
-			
-		ReferenceCheckDAO Object  = new ReferenceCheckDAO();
-		Object.AddReferenceChecksInfo(r.getString("idMac_Applicants"), r.getString("Applicant_Name"),r.getString("Applicant_Surname"), r.getString("Id_Number"), r.getString("All_Reference_Checks_Passed"), r.getString("Applicants_Overall_Reference"), r.getString("Criminal_Check_Passed"), r.getString("Applicants_Criminal_checks_Criteria"), r.getString("Exit_Medical_Done"), r.getString("Reference_Check_Complete"), r.getString("Username"), r.getString("Usersurname"), r.getString("Job_Name"), r.getString("Reference_Check_Comments"));
+		JSONObject jsonObject = new JSONObject(jsonTextObject);	
+		ReferenceCheckDAO referenceCheckDAO  = new ReferenceCheckDAO();
+		referenceCheckDAO.AddReferenceChecksInfo(jsonObject.getString("idMac_Applicants"), jsonObject.getString("Applicant_Name"),jsonObject.getString("Applicant_Surname"), jsonObject.getString("Id_Number"), jsonObject.getString("All_Reference_Checks_Passed"), jsonObject.getString("Applicants_Overall_Reference"), jsonObject.getString("Criminal_Check_Passed"), jsonObject.getString("Applicants_Criminal_checks_Criteria"), jsonObject.getString("Exit_Medical_Done"), jsonObject.getString("Reference_Check_Complete"), jsonObject.getString("Username"), jsonObject.getString("Usersurname"), jsonObject.getString("Job_Name"), jsonObject.getString("Reference_Check_Comments"));
 				
 		return "Sucessful";	
 		
@@ -342,20 +291,20 @@ public class ReferenceChecksService
 		DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 		Date date = new Date();
 		
-		SystemUserDAO t = new SystemUserDAO();
-		JSONObject test = new JSONObject(jsonTextObject);
-		SystemUser User  = t.getUserInfoById(Integer.parseInt(test.getString("idSystem_User")));
+		SystemUserDAO systemUserDao = new SystemUserDAO();
+		JSONObject jsonObject = new JSONObject(jsonTextObject);
+		SystemUser user  = systemUserDao.getUserInfoById(Integer.parseInt(jsonObject.getString("idSystem_User")));
 		
-		User.setName(test.getString("Name"));
-		User.setSurname(test.getString("Surname"));
-		User.setEMail(test.getString("E_Mail"));
-		User.setCellNumber(test.getString("Cell_Number"));
-		User.setTellNumber(test.getString("Tell_Number"));
-		User.setAuthorizationLevel(test.getString("Authorization_Level"));
-		User.setUserPassword(test.getString("Password"));
-		User.setLastUsedDate(dateFormat.format(date));
+		user.setName(jsonObject.getString("Name"));
+		user.setSurname(jsonObject.getString("Surname"));
+		user.setEMail(jsonObject.getString("E_Mail"));
+		user.setCellNumber(jsonObject.getString("Cell_Number"));
+		user.setTellNumber(jsonObject.getString("Tell_Number"));
+		user.setAuthorizationLevel(jsonObject.getString("Authorization_Level"));
+		user.setUserPassword(jsonObject.getString("Password"));
+		user.setLastUsedDate(dateFormat.format(date));
 		
-		t.update(User);
+		systemUserDao.update(user);
 		
 		return "Updated";
 	}

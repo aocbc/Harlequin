@@ -31,57 +31,50 @@ public class JobHistoryService {
 	public String GET( @PathParam("Id") int Id) throws Exception
 	{
 		
-		JobHistoryDAO Object  = new JobHistoryDAO();
-		JobHistory JobHistory  = Object.getJobInfoById(Id);
-		
+		JobHistoryDAO jobHistoryDAO  = new JobHistoryDAO();
+		JobHistory jobHistory  = jobHistoryDAO.getJobInfoById(Id);
 		JSONObject jsonObject = new JSONObject();
 		
-		jsonObject.put("Job_Role", JobHistory.getJobRole());
-		jsonObject.put("Job_Description", JobHistory.getJobDescription());
-		jsonObject.put("Employer_Contact_Person", JobHistory.getEmployerContactPerson());
-		jsonObject.put("Employer_Contact_Number", JobHistory.getEmployerContactPerson());
-		jsonObject.put("Employer_Industry", JobHistory.getEmployerIndustry());		
-		jsonObject.put("Period_From", JobHistory.getPeriodFrom());
-		jsonObject.put("Period_To", JobHistory.getPeriodTo());
-		jsonObject.put("idMac_Applicants", JobHistory.getIdJobHistory());		
-		jsonObject.put("Name", JobHistory.getName());
-		jsonObject.put("Surname", JobHistory.getSurname());
-		jsonObject.put("Employer_Name", JobHistory.getEmployerName());
-		
-		
-		
-		System.out.println(jsonObject.toString());
+		jsonObject.put("Job_Role", jobHistory.getJobRole());
+		jsonObject.put("Job_Description", jobHistory.getJobDescription());
+		jsonObject.put("Employer_Contact_Person", jobHistory.getEmployerContactPerson());
+		jsonObject.put("Employer_Contact_Number", jobHistory.getEmployerContactPerson());
+		jsonObject.put("Employer_Industry", jobHistory.getEmployerIndustry());		
+		jsonObject.put("Period_From", jobHistory.getPeriodFrom());
+		jsonObject.put("Period_To", jobHistory.getPeriodTo());
+		jsonObject.put("idMac_Applicants", jobHistory.getIdJobHistory());		
+		jsonObject.put("Name", jobHistory.getName());
+		jsonObject.put("Surname", jobHistory.getSurname());
+		jsonObject.put("Employer_Name", jobHistory.getEmployerName());
 	    
 		return jsonObject.toString();
 	}
 	
-	@Path("/GetJobHistory/{IdNumber}")
+	@Path("/GetJobHistory/{idNumber}")
 	@GET
 	@Produces("text/plain")
-	public String GET3( @PathParam("IdNumber") String IdNumber) throws Exception
+	public String GET3( @PathParam("idNumber") String idNumber) throws Exception
 	{
 		
-		JobHistoryDAO Object  = new JobHistoryDAO();
-		List<JobHistory> History  = Object.ReadAllJobHistoryByIdNumber(IdNumber);
-		
-		
+		JobHistoryDAO jobHistoryDao  = new JobHistoryDAO();
+		List<JobHistory> historys  = jobHistoryDao.ReadAllJobHistoryByIdNumber(idNumber);
 		JSONArray JsonArray = new JSONArray();
 		
-		for(int i = 0; i < History.size();i++)
+		for(int i = 0; i < historys.size();i++)
 		{
 			
 			JSONObject jsonObject = new JSONObject();
-			jsonObject.put("Job_Role", History.get(i).getJobRole());
-			jsonObject.put("Job_Description", History.get(i).getJobDescription());
-			jsonObject.put("Employer_Contact_Person", History.get(i).getEmployerContactPerson());
-			jsonObject.put("Employer_Contact_Number", History.get(i).getEmployerContactNumber());
-			jsonObject.put("Employer_Industry", History.get(i).getEmployerIndustry());		
-			jsonObject.put("Period_From", History.get(i).getPeriodFrom());
-			jsonObject.put("Period_To", History.get(i).getPeriodTo());
-			jsonObject.put("idMac_Applicants", History.get(i).getIdMacApplicants());
-			jsonObject.put("Name", History.get(i).getName());
-			jsonObject.put("Surname", History.get(i).getSurname());
-			jsonObject.put("Employer_Name", History.get(i).getEmployerName());
+			jsonObject.put("Job_Role", historys.get(i).getJobRole());
+			jsonObject.put("Job_Description", historys.get(i).getJobDescription());
+			jsonObject.put("Employer_Contact_Person", historys.get(i).getEmployerContactPerson());
+			jsonObject.put("Employer_Contact_Number", historys.get(i).getEmployerContactNumber());
+			jsonObject.put("Employer_Industry", historys.get(i).getEmployerIndustry());		
+			jsonObject.put("Period_From", historys.get(i).getPeriodFrom());
+			jsonObject.put("Period_To", historys.get(i).getPeriodTo());
+			jsonObject.put("idMac_Applicants", historys.get(i).getIdMacApplicants());
+			jsonObject.put("Name", historys.get(i).getName());
+			jsonObject.put("Surname", historys.get(i).getSurname());
+			jsonObject.put("Employer_Name", historys.get(i).getEmployerName());
 			JsonArray.put(jsonObject);
 		}
 		
@@ -98,13 +91,10 @@ public class JobHistoryService {
 	public  String create(String jsonTextObject) throws JSONException
 	{
 
-		JSONObject r = new JSONObject(jsonTextObject);	
+		JSONObject jsonObject = new JSONObject(jsonTextObject);	
 	
-		
-		//System.out.println("WRITING TO DATABASE:"+ r.getString("Client_Name"));
-			
-		JobHistoryDAO Object  = new JobHistoryDAO();
-		Object.AddJobHistroy(r.getString("Job_Role"), r.getString("Job_Description"), r.getString("Employer_Contact_Person"), r.getString("Employer_Contact_Number"), r.getString("Employer_Industry"), r.getString("Period_From"), r.getString("Period_To"), r.getString("idMac_Applicants"), r.getString("Name"), r.getString("Surname"),r.getString("Employer_Name"));
+		JobHistoryDAO jobHistoryDao  = new JobHistoryDAO();
+		jobHistoryDao.AddJobHistroy(jsonObject.getString("Job_Role"), jsonObject.getString("Job_Description"), jsonObject.getString("Employer_Contact_Person"), jsonObject.getString("Employer_Contact_Number"), jsonObject.getString("Employer_Industry"), jsonObject.getString("Period_From"), jsonObject.getString("Period_To"), jsonObject.getString("idMac_Applicants"), jsonObject.getString("Name"), jsonObject.getString("Surname"),jsonObject.getString("Employer_Name"));
 		
 		return "Sucessful";	
 		
@@ -120,28 +110,28 @@ public class JobHistoryService {
 	public  String create2(String jsonTextObject) throws JSONException
 	{
 		/*JSONArray json = new JSONArray(jsonTextObject);*/
-		JSONObject json = new JSONObject(jsonTextObject);
-		JSONArray Jobs = json.getJSONArray("Job");
+		JSONObject jsonObject = new JSONObject(jsonTextObject);
+		JSONArray jsonArray = jsonObject.getJSONArray("Job");
 		
 		
 		//////////////////////////////////////////////////////////////////////////////
 		///////////////////////Removing Job History if exists/////////////////////////
 		//////////////////////////////////////////////////////////////////////////////
 		
-		if(Jobs.length()>0)
+		if(jsonArray.length()>0)
 		{
-			JSONObject x = new JSONObject( Jobs.get(0).toString());
-			JobHistoryDAO Object1  = new JobHistoryDAO();
-			List<JobHistory> History  = Object1.ReadAllJobHistoryByIdNumber(x.getString("idMac_Applicants"));
+			JSONObject jsonObject1 = new JSONObject( jsonArray.get(0).toString());
+			JobHistoryDAO jobHistoryDAO  = new JobHistoryDAO();
+			List<JobHistory> historys  = jobHistoryDAO.ReadAllJobHistoryByIdNumber(jsonObject1.getString("idMac_Applicants"));
 
 			
-			if(History.size() > 0)
+			if(historys.size() > 0)
 			{
 			
-				for(int k = 0 ;k<History.size();k++)
+				for(int k = 0 ;k < historys.size();k++)
 				{   
-					System.out.println("Test3");
-					Object1.delete(History.get(k));
+				
+					jobHistoryDAO.delete(historys.get(k));
 				}
 			
 			}
@@ -152,27 +142,18 @@ public class JobHistoryService {
 		////////////////////////Adding user to database/////////////////////////////
 		////////////////////////////////////////////////////////////////////////////
 		
-		for (int i = 0; i < Jobs.length(); i++) 
+		for (int i = 0; i < jsonArray.length(); i++) 
 		{
-			
-			
-			JSONObject r = new JSONObject( Jobs.get(i).toString());
-			JobHistoryDAO Object  = new JobHistoryDAO();
-			
-			
-			
-			
-			
-			Object.AddJobHistroy(r.getString("Job_Role"), r.getString("Job_Description"), r.getString("Employer_Contact_Person"), r.getString("Employer_Contact_Number"), r.getString("Employer_Industry"), r.getString("Period_From"), r.getString("Period_To"), r.getString("idMac_Applicants"), r.getString("Name"), r.getString("Surname"),r.getString("Employer_Name"));
+						
+			JSONObject jsonObject2 = new JSONObject( jsonArray.get(i).toString());
+			JobHistoryDAO jobHistoryDAO1  = new JobHistoryDAO();
+				
+			jobHistoryDAO1.AddJobHistroy(jsonObject2.getString("Job_Role"), jsonObject2.getString("Job_Description"), jsonObject2.getString("Employer_Contact_Person"), jsonObject2.getString("Employer_Contact_Number"), jsonObject2.getString("Employer_Industry"), jsonObject2.getString("Period_From"), jsonObject2.getString("Period_To"), jsonObject2.getString("idMac_Applicants"), jsonObject2.getString("Name"), jsonObject2.getString("Surname"),jsonObject2.getString("Employer_Name"));
 		
-			
-			
+
 		}
-		
-		
-				return "Sucessful";	
-		
-			
+	
+		return "Sucessful";	
 	}
 	
 	
@@ -183,33 +164,33 @@ public class JobHistoryService {
 	public String GETClients( ) throws Exception
 	{
 		
-		JobHistoryDAO Object  = new JobHistoryDAO();
+		JobHistoryDAO jobHistoryDAO  = new JobHistoryDAO();
 		
-		List<JobHistory> History = Object.ReadAllJobHistory();
+		List<JobHistory> historys = jobHistoryDAO.ReadAllJobHistory();
 		
-		JSONArray JsonArray = new JSONArray();
+		JSONArray jsonArray = new JSONArray();
 		
-		for(int i = 0; i < History.size();i++)
+		for(int i = 0; i < historys.size();i++)
 		{
 			JSONObject jsonObject = new JSONObject();
-			jsonObject.put("Job_Role", History.get(i).getJobRole());
-			jsonObject.put("Job_Description", History.get(i).getJobDescription());
-			jsonObject.put("Employer_Contact_Person", History.get(i).getEmployerContactPerson());
-			jsonObject.put("Employer_Contact_Number", History.get(i).getEmployerContactNumber());
-			jsonObject.put("Employer_Industry", History.get(i).getEmployerIndustry());		
-			jsonObject.put("Period_From", History.get(i).getPeriodFrom());
-			jsonObject.put("Period_To", History.get(i).getPeriodTo());
-			jsonObject.put("idMac_Applicants", History.get(i).getIdMacApplicants());
-			jsonObject.put("Name", History.get(i).getName());
-			jsonObject.put("Surname", History.get(i).getSurname());
-			jsonObject.put("Employer_Name", History.get(i).getEmployerName());
+			jsonObject.put("Job_Role", historys.get(i).getJobRole());
+			jsonObject.put("Job_Description", historys.get(i).getJobDescription());
+			jsonObject.put("Employer_Contact_Person", historys.get(i).getEmployerContactPerson());
+			jsonObject.put("Employer_Contact_Number", historys.get(i).getEmployerContactNumber());
+			jsonObject.put("Employer_Industry", historys.get(i).getEmployerIndustry());		
+			jsonObject.put("Period_From", historys.get(i).getPeriodFrom());
+			jsonObject.put("Period_To", historys.get(i).getPeriodTo());
+			jsonObject.put("idMac_Applicants", historys.get(i).getIdMacApplicants());
+			jsonObject.put("Name", historys.get(i).getName());
+			jsonObject.put("Surname", historys.get(i).getSurname());
+			jsonObject.put("Employer_Name", historys.get(i).getEmployerName());
 			
 			
-			JsonArray.put(jsonObject);
+			jsonArray.put(jsonObject);
 		}
 		
 
-		return JsonArray.toString();
+		return jsonArray.toString();
 	}
 
 }

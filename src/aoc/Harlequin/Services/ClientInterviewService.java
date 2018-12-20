@@ -36,29 +36,24 @@ public class ClientInterviewService {
 	public String GET( ) throws Exception
 	{
 		
-		ClientInterviewDAO Object  = new ClientInterviewDAO();
-		ClientInterviews Interview = Object.getInterviewInfoById(1);
+		ClientInterviewDAO clientInterviewDao  = new ClientInterviewDAO();
+		ClientInterviews clientInterview = clientInterviewDao.getInterviewInfoById(1);
 		
 		JSONObject jsonObject = new JSONObject();
 		
-		jsonObject.put("idClientInterviews", Interview.getIdClientInterviews());
-		jsonObject.put("idMac_Applicants", Interview.getIdMacApplicants());
-		jsonObject.put("Client_Name", Interview.getClientName());
-		jsonObject.put("Applicant_Name", Interview.getApplicantName());
-		jsonObject.put("Applicant_Surname", Interview.getApplicantSurname());
-
-		jsonObject.put("Interview_questions_Passed", Interview.getInterviewQuestionsPassed());
-		jsonObject.put("Applicant_Presentable", Interview.getApplicantPresentable());
-
-		jsonObject.put("Applicant_Attitude", Interview.getApplicantAttitude());
-		jsonObject.put("Interview_Comments", StringEscapeUtils.escapeJava(Interview.getInterviewComments()));
-		jsonObject.put("Client_Interview_Complete", Interview.getClientInterviewComplete());
-		jsonObject.put("Last_Used_Date", Interview.getLastUsedDate());
-		jsonObject.put("Client_Interview_Passed", Interview.getClientInterviewPassed());
+		jsonObject.put("idClientInterviews", clientInterview.getIdClientInterviews());
+		jsonObject.put("idMac_Applicants", clientInterview.getIdMacApplicants());
+		jsonObject.put("Client_Name", clientInterview.getClientName());
+		jsonObject.put("Applicant_Name", clientInterview.getApplicantName());
+		jsonObject.put("Applicant_Surname", clientInterview.getApplicantSurname());
+		jsonObject.put("Interview_questions_Passed", clientInterview.getInterviewQuestionsPassed());
+		jsonObject.put("Applicant_Presentable", clientInterview.getApplicantPresentable());
+		jsonObject.put("Applicant_Attitude", clientInterview.getApplicantAttitude());
+		jsonObject.put("Interview_Comments", StringEscapeUtils.escapeJava(clientInterview.getInterviewComments()));
+		jsonObject.put("Client_Interview_Complete", clientInterview.getClientInterviewComplete());
+		jsonObject.put("Last_Used_Date", clientInterview.getLastUsedDate());
+		jsonObject.put("Client_Interview_Passed", clientInterview.getClientInterviewPassed());
 	
-	
-		
-		System.out.println(jsonObject.toString());
 	    
 		return jsonObject.toString();
 	}
@@ -69,177 +64,129 @@ public class ClientInterviewService {
 	public String GETInterviews( ) throws Exception
 	{
 		
-		ClientInterviewDAO Object  = new ClientInterviewDAO();
-		
-		List<ClientInterviews> Interviews = Object.ReadAllInterviews();
-		
+		ClientInterviewDAO clientInterviewDao  = new ClientInterviewDAO();	
+		List<ClientInterviews> clientInterviews = clientInterviewDao.ReadAllInterviews();
 		JSONArray JsonArray = new JSONArray();
 		
-		for(int i = 0; i < Interviews.size();i++)
+		for(int i = 0; i < clientInterviews.size();i++)
 		{
 			JSONObject jsonObject = new JSONObject();
 		
-
-			
-			jsonObject.put("idClientInterviews", Interviews.get(i).getIdClientInterviews());
-			jsonObject.put("idMac_Applicants", Interviews.get(i).getIdMacApplicants());
-			jsonObject.put("Client_Name", Interviews.get(i).getClientName());
-			jsonObject.put("Applicant_Name", Interviews.get(i).getApplicantName());
-			jsonObject.put("Applicant_Surname", Interviews.get(i).getApplicantSurname());
-
-			jsonObject.put("Interview_questions_Passed", Interviews.get(i).getInterviewQuestionsPassed());
-			jsonObject.put("Applicant_Presentable", Interviews.get(i).getApplicantPresentable());
-
-			jsonObject.put("Applicant_Attitude", Interviews.get(i).getApplicantAttitude());
-			jsonObject.put("Interview_Comments", StringEscapeUtils.escapeJava(Interviews.get(i).getInterviewComments()));
-			jsonObject.put("Client_Interview_Complete", Interviews.get(i).getClientInterviewComplete());
-			jsonObject.put("Last_Used_Date", Interviews.get(i).getLastUsedDate());
-			jsonObject.put("Client_Interview_Passed", Interviews.get(i).getClientInterviewPassed());
-			
-			
+			jsonObject.put("idClientInterviews", clientInterviews.get(i).getIdClientInterviews());
+			jsonObject.put("idMac_Applicants", clientInterviews.get(i).getIdMacApplicants());
+			jsonObject.put("Client_Name", clientInterviews.get(i).getClientName());
+			jsonObject.put("Applicant_Name", clientInterviews.get(i).getApplicantName());
+			jsonObject.put("Applicant_Surname", clientInterviews.get(i).getApplicantSurname());
+			jsonObject.put("Interview_questions_Passed", clientInterviews.get(i).getInterviewQuestionsPassed());
+			jsonObject.put("Applicant_Presentable", clientInterviews.get(i).getApplicantPresentable());
+			jsonObject.put("Applicant_Attitude", clientInterviews.get(i).getApplicantAttitude());
+			jsonObject.put("Interview_Comments", StringEscapeUtils.escapeJava(clientInterviews.get(i).getInterviewComments()));
+			jsonObject.put("Client_Interview_Complete", clientInterviews.get(i).getClientInterviewComplete());
+			jsonObject.put("Last_Used_Date", clientInterviews.get(i).getLastUsedDate());
+			jsonObject.put("Client_Interview_Passed", clientInterviews.get(i).getClientInterviewPassed());
 			
 			JsonArray.put(jsonObject);
 		}
 
-		
-		System.out.println(JsonArray.toString());
-	    
 		return JsonArray.toString();
 	}
 	
 	
 	
 	
-	@Path("/GetInterviewInfo/{Client_Name}")
+	@Path("/GetInterviewInfo/{client_Name}")
 	@GET
 	@Produces("text/plain")
-	public String GET1(@PathParam("Client_Name") String Client_Name ) throws Exception
+	public String GET1(@PathParam("client_Name") String client_Name ) throws Exception
 	{
-		
-		
-		
-		ClientInterviewDAO Object  = new ClientInterviewDAO();
-		
-		List<ClientInterviews> Interview = Object.GetClientInfoByName(Client_Name);
-		
+
+		ClientInterviewDAO clientInterviewDao  = new ClientInterviewDAO();
+		List<ClientInterviews> clientInterview = clientInterviewDao.GetClientInfoByName(client_Name);
 		JSONArray JsonArray = new JSONArray();
 		
-		for(int i = 0; i < Interview.size();i++)
+		for(int i = 0; i < clientInterview.size();i++)
 		{
 			JSONObject jsonObject = new JSONObject();
 			
-			jsonObject.put("idClientInterviews", Interview.get(i).getIdClientInterviews());
-			jsonObject.put("idMac_Applicants", Interview.get(i).getIdMacApplicants());
-			jsonObject.put("Client_Name", Interview.get(i).getClientName());
-			jsonObject.put("Applicant_Name", Interview.get(i).getApplicantName());
-			jsonObject.put("Applicant_Surname", Interview.get(i).getApplicantSurname());
+			jsonObject.put("idClientInterviews", clientInterview.get(i).getIdClientInterviews());
+			jsonObject.put("idMac_Applicants", clientInterview.get(i).getIdMacApplicants());
+			jsonObject.put("Client_Name", clientInterview.get(i).getClientName());
+			jsonObject.put("Applicant_Name", clientInterview.get(i).getApplicantName());
+			jsonObject.put("Applicant_Surname", clientInterview.get(i).getApplicantSurname());
+			jsonObject.put("Interview_questions_Passed", clientInterview.get(i).getInterviewQuestionsPassed());
+			jsonObject.put("Applicant_Presentable", clientInterview.get(i).getApplicantPresentable());
+			jsonObject.put("Applicant_Attitude", clientInterview.get(i).getApplicantAttitude());
+			jsonObject.put("Interview_Comments", StringEscapeUtils.escapeJava(clientInterview.get(i).getInterviewComments()));
+			jsonObject.put("Client_Interview_Complete", clientInterview.get(i).getClientInterviewComplete());
+			jsonObject.put("Last_Used_Date", clientInterview.get(i).getLastUsedDate());
+			jsonObject.put("Client_Interview_Passed", clientInterview.get(i).getClientInterviewPassed());
 
-			jsonObject.put("Interview_questions_Passed", Interview.get(i).getInterviewQuestionsPassed());
-			jsonObject.put("Applicant_Presentable", Interview.get(i).getApplicantPresentable());
-
-			jsonObject.put("Applicant_Attitude", Interview.get(i).getApplicantAttitude());
-			jsonObject.put("Interview_Comments", StringEscapeUtils.escapeJava(Interview.get(i).getInterviewComments()));
-			jsonObject.put("Client_Interview_Complete", Interview.get(i).getClientInterviewComplete());
-			jsonObject.put("Last_Used_Date", Interview.get(i).getLastUsedDate());
-			jsonObject.put("Client_Interview_Passed", Interview.get(i).getClientInterviewPassed());
-			
-			
-			
 			JsonArray.put(jsonObject);
 		}
 		
-		
-		
-		
-		
-		
-		System.out.println(JsonArray.toString());
-		
-		
-		
+
 		return JsonArray.toString();
 	}
 	
 	
-	@Path("/GetInterviewInfoByID/{Id_Number}")
+	@Path("/GetInterviewInfoByID/{id_Number}")
 	@GET
 	@Produces("text/plain")
-	public String GET5(@PathParam("Id_Number") String Id_Number ) throws Exception
+	public String GET5(@PathParam("id_Number") String id_Number ) throws Exception
 	{
-		
-		
-		
-		ClientInterviewDAO Object  = new ClientInterviewDAO();
-		
-		List<ClientInterviews> Interview = Object.GetClientInfoByIdNumber(Id_Number);
-		
+		ClientInterviewDAO clientInterviewDao  = new ClientInterviewDAO();
+		List<ClientInterviews> clientInterviews = clientInterviewDao.GetClientInfoByIdNumber(id_Number);		
 		JSONArray JsonArray = new JSONArray();
 		
-		for(int i = 0; i < Interview.size();i++)
+		for(int i = 0; i < clientInterviews.size();i++)
 		{
 			JSONObject jsonObject = new JSONObject();
 			
-			jsonObject.put("idClientInterviews", Interview.get(i).getIdClientInterviews());
-			jsonObject.put("Id_Number", Interview.get(i).getIdNumber());
-			jsonObject.put("idMac_Applicants", Interview.get(i).getIdMacApplicants());
-			jsonObject.put("Client_Name", Interview.get(i).getClientName());
-			jsonObject.put("Applicant_Name", Interview.get(i).getApplicantName());
-			jsonObject.put("Applicant_Surname", Interview.get(i).getApplicantSurname());
-
-			jsonObject.put("Interview_questions_Passed", Interview.get(i).getInterviewQuestionsPassed());
-			jsonObject.put("Applicant_Presentable", Interview.get(i).getApplicantPresentable());
-
-			jsonObject.put("Applicant_Attitude", Interview.get(i).getApplicantAttitude());
-			jsonObject.put("Interview_Comments", StringEscapeUtils.escapeJava(Interview.get(i).getInterviewComments()));
-			jsonObject.put("Client_Interview_Complete", Interview.get(i).getClientInterviewComplete());
-			jsonObject.put("Last_Used_Date", Interview.get(i).getLastUsedDate());
-			jsonObject.put("Client_Interview_Passed", Interview.get(i).getClientInterviewPassed());
-			jsonObject.put("Job_Name", Interview.get(i).getJobName());
-			
-			
+			jsonObject.put("idClientInterviews", clientInterviews.get(i).getIdClientInterviews());
+			jsonObject.put("Id_Number", clientInterviews.get(i).getIdNumber());
+			jsonObject.put("idMac_Applicants", clientInterviews.get(i).getIdMacApplicants());
+			jsonObject.put("Client_Name", clientInterviews.get(i).getClientName());
+			jsonObject.put("Applicant_Name", clientInterviews.get(i).getApplicantName());
+			jsonObject.put("Applicant_Surname", clientInterviews.get(i).getApplicantSurname());
+			jsonObject.put("Interview_questions_Passed", clientInterviews.get(i).getInterviewQuestionsPassed());
+			jsonObject.put("Applicant_Presentable", clientInterviews.get(i).getApplicantPresentable());
+			jsonObject.put("Applicant_Attitude", clientInterviews.get(i).getApplicantAttitude());
+			jsonObject.put("Interview_Comments", StringEscapeUtils.escapeJava(clientInterviews.get(i).getInterviewComments()));
+			jsonObject.put("Client_Interview_Complete", clientInterviews.get(i).getClientInterviewComplete());
+			jsonObject.put("Last_Used_Date", clientInterviews.get(i).getLastUsedDate());
+			jsonObject.put("Client_Interview_Passed", clientInterviews.get(i).getClientInterviewPassed());
+			jsonObject.put("Job_Name", clientInterviews.get(i).getJobName());
 			
 			JsonArray.put(jsonObject);
 		}
-		
-		
-		
-		
-		
-		
-		System.out.println(JsonArray.toString());
-		
-		
 		
 		return JsonArray.toString();
 	}
 	
 	
 	
-	@Path("/GetInterview/{Id_Number}/{idMac_Applicants}/{Job_Name}")
+	@Path("/GetInterview/{id_Number}/{idMac_Applicants}/{job_Name}")
 	@GET
 	@Produces("text/plain")
-	public String GET1(@PathParam("Id_Number") String Id_Number,@PathParam("idMac_Applicants") String idMac_Applicants, @PathParam("Job_Name") String Job_Name ) throws Exception
+	public String GET1(@PathParam("id_Number") String id_Number,@PathParam("idMac_Applicants") String idMac_Applicants, @PathParam("job_Name") String job_Name ) throws Exception
 	{
 		
-
-		
-		ClientInterviewDAO Object  = new ClientInterviewDAO();
-		
-		List<ClientInterviews> Interview = Object.GetInterviewByInfo(Id_Number, idMac_Applicants,Job_Name);
+		ClientInterviewDAO clientInterviewDao  = new ClientInterviewDAO();
+		List<ClientInterviews> clientInterviews = clientInterviewDao.GetInterviewByInfo(id_Number, idMac_Applicants,job_Name);
 		
 		
 			JSONObject jsonObject = new JSONObject();
 			
-			if(Interview.size()>0)
+			if(clientInterviews.size()>0)
 			{
 				System.out.println("Hellowaorld");
-				jsonObject.put("Interview_questions_Passed", Interview.get(0).getInterviewQuestionsPassed());
-				jsonObject.put("Applicant_Presentable", Interview.get(0).getApplicantPresentable());
-				jsonObject.put("Applicant_Attitude", Interview.get(0).getApplicantAttitude());
-				jsonObject.put("Interview_Comments", StringEscapeUtils.escapeJava(Interview.get(0).getInterviewComments()));
-				jsonObject.put("Client_Interview_Complete", Interview.get(0).getClientInterviewComplete());
-				jsonObject.put("Last_Used_Date", Interview.get(0).getLastUsedDate());
-				jsonObject.put("Client_Interview_Passed", Interview.get(0).getClientInterviewPassed());
+				jsonObject.put("Interview_questions_Passed", clientInterviews.get(0).getInterviewQuestionsPassed());
+				jsonObject.put("Applicant_Presentable", clientInterviews.get(0).getApplicantPresentable());
+				jsonObject.put("Applicant_Attitude", clientInterviews.get(0).getApplicantAttitude());
+				jsonObject.put("Interview_Comments", StringEscapeUtils.escapeJava(clientInterviews.get(0).getInterviewComments()));
+				jsonObject.put("Client_Interview_Complete", clientInterviews.get(0).getClientInterviewComplete());
+				jsonObject.put("Last_Used_Date", clientInterviews.get(0).getLastUsedDate());
+				jsonObject.put("Client_Interview_Passed", clientInterviews.get(0).getClientInterviewPassed());
 			}
 			
 		
@@ -256,43 +203,37 @@ public class ClientInterviewService {
 		
 		DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 		Date date = new Date();
+		JSONObject jsonObject = new JSONObject(jsonTextObject);	
+		ClientInterviewDAO clientInterviewDao  = new ClientInterviewDAO();
 		
+		clientInterviewDao.AddInterviewInformation(jsonObject.getString("Id_Number"),jsonObject.getString("Job_Name"),jsonObject.getString("idMac_Applicants"), jsonObject.getString("Client_Name"), jsonObject.getString("Applicant_Name"), jsonObject.getString("Applicant_Surname"), jsonObject.getString("Interview_questions_Passed"), jsonObject.getString("Applicant_Presentable"), jsonObject.getString("Applicant_Attitude"), jsonObject.getString("Interview_Comments"), jsonObject.getString("Client_Interview_Complete"), jsonObject.getString("Client_Interview_Passed"));
 		
-		JSONObject r = new JSONObject(jsonTextObject);	
-	
-		ClientInterviewDAO Object  = new ClientInterviewDAO();
+		AssignedJobApplicantDAO assignedJobDao = new AssignedJobApplicantDAO();
+		MacApplicantDAO macApplicantDao = new MacApplicantDAO();
 		
-		
-		
-		Object.AddInterviewInformation(r.getString("Id_Number"),r.getString("Job_Name"),r.getString("idMac_Applicants"), r.getString("Client_Name"), r.getString("Applicant_Name"), r.getString("Applicant_Surname"), r.getString("Interview_questions_Passed"), r.getString("Applicant_Presentable"), r.getString("Applicant_Attitude"), r.getString("Interview_Comments"), r.getString("Client_Interview_Complete"), r.getString("Client_Interview_Passed"));
-		
-		AssignedJobApplicantDAO assigned_job = new AssignedJobApplicantDAO();
-		
-		MacApplicantDAO Applicant = new MacApplicantDAO();
-		
-		List<MacApplicants> x = Applicant.GetApplicantsByApplicantId(r.getString("Id_Number"));
-		if(x.size()>0)
+		List<MacApplicants> applicants = macApplicantDao.GetApplicantsByApplicantId(jsonObject.getString("Id_Number"));
+		if(applicants.size()>0)
 		{
 			
-			if(r.getString("Client_Interview_Complete").equals("Yes"))
+			if(jsonObject.getString("Client_Interview_Complete").equals("Yes"))
 			{
-				x.get(0).setClientInterviewComplete(r.getString("Client_Interview_Complete"));
-				x.get(0).setStageInTheProcess("Reference Checks");
-				x.get(0).setLastUsedDate(dateFormat.format(date));
-				assigned_job.UpdateAssignedJobStatusClientrInterview(r.getString("Id_Number"), r.getString("Job_Name"), "Reference Checks", "beginning",r.getString("Client_Interview_Complete"),((r.getString("Interview_Comments").equals("")) ? "N/A" : r.getString("Interview_Comments")));
+				applicants.get(0).setClientInterviewComplete(jsonObject.getString("Client_Interview_Complete"));
+				applicants.get(0).setStageInTheProcess("Reference Checks");
+				applicants.get(0).setLastUsedDate(dateFormat.format(date));
+				assignedJobDao.UpdateAssignedJobStatusClientrInterview(jsonObject.getString("Id_Number"), jsonObject.getString("Job_Name"), "Reference Checks", "beginning",jsonObject.getString("Client_Interview_Complete"),((jsonObject.getString("Interview_Comments").equals("")) ? "N/A" : jsonObject.getString("Interview_Comments")));
 				
 				
 			}
-			else if(r.getString("Client_Interview_Complete").equals("No"))
+			else if(jsonObject.getString("Client_Interview_Complete").equals("No"))
 			{
-				x.get(0).setClientInterviewComplete(r.getString("Client_Interview_Complete"));
-				x.get(0).setStageInTheProcess("Client Interview");
-				x.get(0).setLastUsedDate(dateFormat.format(date));
-				assigned_job.UpdateAssignedJobStatusClientrInterview(r.getString("Id_Number"), r.getString("Job_Name"), "Client Interview", "pending",r.getString("Client_Interview_Complete"),((r.getString("Interview_Comments").equals("")) ? "N/A" : r.getString("Interview_Comments")));
+				applicants.get(0).setClientInterviewComplete(jsonObject.getString("Client_Interview_Complete"));
+				applicants.get(0).setStageInTheProcess("Client Interview");
+				applicants.get(0).setLastUsedDate(dateFormat.format(date));
+				assignedJobDao.UpdateAssignedJobStatusClientrInterview(jsonObject.getString("Id_Number"), jsonObject.getString("Job_Name"), "Client Interview", "pending",jsonObject.getString("Client_Interview_Complete"),((jsonObject.getString("Interview_Comments").equals("")) ? "N/A" : jsonObject.getString("Interview_Comments")));
 				
 			}
 			
-			Applicant.update(x.get(0));
+			macApplicantDao.update(applicants.get(0));
 		}
 		
 		

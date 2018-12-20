@@ -35,10 +35,8 @@ public class SystemUserService
 	public String Delete( @PathParam("Id") int Id) throws Exception
 	{
 		
-		
-		SystemUserDAO Object  = new SystemUserDAO();
-		
-		Object.delete(Object.getUserInfoById(Id));
+		SystemUserDAO systemUserDAO  = new SystemUserDAO();
+		systemUserDAO.delete(systemUserDAO.getUserInfoById(Id));
 	    
 		return "Successful";
 	}
@@ -52,24 +50,20 @@ public class SystemUserService
 	public String GET( ) throws Exception
 	{
 		
-		SystemUserDAO Object  = new SystemUserDAO();
-		SystemUser User  = Object.getUserInfoById(1);
+		SystemUserDAO systemUserDao  = new SystemUserDAO();
+		SystemUser user  = systemUserDao.getUserInfoById(1);
 		
 		JSONObject jsonObject = new JSONObject();
-		
-		jsonObject.put("idSystem_User", User.getIdSystemUser());
-		jsonObject.put("User_Name", User.getUserName());
-		jsonObject.put("Name", User.getName());
-		jsonObject.put("Surname", User.getSurname());
-		jsonObject.put("E_Mail", User.getEMail());		
-		jsonObject.put("Cell_Number", User.getCellNumber());
-		jsonObject.put("Tell_Number", User.getTellNumber());
-		jsonObject.put("User_Password", User.getUserPassword());
-		jsonObject.put("Authorization_Level", User.getAuthorizationLevel());
-		jsonObject.put("Last_Used_Date", User.getLastUsedDate());
-		
-		
-		System.out.println(jsonObject.toString());
+		jsonObject.put("idSystem_User", user.getIdSystemUser());
+		jsonObject.put("User_Name", user.getUserName());
+		jsonObject.put("Name", user.getName());
+		jsonObject.put("Surname", user.getSurname());
+		jsonObject.put("E_Mail", user.getEMail());		
+		jsonObject.put("Cell_Number", user.getCellNumber());
+		jsonObject.put("Tell_Number", user.getTellNumber());
+		jsonObject.put("User_Password", user.getUserPassword());
+		jsonObject.put("Authorization_Level", user.getAuthorizationLevel());
+		jsonObject.put("Last_Used_Date", user.getLastUsedDate());
 	    
 		return jsonObject.toString();
 	}
@@ -80,31 +74,31 @@ public class SystemUserService
 	public String GETUSERS( ) throws Exception
 	{
 		
-		SystemUserDAO Object  = new SystemUserDAO();
+		SystemUserDAO systemUserDao  = new SystemUserDAO();
 		
-		List<SystemUser> Users = Object.ReadAllUsers();
+		List<SystemUser> users = systemUserDao.ReadAllUsers();
 		
-		JSONArray JsonArray = new JSONArray();
+		JSONArray jsonArray = new JSONArray();
 		
-		for(int i = 0; i < Users.size();i++)
+		for(int i = 0; i < users.size();i++)
 		{
 			JSONObject jsonObject = new JSONObject();
-			jsonObject.put("idSystem_User", Users.get(i).getIdSystemUser());
-			jsonObject.put("User_Name", Users.get(i).getUserName());
-			jsonObject.put("Name", Users.get(i).getName());
-			jsonObject.put("Surname", Users.get(i).getSurname());
-			jsonObject.put("E_Mail", Users.get(i).getEMail());		
-			jsonObject.put("Cell_Number", Users.get(i).getCellNumber());
-			jsonObject.put("Tell_Number", Users.get(i).getTellNumber());
-			jsonObject.put("Authorization_Level", Users.get(i).getAuthorizationLevel());
-			jsonObject.put("Last_Used_Date", Users.get(i).getLastUsedDate());
+			jsonObject.put("idSystem_User", users.get(i).getIdSystemUser());
+			jsonObject.put("User_Name", users.get(i).getUserName());
+			jsonObject.put("Name", users.get(i).getName());
+			jsonObject.put("Surname", users.get(i).getSurname());
+			jsonObject.put("E_Mail", users.get(i).getEMail());		
+			jsonObject.put("Cell_Number", users.get(i).getCellNumber());
+			jsonObject.put("Tell_Number", users.get(i).getTellNumber());
+			jsonObject.put("Authorization_Level", users.get(i).getAuthorizationLevel());
+			jsonObject.put("Last_Used_Date", users.get(i).getLastUsedDate());
 			
 			
-			JsonArray.put(jsonObject);
+			jsonArray.put(jsonObject);
 		}
 		
 	    
-		return JsonArray.toString();
+		return jsonArray.toString();
 	}
 	
 	
@@ -116,14 +110,12 @@ public class SystemUserService
 		
 		String Matched = "false";
 		String PasswordUser = "";
+		SystemUserDAO systemUserDao  = new SystemUserDAO();
+		List<SystemUser> users = systemUserDao.CheckUserPassword(Username, Password);
 		
-		SystemUserDAO Object  = new SystemUserDAO();
-		
-		List<SystemUser> User = Object.CheckUserPassword(Username, Password);
-		
-		if(User.size() != 0)
+		if(users.size() != 0)
 		{
-			PasswordUser = User.get(0).getUserPassword().toString();
+			PasswordUser = users.get(0).getUserPassword().toString();
 			if(Password.equals(PasswordUser.trim()))
 			{
 				Matched = "true";
@@ -143,28 +135,23 @@ public class SystemUserService
 		String UsersName ="";
 		String UsersSurname = "";
 		
-		SystemUserDAO Object  = new SystemUserDAO();
+		SystemUserDAO systemUserDao  = new SystemUserDAO();
 		
-		List<SystemUser> User = Object.CheckUserPassword(Username, Password);
+		List<SystemUser> user = systemUserDao.CheckUserPassword(Username, Password);
 		
 		
-		if(User.size() != 0)
+		if(user.size() != 0)
 		{
-			UsersName = User.get(0).getName().toString();
-			UsersSurname = User.get(0).getSurname().toString();
+			UsersName = user.get(0).getName().toString();
+			UsersSurname = user.get(0).getSurname().toString();
 		}
 		
 		
-		JSONObject j = new JSONObject();
-		
-		j.put("UsersName", UsersName);
-		j.put("UsersSurname", UsersSurname);
-		
-		
-		
-		
-		
-		return j.toString();
+		JSONObject jsonObject = new JSONObject();
+		jsonObject.put("UsersName", UsersName);
+		jsonObject.put("UsersSurname", UsersSurname);
+
+		return jsonObject.toString();
 	}
 	
 	
@@ -174,28 +161,20 @@ public class SystemUserService
 	@Produces("text/plain")
 	public String GETUser(@PathParam("Id") String Id ) throws Exception
 	{
-		
-		
-		
-		SystemUserDAO Object  = new SystemUserDAO();
-		
-		List<SystemUser> User = Object.GetUserById(Id);
-		
-		
-		System.out.println("IdNumber:" + User.get(0).getName().toString() ) ;
-		
+		SystemUserDAO systemUserDao  = new SystemUserDAO();
+		List<SystemUser> user = systemUserDao.GetUserById(Id);
         JSONObject jsonObject = new JSONObject();
 		
-		jsonObject.put("idSystem_User", User.get(0).getIdSystemUser());
-		jsonObject.put("User_Name", User.get(0).getUserName().toString());
-		jsonObject.put("Name", User.get(0).getUserName().toString());
-		jsonObject.put("Surname", User.get(0).getSurname().toString());
-		jsonObject.put("E_Mail", User.get(0).getEMail().toString());		
-		jsonObject.put("Cell_Number", User.get(0).getCellNumber().toString());
-		jsonObject.put("Tell_Number", User.get(0).getTellNumber().toString());
-		jsonObject.put("Password", User.get(0).getUserPassword().toString());
-		jsonObject.put("Authorization_Level", User.get(0).getAuthorizationLevel().toString());
-		jsonObject.put("Last_Used_Date", User.get(0).getLastUsedDate().toString());
+		jsonObject.put("idSystem_User", user.get(0).getIdSystemUser());
+		jsonObject.put("User_Name", user.get(0).getUserName().toString());
+		jsonObject.put("Name", user.get(0).getUserName().toString());
+		jsonObject.put("Surname", user.get(0).getSurname().toString());
+		jsonObject.put("E_Mail", user.get(0).getEMail().toString());		
+		jsonObject.put("Cell_Number", user.get(0).getCellNumber().toString());
+		jsonObject.put("Tell_Number", user.get(0).getTellNumber().toString());
+		jsonObject.put("Password", user.get(0).getUserPassword().toString());
+		jsonObject.put("Authorization_Level", user.get(0).getAuthorizationLevel().toString());
+		jsonObject.put("Last_Used_Date", user.get(0).getLastUsedDate().toString());
 		
 
 		return jsonObject.toString();
@@ -212,11 +191,11 @@ public class SystemUserService
 		
 		
 
-		JSONObject r = new JSONObject(jsonTextObject);	
+		JSONObject jsonObject = new JSONObject(jsonTextObject);	
 
 			
 		SystemUserDAO Object  = new SystemUserDAO();
-		Object.AddUserInformation(r.getString("User_Name"),r.getString("Name"), r.getString("Surname"), r.getString("Email_address"), r.getString("Tell_Number"), r.getString("Cell_Number"), r.getString("Password"), r.getString("Authorization_Level"));
+		Object.AddUserInformation(jsonObject.getString("User_Name"),jsonObject.getString("Name"), jsonObject.getString("Surname"), jsonObject.getString("Email_address"), jsonObject.getString("Tell_Number"), jsonObject.getString("Cell_Number"), jsonObject.getString("Password"), jsonObject.getString("Authorization_Level"));
 		
 		return "Sucessful";	
 		
@@ -235,26 +214,21 @@ public class SystemUserService
 		Date date = new Date();
 		
 		
-		SystemUserDAO t = new SystemUserDAO();
-		JSONObject test = new JSONObject(jsonTextObject);
-		SystemUser User  = t.getUserInfoById(Integer.parseInt(test.getString("idSystem_User")));
+		SystemUserDAO systemUserDAO = new SystemUserDAO();
+		JSONObject 	jsonObject = new JSONObject(jsonTextObject);
+		SystemUser User  = systemUserDAO.getUserInfoById(Integer.parseInt(jsonObject.getString("idSystem_User")));
 		
-		User.setName(test.getString("Name"));
-		User.setSurname(test.getString("Surname"));
-		User.setEMail(test.getString("E_Mail"));
-		User.setCellNumber(test.getString("Cell_Number"));
-		User.setTellNumber(test.getString("Tell_Number"));
-		User.setAuthorizationLevel(test.getString("Authorization_Level"));
-		User.setUserPassword(test.getString("Password"));
+		User.setName(jsonObject.getString("Name"));
+		User.setSurname(jsonObject.getString("Surname"));
+		User.setEMail(jsonObject.getString("E_Mail"));
+		User.setCellNumber(jsonObject.getString("Cell_Number"));
+		User.setTellNumber(jsonObject.getString("Tell_Number"));
+		User.setAuthorizationLevel(jsonObject.getString("Authorization_Level"));
+		User.setUserPassword(jsonObject.getString("Password"));
 		User.setLastUsedDate(dateFormat.format(date));
-		
-		
-		
-		t.update(User);
-		
-		
-		
-		
+
+		systemUserDAO.update(User);
+	
 		return "Updated";
 	}
 	
