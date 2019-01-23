@@ -259,14 +259,27 @@
             <column name="RetarderDSCHillMode44" />
        </property>  
        
-       
        <property name="roadTestPassed" type="string">
             <column name="RoadTestPassed" length="3" />
         </property>
-        
         <property name="parkingTestPassed" type="string">
             <column name="ParkingTestPassed" length="3" />
-        </property>       
+        </property>
+        
+        <property name="roadTestComments" type="string">
+            <column name="RoadTestComments" length="450" />
+        </property>
+        <property name="parkingTestComments" type="string">
+            <column name="ParkingTestComments" length="450" />
+        </property>  
+       
+        <property name="reverseTestComments" type="string">
+            <column name="ReverseTestComments" length="450" />
+        </property>
+        <property name="reverseTestPassed" type="string">
+            <column name="ReverseTestPassed" length="3" />
+        </property>  
+               
         
     </class>
 </hibernate-mapping>

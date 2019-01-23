@@ -134,7 +134,7 @@ public class AssignedJobApplicantDAO extends HarlequinDAO
 	////////////////////////////////////
 	///NEW Function 19-07-2018
 	//////////////////////////////////
-	public void UpdateAssignedJobStatusPracticalDrivers(String Id_Number, String JobName,String StageInProcess, String StageStatus, String Complete, String Comments,String RoadTestPassed, String ParkingTestPassed)
+	public void UpdateAssignedJobStatusPracticalDrivers(String Id_Number, String JobName,String StageInProcess, String StageStatus, String Complete, String Comments,String RoadTestPassed, String ParkingTestPassed,String ReverseTestPassed)
 	{
 		List<AssignedJobApplicantList> AssignedJobs = ReadAllAssignedJobsInfoByIDAndJobNamePracticalDrivers(Id_Number,  JobName);
 		
@@ -150,6 +150,7 @@ public class AssignedJobApplicantDAO extends HarlequinDAO
 			Assigned_Job.setPracticalDriversTestComplete(Complete);
 			Assigned_Job.setRoadTestPassed(RoadTestPassed);
 			Assigned_Job.setParkingTestPassed(ParkingTestPassed);
+			Assigned_Job.setReverseTestPassed(ReverseTestPassed);
 			
 			System.out.println("Parking Test:"+ ParkingTestPassed);
 			System.out.println("Road Test Passed:"+ RoadTestPassed);

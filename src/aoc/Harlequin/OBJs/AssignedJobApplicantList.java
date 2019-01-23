@@ -36,6 +36,7 @@ public class AssignedJobApplicantList implements java.io.Serializable {
 	
 	private String RoadTestPassed;
 	private String ParkingTestPassed;
+	private String ReverseTestPassed;
 	
 	
 	
@@ -55,7 +56,7 @@ public class AssignedJobApplicantList implements java.io.Serializable {
 			String jobComments, String jobType, String idMacApplicants,
 			String name, String surname, String stageInProcess, String stageStatus,String macLabourInterviewComments, String macLabInterviewComplete, 
 			String practicalDriversTestComplete, String practicalDriversTestComments,String clientInterviewComplete, String clientInterviewComments,
-			String referenceChecksComplete, String referenceChecksComments, String RoadTestPassed , String ParkingTestPassed  ) 
+			String referenceChecksComplete, String referenceChecksComments, String RoadTestPassed , String ParkingTestPassed , String ReverseTestPassed ) 
 	{
 		this.idAssignedJobApplicantList = idAssignedJobApplicantList;
 		this.jobId = jobId;
@@ -85,12 +86,22 @@ public class AssignedJobApplicantList implements java.io.Serializable {
 		
 		this.RoadTestPassed = RoadTestPassed;
 		this.ParkingTestPassed = ParkingTestPassed;
+		this.ReverseTestPassed = ReverseTestPassed;
 		
 		
 	}
 
 
+	/////////////////////////////////////////////////////////////////////////////
+	public String getReverseTestPassed() 
+	{
+		return this.ReverseTestPassed;
+	}
 	
+	public void setReverseTestPassed(String ReverseTestPassed) 
+	{
+		this.ReverseTestPassed = ReverseTestPassed;
+	}
 	/////////////////////////////////////////////////////////////////////////////
 	public String getRoadTestPassed() 
 	{

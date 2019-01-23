@@ -96,7 +96,7 @@ public class PracticalDrivingAssessmentDAO extends HarlequinDAO {
 		  
 	}
 	
-	public void AddAppicantInformation(String idMac_Applicants,String name, String surname, String Id_Number,String Client_Name,String PDP_Expiry_Date, String Vehicle_Used, String Assessor_Name,String Assessor_Surname, String Assessor_User_Id,String Date, String KM_End,String KM_Start, String Time_End, String Time_Start, String Weather, String Route,String Total_Score, String Starting_And_Stopping, String General_Driving,String Passing_Or_Overtaking, String General_Road_Behavior, String Observation_And_Anticipation, String Approaching_Junctions_Turning_Exiting, String Reversing, String Clutch, String Retarder_DSC_HillMode, String Comments, String PDA_No,String License_Code,String Job_Name,String PracticalDriversComplete, String StartingAndStopping1 ,String StartingAndStopping2, String StartingAndStopping3,  String StartingAndStopping4,  String StartingAndStopping5,  String StartingAndStopping6,  String StartingAndStopping7,  String GeneralDriving8,  String GeneralDriving9,  String GeneralDriving10,  String GeneralDriving11,  String GeneralDriving12,  String GeneralDriving13,  String GeneralDriving14,  String GeneralDriving15,  String GeneralDriving16,  String GeneralDriving17,  String PassingOrOvertaking18,  String PassingOrOvertaking19,  String PassingOrOvertaking20,  String PassingOrOvertaking21,  String GeneralRoadBehavior22,  String GeneralRoadBehavior23,  String ObservationAndAnticipation24,  String ObservationAndAnticipation25,  String ObservationAndAnticipation26,  String ObservationAndAnticipation27,  String ObservationAndAnticipation28,  String ApproachingJunctionsTurningExiting29,  String ApproachingJunctionsTurningExiting30,  String ApproachingJunctionsTurningExiting31,  String ApproachingJunctionsTurningExiting32,  String ApproachingJunctionsTurningExiting33,  String ApproachingJunctionsTurningExiting34,  String ApproachingJunctionsTurningExiting35,  String ApproachingJunctionsTurningExiting36,  String Reversing37,  String Reversing38,  String Reversing39,  String Clutch40,  String Clutch41,  String RetarderDSCHillMode42,  String RetarderDSCHillMode43,  String RetarderDSCHillMode44 , String RoadTestPassed, String ParkingTestPassed  )
+	public void AddAppicantInformation(String idMac_Applicants,String name, String surname, String Id_Number,String Client_Name,String PDP_Expiry_Date, String Vehicle_Used, String Assessor_Name,String Assessor_Surname, String Assessor_User_Id,String Date, String KM_End,String KM_Start, String Time_End, String Time_Start, String Weather, String Route,String Total_Score, String Starting_And_Stopping, String General_Driving,String Passing_Or_Overtaking, String General_Road_Behavior, String Observation_And_Anticipation, String Approaching_Junctions_Turning_Exiting, String Reversing, String Clutch, String Retarder_DSC_HillMode, String Comments, String PDA_No,String License_Code,String Job_Name,String PracticalDriversComplete, String StartingAndStopping1 ,String StartingAndStopping2, String StartingAndStopping3,  String StartingAndStopping4,  String StartingAndStopping5,  String StartingAndStopping6,  String StartingAndStopping7,  String GeneralDriving8,  String GeneralDriving9,  String GeneralDriving10,  String GeneralDriving11,  String GeneralDriving12,  String GeneralDriving13,  String GeneralDriving14,  String GeneralDriving15,  String GeneralDriving16,  String GeneralDriving17,  String PassingOrOvertaking18,  String PassingOrOvertaking19,  String PassingOrOvertaking20,  String PassingOrOvertaking21,  String GeneralRoadBehavior22,  String GeneralRoadBehavior23,  String ObservationAndAnticipation24,  String ObservationAndAnticipation25,  String ObservationAndAnticipation26,  String ObservationAndAnticipation27,  String ObservationAndAnticipation28,  String ApproachingJunctionsTurningExiting29,  String ApproachingJunctionsTurningExiting30,  String ApproachingJunctionsTurningExiting31,  String ApproachingJunctionsTurningExiting32,  String ApproachingJunctionsTurningExiting33,  String ApproachingJunctionsTurningExiting34,  String ApproachingJunctionsTurningExiting35,  String ApproachingJunctionsTurningExiting36,  String Reversing37,  String Reversing38,  String Reversing39,  String Clutch40,  String Clutch41,  String RetarderDSCHillMode42,  String RetarderDSCHillMode43,  String RetarderDSCHillMode44 , String RoadTestComments , String RoadTestComplete,  String ParkingTestComments ,String ParkingTestComplete, String ReverseTestComments, String ReverseTestComplete  )
 	{
 		DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 		Date date = new Date();
@@ -210,7 +210,6 @@ public class PracticalDrivingAssessmentDAO extends HarlequinDAO {
 					Assessment.setApproachingJunctionsTurningExiting36(Integer.parseInt(ApproachingJunctionsTurningExiting36));
 					
 					
-				
 					Assessment.setReversing37(Integer.parseInt(Reversing37));
 					Assessment.setReversing38(Integer.parseInt(Reversing38));
 					Assessment.setReversing39(Integer.parseInt(Reversing39));
@@ -218,13 +217,18 @@ public class PracticalDrivingAssessmentDAO extends HarlequinDAO {
 					Assessment.setClutch40(Integer.parseInt(Clutch40));
 					Assessment.setClutch41(Integer.parseInt(Clutch41));
 					
-				
-					Assessment.setRetarderDSCHillMode42(Integer.parseInt(RetarderDSCHillMode42));
+				    Assessment.setRetarderDSCHillMode42(Integer.parseInt(RetarderDSCHillMode42));
 					Assessment.setRetarderDSCHillMode43(Integer.parseInt(RetarderDSCHillMode43));
 					Assessment.setRetarderDSCHillMode44(Integer.parseInt(RetarderDSCHillMode44));
 					
-					Assessment.setRoadTestPassed(RoadTestPassed);
-					Assessment.setParkingTestPassed(ParkingTestPassed);
+					Assessment.setRoadTestPassed(RoadTestComplete);
+					Assessment.setRoadTestComments(RoadTestComments);
+					
+					Assessment.setParkingTestPassed(ParkingTestComplete);
+					Assessment.setParkingTestComments(ParkingTestComments);
+					
+					Assessment.setReverseTestComments(ReverseTestComments);
+					Assessment.setReverseTestPassed(ReverseTestComplete);
 					
 				session.save(Assessment);
 				session.getTransaction().commit();

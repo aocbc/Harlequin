@@ -83,7 +83,11 @@
         
         <property name="parkingTestPassed" type="string">
             <column name="ParkingTestPassed" length="3" />
-        </property>       
+        </property>     
+        
+        <property name="reverseTestPassed" type="string">
+            <column name="ReverseTestPassed" length="3" />
+        </property>  
         
     </class>
 </hibernate-mapping>

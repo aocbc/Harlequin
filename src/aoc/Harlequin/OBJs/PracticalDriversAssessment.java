@@ -106,6 +106,11 @@ public class PracticalDriversAssessment implements java.io.Serializable {
 	private String RoadTestPassed;
 	private String ParkingTestPassed;
 
+	private String RoadTestComments;
+	private String ParkingTestComments;
+	
+	private String ReverseTestPassed;
+	private String ReverseTestComments;
 
 	public PracticalDriversAssessment() 
 	{
@@ -141,7 +146,8 @@ public class PracticalDriversAssessment implements java.io.Serializable {
 			int Reversing37, int Reversing38, int Reversing39,
 			int Clutch40, int Clutch41,
 			int RetarderDSCHillMode42, int RetarderDSCHillMode43, int RetarderDSCHillMode44,
-			String ParkingTestPassed, String RoadTestPassed) {
+			String ParkingTestPassed, String RoadTestPassed, String ParkingTestComments, String RoadTestComments, 
+			String ReverseTestPassed, String ReverseTestComments) {
 		this.idPracticalDriversAssessment = idPracticalDriversAssessment;
 		this.idMacApplicants = idMacApplicants;
 		this.name = name;
@@ -236,8 +242,56 @@ public class PracticalDriversAssessment implements java.io.Serializable {
 		this.RoadTestPassed = RoadTestPassed;
 		this.ParkingTestPassed = ParkingTestPassed;
 		
+		this.RoadTestComments = RoadTestComments;
+		this.ParkingTestComments = ParkingTestComments;
+		
+		this.ReverseTestPassed = ReverseTestPassed;
+		this.ReverseTestComments = ReverseTestComments;
+		
 	}
 
+	
+	
+	
+	public String getReverseTestPassed()
+	{
+		return this.ReverseTestPassed;
+	}
+	public void setReverseTestPassed(String ReverseTestPassed) 
+	{
+		this.ReverseTestPassed = ReverseTestPassed;
+	}
+	
+	
+	public String getReverseTestComments()
+	{
+		return this.ReverseTestComments;
+	}
+	public void setReverseTestComments(String ReverseTestComments) 
+	{
+		this.ReverseTestComments = ReverseTestComments;
+	}
+	
+	public String getParkingTestComments()
+	{
+		return this.ParkingTestComments;
+	}
+	public void setParkingTestComments(String ParkingTestComments) 
+	{
+		this.ParkingTestComments = ParkingTestComments;
+	}
+
+	
+	public String getRoadTestComments()
+	{
+		return this.RoadTestComments;
+	}
+	public void setRoadTestComments(String RoadTestComments) 
+	{
+		this.RoadTestComments = RoadTestComments;
+	}
+	
+	
 	public String getRoadTestPassed()
 	{
 		return this.RoadTestPassed;
