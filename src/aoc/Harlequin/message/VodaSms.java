@@ -6,7 +6,7 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.net.URLConnection;
 
-import org.apache.tomcat.util.codec.binary.Base64;
+//import org.apache.tomcat.util.codec.binary.Base64;
 
 public class VodaSms {
 	
