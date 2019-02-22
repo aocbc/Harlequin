@@ -968,6 +968,9 @@ public class MacApplicantDAO extends HarlequinDAO {
 			Applicant.setReferenceChecksComments("N/A");
 			Applicant.setReferenceChecksComplete("No");
 			Applicant.setSmsAccountActive("Yes");
+			Applicant.setEmployable("Yes");
+			Applicant.setEmployableComments("N/A");
+			
 			
 			Applicant.setLastUsedDate(dateFormat.format(date));
 			session.save(Applicant);
