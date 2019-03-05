@@ -14,27 +14,31 @@
  	       
  	    <!-- <property name="hibernate.connection.password">SecureA0C!</property>  
         <property name="hibernate.connection.url">jdbc:mysql://41.181.43.67:3306/Harlequin</property> Thys Live SERVER DATABASE
- 		<property name="hibernate.connection.username">root</property>   -->   
+ 		<property name="hibernate.connection.username">root</property>   -->
  		 
  		 
  		 
- 	   	<!-- <property name="hibernate.connection.password">SecureA0C!</property>  
-        <property name="hibernate.connection.url">jdbc:mysql://localhost:3306/Harlequin</property> USE For Deployment to Live Tomcat server Thys Live SERVER DATABASE
- 		<property name="hibernate.connection.username">root</property>  
- 		 --> 
- 	    
- 	    
- 	    <property name="hibernate.connection.password">SecureJitz</property>  
-        <property name="hibernate.connection.url">jdbc:mysql://localhost:3306/Harlequin</property> <!-- Local Testing -->
+ 	    <property name="hibernate.connection.password">SecureA0C!</property>  
+        <property name="hibernate.connection.url">jdbc:mysql://localhost:3306/Harlequin</property> <!-- USE For Deployment to Live Tomcat server Thys Live SERVER DATABASE -->
  		<property name="hibernate.connection.username">root</property>  
  		
+ 	    
+ 	    <!-- <property name="hibernate.connection.password">SecureJitz</property>  
+        <property name="hibernate.connection.url">jdbc:mysql://localhost:3306/Harlequin</property> Local Testing
+ 		<property name="hibernate.connection.username">root</property>    -->
+ 		
+ 		
+ 		<!-- <property name="hibernate.connection.password">SecureA0C!</property>  
+        <property name="hibernate.connection.url">jdbc:mysql://h.maclabour.co.za</property> 
+ 		<property name="hibernate.connection.username">root</property>   -->
+ 		 
 
 		<!-- <property name="hibernate.connection.url">jdbc:mysql://localhost:3306/Harlequin</property>   -->
 		
 		
 		<!-- <property name="hibernate.connection.url">jdbc:mysql://41.79.83.236:3306/Harlequin</property> 
         <property name="hibernate.connection.username">harlequin</property>
-        <property name="hibernate.connection.password">SecureA0C!</property>  -->
+        <property name="hibernate.connection.password">SecureA0C!</property> --> 
          
         <property name="hibernate.default_schema">Harlequin</property>
         <property name="hibernate.dialect">org.hibernate.dialect.MySQLDialect</property>
@@ -53,7 +57,6 @@
         <mapping resource="aoc/Harlequin/OBJs/PracticalDriversAssessment.hbm.xml" />
         <mapping resource="aoc/Harlequin/OBJs/MacLabourInterView.hbm.xml" />
         <mapping resource="aoc/Harlequin/OBJs/ClientInterviews.hbm.xml" />
-        <mapping resource="aoc/Harlequin/OBJs/ApplicantMacInterview.hbm.xml" />
         <mapping resource="aoc/Harlequin/OBJs/ApplicantSmsHistory.hbm.xml" />
         <mapping resource="aoc/Harlequin/OBJs/BlockedNumberList.hbm.xml" />
          
