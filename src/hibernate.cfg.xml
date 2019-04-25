@@ -18,14 +18,14 @@
  		 
  		 
  		 
- 	    <property name="hibernate.connection.password">SecureA0C!</property>  
-        <property name="hibernate.connection.url">jdbc:mysql://localhost:3306/Harlequin</property> <!-- USE For Deployment to Live Tomcat server Thys Live SERVER DATABASE -->
- 		<property name="hibernate.connection.username">root</property>  
+ 	   <!--  <property name="hibernate.connection.password">SecureA0C!</property>  
+        <property name="hibernate.connection.url">jdbc:mysql://localhost:3306/Harlequin</property> USE For Deployment to Live Tomcat server Thys Live SERVER DATABASE
+ 		<property name="hibernate.connection.username">root</property>   -->
  		
  	    
- 	    <!-- <property name="hibernate.connection.password">SecureJitz</property>  
-        <property name="hibernate.connection.url">jdbc:mysql://localhost:3306/Harlequin</property> Local Testing
- 		<property name="hibernate.connection.username">root</property>    -->
+ 	    <property name="hibernate.connection.password">SecureJitz</property>  
+        <property name="hibernate.connection.url">jdbc:mysql://localhost:3306/Harlequin</property> <!-- Local Testing -->
+ 		<property name="hibernate.connection.username">root</property>    
  		
  		
  		<!-- <property name="hibernate.connection.password">SecureA0C!</property>  
