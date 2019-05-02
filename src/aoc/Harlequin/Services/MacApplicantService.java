@@ -478,10 +478,7 @@ public class MacApplicantService {
 			jsonObject.put("Marital_Status", applicants.get(i).getMaritalStatus());
 			jsonObject.put("Dependants", applicants.get(i).getDependants());
 			jsonObject.put("Home_Language", applicants.get(i).getHomeLanguage());
-			jsonObject.put("Work_History_1", applicants.get(i).getWorkHistory1());
-			jsonObject.put("Work_History_2", applicants.get(i).getWorkHistory2());
-			jsonObject.put("Work_History_3", applicants.get(i).getWorkHistory3());
-			jsonObject.put("Work_History_4", applicants.get(i).getWorkHistory4());
+		
 			jsonObject.put("E_Mail", applicants.get(i).getEmail());
 			jsonObject.put("Age", applicants.get(i).getAge());
 			jsonObject.put("Date_Of_Birth", applicants.get(i).getDateOfBirth());
