@@ -192,6 +192,10 @@
             <column name="Employable_Comments" length="250" />
         </property>
         
+        <property name="source" type="string">
+            <column name="source" length="45" />
+        </property>
+        
              
     </class>
 </hibernate-mapping>

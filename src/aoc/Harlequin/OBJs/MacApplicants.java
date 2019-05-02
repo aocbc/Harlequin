@@ -66,7 +66,8 @@ public class MacApplicants implements java.io.Serializable {
 	private String lastUsedDate;
 	
 	private String employable; 
-	private String employableComments; 
+	private String employableComments;
+	private String source;
 	
 	public MacApplicants() {
 	}
@@ -81,7 +82,10 @@ public class MacApplicants implements java.io.Serializable {
 			String practicalDriversTestComments,String clientInterviewComplete, String clientInterviewComments,
 			String maritalStatus, String dependants, String homeLanguage,String referenceChecksComments,String referenceChecksComplete,
 			String workHistory1, String workHistory2, String workHistory3,String jobName,
-			String workHistory4, String email, String passportNumber,String expiryDateOfPassport, String city, String tax_No,String country,int age,String dateOfBirth,String lastSmsDate, String stageInTheProcess, String applicantStatus,String smsGroup,int smsGroupCount,String applicantType,String nationality, String smsAccountActive, String lastUsedDate, String employable, String employableComments) 
+			String workHistory4, String email, String passportNumber,String expiryDateOfPassport, String city, String tax_No,String country,
+			int age,String dateOfBirth,String lastSmsDate, String stageInTheProcess, String applicantStatus,String smsGroup,
+			int smsGroupCount,String applicantType,String nationality, String smsAccountActive, String lastUsedDate, String employable, 
+			String employableComments, String source) 
 	{
 		this.name = name;
 		this.surname = surname;
@@ -134,8 +138,17 @@ public class MacApplicants implements java.io.Serializable {
 		this.lastUsedDate = lastUsedDate;
 		this.employable = employable;
 		this.employableComments = employableComments;
+		this.source = source;
 	}
 
+	
+	public String getSource() {
+		return this.source;
+	}
+
+	public void setSource(String source) {
+		this.source = source;
+	}
 
 	public String getEmployableComments() {
 		return this.employableComments;

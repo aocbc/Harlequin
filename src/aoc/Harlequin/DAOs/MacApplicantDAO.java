@@ -954,7 +954,8 @@ public class MacApplicantDAO extends HarlequinDAO {
 			Applicant.setJobName(Job_Name);
 			Applicant.setStageInTheProcess(Stage_In_Process);
 			Applicant.setApplicantStatus(Applicant_Status);
-			//Applicant.setApplicantType(Applicant_Type);
+			Applicant.setApplicantType(Applicant_Type);
+			
 			Applicant.setSmsGroup(Sms_Group);
 			Applicant.setNationality(Nationality);
 			
@@ -970,6 +971,8 @@ public class MacApplicantDAO extends HarlequinDAO {
 			Applicant.setSmsAccountActive("Yes");
 			Applicant.setEmployable("Yes");
 			Applicant.setEmployableComments("N/A");
+			Applicant.setSource("Landing Page");
+			
 			
 			
 			Applicant.setLastUsedDate(dateFormat.format(date));

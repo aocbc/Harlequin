@@ -498,6 +498,7 @@ public class MacApplicantService {
 			jsonObject.put("Last_Used_Date", applicants.get(i).getLastUsedDate());
 			jsonObject.put("Employable", applicants.get(i).getEmployable());
 			jsonObject.put("Employable_Comments", applicants.get(i).getEmployableComments());
+			jsonObject.put("Source", applicants.get(i).getSource());
 			
 			jsonArray.put(jsonObject);
 		}
@@ -568,6 +569,7 @@ public class MacApplicantService {
 			jsonObject.put("Last_Used_Date", applicants.get(i).getLastUsedDate());
 			jsonObject.put("Employable", applicants.get(i).getEmployable());
 			jsonObject.put("Employable_Comments", applicants.get(i).getEmployableComments());
+			jsonObject.put("Source", applicants.get(i).getSource());
 			
 			jsonArray.put(jsonObject);
 		}
