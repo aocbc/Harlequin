@@ -59,7 +59,7 @@ public class JobHistoryDAO extends HarlequinDAO {
 		try
 		{
 			HibernateUtil.beginTransaction();
-			Query<JobHistory> query = session.createQuery("from JobHistory WHERE idMac_Applicants = '"+ IdNumber+"'");
+			Query<JobHistory> query = session.createQuery("from JobHistory WHERE idMac_Applicants = '"+ IdNumber.trim()+"'");
 			JobHistory = query.list();
 
 		}
@@ -67,6 +67,44 @@ public class JobHistoryDAO extends HarlequinDAO {
 		{
 
 			System.out.println("Error In Function: ReadAllJobHistoryByIdNumber - JobHistoryDAO");
+			System.out.println(ex.toString());
+		}
+		finally
+		{
+
+
+			if(session != null && session.isConnected())
+			{
+				session.clear();
+				session.flush();
+				session.close();
+			}
+
+		}	
+	
+		return JobHistory;
+		
+		
+		
+	}
+	
+	
+	public List<JobHistory> ReadAllJobHistoryByidJob_History(int idJob_History)
+	{
+		Session session = this.getSession();
+		List<JobHistory> JobHistory = new ArrayList<JobHistory>();
+		
+		try
+		{
+			HibernateUtil.beginTransaction();
+			Query<JobHistory> query = session.createQuery("from JobHistory WHERE idJob_History = "+ idJob_History);
+			JobHistory = query.list();
+
+		}
+		catch(Exception ex)
+		{
+
+			System.out.println("Error In Function: ReadAllJobHistoryByidJob_History - JobHistoryDAO");
 			System.out.println(ex.toString());
 		}
 		finally
@@ -169,7 +207,7 @@ public class JobHistoryDAO extends HarlequinDAO {
 		  
 	}
 	
-	public void AddJobHistroy( String Job_Role, String Job_Description, String Employer_Contact_Person,String Employer_Contact_Number, String Employer_Industry, String Period_From,String Period_To, String idMac_Applicants, String Name, String Surname,String Employer_Name)
+	public void AddJobHistroy( String Currently_Employed,String Job_Role, String Job_Description, String Employer_Contact_Person,String Employer_Contact_Number, String Employer_Industry, String Period_From,String Period_To, String idMac_Applicants, String Name, String Surname,String Employer_Name)
 	{
 		
 		/*Session session = HibernateUtil.getSessionFactory().openSession();
@@ -192,6 +230,7 @@ public class JobHistoryDAO extends HarlequinDAO {
 			history.setSurname(Surname);
 			history.setEmployerName(Employer_Name);
 			history.setIdMacApplicants(idMac_Applicants);
+			history.setCurrentlyEmployed(Currently_Employed);
 			
 			session.save(history);		
 			session.getTransaction().commit();

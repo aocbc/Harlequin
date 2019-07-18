@@ -41,5 +41,9 @@
          <property name="employerName" type="string">
             <column name="Employer_Name" length="45" />
         </property>
+        <property name="currentlyEmployed" type="string">
+            <column name="Currently_Employed" length="6" />
+        </property>
+        
     </class>
 </hibernate-mapping>

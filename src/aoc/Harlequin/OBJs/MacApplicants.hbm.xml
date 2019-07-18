@@ -193,7 +193,7 @@
         </property>
         
         <property name="source" type="string">
-            <column name="source" length="45" />
+            <column name="Source" length="45" />
         </property>
         
              

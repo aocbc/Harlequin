@@ -29,7 +29,7 @@ public class AssignedJobApplicantDAO extends HarlequinDAO
 
 			Query<AssignedJobApplicantList> query = session.createQuery("from AssignedJobApplicantList");
 			AssignedJobs = query.list();
-			System.out.println("Testing2");
+			
 		}
 		catch(Exception ex)
 		{

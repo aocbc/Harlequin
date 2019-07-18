@@ -48,6 +48,20 @@ public class MacApplicantService {
 	}
 	
 	
+	@Path("/ChangeApplicantSource/{Id_Number}/{Source}")
+	@GET
+	@Produces("text/plain")
+	public String ChangeApplicantSource( @PathParam("Id_Number") int Id_Number, @PathParam("Source") String Source ) throws Exception
+	{
+		MacApplicantDAO macApplicantDao  = new MacApplicantDAO();
+		MacApplicants applicant  = macApplicantDao.getClientApplicantoById(Id_Number);
+		
+		applicant.setSource(Source);
+		macApplicantDao.update(applicant);
+		
+		return "Applicant Source changed";
+	}
+	
 	
 	@Path("/GetApplicantInfo")
 	@GET
@@ -56,7 +70,7 @@ public class MacApplicantService {
 	{
 		
 		MacApplicantDAO macApplicantDao  = new MacApplicantDAO();
-		MacApplicants applicant  = macApplicantDao.getClientApplicantoById(1);
+		MacApplicants applicant  = macApplicantDao.getClientApplicantoById(0);
 		
 		JSONObject jsonObject = new JSONObject();
 		jsonObject.put("idMac_Applicants", applicant.getIdMacApplicants() );
@@ -98,7 +112,6 @@ public class MacApplicantService {
 		jsonObject.put("Last_Used_Date", applicant.getLastUsedDate());
 		jsonObject.put("Employable", applicant.getEmployable());
 		jsonObject.put("Employable_Comments", applicant.getEmployableComments());		
-
 	    
 		return jsonObject.toString();
 	}

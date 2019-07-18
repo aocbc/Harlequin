@@ -1,0 +1,22 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 06 Mar 2018 11:04:37 AM by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping>
+    <class name="aoc.Harlequin.Services.Users" table="overideuser" catalog="Harlequin">
+        <id name="idoverideUser" type="java.lang.Integer">
+            <column name="idoverideUser" />
+            <generator class="identity" />
+        </id>
+        <property name="Name" type="string">
+            <column name="Name" length="250" />
+        </property>
+        <property name="Surname" type="string">
+            <column name="Surname" length="250" />
+        </property>
+        <property name="Password" type="string">
+            <column name="Password" length="250" />
+        </property>
+     
+    </class>
+</hibernate-mapping>
