@@ -907,6 +907,7 @@ public class MacApplicantService {
 				jsonObject.put("Last_Sms_Date", applicants.get(i).getLastSmsDate());
 				////////////////////////////////////////////////////////////////////////////
 				jsonObject.put("Job_Name", assignedJobApplicantLists.get(j).getJobName());
+				jsonObject.put("Job_Id", assignedJobApplicantLists.get(j).getJobId());
 				//////////////////////////////////////////////////////////////		
 				jsonObject.put("Sms_Group", applicants.get(i).getSmsGroup());
 				jsonObject.put("Sms_Group_Count", applicants.get(i).getSmsGroupCount());
@@ -1466,6 +1467,26 @@ public class MacApplicantService {
 
 		return "Sucessful";	
 	
+	}
+	
+	@Path("/deleteAssignedApplicant")
+	@POST
+	@Consumes(MediaType.APPLICATION_JSON)
+	@Produces("text/plain")
+	public  String removeAssigned(String jsonTextObject) throws JSONException
+	{
+		JSONObject jsonObject = new JSONObject(jsonTextObject);
+		AssignedJobApplicantDAO assignedJobApplicantDAO = new AssignedJobApplicantDAO();
+		List<AssignedJobApplicantList> assignedJobApplicantList = assignedJobApplicantDAO.getAssignedJobByIdAndJob(jsonObject.getString("Id_Number"), jsonObject.getString("Job_Id")); 
+		
+		if(assignedJobApplicantList.size() > 0 && assignedJobApplicantList != null)
+		{
+			assignedJobApplicantDAO.delete(assignedJobApplicantList.get(0));
+		}
+		
+			
+			
+		return "Sucessful";	
 	}
 
 }

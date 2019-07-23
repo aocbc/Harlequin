@@ -578,5 +578,38 @@ public class AssignedJobApplicantDAO extends HarlequinDAO
 		
 	}
 	
+	
+	public List<AssignedJobApplicantList> getAssignedJobByIdAndJob(String Id_Number, String Job_Id)
+	{
+		Session session = this.getSession();
+		List<AssignedJobApplicantList> AssignedJobs =new ArrayList<AssignedJobApplicantList>();
+		
+		try
+		{
+			HibernateUtil.beginTransaction();
+			Query<AssignedJobApplicantList> query = session.createQuery("from AssignedJobApplicantList WHERE idMac_Applicants = '"+Id_Number+"' And Job_Id ="+Job_Id);
+			AssignedJobs = query.list();
+			
+		}
+		catch(Exception ex)
+		{
+
+			System.out.println("Error In Function: ReadAllAssignedJobsInfoByID - AssignedJobApplicantDAO");
+			System.out.println(ex.toString());
+		}
+		finally
+		{
+			if(session != null && session.isConnected())
+			{
+				session.clear();
+				session.flush();
+				session.close();
+			}
+		}
+		
+	
+		return AssignedJobs;	
+	}
+	
 
 }
