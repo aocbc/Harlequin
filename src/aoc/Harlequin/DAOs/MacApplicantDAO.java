@@ -278,7 +278,7 @@ public class MacApplicantDAO extends HarlequinDAO {
 		return string;
 	}
 	
-	public MacApplicants UpdateAppplicantMacLabourByIdJobName(int id, String InterviewComplete, String InterviewComments,String JobName, String Id_Number)
+	public MacApplicants UpdateAppplicantMacLabourByIdJobName(int id, String InterviewComplete, String InterviewComments,String JobName, String Id_Number, String MacInterviewPassed)
 	{
 		
 		DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
@@ -296,34 +296,34 @@ public class MacApplicantDAO extends HarlequinDAO {
 			
 			AssignedJobApplicantDAO assigned_job = new AssignedJobApplicantDAO();
 			
-			if(InterviewComplete.equals("Yes"))
+			if(MacInterviewPassed.equals("Yes"))
 			{
 				applicants.setStageInTheProcess("Practical Drivers Test");
 				
 				if(InterviewComments.equals(""))
 				{
-					assigned_job.UpdateAssignedJobStatusMacLabourInterview(Id_Number, JobName, "Practical Drivers Test", "beginning",InterviewComplete,"N/A");
+					assigned_job.UpdateAssignedJobStatusMacLabourInterview(Id_Number, JobName, "Practical Drivers Test", "beginning",InterviewComplete,"N/A",MacInterviewPassed);
 					
 				}
 				else
 				{
-					assigned_job.UpdateAssignedJobStatusMacLabourInterview(Id_Number, JobName, "Practical Drivers Test", "beginning",InterviewComplete,removeSpecialCharacters(InterviewComments));
+					assigned_job.UpdateAssignedJobStatusMacLabourInterview(Id_Number, JobName, "Practical Drivers Test", "beginning",InterviewComplete,removeSpecialCharacters(InterviewComments),MacInterviewPassed);
 					
 				}
 				
 				
 			}
-			else if(InterviewComplete.equals("No"))
+			else if(MacInterviewPassed.equals("No"))
 			{
 				applicants.setStageInTheProcess("MacLabour Interview");
 				
 				if(InterviewComments.equals(""))
 				{
-					assigned_job.UpdateAssignedJobStatusMacLabourInterview(Id_Number, JobName, "MacLabour Interview", "pending",InterviewComplete,"N/A");
+					assigned_job.UpdateAssignedJobStatusMacLabourInterview(Id_Number, JobName, "MacLabour Interview", "pending",InterviewComplete,"N/A",MacInterviewPassed);
 				}
 				else
 				{
-					assigned_job.UpdateAssignedJobStatusMacLabourInterview(Id_Number, JobName, "MacLabour Interview", "pending",InterviewComplete,removeSpecialCharacters(InterviewComments));
+					assigned_job.UpdateAssignedJobStatusMacLabourInterview(Id_Number, JobName, "MacLabour Interview", "pending",InterviewComplete,removeSpecialCharacters(InterviewComments),MacInterviewPassed);
 					
 				}
 				
@@ -637,7 +637,7 @@ public class MacApplicantDAO extends HarlequinDAO {
 		try
 		{
 			HibernateUtil.beginTransaction();
-			Query<MacApplicants> query = session.createQuery("from MacApplicants as x where exists(from AssignedJobApplicantList as y WHERE ((x.idNumber = y.idMacApplicants) AND (y.macLabInterviewComplete = 'Yes') AND (Job_Id ="+Job_id+")))");
+			Query<MacApplicants> query = session.createQuery("from MacApplicants as x where exists(from AssignedJobApplicantList as y WHERE ((x.idNumber = y.idMacApplicants) AND (y.macLabInterviewComplete = 'Yes') AND (y.MacLabInterviewPassed = 'Yes')  AND (Job_Id ="+Job_id+")))");
 			Applicant = query.list();
 			
 		}

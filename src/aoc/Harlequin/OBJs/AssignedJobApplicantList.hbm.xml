@@ -87,7 +87,23 @@
         
         <property name="reverseTestPassed" type="string">
             <column name="ReverseTestPassed" length="3" />
-        </property>  
+        </property> 
+        
+        <property name="MacLabInterviewPassed" type="string">
+            <column name="Mac_Lab_Interview_Passed" length="3" />
+        </property>
+        
+        <property name="practicalDriversTestPassed" type="string">
+            <column name="Practical_Drivers_Test_Passed" length="3" />
+        </property> 
+        
+        <property name="referenceChecksPassed" type="string">
+            <column name="Reference_Checks_Passed" length="3" />
+        </property>
+        
+        <property name="clientInterviewPassed" type="string">
+            <column name="Client_Interview_Passed" length="3" />
+        </property>
         
     </class>
 </hibernate-mapping>

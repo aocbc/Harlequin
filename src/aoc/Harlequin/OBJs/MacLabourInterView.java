@@ -29,6 +29,7 @@ public class MacLabourInterView implements java.io.Serializable {
 	private String formalInterviewComplete;
 	
 	private String lastUsedDate;
+	private String passed;
 
 	public MacLabourInterView() {
 	}
@@ -46,7 +47,8 @@ public class MacLabourInterView implements java.io.Serializable {
 			String unionMember, String unionName,
 			String applicantPassedInterview, String applicantPresentable,
 			String applicantAtttitude, String interviewComments,
-			String formalInterviewComplete, String lastUsedDate) {
+			String formalInterviewComplete, String lastUsedDate,
+			String passed) {
 		this.idMacLabourInterView = idMacLabourInterView;
 		this.idMacApplicants = idMacApplicants;
 		this.name = name;
@@ -68,8 +70,20 @@ public class MacLabourInterView implements java.io.Serializable {
 		this.interviewComments = interviewComments;
 		this.formalInterviewComplete = formalInterviewComplete;
 		this.lastUsedDate = lastUsedDate;
+		this.passed = passed;
 	}
 
+	
+	public String getPassed() 
+	{
+		return this.passed;
+	}
+
+	public void setPassed(String passed) 
+	{
+		this.passed = passed;
+	}
+	
 	public String getLastUsedDate() 
 	{
 		return this.lastUsedDate;

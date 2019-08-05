@@ -119,7 +119,7 @@ public class AssignedJobApplicantDAO extends HarlequinDAO
 	}
 	
 	
-	public void UpdateAssignedJobStatusMacLabourInterview(String Id_Number, String JobName,String StageInProcess, String StageStatus, String Complete, String Comments)
+	public void UpdateAssignedJobStatusMacLabourInterview(String Id_Number, String JobName,String StageInProcess, String StageStatus, String Complete, String Comments , String MacInterviewPassed )
 	{
 		List<AssignedJobApplicantList> AssignedJobs = ReadAllAssignedJobsInfoByIDAndJobName(Id_Number,  JobName);
 
@@ -132,6 +132,7 @@ public class AssignedJobApplicantDAO extends HarlequinDAO
 			Assigned_Job.setStageStatus(StageStatus);
 			Assigned_Job.setMacLabInterviewComplete(Complete);
 			Assigned_Job.setMacLabourInterviewComments(Comments);
+			Assigned_Job.setMacLabInterviewPassed(MacInterviewPassed);
 			
 			Session session = this.getSession();
 			

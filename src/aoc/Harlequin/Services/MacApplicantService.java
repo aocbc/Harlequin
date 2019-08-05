@@ -1088,6 +1088,8 @@ public class MacApplicantService {
 				////////////////////////////////////////////////////////////////////////////
 				jsonObject.put("Job_Name", assignedJobApplicantLists.get(j).getJobName());
 				jsonObject.put("Job_Id", assignedJobApplicantLists.get(j).getJobId());
+				jsonObject.put("Passed", assignedJobApplicantLists.get(j).getMacLabInterviewPassed());
+				
 				//////////////////////////////////////////////////////////////		
 				jsonObject.put("Sms_Group", applicants.get(i).getSmsGroup());
 				jsonObject.put("Sms_Group_Count", applicants.get(i).getSmsGroupCount());
@@ -1783,7 +1785,7 @@ public class MacApplicantService {
 		JSONObject jsonObject = new JSONObject(jsonTextObject);	
 		MacApplicantDAO macApplicantDao  = new MacApplicantDAO();
 		//Object.UpdateAppplicantMacLabourById(Integer.parseInt(r.getString("idMac_Applicants")), r.getString("Formal_Interview_Complete"), r.getString("Interview_Comments"));
-		macApplicantDao.UpdateAppplicantMacLabourByIdJobName(Integer.parseInt(jsonObject.getString("idMac_Applicants")), jsonObject.getString("Formal_Interview_Complete"), GeneralHelpUtility.escapeMetaCharacters(jsonObject.getString("Interview_Comments")), jsonObject.getString("Job_Name"),jsonObject.getString("Id_Number"));
+		macApplicantDao.UpdateAppplicantMacLabourByIdJobName(Integer.parseInt(jsonObject.getString("idMac_Applicants")), jsonObject.getString("Formal_Interview_Complete"), GeneralHelpUtility.escapeMetaCharacters(jsonObject.getString("Interview_Comments")), jsonObject.getString("Job_Name"),jsonObject.getString("Id_Number"),jsonObject.getString("Passed"));
 		
 		return "Sucessful";	
 	}

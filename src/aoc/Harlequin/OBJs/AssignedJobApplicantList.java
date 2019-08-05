@@ -38,6 +38,11 @@ public class AssignedJobApplicantList implements java.io.Serializable {
 	private String ParkingTestPassed;
 	private String ReverseTestPassed;
 	
+	private String MacLabInterviewPassed;
+	private String practicalDriversTestPassed;
+	private String referenceChecksPassed;
+	private String clientInterviewPassed;
+	
 	
 	
 
@@ -56,7 +61,8 @@ public class AssignedJobApplicantList implements java.io.Serializable {
 			String jobComments, String jobType, String idMacApplicants,
 			String name, String surname, String stageInProcess, String stageStatus,String macLabourInterviewComments, String macLabInterviewComplete, 
 			String practicalDriversTestComplete, String practicalDriversTestComments,String clientInterviewComplete, String clientInterviewComments,
-			String referenceChecksComplete, String referenceChecksComments, String RoadTestPassed , String ParkingTestPassed , String ReverseTestPassed ) 
+			String referenceChecksComplete, String referenceChecksComments, String RoadTestPassed , String ParkingTestPassed , String ReverseTestPassed,
+			String MacLabInterviewPassed, String practicalDriversTestPassed, String referenceChecksPassed, String clientInterviewPassed ) 
 	{
 		this.idAssignedJobApplicantList = idAssignedJobApplicantList;
 		this.jobId = jobId;
@@ -88,10 +94,54 @@ public class AssignedJobApplicantList implements java.io.Serializable {
 		this.ParkingTestPassed = ParkingTestPassed;
 		this.ReverseTestPassed = ReverseTestPassed;
 		
+		this.MacLabInterviewPassed = MacLabInterviewPassed;
+		this.clientInterviewPassed = clientInterviewPassed;
+		this.referenceChecksPassed = referenceChecksPassed;
+		this.practicalDriversTestPassed = practicalDriversTestPassed;
+		
 		
 	}
 
-
+	/////////////////////////////////////////////////////////////////////////////
+	public String getPracticalDriversTestPassed() 
+	{
+		return this.practicalDriversTestPassed;
+	}
+	
+	public void setPracticalDriversTestPassed(String practicalDriversTestPassed) 
+	{
+		this.practicalDriversTestPassed = practicalDriversTestPassed;
+	}
+	/////////////////////////////////////////////////////////////////////////////
+	public String getReferenceChecksPassed() 
+	{
+		return this.referenceChecksPassed;
+	}
+	
+	public void setReferenceChecksPassed(String referenceChecksPassed) 
+	{
+		this.referenceChecksPassed = referenceChecksPassed;
+	}
+	/////////////////////////////////////////////////////////////////////////////
+	public String getClientInterviewPassed() 
+	{
+		return this.clientInterviewPassed;
+	}
+	
+	public void setClientInterviewPassed(String clientInterviewPassed) 
+	{
+		this.clientInterviewPassed = clientInterviewPassed;
+	}
+	/////////////////////////////////////////////////////////////////////////////
+	public String getMacLabInterviewPassed() 
+	{
+		return this.MacLabInterviewPassed;
+	}
+	
+	public void setMacLabInterviewPassed(String MacLabInterviewPassed) 
+	{
+		this.MacLabInterviewPassed = MacLabInterviewPassed;
+	}
 	/////////////////////////////////////////////////////////////////////////////
 	public String getReverseTestPassed() 
 	{

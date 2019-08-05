@@ -69,5 +69,9 @@
          <property name="lastUsedDate" type="string">
             <column name="Last_Used_Date" length="19" />
         </property>
+        
+        <property name="passed" type="string">
+            <column name="Passed" length="3" />
+        </property>
     </class>
 </hibernate-mapping>

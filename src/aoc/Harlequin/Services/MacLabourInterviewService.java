@@ -230,6 +230,7 @@ public class MacLabourInterviewService {
 				jsonObject.put("Interview_comments", StringEscapeUtils.escapeJava(interviews.get(0).getInterviewComments()));
 				jsonObject.put("Formal_Interview_Complete", interviews.get(0).getFormalInterviewComplete());
 				jsonObject.put("Last_Used_Date", interviews.get(0).getLastUsedDate());
+				jsonObject.put("Passed", interviews.get(0).getPassed());
 			}
 					
 		
@@ -252,7 +253,7 @@ public class MacLabourInterviewService {
 		String Client_Name =  Job_For_Interview.get(0).getJobClientName();
 		MacInterviewDAO macInterviewDao  = new MacInterviewDAO();
 		
-		macInterviewDao.AddInterviewInformation(jsonObject.getString("idMac_Applicants"), jsonObject.getString("Name"), jsonObject.getString("Surname"), jsonObject.getString("Id_Number"), Client_Name, jsonObject.getString("Id_Verified"), jsonObject.getString("Work_History_Verified"), jsonObject.getString("Job_Name"), jsonObject.getString("Drivers_License_Verified"), jsonObject.getString("SAP_Check"), jsonObject.getString("Criminal_Record"), jsonObject.getString("Criminal_Record_Comments"), jsonObject.getString("Union_Member"), jsonObject.getString("Union_Name"), jsonObject.getString("Applicant_Passed_Interview"), jsonObject.getString("Applicant_Presentable"), jsonObject.getString("Applicant_Attitude"), removeSpecialCharacters(jsonObject.getString("Interview_Comments")), jsonObject.getString("Formal_Interview_Complete"));
+		macInterviewDao.AddInterviewInformation(jsonObject.getString("idMac_Applicants"), jsonObject.getString("Name"), jsonObject.getString("Surname"), jsonObject.getString("Id_Number"), Client_Name, jsonObject.getString("Id_Verified"), jsonObject.getString("Work_History_Verified"), jsonObject.getString("Job_Name"), jsonObject.getString("Drivers_License_Verified"), jsonObject.getString("SAP_Check"), jsonObject.getString("Criminal_Record"), jsonObject.getString("Criminal_Record_Comments"), jsonObject.getString("Union_Member"), jsonObject.getString("Union_Name"), jsonObject.getString("Applicant_Passed_Interview"), jsonObject.getString("Applicant_Presentable"), jsonObject.getString("Applicant_Attitude"), removeSpecialCharacters(jsonObject.getString("Interview_Comments")), jsonObject.getString("Formal_Interview_Complete"), jsonObject.getString("Passed"));
 		
 		return "Sucessful";		
 	}
