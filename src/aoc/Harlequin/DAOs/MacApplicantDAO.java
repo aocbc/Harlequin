@@ -805,6 +805,40 @@ public class MacApplicantDAO extends HarlequinDAO {
 		return Applicant;
 	}
 	
+	public List<MacApplicants> GetApplicantsDriversCompleteListByJobId(int Job_Id)
+	{
+		Session session = this.getSession();
+		List<MacApplicants> Applicant = new ArrayList<MacApplicants>();
+		
+		System.out.println("testing jateen");
+		
+		try
+		{
+			HibernateUtil.beginTransaction();
+			Query<MacApplicants> query = session.createQuery("from MacApplicants as x where exists(from AssignedJobApplicantList as y WHERE ((x.idNumber = y.idMacApplicants) AND (y.practicalDriversTestComplete = 'Yes') AND (y.roadTestPassed = 'Yes') AND (y.parkingTestPassed = 'Yes') AND (y.jobId = "+Job_Id+")))");
+			Applicant = query.list();
+			
+		}
+		catch(Exception ex)
+		{
+			System.out.println("Error In Function: GetApplicantsDriversCompleteNew - MacApplicantDAO");
+			System.out.println(ex.toString());
+		}
+		finally
+		{
+			if(session != null && session.isConnected())
+			{
+			
+				session.clear(); // ADDED 170302
+				session.flush();
+				session.close();
+			}
+		}
+		
+
+		return Applicant;
+	}
+	
 	
 	
 	public List<MacApplicants> GetApplicantsReferenceComplete()
