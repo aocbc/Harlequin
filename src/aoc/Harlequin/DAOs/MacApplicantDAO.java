@@ -628,6 +628,37 @@ public class MacApplicantDAO extends HarlequinDAO {
 		
 		return Applicant;
 	}
+	
+	public List<MacApplicants> GetApplicantsMacInterviewCompleteByJobId(int Job_id)
+	{
+		Session session = this.getSession();
+		List<MacApplicants> Applicant = new ArrayList<MacApplicants>();
+		
+		try
+		{
+			HibernateUtil.beginTransaction();
+			Query<MacApplicants> query = session.createQuery("from MacApplicants as x where exists(from AssignedJobApplicantList as y WHERE ((x.idNumber = y.idMacApplicants) AND (y.macLabInterviewComplete = 'Yes') AND (Job_Id ="+Job_id+")))");
+			Applicant = query.list();
+			
+		}
+		catch(Exception ex)
+		{
+			System.out.println("Error In Function: GetApplicantsMacInterviewCompleteNew - MacApplicantDAO");
+			System.out.println(ex.toString());
+		}
+		finally
+		{
+			if(session != null && session.isConnected())
+			{
+				session.clear(); 
+				session.flush();
+				session.close();
+				
+			}
+		}
+		
+		return Applicant;
+	}
 	//////////////////////////////////////////////////////////////////////////////
 	/////////////////////////////////////////////////////////////////////////////
 	/////////////////////////////////////////////////////////////////////////////
@@ -644,6 +675,42 @@ public class MacApplicantDAO extends HarlequinDAO {
 			Query<MacApplicants> query = session.createQuery("from MacApplicants as x where exists(from AssignedJobApplicantList as y WHERE x.idNumber = y.idMacApplicants )");
 			Applicant = query.list();
 
+			
+		}
+		catch(Exception ex)
+		{
+			System.out.println("Error In Function: GetApplicantsSiteComplete - MacApplicantDAO");
+			System.out.println(ex.toString());
+		}
+		finally
+		{
+			if(session != null && session.isConnected())
+			{
+				session.clear(); // ADDED 170302
+				session.flush();
+				session.close();
+			}
+		}
+
+		return Applicant;
+	}
+	
+	
+	public List<MacApplicants> GetApplicantsSiteCompleteLastJob_Id(int Job_Id)
+	{
+		Session session = this.getSession();
+		List<MacApplicants> Applicant = new ArrayList<MacApplicants>();
+		
+		
+		try
+		{
+			HibernateUtil.beginTransaction();
+			
+			Query<MacApplicants> query = session.createQuery("from MacApplicants as x where exists(from AssignedJobApplicantList as y WHERE x.idNumber = y.idMacApplicants AND y.jobId = "+Job_Id+")");
+			
+			
+			Applicant = query.list();
+			
 			
 		}
 		catch(Exception ex)

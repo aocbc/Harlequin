@@ -127,7 +127,7 @@ public class JobService {
 		{
 			JSONObject jsonObject = new JSONObject();
 			jsonObject.put("Job_Id", jobs.get(i).getJobId());
-			jsonObject.put("Job_Name", jobs.get(i).getJobName());
+			jsonObject.put("Job_Name", jobs.get(i).getJobName().toString().trim());
 			jsonObject.put("Job_Code", jobs.get(i).getJobCode());
 			jsonObject.put("Job_Client_Name", jobs.get(i).getJobClientName());
 			jsonObject.put("Job_Details", jobs.get(i).getJobDetails());		

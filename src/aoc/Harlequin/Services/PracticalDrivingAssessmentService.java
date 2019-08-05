@@ -333,7 +333,7 @@ public class PracticalDrivingAssessmentService {
 				Applicants.get(0).setStageInTheProcess("Practical Drivers Test");
 				Applicants.get(0).setJobName(jsonObject.getString("Job_Name"));
 				Applicants.get(0).setLastUsedDate(dateFormat.format(date));
-				assignedjobdao.UpdateAssignedJobStatusPracticalDrivers(jsonObject.getString("Id_Number"), jsonObject.getString("Job_Name"), "Client Interview", "beginning", jsonObject.getString("PracticalDriversTestComplete"), ((jsonObject.getString("Comments").equals("")) ? "N/A" : jsonObject.getString("Comments")),jsonObject.getString("RoadTestComplete"), jsonObject.getString("ParkingTestComplete"), jsonObject.getString("ReverseTestComplete")); 
+				assignedjobdao.UpdateAssignedJobStatusPracticalDrivers(jsonObject.getString("Id_Number"), jsonObject.getString("Job_Name"), "Practical Drivers Test", "pending", jsonObject.getString("PracticalDriversTestComplete"), ((jsonObject.getString("Comments").equals("")) ? "N/A" : jsonObject.getString("Comments")),jsonObject.getString("RoadTestComplete"), jsonObject.getString("ParkingTestComplete"), jsonObject.getString("ReverseTestComplete")); 
 				
 			}
 			macApplicantDao.update(Applicants.get(0));

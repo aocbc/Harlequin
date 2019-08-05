@@ -334,6 +334,46 @@ public class JobDAO extends HarlequinDAO {
 		
 	}
 	
+	public int getLastJobId()
+	{
+		Session session = this.getSession();
+		List<SystemJob> Job = new ArrayList<SystemJob>();
+		int job_id = 0;
+		
+		try
+		{
+			HibernateUtil.beginTransaction();
+			Query<SystemJob> query = session.createQuery("from SystemJob");
+			Job = query.list();
+			int size = Job.size();
+			if(Job!= null)
+			{
+				job_id = Job.get(size-1).getJobId();
+
+			}
+
+		}
+		catch(Exception ex)
+		{
+
+			System.out.println("Error In Function: GetJobInfoByJobName - MacApplicantDAO");
+			System.out.println(ex.toString());
+		}
+		finally
+		{
+
+			if(session != null && session.isConnected())
+			{
+				session.clear();
+				session.flush();
+				session.close();
+			}
+
+		}
+
+		return job_id;
+	}
+	
 	
 	
 }

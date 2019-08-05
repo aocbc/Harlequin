@@ -50,6 +50,38 @@ public class AssignedJobApplicantDAO extends HarlequinDAO
 		return AssignedJobs;
 	}
 	
+	public List<AssignedJobApplicantList> ReadAllAssignedJobsInfoByJob_Id(int Job_Id)
+	{
+		Session session = this.getSession();
+		List<AssignedJobApplicantList> AssignedJobs = new ArrayList<AssignedJobApplicantList>(); 
+		try
+		{
+			
+			HibernateUtil.beginTransaction();
+
+			Query<AssignedJobApplicantList> query = session.createQuery("from AssignedJobApplicantList Where Job_Id = "+Job_Id);
+			AssignedJobs = query.list();
+			
+		}
+		catch(Exception ex)
+		{
+			System.out.println("Error In Function: ReadAllAssignedJobsInfo - AssignedJobApplicantDAO");
+			System.out.println(ex.toString());
+		}
+		finally
+		{
+			if(session != null && session.isConnected() && session.isOpen())
+			{
+				session.clear(); // ADDED 170302
+				session.flush();
+				session.close();
+			}
+		}
+		
+		
+		return AssignedJobs;
+	}
+	
 	public List<AssignedJobApplicantList> ReadAllAssignedJobsInfobyIdNumber(String Id_Number)
 	{
 		Session session = this.getSession();
@@ -307,6 +339,38 @@ public class AssignedJobApplicantDAO extends HarlequinDAO
 		{
 			HibernateUtil.beginTransaction();
 			Query<AssignedJobApplicantList> query = session.createQuery("from AssignedJobApplicantList WHERE idMac_Applicants = '"+Id_Number+"'");
+			AssignedJobs = query.list();
+			
+		}
+		catch(Exception ex)
+		{
+			System.out.println("Error In Function: ReadAllAssignedJobsInfoByID - AssignedJobApplicantDAO");
+			System.out.println(ex.toString());
+		}
+		finally
+		{
+			if(session != null && session.isConnected())
+			{
+				session.clear();
+				session.flush();
+				session.close();
+			}
+		}
+		
+			
+		return AssignedJobs;
+
+	}
+	
+	public List<AssignedJobApplicantList> ReadAllAssignedJobsInfoByIDandJob(String Id_Number, int Job_id)
+	{
+		Session session = this.getSession();
+		List<AssignedJobApplicantList> AssignedJobs = new ArrayList<AssignedJobApplicantList>();
+		
+		try
+		{
+			HibernateUtil.beginTransaction();
+			Query<AssignedJobApplicantList> query = session.createQuery("from AssignedJobApplicantList WHERE idMac_Applicants = '"+Id_Number+"' and Job_Id ="+Job_id);
 			AssignedJobs = query.list();
 			
 		}
