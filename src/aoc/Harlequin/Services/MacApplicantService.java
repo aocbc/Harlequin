@@ -767,7 +767,7 @@ public class MacApplicantService {
 	public String practicalDriversListByJob_Id( @PathParam("Job_Id") int Job_Id) throws Exception
 	{
 	
-		System.out.println("Using this one");
+		
 						AssignedJobApplicantDAO assignedJobApplicantDao = new AssignedJobApplicantDAO();
 			
 						MacApplicantDAO macApplicantDao  = new MacApplicantDAO();
@@ -1432,7 +1432,11 @@ public class MacApplicantService {
 				jsonObject.put("Date_Of_Birth", applicants.get(i).getDateOfBirth());
 				jsonObject.put("Last_Sms_Date", applicants.get(i).getLastSmsDate());
 				////////////////////////////////////////////////////////////////////////////
-				jsonObject.put("Job_Name", assignedJobApplicantLists.get(j).getJobName());
+				if(assignedJobApplicantLists.get(j).getIdMacApplicants().equals(applicants.get(i).getIdNumber())  )
+				{
+					jsonObject.put("Job_Name", assignedJobApplicantLists.get(j).getJobName());
+					jsonObject.put("Client_Interview_Passed", assignedJobApplicantLists.get(j).getClientInterviewPassed());
+				}
 				//////////////////////////////////////////////////////////////
 				jsonObject.put("Sms_Group", applicants.get(i).getSmsGroup());
 				jsonObject.put("Sms_Group_Count", applicants.get(i).getSmsGroupCount());
