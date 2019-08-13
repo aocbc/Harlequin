@@ -201,11 +201,11 @@ public class ReferenceCheckDAO extends HarlequinDAO
 	
 	
 	
-	public void AddReferenceChecksInfo(String idMac_Applicants,String Applicant_Name, String Applicant_Surname, String Id_Number, String All_Reference_Checks_Passed, String Applicants_Overall_Reference, String Criminal_Check_Passed, String Applicants_Criminal_checks_Criteria, String Exit_Medical_Done, String Reference_Check_Complete, String Username, String Usersurname, String Job_Name , String ReferenceCheckComments)
+	public void AddReferenceChecksInfo(String idMac_Applicants,String Applicant_Name, String Applicant_Surname, String Id_Number, String All_Reference_Checks_Passed, String Applicants_Overall_Reference, String Criminal_Check_Passed, String Applicants_Criminal_checks_Criteria, String Exit_Medical_Done, String Reference_Check_Complete, String Username, String Usersurname, String Job_Name , String ReferenceCheckComments, String ReferenceCheckPassed)
 	{
 		////////////////////////////////////////////////////////////////////////////////////
 		////////////////////////////////////////////////////////////////////////////////////
-		List<ReferenceChecks> OldReferencecheck = GetUserByIdAndJob(idMac_Applicants, Job_Name);
+		List<ReferenceChecks> OldReferencecheck = GetUserByIdNumber(Id_Number);
 		
 		if(OldReferencecheck.size() > 0)
 		{
@@ -253,7 +253,7 @@ public class ReferenceCheckDAO extends HarlequinDAO
 			ReferenceCheck.setUsername(Username);
 			ReferenceCheck.setUsersurname(Usersurname);
 			ReferenceCheck.setJobName(Job_Name);
-			
+			ReferenceCheck.setReferenceChecksPassed(ReferenceCheckPassed);
 			
 			session.save(ReferenceCheck);
 					

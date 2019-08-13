@@ -287,7 +287,7 @@ public class JobDAO extends HarlequinDAO {
 	
 	
 	
-	public void AddJobInformation( String jobName, String jobCode, String jobClientName,String jobDetails, String jobComments, String jobtype)
+	public void AddJobInformation( String jobName, String Job_Date,String jobCode, String jobClientName,String jobDetails, String jobComments, String jobtype)
 	{
 		DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 		Date date = new Date();
@@ -300,13 +300,14 @@ public class JobDAO extends HarlequinDAO {
 			HibernateUtil.beginTransaction();
 			SystemJob job = new SystemJob();
 
-			job.setJobName(jobName);
-			job.setJobCode(jobCode);
-			job.setJobClientName(jobClientName);
-			job.setJobDetails(jobDetails);
-			job.setJobComments(jobComments);
-			job.setJobType(jobtype);
+			job.setJobName(jobName.trim());
+			job.setJobCode(jobCode.trim());
+			job.setJobClientName(jobClientName.trim());
+			job.setJobDetails(jobDetails.trim());
+			job.setJobComments(jobComments.trim());
+			job.setJobType(jobtype.trim());
 			job.setLastUsedDate(dateFormat.format(date));
+			job.setJobDate(Job_Date);
 
 			session.save(job);				
 			session.getTransaction().commit();

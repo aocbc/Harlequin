@@ -23,7 +23,7 @@ public class ReferenceChecks implements java.io.Serializable {
 	private String usersurname;
 	private String jobName;
 	private String referenceCheckComments;
-	
+	private String referenceChecksPassed;
 	
 
 	public ReferenceChecks() {
@@ -40,7 +40,7 @@ public class ReferenceChecks implements java.io.Serializable {
 			String criminalCheckPassed,
 			String applicantsCriminalChecksCriteria, String exitMedicalDone,
 			String referenceCheckComplete, String lastUsedDate,
-			String username, String usersurname, String jobName, String referenceCheckComments) {
+			String username, String usersurname, String jobName, String referenceCheckComments, String referenceChecksPassed ) {
 		this.idReferenceChecks = idReferenceChecks;
 		this.idMacApplicants = idMacApplicants;
 		this.applicantName = applicantName;
@@ -57,8 +57,17 @@ public class ReferenceChecks implements java.io.Serializable {
 		this.usersurname = usersurname;
 		this.jobName = jobName;
 		this.referenceCheckComments = referenceCheckComments;
+		this.referenceChecksPassed = referenceChecksPassed;
+	
 	}
 
+	public String getReferenceChecksPassed() {
+		return this.referenceChecksPassed;
+	}
+
+	public void setReferenceChecksPassed(String referenceChecksPassed) {
+		this.referenceChecksPassed = referenceChecksPassed;
+	}
 	
 	public String getReferenceCheckComments() {
 		return this.referenceCheckComments;

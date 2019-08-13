@@ -62,6 +62,36 @@ public class PracticalDrivingAssessmentDAO extends HarlequinDAO {
 		
 	}
 	
+	public void update(Object entity) 
+	{  
+		  Session hibernateSession = this.getSession();
+
+		  try
+		  {
+			  HibernateUtil.beginTransaction();
+		        //hibernateSession.save(entity);        
+		        //hibernateSession.saveOrUpdate(entity);
+		      hibernateSession.update(entity);  
+		      HibernateUtil.commitTransaction();
+		  }
+		  catch(Exception ex)
+		  {
+			  System.out.println("Error In Function: update - MacApplicantDAO");
+			  System.out.println(ex.toString());
+			  
+		  }
+		  finally
+		  {
+			  if(hibernateSession != null && hibernateSession.isConnected())
+			  {
+				  hibernateSession.clear();
+				  hibernateSession.flush();
+				  hibernateSession.close();
+			  }
+		  }
+		  
+	}
+	
 	public void delete(Object entity) 
 	{
 		  Session hibernateSession = this.getSession(); 		  

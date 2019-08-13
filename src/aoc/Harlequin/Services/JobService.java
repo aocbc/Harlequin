@@ -50,13 +50,13 @@ public class JobService {
 		{
 			JSONObject jsonObject = new JSONObject();
 			jsonObject.put("Job_Id", jobs.get(i).getJobId());
-			jsonObject.put("Job_Name", jobs.get(i).getJobName());
-			jsonObject.put("Job_Code", jobs.get(i).getJobCode());
-			jsonObject.put("Job_Client_Name", jobs.get(i).getJobClientName());
-			jsonObject.put("Job_Details", jobs.get(i).getJobDetails());		
+			jsonObject.put("Job_Name", jobs.get(i).getJobName().trim());
+			jsonObject.put("Job_Code", jobs.get(i).getJobCode().trim());
+			jsonObject.put("Job_Client_Name", jobs.get(i).getJobClientName().trim());
+			jsonObject.put("Job_Details", jobs.get(i).getJobDetails().trim());		
 			jsonObject.put("Job_Comments", StringEscapeUtils.escapeJava(jobs.get(i).getJobComments().toString()));
-			jsonObject.put("Job_Type", jobs.get(i).getJobType());
-			jsonObject.put("Last_Used_Date", jobs.get(i).getLastUsedDate());
+			jsonObject.put("Job_Type", jobs.get(i).getJobType().trim());
+			jsonObject.put("Last_Used_Date", jobs.get(i).getLastUsedDate().trim());
 			
 			
 			jsonArray.put(jsonObject);
@@ -84,13 +84,14 @@ public class JobService {
 		JSONObject jsonObject = new JSONObject();
 		
 		jsonObject.put("Job_Id", job.getJobId());
-		jsonObject.put("Job_Name", job.getJobName());
-		jsonObject.put("Job_Code", job.getJobCode());
-		jsonObject.put("Job_Client_Name", job.getJobClientName());
-		jsonObject.put("Job_Details", job.getJobDetails());		
+		jsonObject.put("Job_Date", job.getJobDate());
+		jsonObject.put("Job_Name", job.getJobName().trim());
+		jsonObject.put("Job_Code", job.getJobCode().trim());
+		jsonObject.put("Job_Client_Name", job.getJobClientName().trim());
+		jsonObject.put("Job_Details", job.getJobDetails().trim());		
 		jsonObject.put("Job_Comments", StringEscapeUtils.escapeJava(job.getJobComments().toString()));
-		jsonObject.put("Job_Type", job.getJobType());
-		jsonObject.put("Last_Used_Date", job.getLastUsedDate());
+		jsonObject.put("Job_Type", job.getJobType().trim());
+		jsonObject.put("Last_Used_Date", job.getLastUsedDate().trim());
 		
 
 	    
@@ -128,12 +129,13 @@ public class JobService {
 			JSONObject jsonObject = new JSONObject();
 			jsonObject.put("Job_Id", jobs.get(i).getJobId());
 			jsonObject.put("Job_Name", jobs.get(i).getJobName().toString().trim());
-			jsonObject.put("Job_Code", jobs.get(i).getJobCode());
-			jsonObject.put("Job_Client_Name", jobs.get(i).getJobClientName());
-			jsonObject.put("Job_Details", jobs.get(i).getJobDetails());		
+			jsonObject.put("Job_Code", jobs.get(i).getJobCode().trim());
+			jsonObject.put("Job_Date", jobs.get(i).getJobDate().trim());
+			jsonObject.put("Job_Client_Name", jobs.get(i).getJobClientName().trim());
+			jsonObject.put("Job_Details", jobs.get(i).getJobDetails().trim());		
 			jsonObject.put("Job_Comments", StringEscapeUtils.escapeJava(jobs.get(i).getJobComments().toString()));
-			jsonObject.put("Job_Type", jobs.get(i).getJobType());
-			jsonObject.put("Last_Used_Date", jobs.get(i).getLastUsedDate());
+			jsonObject.put("Job_Type", jobs.get(i).getJobType().trim());
+			jsonObject.put("Last_Used_Date", jobs.get(i).getLastUsedDate().trim());
 			
 			
 			jsonArray.put(jsonObject);
@@ -155,8 +157,8 @@ public class JobService {
 
 		JSONObject jsonObject = new JSONObject(jsonTextObject);	
 		JobDAO jobDao  = new JobDAO();
-				
-		jobDao.AddJobInformation(jsonObject.getString("Job_Name"), jsonObject.getString("Job_Code"), jsonObject.getString("Job_Client_Name"), jsonObject.getString("Job_Details"), jsonObject.getString("Job_Comments"), jsonObject.getString("Job_Type"));
+		String jobDate ="";		
+		jobDao.AddJobInformation(jsonObject.getString("Job_Name"),jobDate, jsonObject.getString("Job_Code"), jsonObject.getString("Job_Client_Name"), jsonObject.getString("Job_Details"), jsonObject.getString("Job_Comments"), jsonObject.getString("Job_Type"));
 		
 		return "Sucessful";	
 	}
@@ -180,13 +182,14 @@ public class JobService {
 		{
 			JSONObject jsonObject = new JSONObject();
 			jsonObject.put("Job_Id", jobs.get(i).getJobId());
-			jsonObject.put("Job_Name", jobs.get(i).getJobName());
-			jsonObject.put("Job_Code", jobs.get(i).getJobCode());
-			jsonObject.put("Job_Client_Name", jobs.get(i).getJobClientName());
-			jsonObject.put("Job_Details", jobs.get(i).getJobDetails());		
+			jsonObject.put("Job_Date", jobs.get(i).getJobDate().trim());
+			jsonObject.put("Job_Name", jobs.get(i).getJobName().trim());
+			jsonObject.put("Job_Code", jobs.get(i).getJobCode().trim());
+			jsonObject.put("Job_Client_Name", jobs.get(i).getJobClientName().trim());
+			jsonObject.put("Job_Details", jobs.get(i).getJobDetails().trim());		
 			jsonObject.put("Job_Comments", StringEscapeUtils.escapeJava(jobs.get(i).getJobComments().toString()));
-			jsonObject.put("Job_Type", jobs.get(i).getJobType());
-			jsonObject.put("Last_Used_Date", jobs.get(i).getJobType());
+			jsonObject.put("Job_Type", jobs.get(i).getJobType().trim());
+			jsonObject.put("Last_Used_Date", jobs.get(i).getJobType().trim());
 			
 			
 			jsonArray.put(jsonObject);
@@ -208,7 +211,7 @@ public class JobService {
 		
 		//System.out.println("WRITING TO DATABASE:"+ r.getString("Client_Name"));			
 		JobDAO jobDao  = new JobDAO();
-		jobDao.AddJobInformation(jsonObject.getString("Job_Name"), jsonObject.getString("Job_Code"), jsonObject.getString("Job_Client_Name"), jsonObject.getString("Job_Details"), jsonObject.getString("Job_Comments"), jsonObject.getString("Job_Type"));
+		jobDao.AddJobInformation(jsonObject.getString("Job_Name"),jsonObject.getString("Job_Date"), jsonObject.getString("Job_Code"), jsonObject.getString("Job_Client_Name"), jsonObject.getString("Job_Details"), jsonObject.getString("Job_Comments"), jsonObject.getString("Job_Type"));
 		
 		return "Sucessful";	
 	}
@@ -229,13 +232,13 @@ public class JobService {
 		JSONObject jsonObject = new JSONObject(jsonTextObject);		
 		SystemJob job  = jobDao.getJobInfoById(jsonObject.getInt("Job_Id"));
 
-		job.setJobName(jsonObject.getString("Job_Name"));
-		job.setJobClientName(jsonObject.getString("Job_Client_Name"));
-		job.setJobDetails(jsonObject.getString("Job_Details"));
-		job.setJobComments(jsonObject.getString("Job_Comments"));
-		job.setJobType(jsonObject.getString("Job_Type"));
-		job.setLastUsedDate(dateFormat.format(date));
-				
+		job.setJobName(jsonObject.getString("Job_Name").trim());
+		job.setJobClientName(jsonObject.getString("Job_Client_Name").trim());
+		job.setJobDetails(jsonObject.getString("Job_Details").trim());
+		job.setJobComments(jsonObject.getString("Job_Comments").trim());
+		job.setJobType(jsonObject.getString("Job_Type").trim());
+		job.setLastUsedDate(dateFormat.format(date).trim());
+		job.setJobDate(jsonObject.getString("Job_Date").trim());		
 		jobDao.update(job);
 		
 		return "Successful";

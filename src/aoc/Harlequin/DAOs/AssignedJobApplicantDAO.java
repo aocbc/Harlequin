@@ -17,7 +17,6 @@ import aoc.Harlequin.util.HibernateUtil;
 
 public class AssignedJobApplicantDAO extends HarlequinDAO 
 {
-	
 	public List<AssignedJobApplicantList> ReadAllAssignedJobsInfo()
 	{
 		Session session = this.getSession();
@@ -601,7 +600,7 @@ public class AssignedJobApplicantDAO extends HarlequinDAO
 		
 	}
 	
-	public void UpdateAssignedJobStatusClientrInterview(String Id_Number, String JobName,String StageInProcess, String StageStatus, String Complete, String Comments)
+	public void UpdateAssignedJobStatusClientrInterview(String Id_Number, String JobName,String StageInProcess, String StageStatus, String Complete, String Comments, String ClientInterviewPassed)
 	{
 		List<AssignedJobApplicantList> AssignedJobs = ReadAllAssignedJobsInfoByIDAndJobNameClientInterview(Id_Number,  JobName);
 		
@@ -613,6 +612,7 @@ public class AssignedJobApplicantDAO extends HarlequinDAO
 			Assigned_Job.setStageStatus(StageStatus);
 			Assigned_Job.setClientInterviewComplete(Complete);
 			Assigned_Job.setClientInterviewComments(Comments);
+			Assigned_Job.setClientInterviewPassed(ClientInterviewPassed);
 			
 			Session hibernateSession = this.getSession();
 			

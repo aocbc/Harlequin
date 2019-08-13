@@ -240,9 +240,9 @@ public class ClientInterviewDAO extends HarlequinDAO {
 		List<ClientInterviews> Client = new ArrayList<ClientInterviews>();
 		
 		
-		HibernateUtil.beginTransaction();
 		try
 		{
+			HibernateUtil.beginTransaction();
 			Query<ClientInterviews> query = session.createQuery("from ClientInterviews Where Id_Number = '"+Id_Number+"'");
 			Client = query.list();
 			

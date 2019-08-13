@@ -215,21 +215,21 @@ public class ClientInterviewService {
 		if(applicants.size()>0)
 		{
 			
-			if(jsonObject.getString("Client_Interview_Complete").equals("Yes"))
+			if(jsonObject.getString("Client_Interview_Passed").equals("Yes"))
 			{
 				applicants.get(0).setClientInterviewComplete(jsonObject.getString("Client_Interview_Complete"));
 				applicants.get(0).setStageInTheProcess("Reference Checks");
 				applicants.get(0).setLastUsedDate(dateFormat.format(date));
-				assignedJobDao.UpdateAssignedJobStatusClientrInterview(jsonObject.getString("Id_Number"), jsonObject.getString("Job_Name"), "Reference Checks", "beginning",jsonObject.getString("Client_Interview_Complete"),((jsonObject.getString("Interview_Comments").equals("")) ? "N/A" : jsonObject.getString("Interview_Comments")));
+				assignedJobDao.UpdateAssignedJobStatusClientrInterview(jsonObject.getString("Id_Number"), jsonObject.getString("Job_Name"), "Reference Checks", "beginning",jsonObject.getString("Client_Interview_Complete"),((jsonObject.getString("Interview_Comments").equals("")) ? "N/A" : jsonObject.getString("Interview_Comments")),jsonObject.getString("Client_Interview_Passed"));
 				
 				
 			}
-			else if(jsonObject.getString("Client_Interview_Complete").equals("No"))
+			else if(jsonObject.getString("Client_Interview_Passed").equals("No"))
 			{
 				applicants.get(0).setClientInterviewComplete(jsonObject.getString("Client_Interview_Complete"));
 				applicants.get(0).setStageInTheProcess("Client Interview");
 				applicants.get(0).setLastUsedDate(dateFormat.format(date));
-				assignedJobDao.UpdateAssignedJobStatusClientrInterview(jsonObject.getString("Id_Number"), jsonObject.getString("Job_Name"), "Client Interview", "pending",jsonObject.getString("Client_Interview_Complete"),((jsonObject.getString("Interview_Comments").equals("")) ? "N/A" : jsonObject.getString("Interview_Comments")));
+				assignedJobDao.UpdateAssignedJobStatusClientrInterview(jsonObject.getString("Id_Number"), jsonObject.getString("Job_Name"), "Client Interview", "pending",jsonObject.getString("Client_Interview_Complete"),((jsonObject.getString("Interview_Comments").equals("")) ? "N/A" : jsonObject.getString("Interview_Comments")),jsonObject.getString("Client_Interview_Passed"));
 				
 			}
 			

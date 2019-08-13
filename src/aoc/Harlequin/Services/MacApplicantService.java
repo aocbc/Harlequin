@@ -22,10 +22,12 @@ import aoc.Harlequin.DAOs.AssignedJobApplicantDAO;
 import aoc.Harlequin.DAOs.ClientDAO;
 import aoc.Harlequin.DAOs.JobDAO;
 import aoc.Harlequin.DAOs.MacApplicantDAO;
+import aoc.Harlequin.DAOs.ReferenceCheckDAO;
 import aoc.Harlequin.DAOs.SystemUserDAO;
 import aoc.Harlequin.OBJs.AssignedJobApplicantList;
 import aoc.Harlequin.OBJs.GeneralHelpUtility;
 import aoc.Harlequin.OBJs.MacApplicants;
+import aoc.Harlequin.OBJs.ReferenceChecks;
 import aoc.Harlequin.OBJs.SystemClient;
 import aoc.Harlequin.OBJs.SystemUser;
 
@@ -825,25 +827,31 @@ public class MacApplicantService {
 										{
 											jsonObject.put("Job_Name", assignedJobApplicantLists.get(j).getJobName());
 											jsonObject.put("Stage_In_Process",  assignedJobApplicantLists.get(j).getStageInProcess());
+											jsonObject.put("RoadTestPassed", assignedJobApplicantLists.get(j).getRoadTestPassed());
+											jsonObject.put("ParkingTestPassed", assignedJobApplicantLists.get(j).getParkingTestPassed());
+											jsonObject.put("ReverseTestPassed", assignedJobApplicantLists.get(j).getReverseTestPassed());
+											
+											jsonObject.put("Practical_Drivers_Test_Comments", StringEscapeUtils.escapeJava(assignedJobApplicantLists.get(j).getPracticalDriversTestComments()));
+											jsonObject.put("Practical_Drivers_Test_Complete", assignedJobApplicantLists.get(j).getPracticalDriversTestComplete());
+											jsonObject.put("Mac_Labour_Interview_Comments", StringEscapeUtils.escapeJava(assignedJobApplicantLists.get(j).getMacLabourInterviewComments()));
+											jsonObject.put("Mac_Lab_Interview_Complete", assignedJobApplicantLists.get(j).getMacLabInterviewComplete());
+											
+											
+											
 											//jsonObject.put("Stage_In_Process",  "Test");
 											
 										}
 										
 										//////////////////////////////////////////////////////////////
+										jsonObject.put("Employable", applicants.get(i).getEmployable());
+										jsonObject.put("Employable_Comments", applicants.get(i).getEmployableComments());
+										
 										jsonObject.put("Sms_Group", applicants.get(i).getSmsGroup());
 										jsonObject.put("Sms_Group_Count", applicants.get(i).getSmsGroupCount());
 										jsonObject.put("Applicant_Type", applicants.get(i).getApplicantType());
 										jsonObject.put("Applicant_Status", applicants.get(i).getApplicantStatus());
-										
-										
 										jsonObject.put("Sms_Account_Active", applicants.get(i).getSmsAccountActive());
-										jsonObject.put("Practical_Drivers_Test_Comments", StringEscapeUtils.escapeJava(assignedJobApplicantLists.get(j).getPracticalDriversTestComments()));
-										jsonObject.put("Practical_Drivers_Test_Complete", assignedJobApplicantLists.get(j).getPracticalDriversTestComplete());
-										jsonObject.put("Mac_Labour_Interview_Comments", StringEscapeUtils.escapeJava(assignedJobApplicantLists.get(j).getMacLabourInterviewComments()));
-										jsonObject.put("Mac_Lab_Interview_Complete", assignedJobApplicantLists.get(j).getMacLabInterviewComplete());
 										jsonObject.put("Last_Used_Date", applicants.get(i).getLastUsedDate());
-										jsonObject.put("RoadTestPassed", assignedJobApplicantLists.get(j).getRoadTestPassed());
-										jsonObject.put("ParkingTestPassed", assignedJobApplicantLists.get(j).getParkingTestPassed());
 										jsonObject.put("Nationality", applicants.get(i).getNationality());
 										jsonObject.put("Employable", applicants.get(i).getEmployable());
 										jsonObject.put("Employable_Comments", applicants.get(i).getEmployableComments());
@@ -1436,18 +1444,21 @@ public class MacApplicantService {
 				{
 					jsonObject.put("Job_Name", assignedJobApplicantLists.get(j).getJobName());
 					jsonObject.put("Client_Interview_Passed", assignedJobApplicantLists.get(j).getClientInterviewPassed());
+					jsonObject.put("Client_Interview_Comments", StringEscapeUtils.escapeJava(assignedJobApplicantLists.get(j).getClientInterviewComments()));
+					jsonObject.put("Client_Interview_Complete", assignedJobApplicantLists.get(j).getClientInterviewComplete());
+					jsonObject.put("Practical_Drivers_Test_Comments", StringEscapeUtils.escapeJava(assignedJobApplicantLists.get(j).getPracticalDriversTestComments()));
+					jsonObject.put("Practical_Drivers_Test_Complete", assignedJobApplicantLists.get(j).getPracticalDriversTestComplete());
+					jsonObject.put("Stage_In_Process", assignedJobApplicantLists.get(j).getStageInProcess());
 				}
 				//////////////////////////////////////////////////////////////
 				jsonObject.put("Sms_Group", applicants.get(i).getSmsGroup());
 				jsonObject.put("Sms_Group_Count", applicants.get(i).getSmsGroupCount());
 				jsonObject.put("Applicant_Type", applicants.get(i).getApplicantType());
 				jsonObject.put("Applicant_Status", applicants.get(i).getApplicantStatus());
-				jsonObject.put("Client_Interview_Comments", StringEscapeUtils.escapeJava(assignedJobApplicantLists.get(j).getClientInterviewComments()));
-				jsonObject.put("Client_Interview_Complete", assignedJobApplicantLists.get(j).getClientInterviewComplete());
-				jsonObject.put("Stage_In_Process", assignedJobApplicantLists.get(j).getStageInProcess());
+				
+				
 				jsonObject.put("Sms_Account_Active", applicants.get(i).getSmsAccountActive());
-				jsonObject.put("Practical_Drivers_Test_Comments", StringEscapeUtils.escapeJava(assignedJobApplicantLists.get(j).getPracticalDriversTestComments()));
-				jsonObject.put("Practical_Drivers_Test_Complete", assignedJobApplicantLists.get(j).getPracticalDriversTestComplete());
+				
 				jsonObject.put("Nationality", applicants.get(i).getNationality());
 				jsonObject.put("Last_Used_Date", applicants.get(i).getLastUsedDate());
 				jsonObject.put("Employable", applicants.get(i).getEmployable());
@@ -1471,7 +1482,7 @@ public class MacApplicantService {
 	@Produces("text/plain")
 	public String GETAPPLICANTReferencecheck( ) throws Exception
 	{
-		
+		ReferenceCheckDAO referenceCheckDAO = new ReferenceCheckDAO();
 		MacApplicantDAO macApplicantDao  = new MacApplicantDAO();
 		List<MacApplicants> applicants = macApplicantDao.GetApplicantsReferenceCheck();
 		JSONArray jsonArray = new JSONArray();
@@ -1479,6 +1490,7 @@ public class MacApplicantService {
 		for(int i = 0; i < applicants.size();i++)
 		{
 			JSONObject jsonObject = new JSONObject();
+			List<ReferenceChecks> referenceCheckList = referenceCheckDAO.GetUserByIdNumber(applicants.get(i).getIdNumber());
 			
 			jsonObject.put("idMac_Applicants", applicants.get(i).getIdMacApplicants());
 			jsonObject.put("Name", applicants.get(i).getName());
@@ -1528,6 +1540,16 @@ public class MacApplicantService {
 			jsonObject.put("Last_Used_Date", applicants.get(i).getLastUsedDate());
 			jsonObject.put("Employable", applicants.get(i).getEmployable());
 			jsonObject.put("Employable_Comments", applicants.get(i).getEmployableComments());
+			
+			if(referenceCheckList!= null && referenceCheckList.size() > 0 )
+			{
+				jsonObject.put("Reference_Checks_Passed", referenceCheckList.get(referenceCheckList.size() - 1).getReferenceChecksPassed());
+			}
+			else
+			{
+				jsonObject.put("Reference_Checks_Passed","No");
+			}
+			
 			
 			jsonArray.put(jsonObject);
 		}

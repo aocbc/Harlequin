@@ -55,5 +55,9 @@
         <property name="referenceCheckComments" type="string">
             <column name="Reference_Check_Comments" length="250" />
         </property>
+        
+        <property name="referenceChecksPassed" type="string">
+            <column name="Reference_Checks_Passed" length="3" />
+        </property>
     </class>
 </hibernate-mapping>

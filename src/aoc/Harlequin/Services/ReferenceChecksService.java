@@ -17,10 +17,12 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import aoc.Harlequin.DAOs.AssignedJobApplicantDAO;
 import aoc.Harlequin.DAOs.ClientDAO;
 import aoc.Harlequin.DAOs.MacApplicantDAO;
 import aoc.Harlequin.DAOs.ReferenceCheckDAO;
 import aoc.Harlequin.DAOs.SystemUserDAO;
+import aoc.Harlequin.OBJs.AssignedJobApplicantList;
 import aoc.Harlequin.OBJs.MacApplicants;
 import aoc.Harlequin.OBJs.ReferenceChecks;
 import aoc.Harlequin.OBJs.SystemUser;
@@ -93,21 +95,23 @@ public class ReferenceChecksService
 			JSONObject jsonObject = new JSONObject();
 			if(referenceChecks.size() > 0)
 			{
-				jsonObject.put("idReference_Checks", referenceChecks.get(0).getIdReferenceChecks());
-				jsonObject.put("idMac_Applicants", referenceChecks.get(0).getIdMacApplicants());
-				jsonObject.put("Applicant_Name", referenceChecks.get(0).getApplicantName());
-				jsonObject.put("Applicant_Surname", referenceChecks.get(0).getApplicantSurname());
-				jsonObject.put("Id_Number", referenceChecks.get(0).getIdNumber());		
-				jsonObject.put("All_Reference_checks_Passed", referenceChecks.get(0).getAllReferenceChecksPassed());
-				jsonObject.put("Applicants_Overall_Reference", referenceChecks.get(0).getApplicantsOverallReference());
-				jsonObject.put("Criminal_Check_Passed", referenceChecks.get(0).getCriminalCheckPassed());
-				jsonObject.put("Applicants_Criminal_Checks_Criteria", referenceChecks.get(0).getApplicantsCriminalChecksCriteria());
-				jsonObject.put("Exit_Medical_done", referenceChecks.get(0).getExitMedicalDone());
-				jsonObject.put("Reference_Check_Complete", referenceChecks.get(0).getReferenceCheckComplete());
-				jsonObject.put("Last_Used_Date", referenceChecks.get(0).getLastUsedDate());
-				jsonObject.put("Username", referenceChecks.get(0).getUsername());
-				jsonObject.put("Usersurname", referenceChecks.get(0).getUsersurname());
-				jsonObject.put("Reference_Check_Comments", StringEscapeUtils.escapeJava(referenceChecks.get(0).getReferenceCheckComments()));
+				int index = referenceChecks.size() - 1;
+				jsonObject.put("idReference_Checks", referenceChecks.get(index).getIdReferenceChecks());
+				jsonObject.put("idMac_Applicants", referenceChecks.get(index).getIdMacApplicants());
+				jsonObject.put("Applicant_Name", referenceChecks.get(index).getApplicantName());
+				jsonObject.put("Applicant_Surname", referenceChecks.get(index).getApplicantSurname());
+				jsonObject.put("Id_Number", referenceChecks.get(index).getIdNumber());		
+				jsonObject.put("All_Reference_checks_Passed", referenceChecks.get(index).getAllReferenceChecksPassed());
+				jsonObject.put("Applicants_Overall_Reference", referenceChecks.get(index).getApplicantsOverallReference());
+				jsonObject.put("Criminal_Check_Passed", referenceChecks.get(index).getCriminalCheckPassed());
+				jsonObject.put("Applicants_Criminal_Checks_Criteria", referenceChecks.get(index).getApplicantsCriminalChecksCriteria());
+				jsonObject.put("Exit_Medical_done", referenceChecks.get(index).getExitMedicalDone());
+				jsonObject.put("Reference_Check_Complete", referenceChecks.get(index).getReferenceCheckComplete());
+				jsonObject.put("Last_Used_Date", referenceChecks.get(index).getLastUsedDate());
+				jsonObject.put("Username", referenceChecks.get(index).getUsername());
+				jsonObject.put("Usersurname", referenceChecks.get(index).getUsersurname());
+				jsonObject.put("Reference_Check_Comments", StringEscapeUtils.escapeJava(referenceChecks.get(index).getReferenceCheckComments()));
+				jsonObject.put("Reference_Check_Passed", referenceChecks.get(index).getReferenceChecksPassed());
 			}
 
 		    
@@ -274,8 +278,24 @@ public class ReferenceChecksService
 	{
 		JSONObject jsonObject = new JSONObject(jsonTextObject);	
 		ReferenceCheckDAO referenceCheckDAO  = new ReferenceCheckDAO();
-		referenceCheckDAO.AddReferenceChecksInfo(jsonObject.getString("idMac_Applicants"), jsonObject.getString("Applicant_Name"),jsonObject.getString("Applicant_Surname"), jsonObject.getString("Id_Number"), jsonObject.getString("All_Reference_Checks_Passed"), jsonObject.getString("Applicants_Overall_Reference"), jsonObject.getString("Criminal_Check_Passed"), jsonObject.getString("Applicants_Criminal_checks_Criteria"), jsonObject.getString("Exit_Medical_Done"), jsonObject.getString("Reference_Check_Complete"), jsonObject.getString("Username"), jsonObject.getString("Usersurname"), jsonObject.getString("Job_Name"), jsonObject.getString("Reference_Check_Comments"));
+		referenceCheckDAO.AddReferenceChecksInfo(jsonObject.getString("idMac_Applicants"), jsonObject.getString("Applicant_Name"),jsonObject.getString("Applicant_Surname"), jsonObject.getString("Id_Number"), jsonObject.getString("All_Reference_Checks_Passed"), jsonObject.getString("Applicants_Overall_Reference"), jsonObject.getString("Criminal_Check_Passed"), jsonObject.getString("Applicants_Criminal_checks_Criteria"), jsonObject.getString("Exit_Medical_Done"), jsonObject.getString("Reference_Check_Complete"), jsonObject.getString("Username"), jsonObject.getString("Usersurname"), jsonObject.getString("Job_Name"), jsonObject.getString("Reference_Check_Comments"), jsonObject.getString("Reference_Check_Passed"));
+		
+		AssignedJobApplicantDAO assignedJobApplicantDao = new AssignedJobApplicantDAO();
+		List<AssignedJobApplicantList> assignedJobApplicantList = assignedJobApplicantDao.ReadAllAssignedJobsInfobyIdNumber(jsonObject.getString("Id_Number"));
+		if(assignedJobApplicantList != null && assignedJobApplicantList.size() > 0)
+		{
+			for(int i = 0; i < assignedJobApplicantList.size(); i++)
+			{
+				assignedJobApplicantList.get(i).setReferenceChecksPassed(jsonObject.getString("Reference_Check_Passed"));
+				assignedJobApplicantList.get(i).setReferenceChecksComments(jsonObject.getString("Reference_Check_Comments"));
+				assignedJobApplicantList.get(i).setReferenceChecksComplete(jsonObject.getString("Reference_Check_Complete"));
 				
+				assignedJobApplicantDao.update(assignedJobApplicantList.get(i));
+			}
+
+		}
+		
+		
 		return "Sucessful";	
 		
 	}

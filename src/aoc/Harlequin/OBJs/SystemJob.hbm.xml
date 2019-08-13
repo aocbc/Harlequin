@@ -27,6 +27,9 @@
             <column name="Job_Type" />
         </property>
         
+        <property name="jobDate" type="string">
+            <column name="Job_Date" />
+        </property>
         
         <property name="lastUsedDate" type="string">
             <column name="Last_Used_Date" />
