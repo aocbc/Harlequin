@@ -517,8 +517,8 @@ public class AssignedJobApplicantDAO extends HarlequinDAO
 		//Reading the Job Information from the JobName Provided
 		////////////////////////////////////////////////////////////////////
 		JobDAO Object  = new JobDAO();
-		List<SystemJob> Jobs  = Object.GetJobInfoByJobName(JobName);
-		
+		List<SystemJob> Jobs  = Object.GetJobInfoByJobName(JobName.trim());
+		System.out.println("Job_Name"+JobName + ", Id_Number:"+idMacApplicants+ ", Jobs.size:"+Jobs.size());
 		//Checking if the Job and Applicant Exists
 		////////////////////////////////////////
 		if(Jobs.size() > 0 && Applicant.size()> 0)
@@ -565,6 +565,11 @@ public class AssignedJobApplicantDAO extends HarlequinDAO
 							
 							AssignedJob.setReferenceChecksComplete("No");
 							AssignedJob.setReferenceChecksComments("Please Add a comment");
+							
+							AssignedJob.setMacLabInterviewPassed("No");
+							AssignedJob.setPracticalDriversTestPassed("No");
+							AssignedJob.setClientInterviewPassed("No");
+							AssignedJob.setReferenceChecksPassed("No");
 							
 							session.save(AssignedJob);
 									

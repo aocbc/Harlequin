@@ -126,6 +126,43 @@ public class JobHistoryDAO extends HarlequinDAO {
 		
 	}
 	
+	public List<JobHistory> ReadAllJobHistoryByidJob_HistoryAndIdNumber(Long idJob_History, String IdNumber )
+	{
+		Session session = this.getSession();
+		List<JobHistory> JobHistory = new ArrayList<JobHistory>();
+		
+		try
+		{
+			HibernateUtil.beginTransaction();
+			Query<JobHistory> query = session.createQuery("from JobHistory WHERE idJob_History = "+ idJob_History + "AND idMac_Applicants = '"+ IdNumber.trim()+"'");
+			JobHistory = query.list();
+
+		}
+		catch(Exception ex)
+		{
+
+			System.out.println("Error In Function: ReadAllJobHistoryByidJob_History - JobHistoryDAO");
+			System.out.println(ex.toString());
+		}
+		finally
+		{
+
+
+			if(session != null && session.isConnected())
+			{
+				session.clear();
+				session.flush();
+				session.close();
+			}
+
+		}	
+	
+		return JobHistory;
+		
+		
+		
+	}
+	
 	public List<JobHistory> ReadAllJobHistory()
 	{
 		Session session = this.getSession();
@@ -207,7 +244,7 @@ public class JobHistoryDAO extends HarlequinDAO {
 		  
 	}
 	
-	public void AddJobHistroy( String Currently_Employed,String Job_Role, String Job_Description, String Employer_Contact_Person,String Employer_Contact_Number, String Employer_Industry, String Period_From,String Period_To, String idMac_Applicants, String Name, String Surname,String Employer_Name)
+	public void AddJobHistroy( String Designation_Of_Contact,String Reason_For_Leaving,String Currently_Employed,String Job_Role, String Job_Description, String Employer_Contact_Person,String Employer_Contact_Number, String Employer_Industry, String Period_From,String Period_To, String idMac_Applicants, String Name, String Surname,String Employer_Name)
 	{
 		
 		/*Session session = HibernateUtil.getSessionFactory().openSession();
@@ -231,6 +268,8 @@ public class JobHistoryDAO extends HarlequinDAO {
 			history.setEmployerName(Employer_Name);
 			history.setIdMacApplicants(idMac_Applicants);
 			history.setCurrentlyEmployed(Currently_Employed);
+			history.setReasonForLeaving(Reason_For_Leaving);
+			history.setDesignationOfContact(Designation_Of_Contact);
 			
 			session.save(history);		
 			session.getTransaction().commit();

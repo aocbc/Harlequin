@@ -78,6 +78,9 @@ public class JobHistoryService {
 			jsonObject.put("Employer_Name", historys.get(i).getEmployerName());
 			jsonObject.put("idJob_History", historys.get(i).getIdJobHistory());
 			jsonObject.put("Currently_Employed", historys.get(i).getCurrentlyEmployed());
+			jsonObject.put("Designation_Of_Contact", historys.get(i).getDesignationOfContact());
+			jsonObject.put("Reason_For_Leaving", historys.get(i).getReasonForLeaving());
+			
 			JsonArray.put(jsonObject);
 		}
 		
@@ -97,7 +100,7 @@ public class JobHistoryService {
 		JSONObject jsonObject = new JSONObject(jsonTextObject);	
 	
 		JobHistoryDAO jobHistoryDao  = new JobHistoryDAO();
-		jobHistoryDao.AddJobHistroy(jsonObject.getString("Currently_Employed"),jsonObject.getString("Job_Role"), jsonObject.getString("Job_Description"), jsonObject.getString("Employer_Contact_Person"), jsonObject.getString("Employer_Contact_Number"), jsonObject.getString("Employer_Industry"), jsonObject.getString("Period_From"), jsonObject.getString("Period_To"), jsonObject.getString("idMac_Applicants"), jsonObject.getString("Name"), jsonObject.getString("Surname"),jsonObject.getString("Employer_Name"));
+		jobHistoryDao.AddJobHistroy(jsonObject.getString("Designation_Of_Contact"),jsonObject.getString("Reason_For_Leaving"),jsonObject.getString("Currently_Employed"),jsonObject.getString("Job_Role"), jsonObject.getString("Job_Description"), jsonObject.getString("Employer_Contact_Person"), jsonObject.getString("Employer_Contact_Number"), jsonObject.getString("Employer_Industry"), jsonObject.getString("Period_From"), jsonObject.getString("Period_To"), jsonObject.getString("idMac_Applicants"), jsonObject.getString("Name"), jsonObject.getString("Surname"),jsonObject.getString("Employer_Name"));
 		
 		return "Sucessful";	
 		
@@ -125,19 +128,36 @@ public class JobHistoryService {
 			//System.out.println("JSON:"+jsonArray.get(0).toString());
 			JSONObject jsonObject1 = new JSONObject( jsonArray.get(0).toString());
 			JobHistoryDAO jobHistoryDAO  = new JobHistoryDAO();
-			List<JobHistory> historys  = jobHistoryDAO.ReadAllJobHistoryByIdNumber(jsonObject1.getString("idMac_Applicants"));
-
 			
-			if(historys.size() > 0)
+			
+			if(jsonObject1.has("idJob_History"))
 			{
-				//System.out.println("JSON:");
-				for(int k = 0 ;k < historys.size();k++)
-				{   
 				
-					jobHistoryDAO.delete(historys.get(k));
+				String idMac_Applicants = "";
+				Long idJob_History = 0L;
+				
+				idJob_History = jsonObject1.getLong("idJob_History");
+				idMac_Applicants = jsonObject1.getString("idMac_Applicants");
+				//List<JobHistory> historys  = jobHistoryDAO.ReadAllJobHistoryByIdNumber(jsonObject1.getString("idMac_Applicants"));
+				List<JobHistory> historys  = jobHistoryDAO.ReadAllJobHistoryByidJob_HistoryAndIdNumber(idJob_History, idMac_Applicants);
+
+				
+				if(historys.size() > 0)
+				{
+					//System.out.println("JSON:");
+					for(int k = 0 ;k < historys.size();k++)
+					{   
+					
+						jobHistoryDAO.delete(historys.get(k));
+					}
+				
 				}
-			
+				
 			}
+			
+			
+			
+			
 		}
 		
 		return "Sucessful";	
@@ -159,7 +179,7 @@ public class JobHistoryService {
 		
 		if(jsonArray.length()>0)
 		{
-			System.out.println("JSON:"+jsonArray.get(0).toString());
+			/*System.out.println("JSON:"+jsonArray.get(0).toString());*/
 			JSONObject jsonObject1 = new JSONObject( jsonArray.get(0).toString());
 			JobHistoryDAO jobHistoryDAO  = new JobHistoryDAO();
 			List<JobHistory> historys  = jobHistoryDAO.ReadAllJobHistoryByIdNumber(jsonObject1.getString("idMac_Applicants"));
@@ -167,7 +187,7 @@ public class JobHistoryService {
 			
 			if(historys.size() > 0)
 			{
-				System.out.println("JSON:");
+				
 				for(int k = 0 ;k < historys.size();k++)
 				{   
 				
@@ -188,7 +208,7 @@ public class JobHistoryService {
 			JSONObject jsonObject2 = new JSONObject( jsonArray.get(i).toString());
 			JobHistoryDAO jobHistoryDAO1  = new JobHistoryDAO();
 				
-			jobHistoryDAO1.AddJobHistroy(jsonObject2.getString("Currently_Employed"),jsonObject2.getString("Job_Role"), jsonObject2.getString("Job_Description"), jsonObject2.getString("Employer_Contact_Person"), jsonObject2.getString("Employer_Contact_Number"), jsonObject2.getString("Employer_Industry"), jsonObject2.getString("Period_From"), jsonObject2.getString("Period_To"), jsonObject2.getString("idMac_Applicants"), jsonObject2.getString("Name"), jsonObject2.getString("Surname"),jsonObject2.getString("Employer_Name"));
+			jobHistoryDAO1.AddJobHistroy(jsonObject2.getString("Designation_Of_Contact"),jsonObject2.getString("Reason_For_Leaving"),jsonObject2.getString("Currently_Employed"),jsonObject2.getString("Job_Role"), jsonObject2.getString("Job_Description"), jsonObject2.getString("Employer_Contact_Person"), jsonObject2.getString("Employer_Contact_Number"), jsonObject2.getString("Employer_Industry"), jsonObject2.getString("Period_From"), jsonObject2.getString("Period_To"), jsonObject2.getString("idMac_Applicants"), jsonObject2.getString("Name"), jsonObject2.getString("Surname"),jsonObject2.getString("Employer_Name"));
 		
 
 		}
@@ -238,7 +258,7 @@ public class JobHistoryService {
 			JSONObject jsonObject2 = new JSONObject( jsonArray.get(i).toString());
 			JobHistoryDAO jobHistoryDAO1  = new JobHistoryDAO();
 				
-			jobHistoryDAO1.AddJobHistroy(jsonObject2.getString("Currently_Employed"),jsonObject2.getString("Job_Role"), jsonObject2.getString("Job_Description"), jsonObject2.getString("Employer_Contact_Person"), jsonObject2.getString("Employer_Contact_Number"), jsonObject2.getString("Employer_Industry"), jsonObject2.getString("Period_From"), jsonObject2.getString("Period_To"), jsonObject2.getString("idMac_Applicants"), jsonObject2.getString("Name"), jsonObject2.getString("Surname"),jsonObject2.getString("Employer_Name"));
+			jobHistoryDAO1.AddJobHistroy(jsonObject2.getString("Designation_Of_Contact"),jsonObject2.getString("Reason_For_Leaving"),jsonObject2.getString("Currently_Employed"),jsonObject2.getString("Job_Role"), jsonObject2.getString("Job_Description"), jsonObject2.getString("Employer_Contact_Person"), jsonObject2.getString("Employer_Contact_Number"), jsonObject2.getString("Employer_Industry"), jsonObject2.getString("Period_From"), jsonObject2.getString("Period_To"), jsonObject2.getString("idMac_Applicants"), jsonObject2.getString("Name"), jsonObject2.getString("Surname"),jsonObject2.getString("Employer_Name"));
 		
 
 		}

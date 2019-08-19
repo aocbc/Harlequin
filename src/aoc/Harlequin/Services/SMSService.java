@@ -181,7 +181,7 @@ public class SMSService
 		    String HistorySmsGroup = Applicants.getString("User_Sms_Group").toString();
 		    
 		    
-		    if(SmsGroupCount < 3)
+		    if(SmsGroupCount < 10 )
 		    {
 		    	SmsGroupCount = SmsGroupCount + 1;
 		    	
@@ -192,7 +192,7 @@ public class SMSService
 				
 		    	
 		    }
-		    else if(SmsGroupCount >= 3)
+		    else if(SmsGroupCount >= 10)
 		    {
 		    	
 		    	SmsGroupCount = 1;

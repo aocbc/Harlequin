@@ -1760,7 +1760,7 @@ public class MacApplicantService {
 			applicant.setSmsAccountActive("Yes");
 			applicant.setLastUsedDate(dateFormat.format(date));
 			macApplicantDAO.update(applicant);
-		
+			//System.out.println("Job_Name"+jsonObject.getString("Job_Name") + ", Id_Number:"+jsonObject.getString("Id_Number"));
 			assignJobApplicantDao.AddAssignedJob(jsonObject.getString("Job_Name"), jsonObject.getString("Id_Number"));	
 		}
 		

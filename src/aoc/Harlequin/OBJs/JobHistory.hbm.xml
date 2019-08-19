@@ -45,5 +45,12 @@
             <column name="Currently_Employed" length="6" />
         </property>
         
+        <property name="reasonForLeaving" type="string">
+            <column name="Reason_For_Leaving" length="250" />
+        </property>
+        <property name="designationOfContact" type="string">
+            <column name="Designation_Of_Contact" length="45" />
+        </property>
+        
     </class>
 </hibernate-mapping>

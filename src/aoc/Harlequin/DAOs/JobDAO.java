@@ -258,7 +258,7 @@ public class JobDAO extends HarlequinDAO {
 		try
 		{
 			HibernateUtil.beginTransaction();
-			Query<SystemJob> query = session.createQuery("from SystemJob Where Job_Name = '"+Job_Name+"'");
+			Query<SystemJob> query = session.createQuery("from SystemJob Where REPLACE(TRIM(Job_Name),'  ',' ') = '"+Job_Name+"'");
 			Job = query.list();
 		
 

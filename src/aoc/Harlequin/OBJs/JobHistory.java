@@ -26,7 +26,8 @@ public class JobHistory implements java.io.Serializable {
 	private String surname;
 	private String employerName;
 	private String currentlyEmployed;
-
+	private String reasonForLeaving;
+	private String designationOfContact;
 	public JobHistory() {
 	}
 
@@ -37,7 +38,7 @@ public class JobHistory implements java.io.Serializable {
 	}
 
 	public JobHistory(int idJobHistory, String jobRole, String jobDescription,String employerContactPerson, String employerContactNumber, String employerIndustry, String periodFrom, 
-			String periodTo,String idMacApplicants, String name, String surname,String employerName, String currentlyEmployed) 
+			String periodTo,String idMacApplicants, String name, String surname,String employerName, String currentlyEmployed, String designationOfContact, String reasonForLeaving ) 
 	{
 		this.idJobHistory = idJobHistory;
 		this.jobRole = jobRole;
@@ -52,8 +53,29 @@ public class JobHistory implements java.io.Serializable {
 		this.surname = surname;
 		this.employerName = employerName;
 		this.currentlyEmployed = currentlyEmployed;
+		this.designationOfContact = designationOfContact;
+		this.reasonForLeaving = reasonForLeaving;
 	}
 
+	public String getDesignationOfContact() 
+	{
+		return this.designationOfContact;
+	}
+
+	public void setDesignationOfContact(String designationOfContact) 
+	{
+		this.designationOfContact = designationOfContact;
+	}
+	
+	public String getReasonForLeaving() 
+	{
+		return this.reasonForLeaving;
+	}
+
+	public void setReasonForLeaving(String reasonForLeaving) 
+	{
+		this.reasonForLeaving = reasonForLeaving;
+	}
 	
 	public String getCurrentlyEmployed() 
 	{
