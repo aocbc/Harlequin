@@ -68,6 +68,7 @@ public class MacApplicants implements java.io.Serializable {
 	private String employable; 
 	private String employableComments;
 	private String source;
+	private String lastAssignedJob;
 	
 	public MacApplicants() {
 	}
@@ -85,7 +86,7 @@ public class MacApplicants implements java.io.Serializable {
 			String workHistory4, String email, String passportNumber,String expiryDateOfPassport, String city, String tax_No,String country,
 			int age,String dateOfBirth,String lastSmsDate, String stageInTheProcess, String applicantStatus,String smsGroup,
 			int smsGroupCount,String applicantType,String nationality, String smsAccountActive, String lastUsedDate, String employable, 
-			String employableComments, String source) 
+			String employableComments, String source, String lastAssignedJob) 
 	{
 		this.name = name;
 		this.surname = surname;
@@ -139,8 +140,17 @@ public class MacApplicants implements java.io.Serializable {
 		this.employable = employable;
 		this.employableComments = employableComments;
 		this.source = source;
+		this.lastAssignedJob = lastAssignedJob;
 	}
 
+	
+	public String getLastAssignedJob() {
+		return this.lastAssignedJob;
+	}
+
+	public void setLastAssignedJob(String lastAssignedJob) {
+		this.lastAssignedJob = lastAssignedJob;
+	}
 	
 	public String getSource() {
 		return this.source;

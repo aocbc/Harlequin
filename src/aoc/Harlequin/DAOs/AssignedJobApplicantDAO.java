@@ -570,6 +570,9 @@ public class AssignedJobApplicantDAO extends HarlequinDAO
 							AssignedJob.setPracticalDriversTestPassed("No");
 							AssignedJob.setClientInterviewPassed("No");
 							AssignedJob.setReferenceChecksPassed("No");
+							AssignedJob.setRoadTestPassed("No");
+							AssignedJob.setReverseTestPassed("No");
+							AssignedJob.setParkingTestPassed("No");
 							
 							session.save(AssignedJob);
 									

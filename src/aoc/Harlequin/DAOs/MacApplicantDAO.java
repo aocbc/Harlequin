@@ -12,6 +12,7 @@ import org.hibernate.Session;
 import org.hibernate.query.Query;
 
 import aoc.Harlequin.OBJs.MacApplicants;
+import aoc.Harlequin.OBJs.MacLabourInterView;
 import aoc.Harlequin.OBJs.SystemClient;
 import aoc.Harlequin.OBJs.SystemUser;
 import aoc.Harlequin.util.HibernateUtil;
@@ -418,85 +419,7 @@ public class MacApplicantDAO extends HarlequinDAO {
 	}
 	
 	
-	/////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-	///New Function
-	///////////////////////////////////////////////////////////////////////////////////////////////////////////
-	/////
 	
-	
-	
-	/*public MacApplicants UpdateAppplicantDriversByIdJobNAme(int id, String TestComplete, String TestComments, String Id_Number, String JobName)
-	{
-		
-		DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-		Date date = new Date();
-		
-		Session session = this.getSession();
-		MacApplicants applicants = new MacApplicants();
-		
-		try
-		{
-			HibernateUtil.beginTransaction();
-			applicants = session.get(MacApplicants.class, id);
-			
-			applicants.setPracticalDriversTestComments(TestComments);
-			applicants.setPracticalDriversTestComplete(TestComplete);
-			
-			
-			if(TestComplete.equals("Yes"))
-			{
-				applicants.setStageInTheProcess("Client Interview");
-				
-			}
-			else if(TestComplete.equals("No"))
-			{
-				applicants.setStageInTheProcess("Practical Drivers Test");
-				
-			}
-			
-			
-			applicants.setLastUsedDate(dateFormat.format(date));
-		}
-		catch(Exception ex)
-		{
-			System.out.println("Error In Function: UpdateAppplicantDriversByIdJobNAme - MacApplicantDAO");
-			System.out.println(ex.toString());
-		}
-		finally
-		{
-			
-			if(session != null && session.isConnected())
-			{
-				session.clear(); 
-				session.flush();
-				session.close();
-			}
-			
-			
-			update(applicants);
-	
-			AssignedJobApplicantDAO assigned_job = new AssignedJobApplicantDAO();
-
-			if(TestComplete.equals("Yes"))
-			{
-				assigned_job.UpdateAssignedJobStatusPracticalDrivers(Id_Number, JobName, "Client Interview", "beginning", TestComplete, TestComments);
-			}
-			else if(TestComplete.equals("No"))
-			{
-				assigned_job.UpdateAssignedJobStatusPracticalDrivers(Id_Number, JobName, "Practical Drivers Test", "pending", TestComplete, TestComments);
-			}
-			
-		}
-		
-		return applicants;
-	
-	}*/
-	
-	
-	
-	
-	////////////////////////////////////////////////////////////////////////////////////////////////////////////
-	///////////////////////////////////////////////////////////////////////////////////////////////////////////
 	
 	
 	
@@ -1001,12 +924,56 @@ public class MacApplicantDAO extends HarlequinDAO {
 		return Applicant;
 	}
 	
+	public void delete(Object entity) 
+	{
+		  Session hibernateSession = this.getSession(); 
+		  
+		  
+		  try
+		  {
+			  HibernateUtil.beginTransaction();
+			  hibernateSession.delete(entity);
+			  hibernateSession.flush();
+			  HibernateUtil.commitTransaction();
+		  }
+		  catch(Exception ex)
+		  {
+
+		  	System.out.println("Error In Function: AddAppicantInformation - MacInterviewDAO");
+		  	System.out.println(ex.toString());
+		  }
+		  finally
+		  {
+
+
+		  	if(hibernateSession != null && hibernateSession.isConnected())
+		  	{
+		  		hibernateSession.clear();
+		  		hibernateSession.flush();
+		  		hibernateSession.close();
+		  	}
+
+		  }
+
+		  
+	}
 	
 	public void AddAppicantInformation(String name, String surname, String rsaCitizen,String Id_Number,String Passport_Number,String expiryDateOfPassport, String workPermitValidity, String cellNumber,String telephoneNumber, String jobType,String dateFirstIssueLicense, String licenseCode,String expiryDateOfLicense, String pdpExpiryDate, String gender, String physicalAddress1, String physicalAddress2,String physicalAddress3, String physicalAddress4, String City,String Country, String Tax_No, String maritalStatus, String dependants, String homeLanguage, String workHistory1, String workHistory2, String workHistory3, String workHistory4,String email,int Age,String DateOfBirth,String lastSmsDate, String Job_Name,String Stage_In_Process, String Applicant_Status, String Applicant_Type,String Sms_Group,String Nationality)
 	{
 		
 		DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 		Date date = new Date();
+		
+		
+		///////////////////////////////////////////////////////////////////////////////////////////////////
+		//////////If the applicant already exists with the id number - Remove the applicant before adding the new entry to avoid duplicates
+		List<MacApplicants> oldApplicant = GetApplicantsByApplicantId(Id_Number);
+		if(oldApplicant.size() > 0)
+		{
+			delete(oldApplicant.get(0));
+		}
+		///////////////////////////////////////////////////////////////////////////////////////////////////
+		///////////////////////////////////////////////////////////////////////////////////////////////////
 		
 		//Session session = HibernateUtil.getSessionFactory().openSession();
 		//session.beginTransaction();
@@ -1073,10 +1040,9 @@ public class MacApplicantDAO extends HarlequinDAO {
 			Applicant.setEmployable("Yes");
 			Applicant.setEmployableComments("N/A");
 			Applicant.setSource("Landing Page");
-			
-			
-			
 			Applicant.setLastUsedDate(dateFormat.format(date));
+			Applicant.setLastAssignedJob(Job_Name);
+			
 			session.save(Applicant);
 			
 			session.getTransaction().commit();

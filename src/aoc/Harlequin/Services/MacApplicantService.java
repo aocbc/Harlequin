@@ -512,6 +512,7 @@ public class MacApplicantService {
 			jsonObject.put("Employable", applicants.get(i).getEmployable());
 			jsonObject.put("Employable_Comments", applicants.get(i).getEmployableComments());
 			jsonObject.put("Source", applicants.get(i).getSource());
+			jsonObject.put("Last_Assigned_Job", applicants.get(i).getLastAssignedJob());
 			
 			jsonArray.put(jsonObject);
 		}
@@ -1687,6 +1688,8 @@ public class MacApplicantService {
 			/*Applicant.setApplicantStatus("New");*/
 			Applicant.setSmsAccountActive("Yes");
 			Applicant.setLastUsedDate(dateFormat.format(date));
+			Applicant.setLastUsedDate(dateFormat.format(date));
+			Applicant.setLastAssignedJob(jsonObject.getString("Job_Name"));
 			
 						
 			Object.update(Applicant);
@@ -1759,6 +1762,7 @@ public class MacApplicantService {
 			applicant.setApplicantStatus("New");
 			applicant.setSmsAccountActive("Yes");
 			applicant.setLastUsedDate(dateFormat.format(date));
+			applicant.setLastAssignedJob(jsonObject.getString("Job_Name"));
 			macApplicantDAO.update(applicant);
 			//System.out.println("Job_Name"+jsonObject.getString("Job_Name") + ", Id_Number:"+jsonObject.getString("Id_Number"));
 			assignJobApplicantDao.AddAssignedJob(jsonObject.getString("Job_Name"), jsonObject.getString("Id_Number"));	
