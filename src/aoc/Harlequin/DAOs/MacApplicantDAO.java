@@ -738,7 +738,7 @@ public class MacApplicantDAO extends HarlequinDAO {
 		try
 		{
 			HibernateUtil.beginTransaction();
-			Query<MacApplicants> query = session.createQuery("from MacApplicants as x where exists(from AssignedJobApplicantList as y WHERE ((x.idNumber = y.idMacApplicants) AND (y.practicalDriversTestComplete = 'Yes') AND (y.roadTestPassed = 'Yes') AND (y.parkingTestPassed = 'Yes') AND (y.jobId = "+Job_Id+")))");
+			Query<MacApplicants> query = session.createQuery("from MacApplicants as x where exists(from AssignedJobApplicantList as y WHERE ((x.idNumber = y.idMacApplicants) AND (y.practicalDriversTestComplete = 'Yes') AND (y.roadTestPassed = 'Yes') AND (y.reverseTestPassed = 'Yes') AND (y.jobId = "+Job_Id+")))");
 			Applicant = query.list();
 			
 		}

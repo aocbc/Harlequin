@@ -111,6 +111,8 @@ public class PracticalDriversAssessment implements java.io.Serializable {
 	
 	private String ReverseTestPassed;
 	private String ReverseTestComments;
+	
+	private String ManualOrAuto;
 
 	public PracticalDriversAssessment() 
 	{
@@ -147,7 +149,7 @@ public class PracticalDriversAssessment implements java.io.Serializable {
 			int Clutch40, int Clutch41,
 			int RetarderDSCHillMode42, int RetarderDSCHillMode43, int RetarderDSCHillMode44,
 			String ParkingTestPassed, String RoadTestPassed, String ParkingTestComments, String RoadTestComments, 
-			String ReverseTestPassed, String ReverseTestComments) {
+			String ReverseTestPassed, String ReverseTestComments, String ManualOrAuto) {
 		this.idPracticalDriversAssessment = idPracticalDriversAssessment;
 		this.idMacApplicants = idMacApplicants;
 		this.name = name;
@@ -248,10 +250,20 @@ public class PracticalDriversAssessment implements java.io.Serializable {
 		this.ReverseTestPassed = ReverseTestPassed;
 		this.ReverseTestComments = ReverseTestComments;
 		
+		this.ManualOrAuto = ManualOrAuto;
 	}
 
 	
 	
+	
+	public String getManualOrAuto()
+	{
+		return this.ManualOrAuto;
+	}
+	public void setManualOrAuto(String ManualOrAuto) 
+	{
+		this.ManualOrAuto = ManualOrAuto;
+	}
 	
 	public String getReverseTestPassed()
 	{

@@ -280,6 +280,10 @@
             <column name="ReverseTestPassed" length="3" />
         </property>  
                
+               
+        <property name="ManualOrAuto" type="string">
+            <column name="ManualOrAuto" length="6" />
+        </property>         
         
     </class>
 </hibernate-mapping>
