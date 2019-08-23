@@ -131,7 +131,8 @@ public class PracticalDrivingAssessmentDAO extends HarlequinDAO {
 		DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 		Date date = new Date();
 		///////////////////////////////////////////////////////////////////////////////////////////////////
-		List<PracticalDriversAssessment> OldAssesment = ReadAssessmentsByInfo(idMac_Applicants,Client_Name);
+		List<PracticalDriversAssessment> OldAssesment = ReadAssessmentsByInfoIdClientJob(Id_Number,Client_Name,Job_Name);
+		System.out.println("OldAssesment:"+OldAssesment.size());
 		if(OldAssesment.size() > 0)
 		{
 			delete(OldAssesment.get(0));
@@ -284,8 +285,8 @@ public class PracticalDrivingAssessmentDAO extends HarlequinDAO {
 		
 	}
 	
-	
-	public void AddAppicantInformation(String idMac_Applicants,String name, String surname, String Id_Number,String Client_Name,String PDP_Expiry_Date, String Vehicle_Used, String Assessor_Name,String Assessor_Surname, String Assessor_User_Id,String Date, String KM_End,String KM_Start, String Time_End, String Time_Start, String Weather, String Route,String Total_Score, String Starting_And_Stopping, String General_Driving,String Passing_Or_Overtaking, String General_Road_Behavior, String Observation_And_Anticipation, String Approaching_Junctions_Turning_Exiting, String Reversing, String Clutch, String Retarder_DSC_HillMode, String Comments, String PDA_No,String License_Code,String Job_Name,String PracticalDriversComplete )
+	           
+	/*public void AddAppicantInformation(String idMac_Applicants,String name, String surname, String Id_Number,String Client_Name,String PDP_Expiry_Date, String Vehicle_Used, String Assessor_Name,String Assessor_Surname, String Assessor_User_Id,String Date, String KM_End,String KM_Start, String Time_End, String Time_Start, String Weather, String Route,String Total_Score, String Starting_And_Stopping, String General_Driving,String Passing_Or_Overtaking, String General_Road_Behavior, String Observation_And_Anticipation, String Approaching_Junctions_Turning_Exiting, String Reversing, String Clutch, String Retarder_DSC_HillMode, String Comments, String PDA_No,String License_Code,String Job_Name,String PracticalDriversComplete )
 	{
 		DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 		Date date = new Date();
@@ -300,8 +301,8 @@ public class PracticalDrivingAssessmentDAO extends HarlequinDAO {
 		
 		
 		
-		/*Session session = HibernateUtil.getSessionFactory().openSession();
-		session.beginTransaction();*/
+		Session session = HibernateUtil.getSessionFactory().openSession();
+		session.beginTransaction();
 		Session session = this.getSession(); 
 		try
 		{
@@ -364,7 +365,7 @@ public class PracticalDrivingAssessmentDAO extends HarlequinDAO {
 
 		}
 		
-	}
+	}*/
 	
 	public List<PracticalDriversAssessment> ReadAllAssessments()
 	{
@@ -413,6 +414,75 @@ public class PracticalDrivingAssessmentDAO extends HarlequinDAO {
 		{
 			HibernateUtil.beginTransaction();
 			Query<PracticalDriversAssessment> query = session.createQuery("from PracticalDriversAssessment Where Id_Number='"+Id_Number.trim()+"' And Client_Name='"+Client_Name.trim()+"'");
+			Assesment = query.list();
+
+		}
+		catch(Exception ex)
+		{
+
+			System.out.println("Error In Function: AddAppicantInformation - ClientInterviewDAO");
+			System.out.println(ex.toString());
+		}
+		finally
+		{
+
+
+			if(session != null && session.isConnected())
+			{
+				session.clear();
+				session.flush();
+				session.close();
+			}
+
+		}
+		
+		return Assesment;
+	}
+	
+	
+	public List<PracticalDriversAssessment> ReadAssessmentsByIdJobName(String Id_Number, String Job_Name)
+	{
+		Session session = this.getSession();
+		List<PracticalDriversAssessment> Assesment = new ArrayList<PracticalDriversAssessment>();
+		
+		try
+		{
+			HibernateUtil.beginTransaction();
+			Query<PracticalDriversAssessment> query = session.createQuery("from PracticalDriversAssessment Where Id_Number='"+Id_Number.trim()+"' And Job_Name='"+Job_Name.trim()+"'");
+			Assesment = query.list();
+
+		}
+		catch(Exception ex)
+		{
+
+			System.out.println("Error In Function: AddAppicantInformation - ClientInterviewDAO");
+			System.out.println(ex.toString());
+		}
+		finally
+		{
+
+
+			if(session != null && session.isConnected())
+			{
+				session.clear();
+				session.flush();
+				session.close();
+			}
+
+		}
+		
+		return Assesment;
+	}
+	
+	public List<PracticalDriversAssessment> ReadAssessmentsByInfoIdClientJob(String Id_Number, String Client_Name,String Job_Name)
+	{
+		Session session = this.getSession();
+		List<PracticalDriversAssessment> Assesment = new ArrayList<PracticalDriversAssessment>();
+		
+		try
+		{
+			HibernateUtil.beginTransaction();
+			Query<PracticalDriversAssessment> query = session.createQuery("from PracticalDriversAssessment Where Id_Number='"+Id_Number.trim()+"' And Client_Name='"+Client_Name.trim()+"' And Job_Name = '"+Job_Name.trim()+"'");
 			Assesment = query.list();
 
 		}
