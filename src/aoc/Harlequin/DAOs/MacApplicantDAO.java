@@ -1256,7 +1256,7 @@ public class MacApplicantDAO extends HarlequinDAO {
 		{
 
 			HibernateUtil.beginTransaction();
-			Query<MacApplicants> query = session.createQuery("from MacApplicants WHERE Sms_Account_Active = 'Yes' ");
+			Query<MacApplicants> query = session.createQuery("from MacApplicants WHERE Sms_Account_Active = 'Yes' and Employable = 'Yes'");
 			Applicant = query.list();
 			
 		}
