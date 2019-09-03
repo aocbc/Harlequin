@@ -486,6 +486,36 @@ public class MacApplicantDAO extends HarlequinDAO {
 		return Applicant;
 	}
 	
+	public List<MacApplicants> GetApplicantsByCellNumber(String CellNumber)
+	{
+		Session session = this.getSession();
+		List<MacApplicants> Applicant = new ArrayList<MacApplicants>();
+		
+		try
+		{
+			HibernateUtil.beginTransaction();
+			Query<MacApplicants> query = session.createQuery("from MacApplicants Where cellNumber = '"+CellNumber+"'");
+			Applicant = query.list();
+			
+		}
+		catch(Exception ex)
+		{
+			System.out.println("Error In Function: GetApplicantsByJobType - MacApplicantDAO");
+			System.out.println(ex.toString());
+		}
+		finally
+		{
+			if(session != null && session.isConnected())
+			{
+				session.clear(); // ADDED 170302
+				session.flush();
+				session.close();
+			}
+		}
+	
+		return Applicant;
+	}
+	
 	
 	public List<MacApplicants> GetApplicantsMacInterviewComplete()
 	{
@@ -968,6 +998,12 @@ public class MacApplicantDAO extends HarlequinDAO {
 		///////////////////////////////////////////////////////////////////////////////////////////////////
 		//////////If the applicant already exists with the id number - Remove the applicant before adding the new entry to avoid duplicates
 		List<MacApplicants> oldApplicant = GetApplicantsByApplicantId(Id_Number);
+		if(oldApplicant.size() > 0)
+		{
+			delete(oldApplicant.get(0));
+		}
+		
+		oldApplicant = GetApplicantsByCellNumber(cellNumber);
 		if(oldApplicant.size() > 0)
 		{
 			delete(oldApplicant.get(0));
