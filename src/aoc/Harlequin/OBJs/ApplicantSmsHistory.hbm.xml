@@ -24,7 +24,7 @@
             <column name="Client_Name" length="100" />
         </property>
         <property name="smsGroup" type="string">
-            <column name="Sms_Group" length="45" />
+            <column name="Sms_Group" length="1000" />
         </property>
          <property name="smsDate" type="string">
             <column name="Sms_Date" length="10" />
