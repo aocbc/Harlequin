@@ -134,7 +134,7 @@ public class SystemUserService
 	{
 		String UsersName ="";
 		String UsersSurname = "";
-		
+		String AuthorizationLevel = "";
 		SystemUserDAO systemUserDao  = new SystemUserDAO();
 		
 		List<SystemUser> user = systemUserDao.CheckUserPassword(Username, Password);
@@ -144,12 +144,14 @@ public class SystemUserService
 		{
 			UsersName = user.get(0).getName().toString();
 			UsersSurname = user.get(0).getSurname().toString();
+			AuthorizationLevel = user.get(0).getAuthorizationLevel();
 		}
 		
 		
 		JSONObject jsonObject = new JSONObject();
 		jsonObject.put("UsersName", UsersName);
 		jsonObject.put("UsersSurname", UsersSurname);
+		jsonObject.put("AuthorizationLevel", Integer.parseInt(AuthorizationLevel));
 
 		return jsonObject.toString();
 	}
