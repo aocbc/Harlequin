@@ -4,6 +4,10 @@
 package aoc.Harlequin.DAOs;
 
 
+import java.math.BigInteger;
+import java.nio.charset.StandardCharsets;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -193,6 +197,8 @@ public class SystemUserDAO extends HarlequinDAO
 			user.setEMail(EMail);
 			user.setTellNumber(tellNumber);
 			user.setCellNumber(cellNumber);
+
+			//user.setUserPassword(toHexString(getSHA(userPassword)));
 			user.setUserPassword(userPassword);
 			user.setAuthorizationLevel(authorizationLevel);
 			user.setLastUsedDate(dateFormat.format(date));
@@ -289,6 +295,36 @@ public class SystemUserDAO extends HarlequinDAO
 		
 		
 	}
+	
+	 public static byte[] getSHA(String input) throws NoSuchAlgorithmException 
+	 {  
+	        // Static getInstance method is called with hashing SHA  
+	        MessageDigest md = MessageDigest.getInstance("SHA-256");  
+	  
+	        // digest() method called  
+	        // to calculate message digest of an input  
+	        // and return array of byte 
+	        return md.digest(input.getBytes(StandardCharsets.UTF_8));  
+	  } 
+	    
+	    
+	 
+	 public static String toHexString(byte[] hash) 
+	 { 
+	        // Convert byte array into signum representation  
+	        BigInteger number = new BigInteger(1, hash);  
+	  
+	        // Convert message digest into hex value  
+	        StringBuilder hexString = new StringBuilder(number.toString(16));  
+	  
+	        // Pad with leading zeros 
+	        while (hexString.length() < 32)  
+	        {  
+	            hexString.insert(0, '0');  
+	        }  
+	  
+	        return hexString.toString();  
+	 } 
 
 
 	

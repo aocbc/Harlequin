@@ -29,6 +29,7 @@ import aoc.Harlequin.OBJs.GeneralHelpUtility;
 import aoc.Harlequin.OBJs.MacApplicants;
 import aoc.Harlequin.OBJs.ReferenceChecks;
 import aoc.Harlequin.OBJs.SystemClient;
+import aoc.Harlequin.OBJs.SystemJob;
 import aoc.Harlequin.OBJs.SystemUser;
 
 @Path("Applicant")
@@ -515,7 +516,7 @@ public class MacApplicantService {
 			jsonObject.put("Employable_Comments", applicants.get(i).getEmployableComments());
 			jsonObject.put("Source", applicants.get(i).getSource());
 			jsonObject.put("Last_Assigned_Job", applicants.get(i).getLastAssignedJob());
-			
+			jsonObject.put("Last_Assigned_Job_Date", applicants.get(i).getLastAssignedJobDate());
 			jsonArray.put(jsonObject);
 		}
 		
@@ -1643,10 +1644,19 @@ public class MacApplicantService {
 		String Flag = jsonObject.getString("Flag");
 		MacApplicantDAO Object  = new MacApplicantDAO();
 		
+		JobDAO jobObject  = new JobDAO();
+		List<SystemJob> Jobs  = jobObject.GetJobInfoByJobName(jsonObject.getString("Job_Name").toString().trim());
+		String jobDate = "";
+		if(Jobs.size() > 0)
+		{
+			jobDate = Jobs.get(0).getJobDate();
+		}
+		
+		
 		if(Flag.equals("0")|| Flag.equals("2"))
 		{
 			
-			Object.AddAppicantInformation(jsonObject.getString("Name"), jsonObject.getString("Surname"), jsonObject.getString("RSA_Citizen"), jsonObject.getString("Id_Number"),jsonObject.getString("Passport_Number"),jsonObject.getString("Expiry_Date_Of_Passport"), jsonObject.getString("Work_Permit_Validity"), jsonObject.getString("Cell_Number"), jsonObject.getString("Telephone_Number"), jsonObject.getString("Job_Type"), jsonObject.getString("Date_First_issue_license"), jsonObject.getString("License_Code"), jsonObject.getString("Expiry_Date_Of_License"), jsonObject.getString("PDP_Expiry_Date"), jsonObject.getString("Gender"), jsonObject.getString("Physical_Address_1"), jsonObject.getString("Physical_Address_2"), jsonObject.getString("Physical_Address_3"), jsonObject.getString("Physical_Address_4"),jsonObject.getString("City"),jsonObject.getString("Country"),jsonObject.getString("Tax_No"), jsonObject.getString("Marital_Status"), jsonObject.getString("Dependants"), jsonObject.getString("Home_Language"), jsonObject.getString("Work_History_1"), jsonObject.getString("Work_History_2"), jsonObject.getString("Work_History_3"), jsonObject.getString("Work_History_1"), jsonObject.getString("E_Mail"), jsonObject.getInt("Age"), jsonObject.getString("Date_Of_Birth"), jsonObject.getString("Last_Sms_Date"), jsonObject.getString("Job_Name"), jsonObject.getString("Stage_In_Process"),"New",jsonObject.getString("Applicant_Type"),jsonObject.getString("Sms_Group"),jsonObject.getString("Nationality"));
+			Object.AddAppicantInformation(jsonObject.getString("Name"), jsonObject.getString("Surname"), jsonObject.getString("RSA_Citizen"), jsonObject.getString("Id_Number"),jsonObject.getString("Passport_Number"),jsonObject.getString("Expiry_Date_Of_Passport"), jsonObject.getString("Work_Permit_Validity"), jsonObject.getString("Cell_Number"), jsonObject.getString("Telephone_Number"), jsonObject.getString("Job_Type"), jsonObject.getString("Date_First_issue_license"), jsonObject.getString("License_Code"), jsonObject.getString("Expiry_Date_Of_License"), jsonObject.getString("PDP_Expiry_Date"), jsonObject.getString("Gender"), jsonObject.getString("Physical_Address_1"), jsonObject.getString("Physical_Address_2"), jsonObject.getString("Physical_Address_3"), jsonObject.getString("Physical_Address_4"),jsonObject.getString("City"),jsonObject.getString("Country"),jsonObject.getString("Tax_No"), jsonObject.getString("Marital_Status"), jsonObject.getString("Dependants"), jsonObject.getString("Home_Language"), jsonObject.getString("Work_History_1"), jsonObject.getString("Work_History_2"), jsonObject.getString("Work_History_3"), jsonObject.getString("Work_History_1"), jsonObject.getString("E_Mail"), jsonObject.getInt("Age"), jsonObject.getString("Date_Of_Birth"), jsonObject.getString("Last_Sms_Date"), jsonObject.getString("Job_Name"), jsonObject.getString("Stage_In_Process"),"New",jsonObject.getString("Applicant_Type"),jsonObject.getString("Sms_Group"),jsonObject.getString("Nationality"), jobDate);
 			
 			
 		}
@@ -1692,6 +1702,7 @@ public class MacApplicantService {
 			Applicant.setLastUsedDate(dateFormat.format(date));
 			Applicant.setLastUsedDate(dateFormat.format(date));
 			Applicant.setLastAssignedJob(jsonObject.getString("Job_Name"));
+			Applicant.setLastAssignedJobDate(jobDate);
 			
 			Applicant.setNationality(jsonObject.getString("Nationality"));
 						
@@ -1720,10 +1731,19 @@ public class MacApplicantService {
 		MacApplicantDAO macApplicantDAO  = new MacApplicantDAO();
 		AssignedJobApplicantDAO assignJobApplicantDao = new AssignedJobApplicantDAO();
 		
+		JobDAO Object  = new JobDAO();
+		List<SystemJob> Jobs  = Object.GetJobInfoByJobName(jsonObject.getString("Job_Name").toString().trim());
+		String jobDate = "";
+		if(Jobs.size() > 0)
+		{
+			jobDate = Jobs.get(0).getJobDate();
+		}
+		
+		
 		if(Flag.equals("0")|| Flag.equals("2"))
 		{
 		
-			macApplicantDAO.AddAppicantInformation(jsonObject.getString("Name"), jsonObject.getString("Surname"), jsonObject.getString("RSA_Citizen"), jsonObject.getString("Id_Number"),jsonObject.getString("Passport_Number"),jsonObject.getString("Expiry_Date_Of_Passport"), jsonObject.getString("Work_Permit_Validity"), jsonObject.getString("Cell_Number"), jsonObject.getString("Telephone_Number"), jsonObject.getString("Job_Type"), jsonObject.getString("Date_First_issue_license"), jsonObject.getString("License_Code"), jsonObject.getString("Expiry_Date_Of_License"), jsonObject.getString("PDP_Expiry_Date"), jsonObject.getString("Gender"),jsonObject.getString("Physical_Address_1"), jsonObject.getString("Physical_Address_2"), jsonObject.getString("Physical_Address_3"), jsonObject.getString("Physical_Address_4"),jsonObject.getString("City"),jsonObject.getString("Country"),jsonObject.getString("Tax_No"), jsonObject.getString("Marital_Status"), jsonObject.getString("Dependants"), jsonObject.getString("Home_Language"), jsonObject.getString("Work_History_1"), jsonObject.getString("Work_History_2"),jsonObject.getString("Work_History_3"), jsonObject.getString("Work_History_1"), jsonObject.getString("E_Mail"), jsonObject.getInt("Age"),jsonObject.getString("Date_Of_Birth"), jsonObject.getString("Last_Sms_Date"), jsonObject.getString("Job_Name"), jsonObject.getString("Stage_In_Process"),"New",jsonObject.getString("Applicant_Type"),jsonObject.getString("Sms_Group"),jsonObject.getString("Nationality"));
+			macApplicantDAO.AddAppicantInformation(jsonObject.getString("Name"), jsonObject.getString("Surname"), jsonObject.getString("RSA_Citizen"), jsonObject.getString("Id_Number"),jsonObject.getString("Passport_Number"),jsonObject.getString("Expiry_Date_Of_Passport"), jsonObject.getString("Work_Permit_Validity"), jsonObject.getString("Cell_Number"), jsonObject.getString("Telephone_Number"), jsonObject.getString("Job_Type"), jsonObject.getString("Date_First_issue_license"), jsonObject.getString("License_Code"), jsonObject.getString("Expiry_Date_Of_License"), jsonObject.getString("PDP_Expiry_Date"), jsonObject.getString("Gender"),jsonObject.getString("Physical_Address_1"), jsonObject.getString("Physical_Address_2"), jsonObject.getString("Physical_Address_3"), jsonObject.getString("Physical_Address_4"),jsonObject.getString("City"),jsonObject.getString("Country"),jsonObject.getString("Tax_No"), jsonObject.getString("Marital_Status"), jsonObject.getString("Dependants"), jsonObject.getString("Home_Language"), jsonObject.getString("Work_History_1"), jsonObject.getString("Work_History_2"),jsonObject.getString("Work_History_3"), jsonObject.getString("Work_History_1"), jsonObject.getString("E_Mail"), jsonObject.getInt("Age"),jsonObject.getString("Date_Of_Birth"), jsonObject.getString("Last_Sms_Date"), jsonObject.getString("Job_Name"), jsonObject.getString("Stage_In_Process"),"New",jsonObject.getString("Applicant_Type"),jsonObject.getString("Sms_Group"),jsonObject.getString("Nationality"),jobDate);
 			assignJobApplicantDao.AddAssignedJob(jsonObject.getString("Job_Name"), jsonObject.getString("Id_Number"));
 			
 		}
@@ -1767,6 +1787,7 @@ public class MacApplicantService {
 			applicant.setLastUsedDate(dateFormat.format(date));
 			applicant.setLastAssignedJob(jsonObject.getString("Job_Name"));
 			applicant.setNationality(jsonObject.getString("Nationality"));
+			applicant.setLastAssignedJobDate(jobDate);
 			macApplicantDAO.update(applicant);
 			//System.out.println("Job_Name"+jsonObject.getString("Job_Name") + ", Id_Number:"+jsonObject.getString("Id_Number"));
 			assignJobApplicantDao.AddAssignedJob(jsonObject.getString("Job_Name"), jsonObject.getString("Id_Number"));	

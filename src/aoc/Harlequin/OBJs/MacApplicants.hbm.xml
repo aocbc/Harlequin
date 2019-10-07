@@ -198,8 +198,11 @@
         
         <property name="lastAssignedJob" type="string">
             <column name="Last_Assigned_Job" length="45" />
-        </property>
+        </property> 
         
+        <property name="lastAssignedJobDate" type="string">
+            <column name="Last_Assigned_Job_Date" length="45" />
+        </property>
              
     </class>
 </hibernate-mapping>

@@ -1,4 +1,8 @@
 package aoc.Harlequin.Services;
+import java.math.BigInteger;
+import java.nio.charset.StandardCharsets;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -116,6 +120,9 @@ public class SystemUserService
 		if(users.size() != 0)
 		{
 			PasswordUser = users.get(0).getUserPassword().toString();
+			/*Password = toHexString(getSHA(Password));*/
+			
+			System.out.println("PasswordEntrered:"+Password + ":::" + PasswordUser);
 			if(Password.equals(PasswordUser.trim()))
 			{
 				Matched = "true";
@@ -125,7 +132,18 @@ public class SystemUserService
 		return Matched;
 	}
 	
-	
+	@Path("/getHash/{Password}")
+	@GET
+	@Produces("text/plain")
+	public String GET1(@PathParam("Password") String Password ) throws Exception
+	{
+		
+		String Matched = toHexString(getSHA(Password));
+		
+		
+		
+		return Matched;
+	}
 	
 	@Path("/GetUserInfoby/{Username}/{Password}")
 	@GET
@@ -210,7 +228,7 @@ public class SystemUserService
 	@POST
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Produces("text/plain")
-	public  String update(String jsonTextObject) throws JSONException
+	public  String update(String jsonTextObject) throws JSONException, NoSuchAlgorithmException
 	{
 		DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 		Date date = new Date();
@@ -226,6 +244,7 @@ public class SystemUserService
 		User.setCellNumber(jsonObject.getString("Cell_Number"));
 		User.setTellNumber(jsonObject.getString("Tell_Number"));
 		User.setAuthorizationLevel(jsonObject.getString("Authorization_Level"));
+		//User.setUserPassword(toHexString(getSHA(jsonObject.getString("Password"))));
 		User.setUserPassword(jsonObject.getString("Password"));
 		User.setLastUsedDate(dateFormat.format(date));
 
@@ -233,6 +252,36 @@ public class SystemUserService
 	
 		return "Updated";
 	}
+	
+	 public static byte[] getSHA(String input) throws NoSuchAlgorithmException 
+	 {  
+	        // Static getInstance method is called with hashing SHA  
+	        MessageDigest md = MessageDigest.getInstance("SHA-256");  
+	  
+	        // digest() method called  
+	        // to calculate message digest of an input  
+	        // and return array of byte 
+	        return md.digest(input.getBytes(StandardCharsets.UTF_8));  
+	  } 
+	    
+	    
+	 
+	 public static String toHexString(byte[] hash) 
+	 { 
+	        // Convert byte array into signum representation  
+	        BigInteger number = new BigInteger(1, hash);  
+	  
+	        // Convert message digest into hex value  
+	        StringBuilder hexString = new StringBuilder(number.toString(16));  
+	  
+	        // Pad with leading zeros 
+	        while (hexString.length() < 32)  
+	        {  
+	            hexString.insert(0, '0');  
+	        }  
+	  
+	        return hexString.toString();  
+	 } 
 	
 
 }
