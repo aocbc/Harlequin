@@ -28,30 +28,30 @@ public class MacLabourInterviewService {
 	{
 		
 		MacInterviewDAO macInterviewDAO  = new MacInterviewDAO();
-		MacLabourInterView Interviews = macInterviewDAO.getInterviewInfoById(1);
+		MacLabourInterView interviews = macInterviewDAO.getInterviewInfoById(1);
 		
 		JSONObject jsonObject = new JSONObject();
-		jsonObject.put("idMacLabour_InterView", Interviews.getIdMacLabourInterView());
-		jsonObject.put("idMac_Applicants", Interviews.getIdMacApplicants());
-		jsonObject.put("Name", Interviews.getName());
-		jsonObject.put("Surname", Interviews.getSurname());
-		jsonObject.put("Id_Number", Interviews.getIdNumber());		
-		jsonObject.put("Client_Name", Interviews.getClientName());
-		jsonObject.put("Id_Verified", Interviews.getIdVerified());
-		jsonObject.put("Work_History_Verified", Interviews.getWorkHistoryVerified());
-		jsonObject.put("Job_Name", Interviews.getJobName());
-		jsonObject.put("Drivers_License_Verified", Interviews.getDriversLicenseVerified());
-		jsonObject.put("SAP_Check", Interviews.getSapCheck());
-		jsonObject.put("Criminal_Record", Interviews.getCriminalRecord());
-		jsonObject.put("Criminal_Record_Comments", StringEscapeUtils.escapeJava(Interviews.getCriminalRecordComments()));
-		jsonObject.put("Union_Member", Interviews.getUnionMember());		
-		jsonObject.put("Union_Name", Interviews.getUnionName());
-		jsonObject.put("Applicant_Passed_Interview", Interviews.getApplicantPassedInterview());
-		jsonObject.put("Applicant_Presentable", Interviews.getApplicantPresentable());
-		jsonObject.put("Applicant_Atttitude", Interviews.getApplicantAtttitude());
-		jsonObject.put("Interview_comments", StringEscapeUtils.escapeJava(Interviews.getInterviewComments()));
-		jsonObject.put("Formal_Interview_Complete", Interviews.getFormalInterviewComplete());
-		jsonObject.put("Last_Used_Date", Interviews.getLastUsedDate());
+		jsonObject.put("idMacLabour_InterView", interviews.getIdMacLabourInterView());
+		jsonObject.put("idMac_Applicants", interviews.getIdMacApplicants());
+		jsonObject.put("Name", interviews.getName());
+		jsonObject.put("Surname", interviews.getSurname());
+		jsonObject.put("Id_Number", interviews.getIdNumber());		
+		jsonObject.put("Client_Name", interviews.getClientName());
+		jsonObject.put("Id_Verified", interviews.getIdVerified());
+		jsonObject.put("Work_History_Verified", interviews.getWorkHistoryVerified());
+		jsonObject.put("Job_Name", interviews.getJobName());
+		jsonObject.put("Drivers_License_Verified", interviews.getDriversLicenseVerified());
+		jsonObject.put("SAP_Check", interviews.getSapCheck());
+		jsonObject.put("Criminal_Record", interviews.getCriminalRecord());
+		jsonObject.put("Criminal_Record_Comments", StringEscapeUtils.escapeJava(interviews.getCriminalRecordComments()));
+		jsonObject.put("Union_Member", interviews.getUnionMember());		
+		jsonObject.put("Union_Name", interviews.getUnionName());
+		jsonObject.put("Applicant_Passed_Interview", interviews.getApplicantPassedInterview());
+		jsonObject.put("Applicant_Presentable", interviews.getApplicantPresentable());
+		jsonObject.put("Applicant_Atttitude", interviews.getApplicantAtttitude());
+		jsonObject.put("Interview_comments", StringEscapeUtils.escapeJava(interviews.getInterviewComments()));
+		jsonObject.put("Formal_Interview_Complete", interviews.getFormalInterviewComplete());
+		jsonObject.put("Last_Used_Date", interviews.getLastUsedDate());
 
 	    
 		return jsonObject.toString();
@@ -101,8 +101,6 @@ public class MacLabourInterviewService {
 			jsonArray.put(jsonObject);
 		}
 
-
-	    
 		return jsonArray.toString();
 	}
 	

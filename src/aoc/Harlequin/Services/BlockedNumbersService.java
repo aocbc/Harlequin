@@ -23,21 +23,21 @@ public class BlockedNumbersService
 	@Produces("text/plain")
 	public String GetAllBlockedNumbers() throws Exception
 	{
-	    BlockedNumbersDAO Object  = new BlockedNumbersDAO();
+	    BlockedNumbersDAO blockedNumbersDAO  = new BlockedNumbersDAO();
 		
-		List<BlockedNumberList> BlockedNumbers = Object.ReadAllBlockedNumbers();
-		JSONArray JsonArray = new JSONArray();
+		List<BlockedNumberList> blockedNumbers = blockedNumbersDAO.ReadAllBlockedNumbers();
+		JSONArray jsonArray = new JSONArray();
 		
-		for(int i = 0; i < BlockedNumbers.size();i++)
+		for(int i = 0; i < blockedNumbers.size();i++)
 		{
 			JSONObject jsonObject = new JSONObject();
-			jsonObject.put("idBlockedNumberList", BlockedNumbers.get(i).getIdBlockedNumberList());
-			jsonObject.put("cellNumber", BlockedNumbers.get(i).getCellNumber());
-			jsonObject.put("dateBlocked", BlockedNumbers.get(i).getDateBlocked());
-			JsonArray.put(jsonObject);
+			jsonObject.put("idBlockedNumberList", blockedNumbers.get(i).getIdBlockedNumberList());
+			jsonObject.put("cellNumber", blockedNumbers.get(i).getCellNumber());
+			jsonObject.put("dateBlocked", blockedNumbers.get(i).getDateBlocked());
+			jsonArray.put(jsonObject);
 		}
 		
-		return JsonArray.toString();
+		return jsonArray.toString();
 	}
 	
 	
@@ -47,8 +47,8 @@ public class BlockedNumbersService
 	public String Delete( @PathParam("Id") int Id) throws Exception
 	{
 		
-		BlockedNumbersDAO Object  = new BlockedNumbersDAO();
-		Object.delete(Object.getBlockedNumberInfoById(Id));
+		BlockedNumbersDAO blockedNumbersDAO  = new BlockedNumbersDAO();
+		blockedNumbersDAO.delete(blockedNumbersDAO.getBlockedNumberInfoById(Id));
 		return "Successful";
 	}
 	
@@ -58,14 +58,14 @@ public class BlockedNumbersService
 	public String Delete( @PathParam("Cell_Number") String Cell_Number) throws Exception
 	{
 		
-		BlockedNumbersDAO Object  = new BlockedNumbersDAO();
-		List<BlockedNumberList> BlockedNumbers = Object.getBlockedNumberInfoByCellNumber(Cell_Number);
+		BlockedNumbersDAO blockedNumbersDAO  = new BlockedNumbersDAO();
+		List<BlockedNumberList> blockedNumbers = blockedNumbersDAO.getBlockedNumberInfoByCellNumber(Cell_Number);
 		
-		if(BlockedNumbers.size()> 0)
+		if(blockedNumbers.size()> 0)
 		{
-			for(int i = 0; i < BlockedNumbers.size();i++)
+			for(int i = 0; i < blockedNumbers.size();i++)
 			{
-				Object.delete(BlockedNumbers.get(i)); 
+				blockedNumbersDAO.delete(blockedNumbers.get(i)); 
 			}	
 		}
 		
@@ -79,10 +79,10 @@ public class BlockedNumbersService
 	public  String create(String jsonTextObject) throws JSONException
 	{
 		
-		System.out.println(jsonTextObject);
-		JSONObject r = new JSONObject(jsonTextObject);		
-		BlockedNumbersDAO Object  = new BlockedNumbersDAO();
-		Object.AddBlockedNumberInfo(r.getString("CellNumber"), r.getString("Date_Blocked"));
+		
+		JSONObject jsonObject = new JSONObject(jsonTextObject);		
+		BlockedNumbersDAO blockedNumbersDAO  = new BlockedNumbersDAO();
+		blockedNumbersDAO.AddBlockedNumberInfo(jsonObject.getString("CellNumber"), jsonObject.getString("Date_Blocked"));
 		
 		return "Sucessful";	
 		

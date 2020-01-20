@@ -328,12 +328,15 @@ public class PracticalDrivingAssessmentService {
 				jsonObject.put("Last_Used_Date",assessments.get(i).getLastUsedDate());
 				
 				jsonObject.put("RoadTestPassed", assessments.get(i).getRoadTestPassed());
+				jsonObject.put("RoadTestComplete", assessments.get(i).getRoadTestComplete());
+				
 				jsonObject.put("ParkingTestPassed",assessments.get(i).getParkingTestPassed());
 				jsonObject.put("ReverseTestPassed",assessments.get(i).getReverseTestPassed());
 				
 				jsonObject.put("RoadTestComments", assessments.get(i).getRoadTestComments());
 				jsonObject.put("ParkingTestComments",assessments.get(i).getParkingTestComments());
 				jsonObject.put("ReverseTestComments",assessments.get(i).getReverseTestComments());
+				jsonObject.put("ReverseTestComplete",assessments.get(i).getReverseTestComplete());
 				
 				jsonObject.put("ManualOrAuto",assessments.get(i).getManualOrAuto());
 				
@@ -527,7 +530,7 @@ public class PracticalDrivingAssessmentService {
 		JSONObject jsonObject = new JSONObject(jsonTextObject);	
 			
 		PracticalDrivingAssessmentDAO practicalDrivingAssessmentDao  = new PracticalDrivingAssessmentDAO();
-		practicalDrivingAssessmentDao.AddAppicantInformation(jsonObject.getString("ManualORAuto"),jsonObject.getString("idMac_Applicants"), jsonObject.getString("Name"), jsonObject.getString("Surname"), jsonObject.getString("Id_Number"), jsonObject.getString("Client_Name"), jsonObject.getString("PDP_Expiry_Date"), jsonObject.getString("Vehicle_Used"), jsonObject.getString("Assessor_Name"), jsonObject.getString("Assessor_Surname"), "01", jsonObject.getString("Date"), jsonObject.getString("KM_End"), jsonObject.getString("KM_Start"), jsonObject.getString("Time_End"), jsonObject.getString("Time_Start"), jsonObject.getString("Weather"), jsonObject.getString("Route"), jsonObject.getString ("Total_Score"), jsonObject.getString("Starting_And_Stopping"), jsonObject.getString("General_Driving"), jsonObject.getString("Passing_Or_Overtaking"), jsonObject.getString("General_Road_Behavior"), jsonObject.getString("Observation_And_Anticipation"), jsonObject.getString("Approaching_Junctions_Turning_Exiting"),jsonObject.getString("Reversing"), jsonObject.getString("Clutch"), jsonObject.getString("Retarder_DSC_HillMode"), jsonObject.getString("Comments"), jsonObject.getString("PDA_No"), jsonObject.getString("License_Code"), jsonObject.getString("Job_Name"),jsonObject.getString("PracticalDriversTestComplete"),jsonObject.getString("StartingAndStopping1") ,jsonObject.getString("StartingAndStopping2"),jsonObject.getString("StartingAndStopping3"), jsonObject.getString("StartingAndStopping4"), jsonObject.getString("StartingAndStopping5"), jsonObject.getString("StartingAndStopping6"), jsonObject.getString("StartingAndStopping7"), jsonObject.getString("GeneralDriving8"), jsonObject.getString("GeneralDriving9"), jsonObject.getString("GeneralDriving10"), jsonObject.getString("GeneralDriving11"), jsonObject.getString("GeneralDriving12"), jsonObject.getString("GeneralDriving13"), jsonObject.getString("GeneralDriving14"), jsonObject.getString("GeneralDriving15"), jsonObject.getString("GeneralDriving16"), jsonObject.getString("GeneralDriving17"), jsonObject.getString("PassingOrOvertaking18"), jsonObject.getString("PassingOrOvertaking19"), jsonObject.getString("PassingOrOvertaking20"), jsonObject.getString("PassingOrOvertaking21"), jsonObject.getString("GeneralRoadBehavior22"), jsonObject.getString("GeneralRoadBehavior23"), jsonObject.getString("ObservationAndAnticipation24"), jsonObject.getString("ObservationAndAnticipation25"), jsonObject.getString("ObservationAndAnticipation26"), jsonObject.getString("ObservationAndAnticipation27"), jsonObject.getString("ObservationAndAnticipation28"), jsonObject.getString("ApproachingJunctionsTurningExiting29"), jsonObject.getString("ApproachingJunctionsTurningExiting30"), jsonObject.getString("ApproachingJunctionsTurningExiting31"), jsonObject.getString("ApproachingJunctionsTurningExiting32"), jsonObject.getString("ApproachingJunctionsTurningExiting33"), jsonObject.getString("ApproachingJunctionsTurningExiting34"), jsonObject.getString("ApproachingJunctionsTurningExiting35"), jsonObject.getString("ApproachingJunctionsTurningExiting36"), jsonObject.getString("Reversing37"), jsonObject.getString("Reversing38"), jsonObject.getString("Reversing39"), jsonObject.getString("Clutch40"), jsonObject.getString("Clutch41"), jsonObject.getString("RetarderDSCHillMode42"), jsonObject.getString("RetarderDSCHillMode43"), jsonObject.getString("RetarderDSCHillMode44"),  jsonObject.getString("RoadTestComments"), jsonObject.getString("RoadTestComplete"), jsonObject.getString("ParkingTestComments"),jsonObject.getString("ParkingTestComplete"), jsonObject.getString("ReverseTestComments"), jsonObject.getString("ReverseTestComplete"));
+		practicalDrivingAssessmentDao.AddAppicantInformation(jsonObject.getString("ManualORAuto"),jsonObject.getString("idMac_Applicants"), jsonObject.getString("Name"), jsonObject.getString("Surname"), jsonObject.getString("Id_Number"), jsonObject.getString("Client_Name"), jsonObject.getString("PDP_Expiry_Date"), jsonObject.getString("Vehicle_Used"), jsonObject.getString("Assessor_Name"), jsonObject.getString("Assessor_Surname"), "01", jsonObject.getString("Date"), jsonObject.getString("KM_End"), jsonObject.getString("KM_Start"), jsonObject.getString("Time_End"), jsonObject.getString("Time_Start"), jsonObject.getString("Weather"), jsonObject.getString("Route"), jsonObject.getString ("Total_Score"), jsonObject.getString("Starting_And_Stopping"), jsonObject.getString("General_Driving"), jsonObject.getString("Passing_Or_Overtaking"), jsonObject.getString("General_Road_Behavior"), jsonObject.getString("Observation_And_Anticipation"), jsonObject.getString("Approaching_Junctions_Turning_Exiting"),jsonObject.getString("Reversing"), jsonObject.getString("Clutch"), jsonObject.getString("Retarder_DSC_HillMode"), jsonObject.getString("Comments"), jsonObject.getString("PDA_No"), jsonObject.getString("License_Code"), jsonObject.getString("Job_Name"),jsonObject.getString("PracticalDriversTestComplete"),jsonObject.getString("StartingAndStopping1") ,jsonObject.getString("StartingAndStopping2"),jsonObject.getString("StartingAndStopping3"), jsonObject.getString("StartingAndStopping4"), jsonObject.getString("StartingAndStopping5"), jsonObject.getString("StartingAndStopping6"), jsonObject.getString("StartingAndStopping7"), jsonObject.getString("GeneralDriving8"), jsonObject.getString("GeneralDriving9"), jsonObject.getString("GeneralDriving10"), jsonObject.getString("GeneralDriving11"), jsonObject.getString("GeneralDriving12"), jsonObject.getString("GeneralDriving13"), jsonObject.getString("GeneralDriving14"), jsonObject.getString("GeneralDriving15"), jsonObject.getString("GeneralDriving16"), jsonObject.getString("GeneralDriving17"), jsonObject.getString("PassingOrOvertaking18"), jsonObject.getString("PassingOrOvertaking19"), jsonObject.getString("PassingOrOvertaking20"), jsonObject.getString("PassingOrOvertaking21"), jsonObject.getString("GeneralRoadBehavior22"), jsonObject.getString("GeneralRoadBehavior23"), jsonObject.getString("ObservationAndAnticipation24"), jsonObject.getString("ObservationAndAnticipation25"), jsonObject.getString("ObservationAndAnticipation26"), jsonObject.getString("ObservationAndAnticipation27"), jsonObject.getString("ObservationAndAnticipation28"), jsonObject.getString("ApproachingJunctionsTurningExiting29"), jsonObject.getString("ApproachingJunctionsTurningExiting30"), jsonObject.getString("ApproachingJunctionsTurningExiting31"), jsonObject.getString("ApproachingJunctionsTurningExiting32"), jsonObject.getString("ApproachingJunctionsTurningExiting33"), jsonObject.getString("ApproachingJunctionsTurningExiting34"), jsonObject.getString("ApproachingJunctionsTurningExiting35"), jsonObject.getString("ApproachingJunctionsTurningExiting36"), jsonObject.getString("Reversing37"), jsonObject.getString("Reversing38"), jsonObject.getString("Reversing39"), jsonObject.getString("Clutch40"), jsonObject.getString("Clutch41"), jsonObject.getString("RetarderDSCHillMode42"), jsonObject.getString("RetarderDSCHillMode43"), jsonObject.getString("RetarderDSCHillMode44"),  jsonObject.getString("RoadTestComments"), jsonObject.getString("RoadTestComplete"), jsonObject.getString("ParkingTestComments"),jsonObject.getString("ParkingTestComplete"), jsonObject.getString("ReverseTestComments"), jsonObject.getString("ReverseTestComplete"), jsonObject.getString("ReverseTestPassed"), jsonObject.getString("RoadTestPassed"));
 
 		/////////////////////////////////////////////////////////
 		AssignedJobApplicantDAO assignedjobdao = new AssignedJobApplicantDAO(); 
@@ -542,18 +545,15 @@ public class PracticalDrivingAssessmentService {
 		if(Applicants.size()>0)
 		{
 			
-			String roadTestComplete = jsonObject.getString("RoadTestComplete"); 
-			String reverseTestComplete = jsonObject.getString("ReverseTestComplete"); 
+			String roadTestPassed = jsonObject.getString("RoadTestPassed"); 
+			String reverseTestPassed = jsonObject.getString("ReverseTestPassed"); 
 			String parkingTestComplete = jsonObject.getString("ParkingTestComplete");
 			boolean passedDriversTest = false;
 			
-			if(roadTestComplete.trim().equals("Yes") && reverseTestComplete.trim().equals("Yes") && parkingTestComplete.trim().equals("Yes")  )
+			if(roadTestPassed.trim().equals("Yes") && reverseTestPassed.trim().equals("Yes") && parkingTestComplete.trim().equals("Yes")  )
 			{
 				passedDriversTest = true;
 			}
-			
-			
-			
 			
 			if(passedDriversTest )
 			{
@@ -561,7 +561,7 @@ public class PracticalDrivingAssessmentService {
 				Applicants.get(0).setStageInTheProcess("Client Interview");
 				Applicants.get(0).setJobName(jsonObject.getString("Job_Name"));
 				Applicants.get(0).setLastUsedDate(dateFormat.format(date));
-				assignedjobdao.UpdateAssignedJobStatusPracticalDrivers(jsonObject.getString("Id_Number"), jsonObject.getString("Job_Name"), "Client Interview", "beginning", jsonObject.getString("PracticalDriversTestComplete"), ((jsonObject.getString("Comments").equals("")) ? "N/A" : jsonObject.getString("Comments")),roadTestComplete, parkingTestComplete, reverseTestComplete); 
+				assignedjobdao.UpdateAssignedJobStatusPracticalDrivers(jsonObject.getString("Id_Number"), jsonObject.getString("Job_Name"), "Client Interview", "beginning", jsonObject.getString("PracticalDriversTestComplete"), ((jsonObject.getString("Comments").equals("")) ? "N/A" : jsonObject.getString("Comments")),roadTestPassed, parkingTestComplete, reverseTestPassed); 
 			}
 			else
 			{
@@ -569,7 +569,7 @@ public class PracticalDrivingAssessmentService {
 				Applicants.get(0).setStageInTheProcess("Practical Drivers Test");
 				Applicants.get(0).setJobName(jsonObject.getString("Job_Name"));
 				Applicants.get(0).setLastUsedDate(dateFormat.format(date));
-				assignedjobdao.UpdateAssignedJobStatusPracticalDrivers(jsonObject.getString("Id_Number"), jsonObject.getString("Job_Name"), "Practical Drivers Test", "pending", jsonObject.getString("PracticalDriversTestComplete"), ((jsonObject.getString("Comments").equals("")) ? "N/A" : jsonObject.getString("Comments")),roadTestComplete, parkingTestComplete, reverseTestComplete); 
+				assignedjobdao.UpdateAssignedJobStatusPracticalDrivers(jsonObject.getString("Id_Number"), jsonObject.getString("Job_Name"), "Practical Drivers Test", "pending", jsonObject.getString("PracticalDriversTestComplete"), ((jsonObject.getString("Comments").equals("")) ? "N/A" : jsonObject.getString("Comments")),roadTestPassed, parkingTestComplete, reverseTestPassed); 
 				
 			}
 			macApplicantDao.update(Applicants.get(0));

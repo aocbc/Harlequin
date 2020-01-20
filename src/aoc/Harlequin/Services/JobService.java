@@ -208,8 +208,7 @@ public class JobService {
 	{
 
 		JSONObject jsonObject = new JSONObject(jsonTextObject);	
-		
-		//System.out.println("WRITING TO DATABASE:"+ r.getString("Client_Name"));			
+				
 		JobDAO jobDao  = new JobDAO();
 		jobDao.AddJobInformation(jsonObject.getString("Job_Name"),jsonObject.getString("Job_Date"), jsonObject.getString("Job_Code"), jsonObject.getString("Job_Client_Name"), jsonObject.getString("Job_Details"), jsonObject.getString("Job_Comments"), jsonObject.getString("Job_Type"));
 		
@@ -223,8 +222,7 @@ public class JobService {
 	@Produces("text/plain")
 	public  String update(String jsonTextObject) throws JSONException
 	{
-		
-		
+
 		DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 		Date date = new Date();
 		

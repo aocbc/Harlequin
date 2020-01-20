@@ -279,7 +279,12 @@
         <property name="reverseTestPassed" type="string">
             <column name="ReverseTestPassed" length="3" />
         </property>  
-               
+        <property name="reverseTestComplete" type="string">
+            <column name="ReverseTestComplete" length="3" />
+        </property>
+        <property name="roadTestComplete" type="string">
+            <column name="RoadTestComplete" length="3" />
+        </property>       
                
         <property name="ManualOrAuto" type="string">
             <column name="ManualOrAuto" length="6" />

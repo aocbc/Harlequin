@@ -22,10 +22,6 @@ import aoc.Harlequin.DAOs.MacApplicantDAO;
 import aoc.Harlequin.OBJs.ClientInterviews;
 import aoc.Harlequin.OBJs.MacApplicants;
 
-
-
-
-
 @SuppressWarnings("deprecation")
 @Path("ClientInterview")
 public class ClientInterviewService {
@@ -97,12 +93,12 @@ public class ClientInterviewService {
 	@Path("/GetInterviewInfo/{client_Name}")
 	@GET
 	@Produces("text/plain")
-	public String GET1(@PathParam("client_Name") String client_Name ) throws Exception
+	public String GET1(@PathParam("client_Name") String clientName ) throws Exception
 	{
 
 		ClientInterviewDAO clientInterviewDao  = new ClientInterviewDAO();
-		List<ClientInterviews> clientInterview = clientInterviewDao.GetClientInfoByName(client_Name);
-		JSONArray JsonArray = new JSONArray();
+		List<ClientInterviews> clientInterview = clientInterviewDao.GetClientInfoByName(clientName);
+		JSONArray jsonArray = new JSONArray();
 		
 		for(int i = 0; i < clientInterview.size();i++)
 		{
@@ -121,22 +117,22 @@ public class ClientInterviewService {
 			jsonObject.put("Last_Used_Date", clientInterview.get(i).getLastUsedDate());
 			jsonObject.put("Client_Interview_Passed", clientInterview.get(i).getClientInterviewPassed());
 
-			JsonArray.put(jsonObject);
+			jsonArray.put(jsonObject);
 		}
 		
 
-		return JsonArray.toString();
+		return jsonArray.toString();
 	}
 	
 	
 	@Path("/GetInterviewInfoByID/{id_Number}")
 	@GET
 	@Produces("text/plain")
-	public String GET5(@PathParam("id_Number") String id_Number ) throws Exception
+	public String GET5(@PathParam("id_Number") String idNumber ) throws Exception
 	{
 		ClientInterviewDAO clientInterviewDao  = new ClientInterviewDAO();
-		List<ClientInterviews> clientInterviews = clientInterviewDao.GetClientInfoByIdNumber(id_Number);		
-		JSONArray JsonArray = new JSONArray();
+		List<ClientInterviews> clientInterviews = clientInterviewDao.GetClientInfoByIdNumber(idNumber);		
+		JSONArray jsonArray = new JSONArray();
 		
 		for(int i = 0; i < clientInterviews.size();i++)
 		{
@@ -157,10 +153,10 @@ public class ClientInterviewService {
 			jsonObject.put("Client_Interview_Passed", clientInterviews.get(i).getClientInterviewPassed());
 			jsonObject.put("Job_Name", clientInterviews.get(i).getJobName());
 			
-			JsonArray.put(jsonObject);
+			jsonArray.put(jsonObject);
 		}
 		
-		return JsonArray.toString();
+		return jsonArray.toString();
 	}
 	
 	
@@ -168,18 +164,17 @@ public class ClientInterviewService {
 	@Path("/GetInterview/{id_Number}/{idMac_Applicants}/{job_Name}")
 	@GET
 	@Produces("text/plain")
-	public String GET1(@PathParam("id_Number") String id_Number,@PathParam("idMac_Applicants") String idMac_Applicants, @PathParam("job_Name") String job_Name ) throws Exception
+	public String GET1(@PathParam("id_Number") String idNumber,@PathParam("idMac_Applicants") String idMacApplicants, @PathParam("job_Name") String jobName ) throws Exception
 	{
 		
 		ClientInterviewDAO clientInterviewDao  = new ClientInterviewDAO();
-		List<ClientInterviews> clientInterviews = clientInterviewDao.GetInterviewByInfo(id_Number, idMac_Applicants,job_Name);
+		List<ClientInterviews> clientInterviews = clientInterviewDao.GetInterviewByInfo(idNumber, idMacApplicants,jobName);
 		
 		
 			JSONObject jsonObject = new JSONObject();
 			
 			if(clientInterviews.size()>0)
 			{
-				System.out.println("Hellowaorld");
 				jsonObject.put("Interview_questions_Passed", clientInterviews.get(0).getInterviewQuestionsPassed());
 				jsonObject.put("Applicant_Presentable", clientInterviews.get(0).getApplicantPresentable());
 				jsonObject.put("Applicant_Attitude", clientInterviews.get(0).getApplicantAttitude());
@@ -212,7 +207,7 @@ public class ClientInterviewService {
 		MacApplicantDAO macApplicantDao = new MacApplicantDAO();
 		
 		List<MacApplicants> applicants = macApplicantDao.GetApplicantsByApplicantId(jsonObject.getString("Id_Number"));
-		if(applicants.size()>0)
+		if(applicants.size() > 0)
 		{
 			
 			if(jsonObject.getString("Client_Interview_Passed").equals("Yes"))
@@ -221,7 +216,7 @@ public class ClientInterviewService {
 				applicants.get(0).setStageInTheProcess("Reference Checks");
 				applicants.get(0).setLastUsedDate(dateFormat.format(date));
 				assignedJobDao.UpdateAssignedJobStatusClientrInterview(jsonObject.getString("Id_Number"), jsonObject.getString("Job_Name"), "Reference Checks", "beginning",jsonObject.getString("Client_Interview_Complete"),((jsonObject.getString("Interview_Comments").equals("")) ? "N/A" : jsonObject.getString("Interview_Comments")),jsonObject.getString("Client_Interview_Passed"));
-				
+			
 				
 			}
 			else if(jsonObject.getString("Client_Interview_Passed").equals("No"))

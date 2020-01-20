@@ -58,21 +58,21 @@ public class ClientService {
 		ClientDAO clientDao = new ClientDAO();
 		JSONObject jsonObject = new JSONObject(jsonTextObject);
 
-		SystemClient Client  = clientDao.getClientInfoById(jsonObject.getInt("idClient"));
+		SystemClient client  = clientDao.getClientInfoById(jsonObject.getInt("idClient"));
 
-		Client.setClientName(jsonObject.getString("Client_Name"));
-		Client.setClientEMail(jsonObject.getString("Client_E_Mail"));
-		Client.setClientContactNumber(jsonObject.getString("Client_Contact_Number"));
-		Client.setClientContactName(jsonObject.getString("Client_Contact_Name"));
-		Client.setClientAddress1(jsonObject.getString("Client_Address_1"));
-		Client.setClientAddress2(jsonObject.getString("Client_Address_2"));
-		Client.setClientAddress3(jsonObject.getString("Client_Address_3"));
-		Client.setClientAddress4(jsonObject.getString("Client_Address_4"));
-		Client.setClientVatNumber(jsonObject.getString("Client_Vat_Number"));
-		Client.setClientComments(jsonObject.getString("Client_Comments"));
-		Client.setLastUsedDate(dateFormat.format(date));
+		client.setClientName(jsonObject.getString("Client_Name"));
+		client.setClientEMail(jsonObject.getString("Client_E_Mail"));
+		client.setClientContactNumber(jsonObject.getString("Client_Contact_Number"));
+		client.setClientContactName(jsonObject.getString("Client_Contact_Name"));
+		client.setClientAddress1(jsonObject.getString("Client_Address_1"));
+		client.setClientAddress2(jsonObject.getString("Client_Address_2"));
+		client.setClientAddress3(jsonObject.getString("Client_Address_3"));
+		client.setClientAddress4(jsonObject.getString("Client_Address_4"));
+		client.setClientVatNumber(jsonObject.getString("Client_Vat_Number"));
+		client.setClientComments(jsonObject.getString("Client_Comments"));
+		client.setLastUsedDate(dateFormat.format(date));
 		
-		clientDao.update(Client);
+		clientDao.update(client);
 			
 		return "Updated";
 	}
@@ -131,10 +131,10 @@ public class ClientService {
 	@Path("/GetClientInfo/{client_Name}")
 	@GET
 	@Produces("text/plain")
-	public String GET1(@PathParam("client_Name") String client_Name ) throws Exception
+	public String GET1(@PathParam("client_Name") String clientName ) throws Exception
 	{	
 		ClientDAO clientDao  = new ClientDAO();
-		List<SystemClient> client = clientDao.GetClientInfoByName(client_Name);
+		List<SystemClient> client = clientDao.GetClientInfoByName(clientName);
 		JSONArray jsonArray = new JSONArray();
 		
 		for(int i = 0; i < client.size();i++)

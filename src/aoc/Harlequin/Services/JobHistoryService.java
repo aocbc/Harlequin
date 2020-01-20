@@ -59,7 +59,7 @@ public class JobHistoryService {
 		
 		JobHistoryDAO jobHistoryDao  = new JobHistoryDAO();
 		List<JobHistory> historys  = jobHistoryDao.ReadAllJobHistoryByIdNumber(idNumber);
-		JSONArray JsonArray = new JSONArray();
+		JSONArray jsonArray = new JSONArray();
 		
 		for(int i = 0; i < historys.size();i++)
 		{
@@ -81,12 +81,12 @@ public class JobHistoryService {
 			jsonObject.put("Designation_Of_Contact", historys.get(i).getDesignationOfContact());
 			jsonObject.put("Reason_For_Leaving", historys.get(i).getReasonForLeaving());
 			
-			JsonArray.put(jsonObject);
+			jsonArray.put(jsonObject);
 		}
 		
 		
 	    
-		return JsonArray.toString();
+		return jsonArray.toString();
 	}
 	
 	

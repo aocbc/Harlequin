@@ -104,6 +104,7 @@ public class PracticalDriversAssessment implements java.io.Serializable {
 	
 	
 	private String RoadTestPassed;
+	private String RoadTestComplete;
 	private String ParkingTestPassed;
 
 	private String RoadTestComments;
@@ -111,6 +112,7 @@ public class PracticalDriversAssessment implements java.io.Serializable {
 	
 	private String ReverseTestPassed;
 	private String ReverseTestComments;
+	private String ReverseTestComplete;
 	
 	private String ManualOrAuto;
 
@@ -148,8 +150,8 @@ public class PracticalDriversAssessment implements java.io.Serializable {
 			int Reversing37, int Reversing38, int Reversing39,
 			int Clutch40, int Clutch41,
 			int RetarderDSCHillMode42, int RetarderDSCHillMode43, int RetarderDSCHillMode44,
-			String ParkingTestPassed, String RoadTestPassed, String ParkingTestComments, String RoadTestComments, 
-			String ReverseTestPassed, String ReverseTestComments, String ManualOrAuto) {
+			String ParkingTestPassed, String RoadTestPassed, String RoadTestComplete, String ParkingTestComments, String RoadTestComments, 
+			String ReverseTestPassed, String ReverseTestComplete, String ReverseTestComments, String ManualOrAuto) {
 		this.idPracticalDriversAssessment = idPracticalDriversAssessment;
 		this.idMacApplicants = idMacApplicants;
 		this.name = name;
@@ -244,9 +246,11 @@ public class PracticalDriversAssessment implements java.io.Serializable {
 		this.RoadTestPassed = RoadTestPassed;
 		this.ParkingTestPassed = ParkingTestPassed;
 		
+		this.RoadTestComplete = RoadTestComplete; 
 		this.RoadTestComments = RoadTestComments;
 		this.ParkingTestComments = ParkingTestComments;
 		
+		this.ReverseTestComplete = ReverseTestComplete; 
 		this.ReverseTestPassed = ReverseTestPassed;
 		this.ReverseTestComments = ReverseTestComments;
 		
@@ -263,6 +267,24 @@ public class PracticalDriversAssessment implements java.io.Serializable {
 	public void setManualOrAuto(String ManualOrAuto) 
 	{
 		this.ManualOrAuto = ManualOrAuto;
+	}
+	
+	public String getReverseTestComplete()
+	{
+		return this.ReverseTestComplete;
+	}
+	public void setReverseTestComplete(String ReverseTestComplete) 
+	{
+		this.ReverseTestComplete = ReverseTestComplete;
+	}
+	
+	public String getRoadTestComplete()
+	{
+		return this.RoadTestComplete;
+	}
+	public void setRoadTestComplete(String RoadTestComplete) 
+	{
+		this.RoadTestComplete = RoadTestComplete;
 	}
 	
 	public String getReverseTestPassed()
